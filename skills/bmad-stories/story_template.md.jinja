@@ -1,0 +1,111 @@
+# Story {{ epic_num }}.{{ story_num }}: {{ story_title }}
+
+**Status:** drafted
+**Created:** {{ date }}
+
+---
+
+## Story
+
+As a {{ story_statement.role }},
+I want {{ story_statement.action }},
+so that {{ story_statement.benefit }}.
+
+---
+
+## Acceptance Criteria
+
+{% for ac in acceptance_criteria %}
+{{ loop.index }}. {{ ac }}
+{% endfor %}
+
+---
+
+## Prerequisites
+
+{% if prerequisites %}
+{{ prerequisites }}
+{% else %}
+None
+{% endif %}
+
+---
+
+## Tasks / Subtasks
+
+{% for task in tasks %}
+- [ ] {{ task.task }} (AC: {{ task.ac_ref }})
+{% for subtask in task.subtasks %}
+  - [ ] {{ subtask }}
+{% endfor %}
+{% endfor %}
+
+---
+
+## Dev Notes
+
+### Architecture Patterns and Constraints
+
+{{ dev_notes.architecture_patterns }}
+
+### Project Structure Notes
+
+{{ dev_notes.project_structure }}
+
+### Testing Requirements
+
+{{ dev_notes.testing_requirements }}
+
+{% if dev_notes.previous_story_learnings %}
+### Learnings from Previous Story
+
+{{ dev_notes.previous_story_learnings }}
+{% endif %}
+
+### References
+
+{% for ref in dev_notes.references %}
+- {{ ref }}
+{% endfor %}
+
+---
+
+## Dev Agent Record
+
+_This section is filled during implementation by the developer/AI agent_
+
+### Context Reference
+
+<!-- Path(s) to story context XML or additional context will be added here during implementation -->
+
+### Agent Model Used
+
+<!-- Agent model name and version used for implementation -->
+
+### Debug Log References
+
+<!-- Links to debug logs or implementation notes -->
+
+### Completion Notes List
+
+<!-- Key notes about implementation:
+- New patterns/services created
+- Architectural deviations or decisions
+- Technical debt deferred
+- Warnings for next story
+- Interfaces/methods created for reuse
+-->
+
+### File List
+
+<!-- Files affected during implementation:
+- NEW: path/to/new/file.ext - Description
+- MODIFIED: path/to/modified/file.ext - Changes made
+- DELETED: path/to/deleted/file.ext - Reason
+-->
+
+---
+
+_Generated via BMAD Workflow Skills (v1.0.0) using BMAD v6-alpha spec_
+_Source: https://github.com/bmad-code-org/BMAD-METHOD/tree/v6-alpha_
+_Created: {{ date }}_
