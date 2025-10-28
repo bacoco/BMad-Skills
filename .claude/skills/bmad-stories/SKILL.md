@@ -1,36 +1,60 @@
 ---
 name: bmad-stories
-description: Proactively activates when user says "break this into stories", "create user stories", or wants to prepare development work. Creates developer-ready story files following BMAD standards. Requires PRD and Architecture. (user)
-version: 2.1.0
-source: BMAD Method v6-alpha (https://github.com/bmad-code-org/BMAD-METHOD/tree/v6-alpha)
-attribution: Based on BMAD Scrum Master Agent persona and Create Story workflow
+description: Activates during Phase 4 when epics need breakdown into developer-ready stories. Produces BMAD story files with acceptance criteria and dev records. (user)
+version: 3.0.0
+source: BMAD Method v6-alpha
+attribution: Mirrors BMAD Scrum Master/Story Agent persona and story creation workflow
 ---
 
-# BMAD Stories Quick Guide
+# BMAD Story Author
 
-Phase 4 story authoring skill. Turn epics into developer-ready stories with continuity.
+Phase 4 planning-to-delivery bridge. Convert epics into sequenced stories with clear acceptance criteria and learnings.
 
-## Role Snapshot
-- Generate story files in `stories/` with acceptance criteria and Dev Agent Record headers.
-- Pull learnings from the previous story to maintain continuity.
-- Map each task back to PRD + architecture decisions.
+## When to trigger
+- PRD, epics, and architecture are approved and development needs actionable stories.
+- Stakeholders request backlog grooming, story creation, or refinement.
+- New information requires updating or splitting existing stories.
 
-## Fast Start
-1. Confirm epics exist and orchestrator signals implementation phase entry.
-2. Identify the next story (epic/story numbering) and read previous story learnings.
-3. Draft acceptance criteria first, then outline tasks + test expectations.
-4. Capture dependencies, references, and cross-links to architecture + testing artifacts.
-5. Save the story file and update workflow status with story queue state.
+## Required context before acting
+- Approved PRD, epics, architecture decisions, and UX specs.
+- Sprint status to understand current progress and dependencies.
+- Previous story learnings to ensure continuity and avoid regressions.
 
-## Trigger Conditions
-Invoke when user asks to create or refine developer stories/backlog items post-planning.
+## Tools & commands
+### `create_story.py` — generate story file from JSON
+- Prepare JSON with epic/story numbers, title, summary, acceptance criteria, and dependencies.
+- Produce canonical story markdown:
+  ```bash
+  python skills/bmad-stories/create_story.py /tmp/story.json stories
+  ```
+  Outputs `stories/<epic>-<story>-<slug>.md` following BMAD format.
+- Use for new story drafts or to sync large updates before manual edits.
+
+### Template
+- `skills/bmad-stories/story_template.md.jinja` — review when tailoring sections or adding organization-specific fields.
+
+## Core workflow
+1. **Confirm readiness** — verify upstream deliverables exist and orchestrator agrees implementation can start.
+2. **Select story scope** — prioritize epic slices based on dependencies, risk, and stakeholder value.
+3. **Draft story** — capture summary, acceptance criteria, non-functional requirements, and verification steps.
+4. **Record learnings** — include previous story outcomes, architecture references, and testing expectations.
+5. **Update sprint status** — recommend status changes via orchestrator helper scripts and call out blockers.
+
+## Deliverables
+- Story markdown files with acceptance criteria, tasks, and Dev Agent Record sections.
+- Story sequencing notes, dependency mapping, and readiness checklist.
+- Summary of backlog state and recommended next story for dev.
+
+## Handoffs & escalation
+- Hand stories to bmad-dev with explicit prerequisites, assets, and test expectations.
+- Align TEA on quality scenarios embedded in acceptance criteria.
+- Escalate missing prerequisites (architecture gaps, UX decisions) before finalizing stories.
 
 ## Guardrails
-- Never skip "Learnings from Previous Story"; fetch context or block until available.
-- Keep stories actionable: each acceptance criterion must map to tasks and tests.
-- Escalate missing architecture/test plans before generating new stories.
+- Reference architecture and PRD in every story—no isolated tasks.
+- Maintain chronological story numbering and ensure each story captures learnings from the previous one.
+- Decline to write stories when prerequisites or acceptance criteria are incomplete.
 
-## References (load as needed)
-- [`references/operating-manual.md`](references/operating-manual.md) – Story templates, continuity checklist, and numbering rules.
-
-Default to lightweight guidance; open the manual when you need the full template or auditing instructions.
+## References
+- [`references/operating-manual.md`](references/operating-manual.md) — story checklists, JSON schema, and refinement guidance.
+- Story template for field definitions and formatting rules.
