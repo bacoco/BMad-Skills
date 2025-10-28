@@ -1,63 +1,87 @@
-# BMAD-Style Workflow Skills for Claude
+# BMAD + OpenSpec Workflow Skills for Claude
 
-**Version**: 2.1.0 - Proactive Skills
-**Source**: [BMAD Method v6-alpha](https://github.com/bmad-code-org/BMAD-METHOD/tree/v6-alpha)
+**Version**: 3.0.0 - Dual Workflow System
+**Sources**:
+- [BMAD Method v6-alpha](https://github.com/bmad-code-org/BMAD-METHOD/tree/v6-alpha)
+- [OpenSpec by Fission-AI](https://github.com/Fission-AI/OpenSpec)
 
-Complete, faithful implementation of BMAD Method v6-alpha as Claude Code Skills with automatic, proactive skill invocation.
+**Two workflows, one orchestrator**: BMAD for complex projects (L2-4), OpenSpec for simple changes (L0-1).
 
 ---
 
 ## 🎉 What's This?
 
-**All 7 BMAD agents** transformed into Claude Skills that activate **automatically** when you talk to Claude:
+**Intelligent workflow system** that automatically chooses the right approach based on your project's complexity:
 
-- ✅ **Proactive Auto-Invocation** - Claude detects what you need and invokes skills automatically
+### 🚀 OpenSpec (Level 0-1: Simple Changes)
+- ✅ **Lightweight & Fast** - Hours instead of days
+- ✅ **3 Simple Stages** - Propose → Implement → Archive
+- ✅ **Perfect for** - Bug fixes, small features, simple modifications
+- ✅ **Minimal Overhead** - Just proposal + tasks, no PRD/Architecture
+
+### 🏗️ BMAD (Level 2-4: Complex Projects)
+- ✅ **Comprehensive & Structured** - Complete planning and architecture
 - ✅ **7 Agent Skills** - Analyst, PM, UX, Architect, TEA, Scrum Master, Dev
-- ✅ **Complete Workflow** - Analysis → Planning → Solutioning → Implementation
+- ✅ **4-Phase Workflow** - Analysis → Planning → Solutioning → Implementation
 - ✅ **State Management** - Tracks phases, stories, progress
 - ✅ **BMAD Agent Personas** - Mary, John, Sally, Winston, Murat, Bob, Amelia
 
+### 🎯 Automatic Routing
+- ✅ **Proactive Auto-Invocation** - Claude detects complexity and chooses workflow
+- ✅ **No manual decisions** - Just describe what you want, Claude handles the rest
+
 ## 🚀 How It Works
 
-**No slash commands. Just talk naturally.**
+**No slash commands. Just talk naturally.** Claude detects complexity and routes to the right workflow.
+
+### Simple Change → OpenSpec
 
 ```
-You: "I have an idea for a collaborative todo app"
+You: "Add search filters to the profile page"
 
-Claude: I detect you're starting a new project with a vague idea.
-        Let me invoke bmad-analyst to help you explore this...
-        [Analyst skill activates - helps brainstorm]
+Claude: This is a Level 1 change - perfect for OpenSpec!
+        Let me create a lightweight proposal...
+        [openspec-propose activates - creates proposal + tasks]
+
+        Ready in minutes, not days.
 ```
+
+### Complex Project → BMAD
 
 ```
 You: "I want to build a REST API for user authentication"
 
-Claude: You're describing a Level 2-3 project.
-        Let me invoke bmad-pm to create a PRD...
-        [PM skill activates - creates PRD and epics]
+Claude: Level 2-3 project - using BMAD workflow.
+        Let me create a complete PRD...
+        [bmad-pm activates - creates PRD and epics]
+
+        Full planning and architecture included.
 ```
 
-```
-You: "How should we architect this?"
+### Architecture Needed → BMAD
 
-Claude: I detect you need architectural planning.
+```
+You: "How should we architect this microservices system?"
+
+Claude: Complex architecture required - BMAD workflow.
         Let me invoke bmad-architecture...
         [Architecture skill activates - creates ARCHITECTURE.md]
 ```
 
-**Claude analyzes your conversation** and invokes the right skill at the right time.
+**Claude analyzes complexity automatically** and chooses the optimal workflow.
 
 ---
 
 ## 📚 Documentation
 
 ### Getting Started
-- **[Quick Start](doc/quickstart.md)** - Start using BMAD in 5 minutes
+- **[Quick Start](doc/quickstart.md)** - Start using BMAD/OpenSpec in 5 minutes
 - **[Architecture Overview](doc/overview.md)** - Skills, triggers, structure
+- **[OpenSpec Workflow](doc/openspec.md)** - Lightweight workflow for simple changes (L0-1)
 
 ### Deep Dive
 - **[BMAD Phases](doc/phases.md)** - Analysis → Planning → Solutioning → Implementation
-- **[Skill Details](doc/skills.md)** - All 7 skills explained
+- **[Skill Details](doc/skills.md)** - All 7 BMAD skills + 3 OpenSpec skills explained
 - **[Workflow Example](doc/workflow-example.md)** - Complete e-commerce project walkthrough
 - **[State Management](doc/state-management.md)** - workflow-status.md & sprint-status.yaml
 
@@ -67,11 +91,23 @@ Claude: I detect you need architectural planning.
 
 ---
 
-## 🎯 The 7 Skills
+## 🎯 The 10 Skills (7 BMAD + 3 OpenSpec)
 
+### Orchestration
+| Skill | Workflow | What It Does | Triggers |
+|-------|----------|--------------|----------|
+| **bmad-orchestrator** | Both | Intelligent routing: BMAD (L2-4) or OpenSpec (L0-1) | "What's next?", "Start new project" |
+
+### OpenSpec Skills (L0-1: Simple Changes)
+| Skill | Stage | What It Does | Triggers |
+|-------|-------|--------------|----------|
+| **openspec-propose** | 1 | Create lightweight change proposals | "Add a...", "Fix the...", "Change the..." |
+| **openspec-implement** | 2 | Implement approved proposals | "Approved", "Implement it" |
+| **openspec-archive** | 3 | Archive deployed changes | "Deployed", "Archive this" |
+
+### BMAD Skills (L2-4: Complex Projects)
 | Skill | Phase | What It Does | Triggers |
 |-------|-------|--------------|----------|
-| **bmad-orchestrator** | All | Workflow management, status tracking | "What's next?", "Start new project" |
 | **bmad-analyst** | 1 | Brainstorming, product briefs, research | "I have an idea...", "Help me think through..." |
 | **bmad-pm** | 2 | PRD, epics breakdown | "I want to build...", "Create PRD" |
 | **bmad-ux** | 2 | UX design specifications | "What should the UI look like?" |
@@ -80,7 +116,7 @@ Claude: I detect you need architectural planning.
 | **bmad-stories** | 4 | Developer-ready story creation | "Break into stories" |
 | **bmad-dev** | 4 | Code implementation, testing | "Implement story X", "Let's code" |
 
-See [Skill Details](doc/skills.md) for complete documentation.
+See [Skill Details](doc/skills.md) and [OpenSpec Workflow](doc/openspec.md) for complete documentation.
 
 ---
 
@@ -161,21 +197,30 @@ See [Best Practices](doc/best-practices.md) for complete guide.
 
 ```
 .claude/skills/
-├── bmad-orchestrator/    # Workflow management + Python helpers
-├── bmad-analyst/         # Phase 1: Analysis
-├── bmad-pm/              # Phase 2: Planning (PRD generator)
-├── bmad-ux/              # Phase 2: UX Design
-├── bmad-architecture/    # Phase 3: Solutioning (Architecture generator)
-├── bmad-tea/             # Cross-phase: Testing
-├── bmad-stories/         # Phase 4: Story creation (Story generator)
-└── bmad-dev/             # Phase 4: Implementation
+├── bmad-orchestrator/    # Intelligent routing: BMAD or OpenSpec
+│   └── helpers/          # Python state management
+│
+├── OpenSpec Skills (L0-1)
+├── openspec-propose/     # Stage 1: Create proposals
+├── openspec-implement/   # Stage 2: Implement tasks
+├── openspec-archive/     # Stage 3: Archive changes
+│
+└── BMAD Skills (L2-4)
+    ├── bmad-analyst/         # Phase 1: Analysis
+    ├── bmad-pm/              # Phase 2: Planning (PRD generator)
+    ├── bmad-ux/              # Phase 2: UX Design
+    ├── bmad-architecture/    # Phase 3: Solutioning (Architecture generator)
+    ├── bmad-tea/             # Cross-phase: Testing
+    ├── bmad-stories/         # Phase 4: Story creation (Story generator)
+    └── bmad-dev/             # Phase 4: Implementation
 
 doc/                      # Complete documentation
 ├── overview.md           # Architecture overview
 ├── quickstart.md         # Getting started guide
-├── phases.md             # Phase details
-├── skills.md             # Skill details
-├── workflow-example.md   # Complete example
+├── openspec.md           # OpenSpec workflow guide (NEW)
+├── phases.md             # BMAD phase details
+├── skills.md             # All skill details
+├── workflow-example.md   # Complete BMAD example
 ├── state-management.md   # State files
 ├── best-practices.md     # Tips & troubleshooting
 └── changelog.md          # Version history
