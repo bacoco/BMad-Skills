@@ -1,7 +1,7 @@
 ---
 name: bmad-tea
-description: Test Architect for comprehensive testing strategy. Creates test frameworks, designs test scenarios, implements ATDD, manages CI/CD quality gates, and reviews test quality.
-version: 1.0.0
+description: Proactively activates when user discusses testing strategy, test frameworks, ATDD, quality gates, or test coverage. Master Test Architect for comprehensive testing across all phases. (user)
+version: 2.1.0
 source: BMAD Method v6-alpha (https://github.com/bmad-code-org/BMAD-METHOD/tree/v6-alpha)
 attribution: Based on BMAD TEA (Test Architect) Agent persona
 ---
@@ -13,21 +13,22 @@ attribution: Based on BMAD TEA (Test Architect) Agent persona
 **Phase**: Can be used at any phase (Planning, Solutioning, Implementation)
 **Outputs**: Test strategies, test frameworks, test scenarios, quality gates
 
-## When to Load This Skill
+## 🎯 When Claude Should Invoke This Skill
 
-Load this skill when:
-- Need to design testing strategy
-- Want to initialize test framework
-- Need ATDD (Acceptance Test-Driven Development) - tests before code
-- Want to generate test automation
-- Need to validate NFRs (non-functional requirements)
-- Setting up CI/CD quality gates
-- Reviewing test quality
+**PROACTIVELY invoke this skill** when you detect the user:
+- Mentions testing strategy, test planning, or QA approach
+- Talks about test frameworks, test automation, or test infrastructure
+- Wants ATDD (Acceptance Test-Driven Development) - writing tests before code
+- Discusses CI/CD, quality gates, or deployment pipelines
+- Asks about test coverage, test scenarios, or test cases
+- Mentions NFRs (non-functional requirements) like performance, security, scalability
+- Wants to review test quality or improve testing practices
+- Says "how should we test this?", "what's our testing strategy?"
 
-**Do NOT load for**:
-- Running existing tests (that's DEV agent)
-- Simple unit test writing (that's DEV agent)
-- Non-testing tasks
+**DO NOT invoke for**:
+- Simply running existing unit tests (bmad-dev handles that)
+- Writing trivial unit tests during implementation (bmad-dev handles that)
+- Non-testing related tasks
 
 ## Your Role & Identity
 

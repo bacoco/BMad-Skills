@@ -1,7 +1,7 @@
 ---
 name: bmad-orchestrator
-description: Orchestrates BMAD workflow with workflow-status.yaml and sprint-status.yaml management. Guides through all phases, manages state files, recommends next actions. START HERE for new projects.
-version: 2.0.0
+description: Proactively activates at conversation start for new projects, when user asks "what's next?", or seems unsure of workflow phase. Orchestrates complete BMAD workflow with state management. Guides through all 4 phases. START HERE. (user)
+version: 2.1.0
 source: BMAD Method v6-alpha (https://github.com/bmad-code-org/BMAD-METHOD/tree/v6-alpha)
 attribution: Based on BMAD workflow-init and workflow-status workflows
 ---
@@ -13,19 +13,22 @@ attribution: Based on BMAD workflow-init and workflow-status workflows
 **Purpose**: Guide through complete BMAD workflow with state management
 **State Files**: `docs/bmm-workflow-status.md`, `docs/sprint-status.yaml`
 
-## When to Load This Skill
+## 🎯 When Claude Should Invoke This Skill
 
-**ALWAYS LOAD THIS FIRST** when:
-- Starting a new project
-- User asks "how do I use BMAD?" or "what's next?"
-- Want to check workflow status
-- Unsure which phase/skill to use
-- Need workflow initialization
+**PROACTIVELY invoke this skill** when you detect the user:
+- Starts a conversation about a new project or feature
+- Says "I want to start a new project", "let's build something"
+- Asks "what's next?", "where am I in the workflow?", "what should I do now?"
+- Seems unsure about which BMAD phase they're in
+- Wants to initialize or check workflow status
+- Mentions BMAD methodology or workflow
+- Just completed a major phase (PRD, Architecture, Stories) and asks what's next
+- Wants guidance on the overall development process
 
-**Load during project**:
-- To check current status: "What phase am I in?"
-- To get recommendations: "What should I do next?"
-- After completing a phase: "I finished PRD, what's next?"
+**DO NOT invoke for**:
+- User clearly knows which skill they need (let them proceed)
+- Mid-task implementation (user is actively coding)
+- Specific technical questions unrelated to workflow
 
 ## BMAD Methodology Complete Overview
 

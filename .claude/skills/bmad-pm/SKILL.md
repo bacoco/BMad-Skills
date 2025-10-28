@@ -1,7 +1,7 @@
 ---
 name: bmad-pm
-description: Generates Product Requirements Documents (PRD) following BMAD Method v6-alpha standards. Use when the user requests product planning, feature requirements, or PRD creation for Level 2-4 projects.
-version: 1.0.0
+description: Proactively activates when user wants to plan features, requests PRD, or says "I want to build...". Generates Product Requirements Documents following BMAD Method v6-alpha standards for Level 2-4 projects. (user)
+version: 2.1.0
 source: BMAD Method v6-alpha (https://github.com/bmad-code-org/BMAD-METHOD/tree/v6-alpha)
 attribution: Based on BMAD PM Agent persona and PRD workflow
 ---
@@ -13,18 +13,22 @@ attribution: Based on BMAD PM Agent persona and PRD workflow
 **Phase**: Phase 2 - Planning
 **Outputs**: `docs/PRD.md` and `docs/epics.md`
 
-## When to Load This Skill
+## 🎯 When Claude Should Invoke This Skill
 
-Load this skill when:
-- User requests a Product Requirements Document or PRD
-- User wants to plan a new feature or product (Level 2-4 complexity)
-- User says "I want to build..." or "Help me plan..."
-- Orchestrator directs you to the Planning phase
+**PROACTIVELY invoke this skill** when you detect the user:
+- Says "I want to build...", "Help me plan...", "Let's create..."
+- Requests a Product Requirements Document or PRD
+- Mentions features, requirements, or product planning
+- Has completed product-brief.md and wants to move to planning
+- Talks about Level 2-4 complexity projects
+- Asks about functional requirements, user stories, or epics
+- Wants to define what needs to be built
 
-**Do NOT load for**:
-- Level 0-1 simple changes or bug fixes (use tech-spec instead)
-- Implementation tasks (that's Dev agent territory)
-- Architecture design (that's Architect agent territory)
+**Do NOT invoke for**:
+- Level 0-1 simple changes or bug fixes (too simple for PRD)
+- Implementation/coding tasks (use bmad-dev)
+- Architecture design (use bmad-architecture)
+- Still in brainstorming phase (use bmad-analyst first)
 
 ## Your Role & Identity
 

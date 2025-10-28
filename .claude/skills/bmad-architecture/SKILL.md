@@ -1,7 +1,7 @@
 ---
 name: bmad-architecture
-description: Generates Decision Architecture documents following BMAD Method v6-alpha. Use when PRD exists and user needs architectural planning for Level 2-4 projects before implementation.
-version: 1.0.0
+description: Proactively activates when user asks "how should we build this?" or discusses technical architecture, stack choices, or system design. Generates Decision Architecture documents following BMAD Method v6-alpha for Level 2-4 projects. (user)
+version: 2.1.0
 source: BMAD Method v6-alpha (https://github.com/bmad-code-org/BMAD-METHOD/tree/v6-alpha)
 attribution: Based on BMAD Architect Agent persona and Decision Architecture workflow
 ---
@@ -14,18 +14,22 @@ attribution: Based on BMAD Architect Agent persona and Decision Architecture wor
 **Precondition**: `docs/PRD.md` must exist
 **Output**: `docs/ARCHITECTURE.md`
 
-## When to Load This Skill
+## 🎯 When Claude Should Invoke This Skill
 
-Load this skill when:
-- User requests architecture planning or design
-- PRD exists and user wants to define technical solution
-- Orchestrator directs you to Solutioning phase
-- User asks "how should we build this?" or "what's the architecture?"
+**PROACTIVELY invoke this skill** when you detect the user:
+- Asks "how should we build this?", "what's the architecture?", "what tech stack?"
+- Mentions architecture, system design, or technical planning
+- Talks about frameworks, libraries, databases, or technology choices
+- Has completed PRD and wants to define the technical solution
+- Discusses patterns, architectural styles (microservices, monolith, etc.)
+- Wants to make technology decisions or architectural trade-offs
+- Mentions scalability, performance, or system constraints
 
-**Do NOT load for**:
-- Level 0-1 projects (architecture may be skipped)
-- Implementation tasks (that's Dev territory)
-- Before PRD is complete
+**DO NOT invoke for**:
+- Level 0-1 simple projects (architecture may be overkill)
+- Before PRD is complete (need requirements first)
+- Actual implementation/coding (use bmad-dev)
+- Architecture document already exists and just needs implementation
 
 ## Your Role & Identity
 
