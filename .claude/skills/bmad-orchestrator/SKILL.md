@@ -1,17 +1,19 @@
 ---
 name: bmad-orchestrator
-description: Proactively activates at conversation start for new projects, when user asks "what's next?", or seems unsure of workflow phase. Orchestrates complete BMAD workflow with state management. Guides through all 4 phases. START HERE. (user)
-version: 2.1.0
-source: BMAD Method v6-alpha (https://github.com/bmad-code-org/BMAD-METHOD/tree/v6-alpha)
-attribution: Based on BMAD workflow-init and workflow-status workflows
+description: Proactively activates at conversation start for new projects, when user asks "what's next?", or seems unsure of workflow. Orchestrates BMAD (L2-4) or OpenSpec (L0-1) based on complexity. Intelligent workflow router. START HERE. (user)
+version: 3.0.0
+source: BMAD Method v6-alpha + OpenSpec by Fission-AI
+attribution: Based on BMAD workflow-init and OpenSpec methodology
 ---
 
 # BMAD Orchestrator Skill
 
-**Source**: BMAD Method v6-alpha Workflow Orchestration
-**Reference**: https://github.com/bmad-code-org/BMAD-METHOD/tree/v6-alpha
-**Purpose**: Guide through complete BMAD workflow with state management
-**State Files**: `docs/bmm-workflow-status.md`, `docs/sprint-status.yaml`
+**Source**: BMAD Method v6-alpha + OpenSpec by Fission-AI
+**References**:
+- BMAD: https://github.com/bmad-code-org/BMAD-METHOD/tree/v6-alpha
+- OpenSpec: https://github.com/Fission-AI/OpenSpec
+**Purpose**: Intelligent workflow orchestration - routes to BMAD or OpenSpec based on complexity
+**State Files**: `docs/bmm-workflow-status.md` (BMAD), `docs/sprint-status.yaml` (BMAD), `openspec/changes/` (OpenSpec)
 
 ## 🎯 When Claude Should Invoke This Skill
 
@@ -30,7 +32,31 @@ attribution: Based on BMAD workflow-init and workflow-status workflows
 - Mid-task implementation (user is actively coding)
 - Specific technical questions unrelated to workflow
 
-## BMAD Methodology Complete Overview
+## Two Workflows Available: BMAD vs OpenSpec
+
+You orchestrate **TWO different workflows** based on project complexity:
+
+### 🚀 OpenSpec Workflow (Level 0-1: Simple Changes)
+
+**When**: Bug fixes, small features, simple modifications to existing projects
+
+**3 Skills Available**:
+1. **openspec-propose** - Create lightweight change proposals
+2. **openspec-implement** - Implement approved changes
+3. **openspec-archive** - Archive deployed changes
+
+**3 Stages**:
+- **Stage 1**: Creating Changes (proposal, tasks, delta specs)
+- **Stage 2**: Implementing Changes (execute tasks)
+- **Stage 3**: Archiving Changes (update living specs)
+
+**Speed**: Hours to days
+**Overhead**: Minimal (proposal + tasks)
+**Best for**: Existing projects, incremental changes
+
+### 🏗️ BMAD Workflow (Level 2-4: Complex Projects)
+
+**When**: New products, MVPs, comprehensive features, platforms
 
 **7 Agent Skills Available**:
 1. **bmad-analyst** - Phase 1: Analysis (brainstorm, product brief, research)
@@ -42,10 +68,14 @@ attribution: Based on BMAD workflow-init and workflow-status workflows
 7. **bmad-dev** - Phase 4: Implementation (coding, testing, review)
 
 **4 Phases**:
-- **Phase 1: Analysis** (Optional for L0-2, Recommended for L3-4)
+- **Phase 1: Analysis** (Optional for L2, Recommended for L3-4)
 - **Phase 2: Planning** (Required for L2-4)
 - **Phase 3: Solutioning** (Required for L2-4)
 - **Phase 4: Implementation** (Iterative)
+
+**Speed**: Days to weeks
+**Overhead**: High (PRD, Architecture, Stories)
+**Best for**: New products, greenfield projects
 
 ## Your Core Responsibilities
 
@@ -99,23 +129,60 @@ Ask user:
 
 | Level | Scope | FRs | Epics | Stories | Workflow |
 |-------|-------|-----|-------|---------|----------|
-| 0 | Trivial (bug fix, config change) | N/A | N/A | N/A | Skip BMAD entirely |
-| 1 | Small change (single feature, isolated) | 1-5 | 0-1 | 1-5 | Tech-spec only, skip full workflow |
-| 2 | New feature (MVP) | 8-15 | 1-2 | 5-15 | Planning → Solutioning → Implementation |
-| 3 | Comprehensive product | 12-25 | 2-5 | 15-40 | Analysis (optional) → Planning → Solutioning → Implementation |
-| 4 | Enterprise platform | 20-35+ | 5-10+ | 40-100+ | Analysis (required) → Planning → Solutioning → Implementation |
+| 0 | Trivial (bug fix, config change) | N/A | N/A | N/A | **OpenSpec** (or direct implementation) |
+| 1 | Small change (single feature, isolated) | 1-5 | 0-1 | 1-5 | **OpenSpec** (proposal + tasks) |
+| 2 | New feature (MVP) | 8-15 | 1-2 | 5-15 | **BMAD** (Planning → Solutioning → Implementation) |
+| 3 | Comprehensive product | 12-25 | 2-5 | 15-40 | **BMAD** (Analysis optional → Planning → Solutioning → Implementation) |
+| 4 | Enterprise platform | 20-35+ | 5-10+ | 40-100+ | **BMAD** (Analysis required → Planning → Solutioning → Implementation) |
 
 **Determine Level**: Based on answers, assign Level 0-4.
 
-**If Level 0**: Tell user "This is too small for BMAD. Just implement directly."
+### Routing Decision
 
-**If Level 1**: Recommend lightweight approach, optionally create brief tech-spec, skip full workflow.
+**If Level 0 (Trivial)**:
+```
+This is a trivial change (bug fix, config, typo).
 
-**If Level 2-4**: Continue with full BMAD workflow.
+Recommendation: Implement directly without workflow.
 
-### Step 3: Initialize Workflow Status
+Or if you want documentation, use OpenSpec:
+  - openspec-propose (minimal proposal)
+  - openspec-implement (quick implementation)
+  - openspec-archive (document the change)
 
-Run Python helper:
+Would you like to use OpenSpec or just implement directly?
+```
+
+**If Level 1 (Small Change)**:
+```
+✅ This is a Level 1 change - perfect for OpenSpec!
+
+OpenSpec is a lightweight workflow for simple features:
+  1. Create proposal (why, what, tasks)
+  2. Implement tasks
+  3. Archive when deployed
+
+I'll invoke openspec-propose to create your change proposal.
+```
+
+**If Level 2-4 (Complex)**:
+```
+✅ This is a Level {X} project - using BMAD workflow.
+
+BMAD provides complete planning and architecture:
+  - Phase 1: Analysis (optional/required based on level)
+  - Phase 2: Planning (PRD, Epics)
+  - Phase 3: Solutioning (Architecture)
+  - Phase 4: Implementation (Stories → Dev)
+
+I'll initialize the BMAD workflow...
+```
+
+### Step 3: Initialize Workflow (BMAD Only - Level 2-4)
+
+**Skip this for Level 0-1** (OpenSpec doesn't use workflow-status.md)
+
+For Level 2-4, run Python helper:
 ```bash
 python .claude/skills/bmad-orchestrator/helpers/workflow_status.py init \
   "{project_name}" "{project_type}" {level} "{user_name}"
@@ -126,16 +193,39 @@ This creates `docs/bmm-workflow-status.md` with:
 - Phase checklist
 - Next recommended action
 
-### Step 4: Recommend First Phase
+### Step 4: Invoke Appropriate Skill
 
-Based on level:
-- **Level 2**: Start with Planning (bmad-pm)
-- **Level 3**: Consider Analysis (bmad-analyst) or go to Planning
-- **Level 4**: Start with Analysis (bmad-analyst)
+#### For Level 0-1 (OpenSpec)
+
+**Level 0**: Either implement directly or invoke `openspec-propose` if user wants documentation
+
+**Level 1**: Invoke `openspec-propose` to create change proposal
 
 **Tell user**:
 ```
-✅ Workflow initialized!
+✅ Level {X} - Using OpenSpec workflow
+
+Quick and lightweight:
+  1. Proposal - Define the change
+  2. Implement - Execute tasks
+  3. Archive - Update specs
+
+Let me create your change proposal...
+
+[Invoke openspec-propose]
+```
+
+#### For Level 2-4 (BMAD)
+
+**Level 2**: Invoke `bmad-pm` (Planning phase)
+
+**Level 3**: Ask if user wants Analysis first, or invoke `bmad-analyst`/`bmad-pm`
+
+**Level 4**: Invoke `bmad-analyst` (Analysis required)
+
+**Tell user**:
+```
+✅ BMAD Workflow initialized!
 
 Project: {name}
 Level: {level}
@@ -143,9 +233,11 @@ Type: {type}
 
 📊 Status File: docs/bmm-workflow-status.md
 
-🎯 Next Action: {recommendation}
+🎯 Next Phase: {phase_name}
 
-Load the {skill_name} skill to begin.
+Let me start with {skill_name}...
+
+[Invoke appropriate BMAD skill]
 ```
 
 ## Workflow: Check Status (`workflow-status`)
