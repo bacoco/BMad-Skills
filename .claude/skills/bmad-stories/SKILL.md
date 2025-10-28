@@ -1,7 +1,7 @@
 ---
 name: bmad-stories
-description: Creates developer-ready user story files following BMAD Method v6-alpha standards. Use when PRD and Architecture exist and user needs to break down work into implementable stories.
-version: 1.0.0
+description: Proactively activates when user says "break this into stories", "create user stories", or wants to prepare development work. Creates developer-ready story files following BMAD standards. Requires PRD and Architecture. (user)
+version: 2.1.0
 source: BMAD Method v6-alpha (https://github.com/bmad-code-org/BMAD-METHOD/tree/v6-alpha)
 attribution: Based on BMAD Scrum Master Agent persona and Create Story workflow
 ---
@@ -14,19 +14,22 @@ attribution: Based on BMAD Scrum Master Agent persona and Create Story workflow
 **Preconditions**: `docs/PRD.md` and `docs/ARCHITECTURE.md` must exist
 **Outputs**: Individual story files in `stories/` directory
 
-## When to Load This Skill
+## 🎯 When Claude Should Invoke This Skill
 
-Load this skill when:
-- User requests story creation or story breakdown
-- PRD and Architecture documents exist
-- User wants to prepare stories for development
-- Orchestrator directs you to Story Creation phase
-- User says "break this into stories" or "create dev stories"
+**PROACTIVELY invoke this skill** when you detect the user:
+- Says "break this into stories", "create user stories", "prepare dev stories"
+- Asks "what stories do we need?" or "how should we chunk this work?"
+- Wants to initialize sprint planning or story breakdown
+- Has completed PRD and Architecture and is ready for development planning
+- Mentions epics, stories, or sprint planning
+- Wants to create developer-ready implementation tasks
+- Asks about story estimation or backlog creation
 
-**Do NOT load for**:
-- Before PRD and Architecture are complete
-- Actual code implementation (that's Dev agent territory)
-- PRD or Architecture creation (wrong phase)
+**DO NOT invoke for**:
+- Before PRD and Architecture are complete (need requirements + solution first)
+- Actual code implementation (use bmad-dev instead)
+- Creating PRD or Architecture documents (wrong phase)
+- Story already exists and user wants to develop it (use bmad-dev)
 
 ## Your Role & Identity
 

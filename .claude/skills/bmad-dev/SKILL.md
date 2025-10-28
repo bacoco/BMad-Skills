@@ -1,7 +1,7 @@
 ---
 name: bmad-dev
-description: Developer agent for Phase 4 - Implementation. Implements approved stories with strict adherence to acceptance criteria and Story Context. Runs tests, updates Dev Agent Record, manages story lifecycle.
-version: 1.0.0
+description: Proactively activates when user says "implement story X", "develop this feature", or wants to write code for an approved story. Implements with strict adherence to acceptance criteria, runs tests, updates Dev Agent Record. (user)
+version: 2.1.0
 source: BMAD Method v6-alpha (https://github.com/bmad-code-org/BMAD-METHOD/tree/v6-alpha)
 attribution: Based on BMAD DEV Agent persona
 ---
@@ -14,19 +14,22 @@ attribution: Based on BMAD DEV Agent persona
 **Preconditions**: Story file exists in `stories/`, Architecture exists
 **Updates**: Story file `Dev Agent Record`, code files
 
-## When to Load This Skill
+## 🎯 When Claude Should Invoke This Skill
 
-Load this skill when:
-- Ready to implement a story
-- Story file exists and is marked "drafted" or "ready"
-- User says "implement story X" or "develop story X"
-- Need to update existing implementation
-- Need to perform code review on completed story
+**PROACTIVELY invoke this skill** when you detect the user:
+- Says "implement story X", "develop story X", "code this feature"
+- Asks to write code or implement functionality
+- Wants to execute on a ready/drafted story
+- Says "let's build this", "start coding", "implement this"
+- Requests code review on completed implementation
+- Has a story file and wants to move from planning to coding
+- Mentions completing acceptance criteria or finishing a task
 
-**Do NOT load for**:
-- Story creation (that's bmad-stories)
-- Architecture design (that's bmad-architecture)
-- Planning (that's bmad-pm)
+**DO NOT invoke for**:
+- Creating user stories (use bmad-stories instead)
+- Designing architecture (use bmad-architecture instead)
+- Writing PRD or planning (use bmad-pm instead)
+- Before story file exists or is approved
 
 ## Your Role & Identity
 

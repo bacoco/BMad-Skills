@@ -1,7 +1,7 @@
 ---
 name: bmad-ux
-description: UX Designer for creating user experience specifications and designs. Conducts design thinking workshops, creates wireframes, defines interaction patterns, and produces UX specifications.
-version: 1.0.0
+description: Proactively activates when user discusses UI/UX design, wireframes, or user experience. Creates user experience specifications following BMAD standards. Use for UI-heavy projects. (user)
+version: 2.1.0
 source: BMAD Method v6-alpha (https://github.com/bmad-code-org/BMAD-METHOD/tree/v6-alpha)
 attribution: Based on BMAD UX Designer Agent persona
 ---
@@ -14,19 +14,22 @@ attribution: Based on BMAD UX Designer Agent persona
 **Precondition**: PRD should exist or be in progress
 **Output**: `docs/ux-spec.md`
 
-## When to Load This Skill
+## 🎯 When Claude Should Invoke This Skill
 
-Load this skill when:
-- Project has significant UI/UX component
-- Need to design user experience before implementation
-- Want to conduct design thinking workshop
-- User says "help me design the UI" or "what should the UX be?"
-- PRD exists and mentions UI/UX requirements
+**PROACTIVELY invoke this skill** when you detect the user:
+- Mentions UI/UX, user interface, or user experience design
+- Says "help me design the UI", "what should the UX be?", "how should this look?"
+- Talks about wireframes, mockups, or design patterns
+- Mentions user flows, interaction design, or navigation
+- Has a PRD with significant UI/UX requirements
+- Wants to conduct a design thinking workshop
+- Asks about visual hierarchy, layouts, or component design
 
-**Do NOT load for**:
-- Backend-only projects (no UI)
-- Simple admin interfaces (use component library defaults)
-- After implementation already done (too late)
+**Do NOT invoke for**:
+- Backend-only projects with no user interface
+- Simple admin interfaces using default component libraries
+- After implementation is already complete (too late for UX design)
+- Projects with minimal UI requirements
 
 ## Your Role & Identity
 

@@ -1,22 +1,75 @@
 # BMAD-Style Workflow Skills for Claude
 
-**Version**: 2.0.0 - Complete Implementation
+**Version**: 2.1.0 - Proactive Skills
 **Source**: BMAD Method v6-alpha
 **Reference**: https://github.com/bmad-code-org/BMAD-METHOD/tree/v6-alpha
 
 ---
 
-## 🎉 Complete BMAD Implementation
+## 🎉 Complete BMAD Implementation with Proactive Invocation
 
-This repository is a **complete, faithful implementation** of BMAD Method v6-alpha as Claude Code Skills. All 7 agents, all workflows, full state management with workflow-status.md and sprint-status.yaml.
+This repository is a **complete, faithful implementation** of BMAD Method v6-alpha as Claude Code Skills. All 7 agents, all workflows, full state management - **with automatic, proactive skill invocation**.
 
 **What's Included:**
 - ✅ **All 7 BMAD Agents** as Skills
+- ✅ **Proactive Auto-Invocation** - Claude detects context and invokes skills automatically
 - ✅ **Complete Workflow Orchestration** with state management
 - ✅ **Python Helpers** for workflow-status and sprint-status
 - ✅ **All 4 Phases** (Analysis, Planning, Solutioning, Implementation)
 - ✅ **Story Lifecycle Management**
 - ✅ **BMAD Agent Personas** preserved exactly from v6-alpha
+
+## 🚀 How It Works
+
+**You don't need to manually invoke skills!** Claude automatically detects what you need based on your conversation and proactively invokes the right skill.
+
+### Example Conversations
+
+```
+User: "I have an idea for a collaborative todo app"
+
+Claude: I detect you're starting a new project with a vague idea.
+Let me invoke bmad-analyst to help you explore this...
+
+[Analyst skill activates - helps brainstorm and create product brief]
+```
+
+```
+User: "I want to build a REST API for user authentication"
+
+Claude: You're describing a Level 2-3 project. Let me invoke
+bmad-pm to help create a Product Requirements Document...
+
+[PM skill activates - creates PRD and epics]
+```
+
+```
+User: "How should we architect this microservices system?"
+
+Claude: I detect you need architectural planning. Let me invoke
+bmad-architecture to define your technical solution...
+
+[Architecture skill activates - creates ARCHITECTURE.md]
+```
+
+**No slash commands needed.** Just talk naturally about what you want to build, and Claude will guide you through the right BMAD workflow.
+
+### 🎯 Conversational Triggers
+
+Each skill has natural language triggers that Claude detects automatically:
+
+| What You Say | Skill Invoked | What Happens |
+|--------------|---------------|--------------|
+| "I have an idea...", "What if we...", "Help me think through..." | `bmad-analyst` | Brainstorming and product brief creation |
+| "I want to build...", "Create a PRD", "Plan this feature" | `bmad-pm` | PRD and epics generation |
+| "What should the UI look like?", "Design the UX" | `bmad-ux` | UX specification and design thinking |
+| "How should we build this?", "What's the architecture?" | `bmad-architecture` | Technical architecture and stack decisions |
+| "How should we test?", "Create test strategy" | `bmad-tea` | Test framework and ATDD implementation |
+| "Break into stories", "Create user stories" | `bmad-stories` | Developer-ready story file creation |
+| "Implement story X", "Develop this feature", "Let's code" | `bmad-dev` | Code implementation with tests |
+| "What's next?", "Where am I?", "Start new project" | `bmad-orchestrator` | Workflow status and guidance |
+
+**Claude analyzes your message intent and context**, then invokes the appropriate skill automatically. You just have natural conversations.
 
 ---
 
@@ -109,89 +162,83 @@ stories/                            # Generated story files
 
 ## 🚀 Quick Start
 
-### 1. Initialize Workflow
+### Just Talk to Claude Naturally
 
-Tell Claude:
-```
-Initialize BMAD workflow for [project name]
-```
+**You**: "I want to start a new project for a mobile expense tracker"
 
-Claude (orchestrator) will:
-1. Ask about your project
-2. Assess complexity (Level 0-4)
-3. Create `docs/bmm-workflow-status.md`
-4. Recommend first phase
+**Claude**: Detects new project → Invokes `bmad-orchestrator`
+- Assesses project level (0-4)
+- Creates `docs/bmm-workflow-status.md`
+- Recommends next phase
 
-### 2. Follow Phases
+### Follow the Natural Flow
 
 **Phase 1: Analysis** (Optional for L0-2, Recommended for L3-4)
-```
-Create product brief
-```
-→ Uses `bmad-analyst` skill
-→ Outputs: `docs/product-brief.md`
+
+**You**: "Help me think through this idea..."
+
+**Claude**: Detects brainstorming need → Invokes `bmad-analyst`
+- Creates `docs/product-brief.md`
+- Guides through discovery questions
 
 **Phase 2: Planning** (Required for L2-4)
-```
-Create PRD and epics
-```
-→ Uses `bmad-pm` skill
-→ Outputs: `docs/PRD.md`, `docs/epics.md`
+
+**You**: "I want to build an API with user auth and expense tracking"
+
+**Claude**: Detects feature planning → Invokes `bmad-pm`
+- Creates `docs/PRD.md` and `docs/epics.md`
+- Breaks down functional requirements
 
 Optional: UX Design
-```
-Create UX design
-```
-→ Uses `bmad-ux` skill
-→ Outputs: `docs/ux-spec.md`
+
+**You**: "What should the user interface look like?"
+
+**Claude**: Detects UX design need → Invokes `bmad-ux`
+- Creates `docs/ux-spec.md`
+- Runs design thinking workshop
 
 **Phase 3: Solutioning** (Required for L2-4)
-```
-Create architecture
-```
-→ Uses `bmad-architecture` skill
-→ Outputs: `docs/ARCHITECTURE.md`
+
+**You**: "How should we architect this?"
+
+**Claude**: Detects architecture planning → Invokes `bmad-architecture`
+- Creates `docs/ARCHITECTURE.md`
+- Defines tech stack and patterns
 
 Optional: Test Strategy
-```
-Initialize test framework
-```
-→ Uses `bmad-tea` skill
-→ Outputs: Test framework setup
+
+**You**: "How should we test this system?"
+
+**Claude**: Detects testing strategy need → Invokes `bmad-tea`
+- Creates test framework
+- Defines ATDD approach
 
 **Phase 4: Implementation** (Iterative)
 
-First, initialize sprint status:
-```
-Initialize sprint status
-```
-→ Orchestrator creates `docs/sprint-status.yaml` from epics
+**You**: "Break this into user stories"
 
-Then create stories:
-```
-Create next story
-```
-→ Uses `bmad-stories` skill
-→ Outputs: `stories/1-1-story-name.md`
+**Claude**: Detects story creation need → Invokes `bmad-stories`
+- Creates `docs/sprint-status.yaml` from epics
+- Generates story files in `stories/`
+- Marks stories with Previous Learnings pattern
 
-Then implement:
-```
-Implement story 1-1-story-name
-```
-→ Uses `bmad-dev` skill
-→ Updates story file, writes code, runs tests
+**You**: "Implement story 1-1-user-login"
 
-### 3. Check Status Anytime
+**Claude**: Detects implementation request → Invokes `bmad-dev`
+- Loads story and architecture
+- Writes code following acceptance criteria
+- Runs tests (100% coverage required)
+- Updates Dev Agent Record in story file
 
-```
-What's my BMAD status?
-```
+### Check Status Anytime
 
-Claude shows:
-- Current phase
-- Completed artifacts
-- Next recommended action
-- Story statuses (if in Implementation)
+**You**: "What's next?" or "Where am I in the workflow?"
+
+**Claude**: Invokes `bmad-orchestrator`
+- Shows current phase and progress
+- Lists completed artifacts
+- Recommends next action
+- Displays story statuses (if in Implementation)
 
 ---
 
