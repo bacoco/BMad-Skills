@@ -4,7 +4,6 @@ BMAD Workflow Status Manager
 Manages workflow-status.md file for tracking project progress through BMAD phases
 """
 
-import os
 from datetime import datetime
 from pathlib import Path
 
@@ -121,6 +120,8 @@ _Managed by BMAD Workflow Skills v1.0.0_
 
         # Update Current Status section
         lines = content.split('\n')
+        project_level = self._extract_project_level(lines)
+
         updated_lines = []
         for line in lines:
             if line.startswith('**Phase**:'):
@@ -131,6 +132,13 @@ _Managed by BMAD Workflow Skills v1.0.0_
                 updated_lines.append(f'**Last Updated**: {datetime.now().strftime("%Y-%m-%d")}')
             else:
                 updated_lines.append(line)
+
+        if project_level is not None:
+            recommendation = self._get_next_action(project_level, phase)
+        else:
+            recommendation = "Continue with current phase."
+
+        self._update_next_action(updated_lines, recommendation)
 
         with open(self.status_file, 'w') as f:
             f.write('\n'.join(updated_lines))
@@ -185,21 +193,38 @@ _Managed by BMAD Workflow Skills v1.0.0_
 
         # Find Artifacts section and add
         lines = content.split('\n')
-        updated_lines = []
-        artifacts_section = False
 
-        for line in lines:
-            updated_lines.append(line)
-            if line.startswith('## Artifacts Created'):
-                artifacts_section = True
-            elif artifacts_section and line.strip() == '':
-                # Add artifact before empty line
-                updated_lines.insert(len(updated_lines) - 1,
-                    f'- `{artifact_path}` - {description} ({datetime.now().strftime("%Y-%m-%d")})')
-                artifacts_section = False
+        placeholder_index = None
+        header_index = None
+
+        for idx, line in enumerate(lines):
+            if line.strip() == '## Artifacts Created':
+                header_index = idx
+                break
+
+        if header_index is None:
+            raise ValueError('Artifacts section not found in workflow status file.')
+
+        for idx in range(header_index + 1, len(lines)):
+            stripped = lines[idx].strip()
+            if stripped == '':
+                break
+            if stripped.lower() == 'none yet.':
+                placeholder_index = idx
+                break
+
+        if placeholder_index is not None:
+            lines.pop(placeholder_index)
+
+        insertion_index = header_index + 1
+        while insertion_index < len(lines) and lines[insertion_index].strip() != '':
+            insertion_index += 1
+
+        artifact_entry = f'- `{artifact_path}` - {description} ({datetime.now().strftime("%Y-%m-%d")})'
+        lines.insert(insertion_index, artifact_entry)
 
         with open(self.status_file, 'w') as f:
-            f.write('\n'.join(updated_lines))
+            f.write('\n'.join(lines))
 
         return self.status_file
 
@@ -224,6 +249,36 @@ _Managed by BMAD Workflow Skills v1.0.0_
                 if line.startswith('**Level**:'):
                     return int(line.split(':')[1].strip())
         return None
+
+    def _extract_project_level(self, lines):
+        """Extract project level from cached content lines."""
+        for line in lines:
+            if line.startswith('**Level**:'):
+                try:
+                    return int(line.split(':', 1)[1].strip())
+                except (ValueError, IndexError):
+                    return None
+        return None
+
+    def _update_next_action(self, lines, recommendation):
+        """Update the next recommended action section in-place."""
+        header_index = None
+        for idx, line in enumerate(lines):
+            if line.strip() == '## Next Recommended Action':
+                header_index = idx
+                break
+
+        if header_index is None:
+            return
+
+        line_index = header_index + 1
+        while line_index < len(lines) and lines[line_index].strip() == '':
+            line_index += 1
+
+        if line_index >= len(lines):
+            lines.append(recommendation)
+        else:
+            lines[line_index] = recommendation
 
 def main():
     import sys
@@ -257,7 +312,8 @@ def main():
         print(f"✅ Phase marked complete: {phase}")
 
     elif command == 'add-artifact':
-        path, description = sys.argv[2], sys.argv[3]
+        path = sys.argv[2]
+        description = ' '.join(sys.argv[3:]) if len(sys.argv) > 3 else ''
         file_path = ws.add_artifact(path, description)
         print(f"✅ Artifact added: {path}")
 

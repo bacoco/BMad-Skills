@@ -4,6 +4,7 @@ BMAD Sprint Status Manager
 Manages sprint-status.yaml for tracking story development progress
 """
 
+import re
 import yaml
 from pathlib import Path
 from datetime import datetime
@@ -77,37 +78,43 @@ class SprintStatus:
 
     def _parse_epics(self, epics_path):
         """Parse epics.md to extract story information"""
+        epic_pattern = re.compile(r'^##\s*Epic\s+(\d+)\s*(?:[:\-\u2013]\s*(.*))?$', re.IGNORECASE)
+        story_pattern = re.compile(r'^####\s*Story\s+(\d+)\.(\d+)\s*(?:[:\-\u2013]\s*(.*))?$', re.IGNORECASE)
+
         with open(epics_path, 'r') as f:
-            content = f.read()
+            lines = [line.strip() for line in f]
 
         stories = []
-        lines = content.split('\n')
         current_epic = None
         current_epic_title = None
 
         for line in lines:
-            # Epic header: ## Epic 1: Title
-            if line.startswith('## Epic '):
-                parts = line.replace('## Epic ', '').split(':', 1)
-                current_epic = int(parts[0].strip())
-                current_epic_title = parts[1].strip() if len(parts) > 1 else f"Epic {current_epic}"
+            if not line:
+                continue
 
-            # Story header: #### Story 1.1: Title
-            elif line.startswith('#### Story ') and current_epic:
-                parts = line.replace('#### Story ', '').split(':', 1)
-                story_id = parts[0].strip()
-                story_title = parts[1].strip() if len(parts) > 1 else ""
+            epic_match = epic_pattern.match(line)
+            if epic_match:
+                current_epic = int(epic_match.group(1))
+                title = epic_match.group(2).strip() if epic_match.group(2) else ''
+                current_epic_title = title or f"Epic {current_epic}"
+                continue
 
-                epic_num, story_num = story_id.split('.')
-                story_slug = story_title.lower().replace(' ', '-').replace('/', '-')
-                story_slug = ''.join(c for c in story_slug if c.isalnum() or c == '-')
+            story_match = story_pattern.match(line)
+            if story_match and current_epic is not None:
+                epic_num = int(story_match.group(1))
+                story_num = int(story_match.group(2))
+                story_title = (story_match.group(3) or '').strip()
+                story_title = story_title or f"Story {epic_num}.{story_num}"
+
+                story_slug = re.sub(r'[^a-z0-9-]', '', story_title.lower().replace(' ', '-'))
+                story_slug = story_slug or f'story-{epic_num}-{story_num}'
 
                 stories.append({
-                    'epic_num': int(epic_num),
-                    'story_num': int(story_num),
+                    'epic_num': epic_num,
+                    'story_num': story_num,
                     'story_title': story_title,
                     'story_slug': story_slug,
-                    'epic_title': current_epic_title,
+                    'epic_title': current_epic_title or f"Epic {epic_num}",
                 })
 
         return stories
