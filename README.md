@@ -1,229 +1,367 @@
-# BMAD Skills - Complete Workflow Bundle
+# BMAD Skills: Your AI Product Team
 
-BMAD is a complete workflow ecosystem packaged as Claude Skills. All 12 skills work together to guide you from idea to implementation using natural conversation.
+**Transform ideas into shipped products through natural conversation with Claude.**
 
-## 🚀 Quick Install
+From "I have an idea..." to production-ready code, BMAD guides you through research, planning, design, architecture, testing, and implementation—automatically.
 
-### Install globally (recommended):
+---
+
+## 💡 What is BMAD?
+
+Imagine having a complete product team that activates instantly when you need them:
+
+```
+You: "I have an idea for a budget tracking app"
+
+Claude (analyst): "Great! Let's explore this together. What problems are your users facing
+                  with current budgeting tools?"
+
+[30 minutes of brainstorming later...]
+
+You: "Create a PRD for this"
+
+Claude (PM): "I'll create a comprehensive PRD. Based on our discussion, here are the
+              core features..."
+              📄 Generates: product-requirements-document.md
+
+You: "What should the UI look like?"
+
+Claude (UX): "Let me design the user flows and wireframes..."
+             🎨 Generates: user-flows.md, wireframes.md
+
+You: "How should we build this?"
+
+Claude (architect): "Here's the technical architecture..."
+                    🏗️ Generates: architecture-decisions.md
+
+You: "Break this into stories"
+
+Claude (stories): "I've created 12 developer-ready stories with acceptance criteria..."
+                  📋 Generates: 12 story files
+
+You: "Implement story 1"
+
+Claude (dev): "Implementing authentication system with tests..."
+              💻 Generates: working code + tests
+```
+
+**All through natural conversation. No commands. No manual switching. Just talk.**
+
+---
+
+## 🎯 Why BMAD?
+
+### The Problem
+
+Building products is complex:
+- ❌ Jumping between research, planning, design, and coding fragments your thinking
+- ❌ Missing steps leads to rework and technical debt
+- ❌ Context loss when switching between tasks
+- ❌ Documentation falls behind implementation
+- ❌ No consistent workflow across projects
+
+### The Solution
+
+BMAD is a complete workflow ecosystem that:
+- ✅ **Guides you through the right process** automatically based on your needs
+- ✅ **Maintains context** across all phases of development
+- ✅ **Generates documentation** as you go, not after the fact
+- ✅ **Adapts to project complexity** - lightweight for bugs, comprehensive for features
+- ✅ **Works through conversation** - no commands, no configuration
+
+---
+
+## 🚀 Real-World Examples
+
+### Example 1: Building a New Feature
+
+**Scenario:** You want to add social login to your app
+
+```
+You: "I want to add Google and GitHub login to my app"
+
+Claude (orchestrator): "This is a Level 2 feature. Let me activate the right skills..."
+
+Claude (analyst): "Let's research OAuth best practices and security requirements..."
+                  [Researches, documents findings]
+
+Claude (architecture): "Here's how we'll integrate OAuth securely..."
+                       [Designs auth flow, token management, security]
+
+Claude (tea): "Here's the test strategy for authentication..."
+              [Defines test scenarios, security tests, edge cases]
+
+Claude (stories): "I've broken this into 4 stories:
+                   1. OAuth provider setup
+                   2. Login flow implementation
+                   3. Token management
+                   4. Security hardening"
+
+You: "Implement story 1"
+
+Claude (dev): "Setting up OAuth providers..."
+              [Writes code, tests, documentation]
+```
+
+**Result:** Production-ready feature with architecture docs, test coverage, and security best practices baked in.
+
+### Example 2: Quick Bug Fix
+
+**Scenario:** Login timeout is too short
+
+```
+You: "Fix the login timeout - users are getting logged out too quickly"
+
+Claude (openspec-propose): "I'll create a lightweight proposal for this Level 0 change..."
+                           📄 proposal.md: Increase session timeout from 15min to 60min
+                           ✅ tasks.md: Update config, test, document
+
+You: "Implement it"
+
+Claude (openspec-implement): "Updating session timeout configuration..."
+                             [Makes change, tests, logs execution]
+
+You: "Archive this"
+
+Claude (openspec-archive): "Documented and archived. Session timeout fix is complete."
+```
+
+**Result:** Quick fix with full traceability - no ceremony, just results.
+
+### Example 3: Exploring a New Idea
+
+**Scenario:** You have a vague idea for an app
+
+```
+You: "I'm thinking about an app for freelancers to manage their time and invoicing"
+
+Claude (analyst): "Interesting! Let's explore this together:
+                   - Who are your target users?
+                   - What pain points are they facing?
+                   - What's different from existing tools like Harvest or Toggl?"
+
+[Conversation continues - Claude asks smart questions, researches competitors,
+ identifies opportunities, documents insights]
+
+Claude: "I've documented our findings in discovery-notes.md.
+         Key insight: Freelancers want integrated time tracking + invoicing +
+         project management. Current tools require 3 separate subscriptions.
+
+         Ready to create a PRD?"
+
+You: "Yes"
+
+Claude (pm): "Creating comprehensive PRD..."
+```
+
+**Result:** Clear product direction validated through research before writing a single line of code.
+
+---
+
+## ✨ Key Features
+
+### 🎭 12 Specialized Skills, One Seamless Experience
+
+**BMAD Workflow (8 skills):**
+- 💡 **Analyst** - Brainstorming, research, competitive analysis
+- 📋 **PM** - PRD creation, feature planning, roadmapping
+- 🎨 **UX** - User flows, wireframes, design systems
+- 🏗️ **Architecture** - Technical design, decision documentation
+- 🧪 **TEA** - Test strategy, ATDD scenarios, quality gates
+- 📝 **Stories** - Developer-ready story breakdown
+- 💻 **Dev** - Implementation with tests and documentation
+- 🎯 **Orchestrator** - Workflow coordination and guidance
+
+**OpenSpec (3 skills):**
+- 📄 **Propose** - Lightweight change proposals
+- ⚡ **Implement** - Quick implementations
+- 📦 **Archive** - Change documentation and closing
+
+**Skill Creator:**
+- 🛠️ **Create Skills** - Build custom skills for your workflow
+
+### 🧠 Intelligent Workflow Routing
+
+BMAD automatically chooses the right approach based on complexity:
+
+| Complexity | Example | Workflow | Skills Used |
+|-----------|---------|----------|-------------|
+| **Level 0** | Config change | OpenSpec | 3 skills |
+| **Level 1** | Small feature | OpenSpec | 3 skills |
+| **Level 2** | Medium feature | BMAD | 5-7 skills |
+| **Level 3** | New product area | BMAD | All 8 skills |
+| **Level 4** | Novel innovation | BMAD | All 8 skills + research |
+
+### 💬 Conversational Activation
+
+No commands to remember. Just talk naturally:
+
+| You Say | Skill Activated | What Happens |
+|---------|----------------|--------------|
+| "I have an idea..." | Analyst | Brainstorming session |
+| "Create a PRD" | PM | Requirement document |
+| "Design the UX" | UX | User flows + wireframes |
+| "How should we build this?" | Architecture | Technical design |
+| "How should we test this?" | TEA | Test strategy |
+| "Break into stories" | Stories | Developer tasks |
+| "Implement story X" | Dev | Code + tests |
+| "Fix this bug" | OpenSpec | Quick fix workflow |
+| "What's next?" | Orchestrator | Status + guidance |
+
+### 📊 Full Traceability
+
+Every decision, every change, fully documented:
+
+```
+project/
+├── docs/
+│   ├── discovery/              # Research & brainstorming
+│   ├── requirements/           # PRD & feature specs
+│   ├── design/                 # UX flows & wireframes
+│   ├── architecture/           # Technical decisions
+│   ├── testing/                # Test strategy
+│   └── stories/                # Implementation stories
+├── .claude/skills/_runtime/
+│   └── workspace/
+│       ├── changes/            # OpenSpec proposals
+│       └── specs/              # Living specifications
+└── [your code]
+```
+
+---
+
+## 🎬 How It Works
+
+### 1. Natural Conversation
+
+You talk to Claude naturally about what you want to build or fix. No special syntax, no commands.
+
+### 2. Automatic Skill Activation
+
+Claude detects your intent and activates the right skill:
+- **Idea exploration** → Analyst
+- **Planning** → PM
+- **Design** → UX
+- **Technical questions** → Architecture
+- **Implementation** → Dev
+
+### 3. Context-Aware Guidance
+
+Each skill knows:
+- What came before (maintains full context)
+- What needs to happen next (guides your workflow)
+- What artifacts to create (generates documentation)
+- When to hand off (seamless transitions)
+
+### 4. Progressive Complexity
+
+Start simple, scale as needed:
+- Quick fixes use OpenSpec (3 skills, 5 minutes)
+- Features use BMAD (8 skills, guided process)
+- New products use full workflow (end-to-end)
+
+---
+
+## 🏆 Benefits
+
+### For Solo Developers
+- ✅ Get the structure and discipline of a full team
+- ✅ Don't skip important steps (architecture, testing, documentation)
+- ✅ Ship higher quality features faster
+- ✅ Build a portfolio of well-documented projects
+
+### For Teams
+- ✅ Consistent workflow across all developers
+- ✅ Better handoffs with complete documentation
+- ✅ Faster onboarding (workflow is built-in)
+- ✅ Scalable process from bugs to features
+
+### For Founders
+- ✅ Validate ideas before coding (analyst + PM)
+- ✅ Make better technical decisions (architecture)
+- ✅ Ship with confidence (test strategy)
+- ✅ Move fast without breaking things (quality gates)
+
+---
+
+## 📦 What's Included
+
+**Complete self-contained bundle:**
+- 12 specialized AI skills that work together
+- Shared glossary, constraints, and quality standards
+- Runtime workspace for proposals and specs
+- Comprehensive guides and troubleshooting docs
+- Activation metrics and monitoring tools
+
+**Everything works out of the box.** No configuration needed.
+
+---
+
+## 🚀 Get Started
+
+### Install (2 minutes)
+
 ```bash
+# Install globally (recommended)
 curl -fsSL https://raw.githubusercontent.com/bacoco/bmad-skills/main/scripts/install-to-home.sh | bash
-```
 
-### Install to current project:
-```bash
-curl -fsSL https://raw.githubusercontent.com/bacoco/bmad-skills/main/scripts/install-to-project.sh | bash
-```
-
-### Manual install:
-```bash
+# Or manually
 git clone https://github.com/bacoco/bmad-skills.git
 cd bmad-skills
 bash scripts/install.sh
 ```
 
-## 📦 What's Included
-
-**Complete BMAD Skills Bundle** - Everything in one package:
-
-✅ **12 Integrated Skills:**
-- **BMAD Workflow (8 skills)**: analyst, pm, ux, architecture, tea, stories, dev, orchestrator
-- **OpenSpec (3 skills)**: propose, implement, archive
-- **Skill Creator (1 skill)**: create new skills
-
-✅ **Core Resources:**
-- Shared glossary, constraints, and quality gates
-- Runtime workspace for OpenSpec changes
-- Comprehensive documentation and guides
-
-✅ **Developer Tools:**
-- Activation metrics tracking
-- Contract validation
-- Status management utilities
-
-## 📂 Bundle Structure
-
-Everything is self-contained in `.claude/skills/`:
-
-```
-.claude/skills/
-├── bmad-analyst/           # Brainstorming & research
-├── bmad-pm/                # PRD creation
-├── bmad-ux/                # UX design
-├── bmad-architecture/      # Technical architecture
-├── bmad-tea/               # Test strategy
-├── bmad-stories/           # Story breakdown
-├── bmad-dev/               # Implementation
-├── bmad-orchestrator/      # Workflow coordination
-├── openspec-propose/       # Lightweight proposals
-├── openspec-implement/     # Quick implementations
-├── openspec-archive/       # Change archival
-├── skill-creator/          # Create new skills
-│
-├── _core/                  # Shared resources
-│   ├── glossary.md
-│   ├── constraints.md
-│   ├── quality-gates.md
-│   └── tooling/
-│
-├── _config/                # Configuration
-│   ├── MANIFEST.json
-│   ├── STYLE-GUIDE.md
-│   └── VERSIONING.md
-│
-├── _runtime/               # Runtime workspace
-│   └── workspace/
-│       ├── changes/        # OpenSpec changes
-│       ├── specs/          # Living specifications
-│       ├── artifacts/      # Generated artifacts
-│       └── stories/        # Story outputs
-│
-└── _docs/                  # Documentation
-    ├── guides/
-    ├── reference/
-    └── activation/
-```
-
-## 💬 Conversational Activation
-
-Skills activate automatically based on natural conversation - **no manual invocation needed**!
-
-### Example Triggers
-
-Just talk naturally about your project:
-
-- **"I have an idea..."** → bmad-analyst (brainstorming & research)
-- **"Create a PRD"** → bmad-pm (requirements & planning)
-- **"What should the UI look like?"** → bmad-ux (UX design)
-- **"How should we build this?"** → bmad-architecture (technical design)
-- **"How should we test?"** → bmad-tea (test strategy)
-- **"Break into stories"** → bmad-stories (story creation)
-- **"Implement story X"** → bmad-dev (coding & implementation)
-- **"Fix this bug"** → openspec-propose (lightweight proposals)
-- **"What's next?"** → bmad-orchestrator (status & guidance)
-
-### How It Works
-
-```
-You: "I have an idea for a budget tracking app"
-Claude: [Automatically activates bmad-analyst]
-        "Great! Let's brainstorm together. Tell me about your app..."
-```
-
-### Key Features
-
-✅ **Auto-Detection**: Claude detects your intent from natural conversation
-✅ **Phase Awareness**: Skills check prerequisites before activation
-✅ **Context Routing**: Orchestrator guides you through the right workflow
-✅ **No Manual Invocation**: Skills activate automatically when needed
-
-## 📚 Documentation
-
-**Getting Started:**
-- 🚀 [Quickstart Guide](.claude/skills/_docs/guides/quickstart-conversational.md)
-- 📖 [Conversational Flow Examples](.claude/skills/_docs/guides/conversational-flow.md)
-
-**Reference:**
-- 📋 [Skills Reference](.claude/skills/_docs/reference/skills.md)
-- 🔧 [OpenSpec Guide](.claude/skills/_docs/reference/openspec.md)
-
-**Support:**
-- ❓ [FAQ](.claude/skills/_docs/activation/activation-faq.md)
-- 🔧 [Troubleshooting](.claude/skills/_docs/activation/troubleshooting.md)
-
-## 🎯 Choosing BMAD vs OpenSpec
-
-**Use BMAD skills** when:
-- Starting a new product or major feature
-- Need end-to-end planning (PRD, architecture, test strategy)
-- Multi-team coordination required
-- High ambiguity or novel problems (Level 2-4 complexity)
-
-**Use OpenSpec skills** when:
-- Quick bug fix or small enhancement
-- Already have a repo and clear requirements
-- Single developer/team scope
-- Low ambiguity (Level 0-1 complexity)
-
-**Escalate to BMAD** if OpenSpec reveals higher complexity than expected.
-
-## 🛠️ Development
-
-### Prerequisites
+### Start Building
 
 ```bash
-pip install -r requirements.txt
+# Open Claude Code and just start talking:
+"I have an idea for a meditation timer app"
 ```
 
-### Project Structure
+That's it. BMAD takes it from there.
 
-This repository:
-```
-BMad-Skills/
-├── .claude/skills/      # Complete bundle (install this)
-├── scripts/             # Installation utilities
-├── tests/               # Test suite
-├── build/               # Build outputs
-└── README.md
-```
+---
 
-### Creating Distribution Bundle
+## 📚 Learn More
 
-```bash
-bash scripts/package-bundle.sh
-```
+- 🚀 **[Quickstart Guide](.claude/skills/_docs/guides/quickstart-conversational.md)** - Get started in 5 minutes
+- 📖 **[Conversational Flow Examples](.claude/skills/_docs/guides/conversational-flow.md)** - 6 complete scenarios
+- 🔧 **[Skills Reference](.claude/skills/_docs/reference/skills.md)** - Detailed skill documentation
+- ❓ **[FAQ](.claude/skills/_docs/activation/activation-faq.md)** - Common questions answered
 
-This creates `build/bmad-skills-bundle.zip` ready for distribution.
-
-## 📊 Monitoring & Metrics
-
-Track skill activation patterns:
-
-```bash
-python .claude/skills/_core/tooling/activation_metrics.py export
-```
-
-## 🔄 Workflow Example
-
-**Complete flow from idea to implementation:**
-
-1. **"I want to build a task manager"** → bmad-analyst researches & brainstorms
-2. **"Create a PRD"** → bmad-pm produces requirements document
-3. **"Design the UX"** → bmad-ux creates flows and wireframes
-4. **"How should we build it?"** → bmad-architecture defines technical design
-5. **"How should we test?"** → bmad-tea creates test strategy
-6. **"Break into stories"** → bmad-stories generates developer tasks
-7. **"Implement story 1"** → bmad-dev writes code with tests
-
-**Quick fix flow:**
-
-1. **"Fix login timeout bug"** → openspec-propose creates lightweight proposal
-2. **"Implement it"** → openspec-implement executes the change
-3. **"Archive"** → openspec-archive documents and closes
+---
 
 ## 🤝 Contributing
 
-1. Follow `.claude/skills/_config/STYLE-GUIDE.md`
-2. Update `.claude/skills/_config/MANIFEST.json` for changes
-3. Run validation: `python .claude/skills/_core/tooling/lint_contracts.py`
-4. Test installation: `bash scripts/verify.sh`
+BMAD is open source and welcomes contributions:
+
+1. Follow the [Style Guide](.claude/skills/_config/STYLE-GUIDE.md)
+2. Run tests: `bash scripts/verify.sh`
+3. Submit PRs with clear descriptions
+
+See [Contributing Guidelines](.claude/skills/_docs/guides/contributing.md) for details.
+
+---
 
 ## 📄 License
 
-See `.claude/skills/_config/LICENSE.md`
+MIT License - See [LICENSE](.claude/skills/_config/LICENSE.md)
+
+---
 
 ## 🆘 Support
 
 - 📖 [Documentation](.claude/skills/_docs/)
 - 🐛 [Report Issues](https://github.com/bacoco/bmad-skills/issues)
 - 💬 [Discussions](https://github.com/bacoco/bmad-skills/discussions)
+- 🌟 [Star on GitHub](https://github.com/bacoco/bmad-skills)
 
 ---
 
-**Ready to get started?**
+<div align="center">
 
-```bash
-bash scripts/install.sh
-```
+**Stop context-switching. Start shipping.**
 
-Then start a new chat with Claude Code and say:
-**"I have an idea..."** 🚀
+[Get Started →](#-get-started) | [See Examples →](#-real-world-examples) | [Learn More →](#-learn-more)
+
+</div>
