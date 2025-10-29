@@ -180,7 +180,7 @@ Use the Python script to generate both files:
 
 2. Write JSON to `/tmp/prd_data.json`
 
-3. Run: `python .claude/skills/bmad-pm/generate_prd.py /tmp/prd_data.json`
+3. Run: `python .claude/skills/bmad-pm/scripts/generate_prd.py /tmp/prd_data.json`
 
 4. Script will generate:
    - `docs/PRD.md` - Strategic requirements

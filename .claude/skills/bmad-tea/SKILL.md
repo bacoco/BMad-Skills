@@ -1,5 +1,5 @@
 ---
-name: bmad-quality-assurance
+name: bmad-tea
 description: Designs test strategies, ATDD assets, and quality gates that maintain traceability across BMAD deliverables.
 version: 1.0.0
 allowed-tools: ["Read","Write","Grep","Bash"]

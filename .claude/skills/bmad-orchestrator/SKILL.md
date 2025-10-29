@@ -1,5 +1,5 @@
 ---
-name: bmad-end-to-end-orchestration
+name: bmad-orchestrator
 description: Maintains workflow state, phase gates, and routing decisions across the BMAD skills portfolio.
 version: 1.0.0
 allowed-tools: ["Read","Write","Grep","Bash"]

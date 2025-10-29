@@ -1,0 +1,6 @@
+__pycache__/
+*.pyc
+*.skill
+*.zip
+/dist/marketplace/*
+!/dist/marketplace/README.md

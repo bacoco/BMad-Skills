@@ -1,5 +1,5 @@
 ---
-name: bmad-development-execution
+name: bmad-dev
 description: Delivers code changes for ready stories with rigorous testing, documentation, and BMAD governance.
 version: 1.0.0
 allowed-tools: ["Read","Write","Grep","Bash"]

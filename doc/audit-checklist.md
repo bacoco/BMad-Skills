@@ -7,7 +7,7 @@ This checklist is designed for an automated static auditor that validates the Du
 : Vérifier que l'architecture Duclos est respectée à la racine du dépôt.
 
 **Vérifications automatiques**
-- La racine contient au minimum `skills/`, `shared/`, `meta/`, `README.md`, et `openspec/` pour l'espace de travail runtime.
+- La racine contient au minimum `.claude/skills/`, `shared/`, `meta/`, `README.md`, et `openspec/` pour l'espace de travail runtime.
 - Aucun répertoire legacy de type `agents/`, `workflows/`, `playbooks/`, ni fichier `*.workflow.yaml` ou équivalent n'est présent.
 
 **Échec si**
@@ -19,7 +19,7 @@ This checklist is designed for an automated static auditor that validates the Du
 : Garantir qu'un skill est un paquet autonome conforme aux conventions.
 
 **Vérifications automatiques**
-- Pour chaque dossier direct dans `skills/` :
+- Pour chaque dossier direct dans `.claude/skills/` :
   - `SKILL.md`, `REFERENCE.md`, `CHECKLIST.md` sont présents.
   - `WORKFLOW.md` est présent, sauf si le skill est strictement atomique (aucune orchestration multi-étapes mentionnée).
   - Les dossiers `assets/` et `scripts/` existent, même vides.
@@ -90,7 +90,7 @@ This checklist is designed for an automated static auditor that validates the Du
 : Garantir l'alignement entre la vision machine et les dossiers réels.
 
 **Vérifications automatiques**
-- `meta/MANIFEST.json` est valide et référence chaque skill présent dans `skills/`.
+- `meta/MANIFEST.json` est valide et référence chaque skill présent dans `.claude/skills/`.
 - Pour chaque entrée : `id`, `version`, `allowed-tools`, `path` correspondent au frontmatter du `SKILL.md` associé et au chemin réel.
 
 **Échec si**
@@ -138,7 +138,7 @@ This checklist is designed for an automated static auditor that validates the Du
 : Vérifier que le workflow OpenSpec est bien intégré comme famille de skills Claude et non simplement copié en l'état.
 
 **Vérifications automatiques**
-- Confirmer l'existence de skills OpenSpec (ex. `skills/openspec-propose/`, `skills/openspec-implement/`, `skills/openspec-archive/`) ou d'un sous-arbre dédié qui expose ces capacités via des `SKILL.md` conformes.
+- Confirmer l'existence de skills OpenSpec (ex. `.claude/skills/openspec-propose/`, `.claude/skills/openspec-implement/`, `.claude/skills/openspec-archive/`) ou d'un sous-arbre dédié qui expose ces capacités via des `SKILL.md` conformes.
 - S'assurer qu'OpenSpec n'est pas présent uniquement sous forme de code brut importé sans conversion en skills.
 
 **Échec si**
@@ -212,7 +212,7 @@ L'IA doit retourner un JSON simple. Chaque bloc utilise une clé stable et fourn
     "status": "FAIL",
     "problems": [
       {
-        "skill": "skills/product-requirements",
+        "skill": ".claude/skills/bmad-pm",
         "issue": "Missing CHECKLIST.md",
         "fix": "Add CHECKLIST.md with quality gates and reference it from SKILL.md"
       }

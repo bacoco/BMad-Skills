@@ -15,19 +15,19 @@ This catalog applies Claude's skill creation best practices to every BMAD capabi
 **Input expectations**
 - Concrete example tasks or user prompts the skill must support.
 - List of reusable resources (scripts, references, assets) worth bundling.
-- Target distribution path for the packaged `.skill` archive.
+- Target distribution path for the packaged `.skill` archive (generate locally; do not commit binary bundles).
 
 **Execution flow**
 1. Gather representative use cases and confirm activation phrases.
 2. Plan reusable resources; decide what lives in `scripts/`, `references/`, or `assets/`.
-3. Run `skills/skill-creator/scripts/init_skill.py <skill-name> --path <output-dir>` to scaffold the skill.
+3. Run `.claude/skills/skill-creator/scripts/init_skill.py <skill-name> --path <output-dir>` to scaffold the skill.
 4. Draft SKILL.md using imperative language; move bulky material into references.
-5. Validate with `skills/skill-creator/scripts/quick_validate.py <path>` when iterating.
-6. Package with `skills/skill-creator/scripts/package_skill.py <path> [output-dir]` once validation passes.
+5. Validate with `.claude/skills/skill-creator/scripts/quick_validate.py <path>` when iterating.
+6. Package with `.claude/skills/skill-creator/scripts/package_skill.py <path> [output-dir]` once validation passes.
 
 **Outputs & handoffs**
 - A complete skill directory with SKILL.md plus optional resources.
-- Packaged `.skill` artifact ready for distribution.
+- Packaged `.skill` artifact ready for distribution (kept out of version control).
 - Validation report identifying structure or quality issues.
 
 **Guardrails**
@@ -36,11 +36,11 @@ This catalog applies Claude's skill creation best practices to every BMAD capabi
 - Reference every supplemental file from SKILL.md so Claude discovers it via progressive disclosure.
 
 **Supporting assets**
-- `skills/skill-creator/scripts/init_skill.py`
-- `skills/skill-creator/scripts/package_skill.py`
-- `skills/skill-creator/scripts/quick_validate.py`
-- `skills/skill-creator/references/workflows.md`
-- `skills/skill-creator/references/output-patterns.md`
+- `.claude/skills/skill-creator/scripts/init_skill.py`
+- `.claude/skills/skill-creator/scripts/package_skill.py`
+- `.claude/skills/skill-creator/scripts/quick_validate.py`
+- `.claude/skills/skill-creator/references/workflows.md`
+- `.claude/skills/skill-creator/references/output-patterns.md`
 
 ---
 
