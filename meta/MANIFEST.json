@@ -1,0 +1,88 @@
+{
+  "skills": [
+    {
+      "id": "bmad-discovery-analysis",
+      "path": "skills/discovery-analysis",
+      "version": "1.0.0",
+      "allowed-tools": ["Read", "Write", "Grep", "Bash"],
+      "expansion-pack": null
+    },
+    {
+      "id": "bmad-product-requirements",
+      "path": "skills/product-requirements",
+      "version": "1.0.0",
+      "allowed-tools": ["Read", "Write", "Grep", "Bash"],
+      "expansion-pack": null
+    },
+    {
+      "id": "bmad-architecture-design",
+      "path": "skills/architecture-design",
+      "version": "1.0.0",
+      "allowed-tools": ["Read", "Write", "Grep", "Bash"],
+      "expansion-pack": null
+    },
+    {
+      "id": "bmad-delivery-planning",
+      "path": "skills/delivery-planning",
+      "version": "1.0.0",
+      "allowed-tools": ["Read", "Write", "Grep", "Bash"],
+      "expansion-pack": null
+    },
+    {
+      "id": "bmad-development-execution",
+      "path": "skills/development-execution",
+      "version": "1.0.0",
+      "allowed-tools": ["Read", "Write", "Grep", "Bash"],
+      "expansion-pack": null
+    },
+    {
+      "id": "bmad-quality-assurance",
+      "path": "skills/quality-assurance",
+      "version": "1.0.0",
+      "allowed-tools": ["Read", "Write", "Grep", "Bash"],
+      "expansion-pack": null
+    },
+    {
+      "id": "bmad-ux-blueprint",
+      "path": "skills/ux-blueprint",
+      "version": "1.0.0",
+      "allowed-tools": ["Read", "Write", "Grep", "Bash"],
+      "expansion-pack": null
+    },
+    {
+      "id": "bmad-end-to-end-orchestration",
+      "path": "skills/end-to-end-orchestration",
+      "version": "1.0.0",
+      "allowed-tools": ["Read", "Write", "Grep", "Bash"],
+      "expansion-pack": null
+    },
+    {
+      "id": "skill-creator",
+      "path": "skills/skill-creator",
+      "version": "1.0.0",
+      "allowed-tools": ["Read", "Write", "Grep", "Bash"],
+      "expansion-pack": null
+    },
+    {
+      "id": "openspec-propose",
+      "path": "expansion/openspec/propose",
+      "version": "1.1.0",
+      "allowed-tools": ["Read", "Write", "Grep", "Bash"],
+      "expansion-pack": "openspec"
+    },
+    {
+      "id": "openspec-implement",
+      "path": "expansion/openspec/implement",
+      "version": "1.1.0",
+      "allowed-tools": ["Read", "Write", "Grep", "Bash"],
+      "expansion-pack": "openspec"
+    },
+    {
+      "id": "openspec-archive",
+      "path": "expansion/openspec/archive",
+      "version": "1.1.0",
+      "allowed-tools": ["Read", "Write", "Grep", "Bash"],
+      "expansion-pack": "openspec"
+    }
+  ]
+}

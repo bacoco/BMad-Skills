@@ -8,6 +8,10 @@ license: Complete terms in LICENSE.txt
 
 This skill provides guidance for creating effective skills.
 
+## Quickstart Workflow
+Follow `WORKFLOW.md` to design a skill end-to-end and apply `CHECKLIST.md` before publishing.
+
+
 ## About Skills
 
 Skills are modular, self-contained packages that extend Claude's capabilities by providing
