@@ -1,7 +1,7 @@
 ---
 name: bmad-dev
 description: Implements stories with code and tests. Keywords: implement, code, develop, build, program, coding, implementation.
-version: 2.1.0
+version: 2.1.1
 allowed-tools: ["Read", "Write", "Grep", "Bash"]
 metadata:
   auto-invoke: true

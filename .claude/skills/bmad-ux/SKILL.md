@@ -1,7 +1,7 @@
 ---
 name: bmad-ux
 description: Designs UX and creates wireframes. Keywords: UX, UI, design, wireframe, user flow, interface, usability, user experience.
-version: 2.1.0
+version: 2.1.1
 allowed-tools: ["Read", "Write", "Grep"]
 metadata:
   auto-invoke: true

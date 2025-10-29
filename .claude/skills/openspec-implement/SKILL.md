@@ -1,7 +1,7 @@
 ---
 name: openspec-implement
 description: Implements L0-1 changes. Keywords: apply, execute, implement, fix, proposal, change, Level 0, Level 1.
-version: 2.1.0
+version: 2.1.1
 allowed-tools: ["Read", "Write", "Grep", "Bash"]
 metadata:
   auto-invoke: true

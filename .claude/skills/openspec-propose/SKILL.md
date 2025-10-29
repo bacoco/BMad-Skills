@@ -1,7 +1,7 @@
 ---
 name: openspec-propose
 description: Creates lightweight proposals for L0-1 work. Keywords: bug, fix, small, quick, simple, minor, lightweight, Level 0, Level 1.
-version: 2.1.0
+version: 2.1.1
 allowed-tools: ["Read", "Write", "Grep", "Bash"]
 metadata:
   auto-invoke: true
