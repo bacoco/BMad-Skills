@@ -2,7 +2,7 @@
 name: bmad-analyst
 description: Brainstorms ideas and researches projects. Invoke when user says 'I have an idea', 'What if we', 'Help me think', 'explore possibilities', 'I'm thinking about', 'brainstorm', 'research'. Keywords: idea, brainstorm, explore, research, thinking, new project, discovery.
 version: 1.0.0
-allowed-tools: ["Read","Write","Grep","Bash"]
+allowed-tools: ["Read","Write"]
 ---
 
 # Discovery Analysis Skill
@@ -47,13 +47,14 @@ If essential context is missing, gather it before deeper synthesis.
 
 ## Outputs
 - Discovery brief following patterns in `REFERENCE.md`
+- Structured artifacts generated via templates in `assets/` (brainstorm notes, product briefs, research dossiers)
 - Prioritized questions and risk register captured for product-requirements skill
 - Recommendation on readiness to progress or need for further discovery
 
 ## Process
 1. Validate entry criteria in `CHECKLIST.md` and classify project complexity.
 2. Conduct desk research across provided assets; cite sources.
-3. Frame insights into concise problem summary, goals, personas, and constraints.
+3. Frame insights into concise problem summary, goals, personas, and constraints (use templates in `assets/`).
 4. Document open questions, assumptions, and risks with recommended owners.
 5. Deliver summary plus links to created artifacts for the orchestrator and stakeholders.
 

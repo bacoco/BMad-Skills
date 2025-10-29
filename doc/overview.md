@@ -15,14 +15,14 @@
 
 ## State Management Files
 
-- **`docs/bmm-workflow-status.md`** - Tracks current phase, progress, next actions
+- **`docs/workflow-status.md`** - Tracks current phase, progress, next actions
 - **`docs/sprint-status.yaml`** - Tracks all stories with statuses (backlog → drafted → in-progress → review → done)
 
 ## Generated Artifacts
 
 ```
 docs/
-├── bmm-workflow-status.md        # Workflow state (managed by orchestrator)
+├── workflow-status.md           # Workflow state (managed by orchestrator)
 ├── sprint-status.yaml            # Story tracking (managed by orchestrator)
 ├── brainstorm-notes.md           # Analysis output (optional)
 ├── product-brief.md              # Analysis output (optional)
@@ -51,6 +51,10 @@ stories/
 
     bmad-analyst/                   # Phase 1: Analysis
       SKILL.md                      # Brainstorm, product brief, research
+      assets/
+        brainstorm-template.md.jinja
+        product-brief-template.md.jinja
+        research-dossier-template.md.jinja
 
     bmad-pm/                        # Phase 2: Planning
       SKILL.md

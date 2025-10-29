@@ -7,61 +7,161 @@ Following BMAD Method v6-alpha specifications
 
 import json
 import sys
-from pathlib import Path
 from datetime import datetime
-from jinja2 import Template
+from pathlib import Path
+from typing import Any, Dict, Iterable
 
-def load_json_data(json_path):
-    """Load PRD data from JSON file"""
-    with open(json_path, 'r') as f:
-        return json.load(f)
+from jinja2 import Template, TemplateError
 
-def load_template(template_path):
-    """Load Jinja2 template"""
-    with open(template_path, 'r') as f:
-        return Template(f.read())
 
-def generate_prd(data, output_dir='docs'):
-    """Generate PRD.md from data"""
-    # Ensure output directory exists
+class PRDValidationError(ValueError):
+    """Raised when the input data cannot produce a valid PRD."""
+
+
+def load_json_data(json_path: str) -> Dict[str, Any]:
+    """Load PRD data from JSON file."""
+
+    data_file = Path(json_path)
+    if not data_file.exists():
+        raise FileNotFoundError(f"Data file not found: {json_path}")
+
+    with open(data_file, 'r') as handle:
+        try:
+            payload = json.load(handle)
+        except json.JSONDecodeError as exc:
+            raise PRDValidationError(
+                f"Invalid JSON data in {json_path}: {exc}"
+            ) from exc
+
+    if not isinstance(payload, dict):
+        raise PRDValidationError('Root JSON value must be an object')
+
+    return payload
+
+
+def load_template(template_path: Path) -> Template:
+    """Load a Jinja2 template from disk."""
+
+    if not template_path.exists():
+        raise FileNotFoundError(f"Template not found: {template_path}")
+
+    with open(template_path, 'r') as handle:
+        try:
+            return Template(handle.read())
+        except TemplateError as exc:
+            raise PRDValidationError(
+                f"Template could not be parsed: {template_path}"
+            ) from exc
+
+
+def _ensure_fields(data: Dict[str, Any], fields: Iterable[str]):
+    missing = [field for field in fields if field not in data or data[field] in (None, '')]
+    if missing:
+        raise PRDValidationError(
+            "Missing required fields: " + ", ".join(sorted(missing))
+        )
+
+
+def _validate_epics(epics: Any):
+    if not isinstance(epics, list) or not epics:
+        raise PRDValidationError('epics_details must be a non-empty list')
+
+    for index, epic in enumerate(epics, start=1):
+        if not isinstance(epic, dict):
+            raise PRDValidationError(f'Epic #{index} must be an object')
+
+        _ensure_fields(epic, ['epic_num', 'epic_title', 'epic_goal', 'stories'])
+
+        stories = epic['stories']
+        if not isinstance(stories, list) or not stories:
+            raise PRDValidationError(
+                f"Epic {epic.get('epic_title', index)} must contain stories"
+            )
+
+        for story_index, story in enumerate(stories, start=1):
+            if not isinstance(story, dict):
+                raise PRDValidationError(
+                    f"Story {epic['epic_num']}.{story_index} must be an object"
+                )
+
+            _ensure_fields(
+                story,
+                ['story_num', 'story_title', 'user_story', 'acceptance_criteria'],
+            )
+
+            acceptance = story['acceptance_criteria']
+            if not isinstance(acceptance, list) or not acceptance:
+                raise PRDValidationError(
+                    f"Story {epic['epic_num']}.{story['story_num']} requires acceptance criteria"
+                )
+
+
+def validate_prd_payload(data: Dict[str, Any]) -> Dict[str, Any]:
+    """Validate the structured JSON payload used to generate documents."""
+
+    required_fields = [
+        'project_name',
+        'user_name',
+        'project_level',
+        'goals',
+        'background_context',
+        'functional_requirements',
+        'non_functional_requirements',
+        'user_journeys',
+        'ux_principles',
+        'ui_design_goals',
+        'epic_list',
+        'out_of_scope',
+        'epics_details',
+    ]
+
+    _ensure_fields(data, required_fields)
+
+    try:
+        data['project_level'] = int(data['project_level'])
+    except (ValueError, TypeError) as exc:
+        raise PRDValidationError('project_level must be an integer') from exc
+
+    _validate_epics(data['epics_details'])
+
+    return data
+
+
+def generate_prd(data: Dict[str, Any], output_dir: str = 'docs') -> Path:
+    """Generate PRD.md from validated data."""
+
     output_path = Path(output_dir)
     output_path.mkdir(parents=True, exist_ok=True)
 
-    # Load template
     template_path = Path(__file__).parent.parent / 'assets/prd-template.md.jinja'
     template = load_template(template_path)
 
-    # Render template
     prd_content = template.render(**data)
 
-    # Write PRD
     prd_file = output_path / 'PRD.md'
-    with open(prd_file, 'w') as f:
-        f.write(prd_content)
+    prd_file.write_text(prd_content)
 
     print(f"✅ Generated: {prd_file}")
     return prd_file
 
-def generate_epics(data, output_dir='docs'):
-    """Generate epics.md from data"""
-    # Ensure output directory exists
+
+def generate_epics(data: Dict[str, Any], output_dir: str = 'docs') -> Path:
+    """Generate epics.md from validated data."""
+
     output_path = Path(output_dir)
     output_path.mkdir(parents=True, exist_ok=True)
 
-    # Load template
     template_path = Path(__file__).parent.parent / 'assets/epic-roadmap-template.md.jinja'
     template = load_template(template_path)
 
-    # Render template
     epics_content = template.render(**data)
 
-    # Write epics
     epics_file = output_path / 'epics.md'
-    with open(epics_file, 'w') as f:
-        f.write(epics_content)
+    epics_file.write_text(epics_content)
 
     print(f"✅ Generated: {epics_file}")
     return epics_file
+
 
 def main():
     if len(sys.argv) < 2:
@@ -72,30 +172,37 @@ def main():
     json_path = sys.argv[1]
     output_dir = sys.argv[2] if len(sys.argv) > 2 else 'docs'
 
-    # Load data
-    print(f"Loading data from: {json_path}")
-    data = load_json_data(json_path)
+    try:
+        print(f"Loading data from: {json_path}")
+        payload = load_json_data(json_path)
+        data = validate_prd_payload(payload)
+    except (FileNotFoundError, PRDValidationError) as exc:
+        print(f"❌ {exc}")
+        sys.exit(1)
 
-    # Add generation timestamp if not present
-    if 'date' not in data:
-        data['date'] = datetime.now().strftime('%Y-%m-%d')
+    data.setdefault('date', datetime.now().strftime('%Y-%m-%d'))
 
-    # Generate both documents
     print("\nGenerating BMAD PRD documents...")
-    prd_file = generate_prd(data, output_dir)
-    epics_file = generate_epics(data, output_dir)
+    try:
+        prd_file = generate_prd(data, output_dir)
+        epics_file = generate_epics(data, output_dir)
+    except (FileNotFoundError, PRDValidationError, TemplateError) as exc:
+        print(f"❌ Failed to generate documents: {exc}")
+        sys.exit(1)
 
-    print("\n" + "="*60)
+    print("\n" + "=" * 60)
     print("✅ PRD Workflow Complete!")
-    print("="*60)
-    print(f"\nDeliverables Created:")
+    print("=" * 60)
+    print("\nDeliverables Created:")
     print(f"  1. {prd_file} - Strategic product requirements")
     print(f"  2. {epics_file} - Tactical implementation roadmap")
-    print(f"\nNext Steps:")
-    print(f"  - Review documents for completeness")
-    print(f"  - Proceed to Architecture phase (bmad-architecture skill)")
-    print(f"  - Run architecture workflow")
-    print("="*60)
+
+    print("\nNext Steps:")
+    print("  - Review documents for completeness")
+    print("  - Proceed to Architecture phase (bmad-architecture skill)")
+    print("  - Run architecture workflow")
+    print("=" * 60)
+
 
 if __name__ == '__main__':
     main()

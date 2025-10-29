@@ -9,7 +9,7 @@
    - Identify personas, market signals, and technical realities impacting feasibility.
 
 3. **Synthesis**
-   - Summarize goals, constraints, and key insights.
+   - Summarize goals, constraints, and key insights using templates in `assets/`.
    - Highlight unknowns, dependencies, and risk hotspots.
 
 4. **Recommendation**

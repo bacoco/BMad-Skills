@@ -12,13 +12,20 @@ class WorkflowStatus:
 
     def __init__(self, docs_dir='docs'):
         self.docs_dir = Path(docs_dir)
-        self.status_file = self.docs_dir / 'bmm-workflow-status.md'
+        self.status_file = self.docs_dir / 'workflow-status.md'
+        self.legacy_status_file = self.docs_dir / 'bmm-workflow-status.md'
+
+        # Ensure we preserve existing workflow state even if it uses the
+        # deprecated filename from earlier revisions of the tool.
+        if self.legacy_status_file.exists() and not self.status_file.exists():
+            self.docs_dir.mkdir(parents=True, exist_ok=True)
+            self.legacy_status_file.rename(self.status_file)
 
     def init_workflow(self, project_name, project_type, project_level, user_name):
         """Initialize a new workflow status file"""
         self.docs_dir.mkdir(parents=True, exist_ok=True)
 
-        content = f"""# BMM Workflow Status
+        content = f"""# BMAD Workflow Status
 
 **Project**: {project_name}
 **Type**: {project_type}
@@ -172,11 +179,25 @@ _Managed by BMAD Workflow Skills v1.0.0_
             if phase_markers[phase] in line:
                 in_target_phase = True
                 updated_lines.append(line)
-            elif in_target_phase and line.startswith('Status:'):
-                updated_lines.append('Status: Complete')
-                in_target_phase = False
-            else:
-                updated_lines.append(line)
+                continue
+
+            if in_target_phase:
+                stripped = line.strip()
+
+                if stripped.startswith('- ['):
+                    updated_lines.append(line.replace('- [ ]', '- [x]', 1))
+                    continue
+
+                if stripped == '':
+                    updated_lines.append(line)
+                    continue
+
+                if stripped.startswith('Status:'):
+                    updated_lines.append('Status: Complete')
+                    in_target_phase = False
+                    continue
+
+            updated_lines.append(line)
 
         with open(self.status_file, 'w') as f:
             f.write('\n'.join(updated_lines))

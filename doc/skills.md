@@ -103,7 +103,7 @@ This catalog applies Claude's skill creation best practices to every BMAD capabi
 4. Highlight decision-ready insights and flag gaps for the PM to close.
 
 **Outputs & handoffs**
-- Structured brainstorming boards, product briefs, or research syntheses stored in project docs.
+- Structured brainstorming boards, product briefs, or research syntheses stored in project docs (use templates in `.claude/skills/bmad-analyst/assets/`).
 - Open questions list and recommended follow-up actions for PM or stakeholders.
 - Confidence assessment covering unknowns and data quality.
 

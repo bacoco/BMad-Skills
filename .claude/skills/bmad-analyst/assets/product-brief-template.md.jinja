@@ -1,0 +1,55 @@
+# Product Brief — {{ project_name }}
+
+**Date:** {{ date }}
+**Author:** {{ author }}
+**Status:** Draft
+
+---
+
+## Problem Summary
+
+{{ problem_summary }}
+
+## Target Users
+
+{{ target_users }}
+
+## Success Vision
+
+{% for success in success_vision %}
+- {{ success }}
+{% endfor %}
+
+## MVP Scope
+
+**In Scope**
+{% for item in in_scope %}
+- {{ item }}
+{% endfor %}
+
+**Out of Scope**
+{% for item in out_of_scope %}
+- {{ item }}
+{% endfor %}
+
+## Key Assumptions
+
+{% for assumption in assumptions %}
+- {{ assumption }}
+{% endfor %}
+
+## Risks & Mitigations
+
+{% for risk in risks %}
+- {{ risk.description }} _(Mitigation: {{ risk.mitigation }})_
+{% endfor %}
+
+## Open Questions
+
+{% for question in open_questions %}
+- [ ] {{ question }}
+{% endfor %}
+
+---
+
+_Hand this brief to the product manager to confirm readiness for the PRD phase._

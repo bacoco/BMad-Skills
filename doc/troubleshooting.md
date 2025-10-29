@@ -217,7 +217,8 @@ Claude: [Recrée workflow-status.md]
 
 **Ou manuellement:**
 ```bash
-rm docs/bmad-workflow-status.md
+rm docs/workflow-status.md
+rm docs/bmad-workflow-status.md  # Nom hérité à retirer si présent
 rm docs/sprint-status.yaml
 # Puis recommencez
 ```
@@ -464,15 +465,12 @@ Error running workflow_status.py
 **Diagnostic:**
 ```bash
 python --version  # Need Python 3.7+
-pip install pyyaml  # Need dependencies
 ```
 
 **Solution:**
 ```bash
-# Install requirements
-pip install -r requirements.txt  # Si existe
-# Ou manuellement
-pip install pyyaml jinja2
+# Install dependencies for workflow + reporting scripts
+pip install -r requirements.txt
 ```
 
 ### Problème 2: Permissions
@@ -557,7 +555,8 @@ python shared/tooling/activation_metrics.py export
 cp -r docs docs.backup
 
 # Reset BMAD
-rm docs/bmad-workflow-status.md
+rm docs/workflow-status.md
+rm docs/bmad-workflow-status.md  # Nom hérité à retirer si présent
 rm docs/sprint-status.yaml
 
 # Reset OpenSpec

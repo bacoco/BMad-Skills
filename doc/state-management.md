@@ -3,7 +3,7 @@
 ## workflow-status.md Structure
 
 ```markdown
-# BMM Workflow Status
+# BMAD Workflow Status
 
 **Project**: E-commerce Product Catalog
 **Type**: Greenfield
@@ -96,7 +96,7 @@ python .claude/skills/bmad-orchestrator/scripts/workflow_status.py init \
 # Update phase
 python .claude/skills/bmad-orchestrator/scripts/workflow_status.py update-phase "Planning"
 
-# Mark phase complete
+# Mark phase complete (checkboxes and status update automatically)
 python .claude/skills/bmad-orchestrator/scripts/workflow_status.py mark-complete "Planning"
 
 # Add artifact

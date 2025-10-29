@@ -4,7 +4,6 @@ BMAD Skills Activation Metrics System
 Tracks and analyzes skill activation patterns for optimization
 """
 
-import json
 import yaml
 from datetime import datetime
 from pathlib import Path
@@ -39,13 +38,20 @@ class ActivationMetrics:
             success: Whether activation was successful
             notes: Additional notes or error messages
         """
+        confidence_value = self._validate_activation_input(
+            skill_name,
+            trigger_phrase,
+            confidence,
+            context,
+        )
+
         metrics = self._load_metrics()
 
         activation = {
             'timestamp': datetime.now().isoformat(),
             'skill': skill_name,
             'trigger': trigger_phrase,
-            'confidence': confidence,
+            'confidence': confidence_value,
             'context': context or {},
             'success': success,
             'notes': notes
@@ -282,6 +288,34 @@ These may need trigger phrase improvements:
         """Clear all metrics (use with caution!)"""
         self._save_metrics(self._init_metrics())
 
+    def _validate_activation_input(
+        self,
+        skill_name: str,
+        trigger_phrase: str,
+        confidence: float,
+        context: Optional[Dict],
+    ) -> float:
+        """Validate user-provided activation metadata."""
+
+        if not skill_name or not skill_name.strip():
+            raise ValueError('skill name is required')
+
+        if not trigger_phrase or not trigger_phrase.strip():
+            raise ValueError('trigger phrase is required')
+
+        try:
+            confidence_value = float(confidence)
+        except (TypeError, ValueError) as exc:
+            raise ValueError('confidence must be a number between 0 and 1') from exc
+
+        if not 0.0 <= confidence_value <= 1.0:
+            raise ValueError('confidence must be between 0 and 1')
+
+        if context is not None and not isinstance(context, dict):
+            raise ValueError('context must be a dictionary if provided')
+
+        return confidence_value
+
     def _load_metrics(self) -> Dict:
         """Load metrics from file"""
         if not self.metrics_file.exists():
@@ -289,9 +323,23 @@ These may need trigger phrase improvements:
 
         try:
             with open(self.metrics_file, 'r') as f:
-                return yaml.safe_load(f) or self._init_metrics()
+                data = yaml.safe_load(f)
         except Exception:
             return self._init_metrics()
+
+        if not isinstance(data, dict):
+            return self._init_metrics()
+
+        data.setdefault('summary', {})
+        data.setdefault('activations', [])
+
+        summary = data['summary']
+        summary.setdefault('total_activations', 0)
+        summary.setdefault('successful_activations', 0)
+        summary.setdefault('failed_activations', 0)
+        summary.setdefault('by_skill', {})
+
+        return data
 
     def _save_metrics(self, metrics: Dict):
         """Save metrics to file"""
@@ -338,9 +386,17 @@ def main():
             return
         skill = sys.argv[2]
         trigger = sys.argv[3]
-        confidence = float(sys.argv[4])
-        metrics.log_activation(skill, trigger, confidence)
-        print(f"✅ Logged: {skill} <- '{trigger}' (confidence: {confidence})")
+        confidence_raw = sys.argv[4]
+        try:
+            confidence_value = float(confidence_raw)
+            metrics.log_activation(skill, trigger, confidence_value)
+        except ValueError as exc:
+            print(f"❌ Unable to log activation: {exc}")
+            return
+        print(
+            f"✅ Logged: {skill} <- '{trigger}' "
+            f"(confidence: {confidence_value:.2f})"
+        )
 
     elif command == 'stats':
         stats = metrics.get_stats()
