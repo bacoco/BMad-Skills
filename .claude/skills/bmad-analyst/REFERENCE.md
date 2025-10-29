@@ -9,22 +9,23 @@ Interview scripts, research frameworks, and domain heuristics live here. Load on
 **Phase**: Phase 1 - Analysis (Optional for Level 3-4, Recommended for complex/novel problems)
 **Outputs**: `docs/product-brief.md`, research documents, brainstorm notes
 
-## 🎯 When Claude Should Invoke This Skill
+## 🎯 Advanced Activation Patterns
 
-**PROACTIVELY invoke this skill** when you detect the user:
-- Mentions a new idea or concept for a product/feature
-- Says phrases like "I'm thinking about...", "What if we...", "I have an idea..."
-- Asks "help me think through..." or "I'm not sure what I need..."
-- Talks about exploring possibilities or brainstorming
-- Needs to document or understand an existing project
-- Has vague requirements that need clarification
-- Mentions competitive research or market analysis
-- Is starting a complex/novel project (Level 3-4)
+Primary trigger phrases sit in `SKILL.md`. Use the guidance below for deeper judgment calls:
 
-**Do NOT invoke for**:
-- Level 0-2 projects with clear requirements (go straight to bmad-pm)
-- User already has detailed requirements or PRD
-- Implementation or coding tasks
+**High-signal cues:**
+- User compares multiple problem framings → launch structured brainstorm
+- Mentions "we don't understand the users" → collect research briefs before planning
+- Requests competitive teardown or market sizing → start research workflow
+
+**Redirect signals:**
+- Idea references clear scope, acceptance criteria, and stakeholders → escalate directly to bmad-pm
+- Discussion focuses on feasibility or tech stack → route to bmad-architecture after confirming prerequisites
+- User already references an existing PRD → skip to downstream skills unless gaps emerge
+
+**Escalation reminders:**
+- When ideation uncovers compliance or data risks → notify bmad-tea early
+- If user keeps redefining the problem mid-session → pause and produce discovery brief recap for alignment
 
 ## Your Role & Identity
 

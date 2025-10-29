@@ -11,22 +11,24 @@ Routing matrices, troubleshooting guides, and status file schemas are documented
 **Purpose**: Intelligent workflow orchestration - routes to BMAD or OpenSpec based on complexity
 **State Files**: `docs/bmm-workflow-status.md` (BMAD), `docs/sprint-status.yaml` (BMAD), `openspec/changes/` (OpenSpec)
 
-## 🎯 When Claude Should Invoke This Skill
+## 🎯 Advanced Activation Patterns
 
-**PROACTIVELY invoke this skill** when you detect the user:
-- Starts a conversation about a new project or feature
-- Says "I want to start a new project", "let's build something"
-- Asks "what's next?", "where am I in the workflow?", "what should I do now?"
-- Seems unsure about which BMAD phase they're in
-- Wants to initialize or check workflow status
-- Mentions BMAD methodology or workflow
-- Just completed a major phase (PRD, Architecture, Stories) and asks what's next
-- Wants guidance on the overall development process
+Primary triggers now live in `SKILL.md` under "When to Invoke". Use this section for nuanced routing signals:
 
-**DO NOT invoke for**:
-- User clearly knows which skill they need (let them proceed)
-- Mid-task implementation (user is actively coding)
-- Specific technical questions unrelated to workflow
+**Elevated confidence triggers:**
+- Conversation opens with ambiguous build/init language → auto-init workflow
+- Repeated "what's next" questions within same session → read status before replying
+- Mention of "handoff" or "phase complete" → validate gate files exist
+
+**Risk signals (pause routing):**
+- User references missing artifacts ("we never wrote the PRD")
+- Previous phase checklists show incomplete items
+- Multiple blockers recorded in workflow-status.md
+
+**Escalation cues:**
+- Scope grows from Level 1 to Level 2 → shift from OpenSpec to BMAD
+- User introduces cross-team coordination → confirm orchestrator ownership
+- Long-running implementation asks for reprioritization → refresh sprint-status.yaml
 
 ## Two Workflows Available: BMAD vs OpenSpec
 

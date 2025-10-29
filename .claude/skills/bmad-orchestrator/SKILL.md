@@ -52,6 +52,55 @@ allowed-tools: ["Read","Write","Grep","Bash"]
 - User is in the middle of implementing code (appropriate skill is active)
 - User is asking technical questions unrelated to workflow
 
+## Auto-Activation Behavior
+
+This skill applies specialized routing heuristics whenever it auto-invokes:
+
+### 1. Conversation Start Detection
+When a conversation begins and the user mentions:
+- Product development topics
+- Project ideas or features
+- Building or creating something
+- BMAD or OpenSpec methodology
+
+**Auto-action:** Initialize workflow files if none exist and recommend the right path.
+
+### 2. Status Check Detection
+When user asks:
+- "Where am I?"
+- "What's next?"
+- "What should I do now?"
+- "Check workflow status"
+
+**Auto-action:** Read workflow-status.md, summarize phase progress, and suggest next skill.
+
+### 3. Phase Transition Detection
+When a downstream skill completes its phase:
+- Analyst delivers discovery brief → confirm Planning readiness
+- PM delivers PRD/epics → prepare Solutioning
+- Architecture delivers decision doc → move to Implementation
+
+**Auto-action:** Update workflow status and queue the appropriate next capability.
+
+### 4. Routing Intelligence
+Based on user intent, automatically route to:
+- Mentions "idea", "brainstorm" → bmad-analyst
+- Mentions "PRD", "requirements" → bmad-pm
+- Mentions "UX", "UI" → bmad-ux
+- Mentions "architecture", "tech stack" → bmad-architecture
+- Mentions "test strategy", "QA" → bmad-tea
+- Mentions "stories", "backlog" → bmad-stories
+- Mentions "implement", "code" → bmad-dev
+- Mentions "small change", "bug" → OpenSpec skills
+
+### 5. Safety Checks
+Before routing, verify:
+- [ ] Required artifacts from previous phase exist
+- [ ] Quality gates in CHECKLIST.md are satisfied
+- [ ] No unresolved blockers in workflow-status.md
+
+If checks fail, halt routing and request the missing prerequisites.
+
 ## Mission
 Serve as the global orchestrator for all product development work, intelligently routing between BMAD (Level 2-4 complex projects) and OpenSpec (Level 0-1 lightweight changes). Assess scope, initialize appropriate state management, and sequence skills through correct phase gates for optimal workflow efficiency.
 
