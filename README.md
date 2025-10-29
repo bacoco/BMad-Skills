@@ -301,8 +301,23 @@ Start simple, scale as needed:
 
 ### Install (2 minutes)
 
+**Option 1: NPM/npx (Recommended)**
+
 ```bash
-# Install globally (recommended)
+# Install globally
+npx @bmad/skills --global
+
+# Or install to current project
+npx @bmad/skills
+
+# Or install to custom path
+npx @bmad/skills --path /your/custom/path
+```
+
+**Option 2: Direct script**
+
+```bash
+# Install globally
 curl -fsSL https://raw.githubusercontent.com/bacoco/bmad-skills/main/scripts/install-to-home.sh | bash
 
 # Or manually

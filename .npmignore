@@ -1,0 +1,38 @@
+# Development files
+tests/
+.pytest_cache/
+__pycache__/
+*.pyc
+*.pyo
+
+# Git files
+.git/
+.gitignore
+.github/
+
+# Documentation (keep README.md)
+docs/
+CLAUDE.md
+CHANGELOG.md
+
+# Build artifacts
+*.backup.*
+.DS_Store
+
+# Python virtual environments
+venv/
+env/
+.venv/
+
+# IDE
+.vscode/
+.idea/
+
+# Only include necessary scripts
+scripts/*
+!scripts/verify.sh
+
+# Runtime (users create their own)
+.claude/skills/_runtime/workspace/
+.claude/skills/_runtime/artifacts/
+.claude/skills/_runtime/stories/

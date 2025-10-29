@@ -1,0 +1,46 @@
+{
+  "name": "@bmad/skills",
+  "version": "2.1.0",
+  "description": "Complete workflow ecosystem for product development - from idea to implementation through natural conversation with Claude",
+  "keywords": [
+    "claude",
+    "claude-skills",
+    "workflow",
+    "product-development",
+    "bmad",
+    "openspec",
+    "ai-assistant"
+  ],
+  "homepage": "https://github.com/bacoco/bmad-skills#readme",
+  "bugs": {
+    "url": "https://github.com/bacoco/bmad-skills/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bacoco/bmad-skills.git"
+  },
+  "license": "MIT",
+  "author": "BMAD Contributors",
+  "bin": {
+    "bmad-skills": "./bin/cli.js"
+  },
+  "files": [
+    ".claude/skills",
+    "bin",
+    "scripts",
+    "README.md",
+    "LICENSE"
+  ],
+  "scripts": {
+    "test": "pytest tests/",
+    "lint": "python3 .claude/skills/_core/tooling/lint_contracts.py",
+    "validate": "python3 .claude/skills/skill-creator/scripts/quick_validate.py",
+    "prepare": "node bin/prepare.js"
+  },
+  "engines": {
+    "node": ">=14.0.0"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}
