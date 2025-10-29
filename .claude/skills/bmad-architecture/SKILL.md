@@ -2,7 +2,35 @@
 name: bmad-architecture
 description: Creates technical architecture. Invoke when user says 'how should we build', 'what's the architecture', 'tech stack', 'system design', 'how to build this'. Keywords: architecture, tech stack, design, system, build, technical, structure.
 version: 1.0.0
-allowed-tools: ["Read","Write","Grep","Bash"]
+allowed-tools: ["Read", "Write", "Grep"]
+metadata:
+  auto-invoke: true
+  triggers:
+    patterns:
+      - "how should we build"
+      - "what's the architecture"
+      - "tech stack"
+      - "system design"
+      - "how to build this"
+    keywords:
+      - architecture
+      - design
+      - system
+      - build
+      - technical
+      - structure
+      - stack
+  capabilities:
+    - architecture-design
+    - tech-stack-selection
+    - system-design
+    - decision-documentation
+  prerequisites:
+    - product-requirements-document
+  outputs:
+    - architecture-decisions
+    - system-design-doc
+    - tech-stack-rationale
 ---
 
 # Architecture Design Skill

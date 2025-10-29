@@ -2,7 +2,37 @@
 name: bmad-dev
 description: Implements stories with code and tests. Invoke when user says 'implement story', 'develop this', 'let's code', 'write the code', 'start coding'. Keywords: implement, code, develop, build, program, coding, implementation.
 version: 1.0.0
-allowed-tools: ["Read","Write","Grep","Bash"]
+allowed-tools: ["Read", "Write", "Grep", "Bash"]
+metadata:
+  auto-invoke: true
+  triggers:
+    patterns:
+      - "implement story"
+      - "develop this"
+      - "let's code"
+      - "write the code"
+      - "start coding"
+    keywords:
+      - implement
+      - code
+      - develop
+      - build
+      - program
+      - coding
+      - implementation
+  capabilities:
+    - code-implementation
+    - test-writing
+    - debugging
+    - code-review
+  prerequisites:
+    - user-stories
+    - architecture-decisions
+    - test-strategy-doc
+  outputs:
+    - source-code
+    - test-files
+    - implementation-notes
 ---
 
 # Development Execution Skill

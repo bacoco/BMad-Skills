@@ -2,7 +2,36 @@
 name: bmad-pm
 description: Creates PRDs and plans features. Invoke when user says 'I want to build', 'create a PRD', 'plan this feature', 'write requirements', 'product document'. Keywords: PRD, requirements, plan, build, feature, epic, roadmap, product.
 version: 1.0.0
-allowed-tools: ["Read","Write","Grep","Bash"]
+allowed-tools: ["Read", "Write", "Grep"]
+metadata:
+  auto-invoke: true
+  triggers:
+    patterns:
+      - "create a PRD"
+      - "I want to build"
+      - "plan this feature"
+      - "write requirements"
+      - "product document"
+    keywords:
+      - PRD
+      - requirements
+      - plan
+      - build
+      - feature
+      - epic
+      - roadmap
+      - product
+  capabilities:
+    - prd-creation
+    - requirements-gathering
+    - feature-planning
+    - roadmap-design
+  prerequisites:
+    - discovery-brief
+  outputs:
+    - product-requirements-document
+    - feature-specs
+    - epic-breakdown
 ---
 
 # Product Requirements Skill

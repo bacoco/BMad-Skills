@@ -2,7 +2,35 @@
 name: bmad-stories
 description: Breaks epics into developer stories. Invoke when user says 'break into stories', 'create user stories', 'story breakdown', 'developer tasks'. Keywords: story, stories, epic, breakdown, task, backlog, sprint.
 version: 1.0.0
-allowed-tools: ["Read","Write","Grep","Bash"]
+allowed-tools: ["Read", "Write", "Grep"]
+metadata:
+  auto-invoke: true
+  triggers:
+    patterns:
+      - "break into stories"
+      - "create user stories"
+      - "story breakdown"
+      - "developer tasks"
+    keywords:
+      - story
+      - stories
+      - epic
+      - breakdown
+      - task
+      - backlog
+      - sprint
+  capabilities:
+    - story-breakdown
+    - epic-splitting
+    - task-definition
+    - backlog-creation
+  prerequisites:
+    - product-requirements-document
+    - architecture-decisions
+  outputs:
+    - user-stories
+    - story-files
+    - acceptance-criteria
 ---
 
 # Delivery Planning Skill

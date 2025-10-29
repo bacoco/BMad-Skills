@@ -2,7 +2,34 @@
 name: openspec-propose
 description: Creates lightweight change proposals for Level 0-1 work. Invoke when user says 'fix bug', 'small change', 'quick feature', 'simple fix', 'minor update'. Keywords: bug, fix, small, quick, simple, minor, Level 0, Level 1, lightweight.
 version: 1.2.0
-allowed-tools: ["Read","Write","Grep","Bash"]
+allowed-tools: ["Read", "Write", "Grep", "Bash"]
+metadata:
+  auto-invoke: true
+  triggers:
+    patterns:
+      - "fix bug"
+      - "small change"
+      - "quick feature"
+      - "simple fix"
+      - "minor update"
+    keywords:
+      - bug
+      - fix
+      - small
+      - quick
+      - simple
+      - minor
+      - lightweight
+  capabilities:
+    - proposal-creation
+    - change-scoping
+    - task-definition
+    - lightweight-planning
+  prerequisites: []
+  outputs:
+    - proposal
+    - tasks
+    - spec-delta
 ---
 
 # OpenSpec Propose Skill

@@ -54,8 +54,12 @@ def validate_skill(skill_path):
     except Exception as e:
         return False, f"Invalid frontmatter format: {e}"
 
-    # Define allowed properties
-    ALLOWED_PROPERTIES = {'name', 'description', 'version', 'license', 'allowed-tools', 'metadata'}
+    # Define allowed properties (expanded for Claude skills schema)
+    ALLOWED_PROPERTIES = {
+        'name', 'description', 'version', 'license', 'allowed-tools', 'metadata',
+        'auto-invoke', 'triggers', 'capabilities', 'prerequisites', 'outputs',
+        'security', 'performance', 'compatibility', 'tags', 'category'
+    }
 
     # Check for unexpected properties (excluding nested keys under metadata)
     unexpected_keys = set(frontmatter.keys()) - ALLOWED_PROPERTIES

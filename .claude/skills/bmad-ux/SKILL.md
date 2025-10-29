@@ -2,7 +2,35 @@
 name: bmad-ux
 description: Designs UX and creates wireframes. Invoke when user says 'what should UI look like', 'design the UX', 'user experience', 'wireframes', 'user flow'. Keywords: UX, UI, design, wireframe, user flow, interface, usability.
 version: 1.0.0
-allowed-tools: ["Read","Write","Grep","Bash"]
+allowed-tools: ["Read", "Write", "Grep"]
+metadata:
+  auto-invoke: true
+  triggers:
+    patterns:
+      - "what should UI look like"
+      - "design the UX"
+      - "user experience"
+      - "wireframes"
+      - "user flow"
+    keywords:
+      - UX
+      - UI
+      - design
+      - wireframe
+      - interface
+      - usability
+      - flow
+  capabilities:
+    - ux-design
+    - wireframe-creation
+    - user-flow-design
+    - interface-design
+  prerequisites:
+    - product-requirements-document
+  outputs:
+    - user-flows
+    - wireframes
+    - design-system
 ---
 
 # UX Blueprint Skill

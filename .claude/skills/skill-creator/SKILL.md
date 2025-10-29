@@ -4,6 +4,31 @@ description: Guide for creating effective skills. This skill should be used when
 version: 1.0.0
 license: Complete terms in LICENSE.txt
 allowed-tools: ["Read", "Write", "Grep", "Bash"]
+metadata:
+  auto-invoke: true
+  triggers:
+    patterns:
+      - "create a skill"
+      - "build a skill"
+      - "make a new skill"
+      - "how do I make a skill"
+      - "skill development"
+    keywords:
+      - skill
+      - create
+      - build
+      - package
+      - validate
+  capabilities:
+    - skill-creation
+    - skill-validation
+    - skill-packaging
+    - skill-guidance
+  prerequisites: []
+  outputs:
+    - skill-files
+    - validation-report
+    - packaged-skill
 ---
 
 # Skill Creator

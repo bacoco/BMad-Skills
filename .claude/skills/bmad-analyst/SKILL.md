@@ -2,7 +2,37 @@
 name: bmad-analyst
 description: Brainstorms ideas and researches projects. Invoke when user says 'I have an idea', 'What if we', 'Help me think', 'explore possibilities', 'I'm thinking about', 'brainstorm', 'research'. Keywords: idea, brainstorm, explore, research, thinking, new project, discovery.
 version: 1.0.0
-allowed-tools: ["Read", "Write", "Grep", "Bash"]
+allowed-tools: ["Read", "Write", "Grep"]
+metadata:
+  auto-invoke: true
+  triggers:
+    patterns:
+      - "I have an idea"
+      - "What if we"
+      - "Help me think"
+      - "explore possibilities"
+      - "I'm thinking about"
+      - "brainstorm"
+      - "research"
+    keywords:
+      - idea
+      - brainstorm
+      - explore
+      - research
+      - thinking
+      - discovery
+      - analyze
+  capabilities:
+    - brainstorming
+    - research
+    - competitive-analysis
+    - discovery
+    - problem-exploration
+  prerequisites: []
+  outputs:
+    - discovery-brief
+    - research-notes
+    - problem-statement
 ---
 
 # Discovery Analysis Skill
