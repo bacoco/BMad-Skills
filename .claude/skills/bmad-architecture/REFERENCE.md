@@ -255,7 +255,7 @@ Use the Python script to generate the document:
 
 2. Write JSON to `/tmp/architecture_data.json`
 
-3. Run: `python .claude/skills/bmad-architecture/generate_architecture.py /tmp/architecture_data.json`
+3. Run: `python .claude/skills/bmad-architecture/scripts/generate_architecture.py /tmp/architecture_data.json`
 
 4. Script generates `docs/ARCHITECTURE.md`
 

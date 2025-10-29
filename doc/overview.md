@@ -45,7 +45,7 @@ stories/
   skills/
     bmad-orchestrator/
       SKILL.md                      # Orchestrator with state management
-      helpers/
+      scripts/
         workflow_status.py          # Manages workflow-status.md
         sprint_status.py            # Manages sprint-status.yaml
 

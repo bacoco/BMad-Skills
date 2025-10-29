@@ -1,5 +1,5 @@
 ---
-name: bmad-product-requirements
+name: bmad-pm
 description: Drafts complete product requirements and epic roadmap packages from validated discovery inputs using BMAD templates.
 version: 1.0.0
 allowed-tools: ["Read","Write","Grep","Bash"]

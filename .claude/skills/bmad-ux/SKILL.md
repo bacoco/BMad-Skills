@@ -1,5 +1,5 @@
 ---
-name: bmad-ux-blueprint
+name: bmad-ux
 description: Converts requirements into UX flows, wireframes, and validation criteria sized to BMAD project levels.
 version: 1.0.0
 allowed-tools: ["Read","Write","Grep","Bash"]

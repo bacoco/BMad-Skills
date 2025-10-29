@@ -1,85 +1,85 @@
 {
   "skills": [
     {
-      "id": "bmad-discovery-analysis",
-      "path": "skills/discovery-analysis",
+      "id": "bmad-orchestrator",
+      "path": ".claude/skills/bmad-orchestrator",
       "version": "1.0.0",
       "allowed-tools": ["Read", "Write", "Grep", "Bash"],
       "expansion-pack": null
     },
     {
-      "id": "bmad-product-requirements",
-      "path": "skills/product-requirements",
+      "id": "bmad-analyst",
+      "path": ".claude/skills/bmad-analyst",
       "version": "1.0.0",
       "allowed-tools": ["Read", "Write", "Grep", "Bash"],
       "expansion-pack": null
     },
     {
-      "id": "bmad-architecture-design",
-      "path": "skills/architecture-design",
+      "id": "bmad-pm",
+      "path": ".claude/skills/bmad-pm",
       "version": "1.0.0",
       "allowed-tools": ["Read", "Write", "Grep", "Bash"],
       "expansion-pack": null
     },
     {
-      "id": "bmad-delivery-planning",
-      "path": "skills/delivery-planning",
+      "id": "bmad-ux",
+      "path": ".claude/skills/bmad-ux",
       "version": "1.0.0",
       "allowed-tools": ["Read", "Write", "Grep", "Bash"],
       "expansion-pack": null
     },
     {
-      "id": "bmad-development-execution",
-      "path": "skills/development-execution",
+      "id": "bmad-architecture",
+      "path": ".claude/skills/bmad-architecture",
       "version": "1.0.0",
       "allowed-tools": ["Read", "Write", "Grep", "Bash"],
       "expansion-pack": null
     },
     {
-      "id": "bmad-quality-assurance",
-      "path": "skills/quality-assurance",
+      "id": "bmad-tea",
+      "path": ".claude/skills/bmad-tea",
       "version": "1.0.0",
       "allowed-tools": ["Read", "Write", "Grep", "Bash"],
       "expansion-pack": null
     },
     {
-      "id": "bmad-ux-blueprint",
-      "path": "skills/ux-blueprint",
+      "id": "bmad-stories",
+      "path": ".claude/skills/bmad-stories",
       "version": "1.0.0",
       "allowed-tools": ["Read", "Write", "Grep", "Bash"],
       "expansion-pack": null
     },
     {
-      "id": "bmad-end-to-end-orchestration",
-      "path": "skills/end-to-end-orchestration",
+      "id": "bmad-dev",
+      "path": ".claude/skills/bmad-dev",
       "version": "1.0.0",
       "allowed-tools": ["Read", "Write", "Grep", "Bash"],
       "expansion-pack": null
     },
     {
       "id": "skill-creator",
-      "path": "skills/skill-creator",
+      "path": ".claude/skills/skill-creator",
       "version": "1.0.0",
       "allowed-tools": ["Read", "Write", "Grep", "Bash"],
       "expansion-pack": null
     },
     {
       "id": "openspec-propose",
-      "path": "skills/openspec-propose",
+      "path": ".claude/skills/openspec-propose",
       "version": "1.2.0",
       "allowed-tools": ["Read", "Write", "Grep", "Bash"],
       "expansion-pack": "openspec"
     },
     {
       "id": "openspec-implement",
-      "path": "skills/openspec-implement",
+      "path": ".claude/skills/openspec-implement",
       "version": "1.2.0",
       "allowed-tools": ["Read", "Write", "Grep", "Bash"],
       "expansion-pack": "openspec"
     },
     {
       "id": "openspec-archive",
-      "path": "skills/openspec-archive",
+      "path": ".claude/skills/openspec-archive",
       "version": "1.2.0",
       "allowed-tools": ["Read", "Write", "Grep", "Bash"],
       "expansion-pack": "openspec"

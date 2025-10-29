@@ -1,5 +1,5 @@
 ---
-name: bmad-delivery-planning
+name: bmad-stories
 description: Breaks approved epics into sequenced, testable stories and delivery notes ready for development execution.
 version: 1.0.0
 allowed-tools: ["Read","Write","Grep","Bash"]

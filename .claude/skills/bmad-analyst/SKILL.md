@@ -1,5 +1,5 @@
 ---
-name: bmad-discovery-analysis
+name: bmad-analyst
 description: Clarifies ambiguous opportunities through structured research, synthesis, and risk surfacing.
 version: 1.0.0
 allowed-tools: ["Read","Write","Grep","Bash"]

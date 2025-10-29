@@ -245,7 +245,7 @@ Use the Python script to generate the story:
 
 2. Write JSON to `/tmp/story_data.json`
 
-3. Run: `python .claude/skills/bmad-stories/create_story.py /tmp/story_data.json`
+3. Run: `python .claude/skills/bmad-stories/scripts/create_story.py /tmp/story_data.json`
 
 4. Script generates `stories/{epic}-{story}-{title}.md`
    - Example: `stories/1-2-user-authentication.md`

@@ -1,5 +1,5 @@
 ---
-name: bmad-architecture-design
+name: bmad-architecture
 description: Produces decision-ready system architecture packages aligned to BMAD requirements and constraints.
 version: 1.0.0
 allowed-tools: ["Read","Write","Grep","Bash"]
