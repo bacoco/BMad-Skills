@@ -1,11 +1,39 @@
 ---
 name: bmad-analyst
-description: Clarifies ambiguous opportunities through structured research, synthesis, and risk surfacing.
+description: Brainstorms ideas and researches projects. Invoke when user says 'I have an idea', 'What if we', 'Help me think', 'explore possibilities', 'I'm thinking about', 'brainstorm', 'research'. Keywords: idea, brainstorm, explore, research, thinking, new project, discovery.
 version: 1.0.0
 allowed-tools: ["Read","Write","Grep","Bash"]
 ---
 
 # Discovery Analysis Skill
+
+## When to Invoke
+
+**Automatically activate this skill when the user:**
+- Says "I have an idea...", "What if we...", "I'm thinking about..."
+- Asks "Help me think through...", "Can you help me brainstorm...", "Let's explore..."
+- Mentions "new project", "new feature", "explore possibilities"
+- Talks about research, competitive analysis, or market exploration
+- Has vague requirements that need clarification
+- Mentions understanding or documenting an existing project
+- Is starting a Level 3-4 project (complex/novel problems)
+- Uses words like: idea, brainstorm, explore, research, discovery, analyze
+
+**Specific trigger phrases:**
+- "I have an idea for [something]"
+- "What if we built [something]"
+- "Help me think through [problem]"
+- "Can we explore [opportunity]"
+- "I need to research [topic]"
+- "Document this project"
+- "Understand this codebase"
+
+**Do NOT invoke when:**
+- User already has a detailed PRD (use bmad-pm instead)
+- User is asking for implementation help (use bmad-dev instead)
+- User has clear, well-defined requirements (skip to bmad-pm)
+- User is asking about workflow status (use bmad-orchestrator)
+- Project is Level 0-2 and requirements are clear (skip to bmad-pm)
 
 ## Mission
 Turn vague ideas or problem statements into structured briefs that downstream skills can trust. Identify goals, constraints, risks, and unknowns to inform product planning.

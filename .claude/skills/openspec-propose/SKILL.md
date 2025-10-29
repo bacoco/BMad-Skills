@@ -1,11 +1,45 @@
 ---
 name: openspec-propose
-description: Frames lightweight change proposals for Level 0-1 work using OpenSpec methodology.
+description: Creates lightweight change proposals for Level 0-1 work. Invoke when user says 'fix bug', 'small change', 'quick feature', 'simple fix', 'minor update'. Keywords: bug, fix, small, quick, simple, minor, Level 0, Level 1, lightweight.
 version: 1.2.0
 allowed-tools: ["Read","Write","Grep","Bash"]
 ---
 
 # OpenSpec Propose Skill
+
+## When to Invoke
+
+**Automatically activate when user:**
+- Says "Fix this bug", "Small change", "Quick feature"
+- Asks "Simple fix for [issue]", "Minor update to [component]"
+- Mentions "bug fix", "small improvement", "quick change"
+- Has a Level 0-1 scoped change (small, low risk, no major unknowns)
+- Uses words like: bug, fix, small, quick, simple, minor, lightweight
+
+**Specific trigger phrases:**
+- "Fix this bug: [description]"
+- "Small change to [component]"
+- "Quick feature: [simple feature]"
+- "Simple fix for [issue]"
+- "Minor update: [description]"
+- "Lightweight change proposal"
+
+**Prerequisites:**
+- Change is Level 0-1 (small, well-defined)
+- No major unknowns or architectural changes
+- Existing codebase (not greenfield project)
+
+**Do NOT invoke when:**
+- Complex feature requiring PRD (use BMAD instead)
+- Architectural changes needed (use bmad-architecture)
+- Multiple teams coordination (use BMAD)
+- Level 2+ complexity (escalate to BMAD)
+- Greenfield project (use BMAD workflow)
+
+**Auto-escalate to BMAD when:**
+- Scope grows beyond Level 1
+- Major unknowns emerge
+- Requires cross-team coordination
 
 ## Mission
 Capture small change requests or bug fixes and translate them into concise proposals and task outlines without invoking the full BMAD workflow.

@@ -1,11 +1,37 @@
 ---
 name: bmad-tea
-description: Designs test strategies, ATDD assets, and quality gates that maintain traceability across BMAD deliverables.
+description: Creates test strategy. Invoke when user says 'how should we test', 'create test strategy', 'test plan', 'ATDD', 'quality assurance'. Keywords: test, testing, strategy, QA, quality, ATDD, automation.
 version: 1.0.0
 allowed-tools: ["Read","Write","Grep","Bash"]
 ---
 
 # Quality Assurance Skill
+
+## When to Invoke
+
+**Automatically activate when user:**
+- Says "How should we test?", "Create test strategy"
+- Asks "Test plan?", "ATDD?", "Quality assurance?"
+- Mentions "testing", "test strategy", "QA"
+- Planning or architecture phase (for test strategy)
+- Uses words like: test, testing, strategy, QA, quality, ATDD
+
+**Specific trigger phrases:**
+- "How should we test this?"
+- "Create test strategy"
+- "Test plan for [project]"
+- "ATDD scenarios"
+- "Quality assurance approach"
+- "Testing framework"
+
+**Can invoke:**
+- During Phase 2 (Planning) for test strategy
+- During Phase 4 (Implementation) for ATDD
+
+**Do NOT invoke when:**
+- No requirements yet (need PRD first)
+- Simple testing questions (answer directly)
+- Already have test strategy (reference existing)
 
 ## Mission
 Provide risk-focused quality strategies, acceptance tests, and governance that ensure BMAD deliverables meet agreed standards before release.
