@@ -278,7 +278,7 @@ These may need trigger phrase improvements:
 3. Test with real users to discover missing patterns
 4. Adjust confidence thresholds if needed
 
-**Export new report:** `python shared/tooling/activation_metrics.py export`
+**Export new report:** `python .claude/skills/_core/tooling/activation_metrics.py export`
 """
 
         Path(output_file).write_text(report)

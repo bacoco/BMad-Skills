@@ -1,57 +1,95 @@
-# BMAD Skills Library
+# BMAD Skills - Complete Workflow Bundle
 
-BMAD is now distributed as a native Claude Skills repository. Each capability from the original multi-agent BMAD workflow is packaged as a standalone skill with progressive disclosure, templates, and tooling.
+BMAD is a complete workflow ecosystem packaged as Claude Skills. All 12 skills work together to guide you from idea to implementation using natural conversation.
 
-## Repository Layout
+## 🚀 Quick Install
 
-```
-.claude/skills/         # All BMAD and OpenSpec capabilities ready for Claude runtime
-shared/                 # Glossary, constraints, quality gates, shared tooling
-meta/                   # Manifest, style guide, versioning rules
-openspec/               # Runtime workspace for lightweight change specs
-docs/                   # Generated artifacts when the skills run
-stories/                # Story outputs produced by bmad-stories
+### Install globally (recommended):
+```bash
+curl -fsSL https://raw.githubusercontent.com/bacoco/bmad-skills/main/scripts/install-to-home.sh | bash
 ```
 
-Every skill folder contains:
-- `SKILL.md` — Contract, mission, inputs, outputs, process, quality gates, and error handling.
-- `REFERENCE.md` — Deep domain knowledge, manuals, and heuristics (load only when needed).
-- `WORKFLOW.md` — Human-readable sequence replacing legacy BMAD agent handoffs.
-- `CHECKLIST.md` — Quality gates applied before delivering artifacts.
-- `assets/` — Templates or resources required to generate consistent outputs.
-- `scripts/` — Optional automation invoked by the skill when deterministic output is needed.
+### Install to current project:
+```bash
+curl -fsSL https://raw.githubusercontent.com/bacoco/bmad-skills/main/scripts/install-to-project.sh | bash
+```
 
-## Core Skill Catalog
+### Manual install:
+```bash
+git clone https://github.com/bacoco/bmad-skills.git
+cd bmad-skills
+bash scripts/install.sh
+```
 
-| Skill | Purpose |
-|-------|---------|
-| `bmad-orchestrator` | Maintain project state and route work across skills. |
-| `bmad-analyst` | Clarify ambiguous ideas and surface research insights. |
-| `bmad-pm` | Produce PRD and epic roadmap packages from discovery inputs. |
-| `bmad-ux` | Translate requirements into UX flows, wireframes, and validation plans. |
-| `bmad-architecture` | Generate decision-ready architecture documentation. |
-| `bmad-tea` | Define test strategy, ATDD scenarios, and quality governance. |
-| `bmad-stories` | Break epics into developer-ready stories and backlog signals. |
-| `bmad-dev` | Implement ready stories with transparent testing evidence. |
-| `skill-creator` | Guidance and tooling for authoring additional skills in this ecosystem. |
+## 📦 What's Included
 
-## Conversational Activation (NEW!)
+**Complete BMAD Skills Bundle** - Everything in one package:
 
-BMAD Skills now automatically activate based on natural conversation patterns, following the Bimath methodology.
+✅ **12 Integrated Skills:**
+- **BMAD Workflow (8 skills)**: analyst, pm, ux, architecture, tea, stories, dev, orchestrator
+- **OpenSpec (3 skills)**: propose, implement, archive
+- **Skill Creator (1 skill)**: create new skills
 
-### How It Works
+✅ **Core Resources:**
+- Shared glossary, constraints, and quality gates
+- Runtime workspace for OpenSpec changes
+- Comprehensive documentation and guides
 
-Simply talk naturally about your project - **no manual skill invocation needed**:
+✅ **Developer Tools:**
+- Activation metrics tracking
+- Contract validation
+- Status management utilities
+
+## 📂 Bundle Structure
+
+Everything is self-contained in `.claude/skills/`:
 
 ```
-You: "I have an idea for a budget tracking app"
-Claude: [Automatically activates bmad-analyst for brainstorming]
-        "Great! Let's brainstorm together. Tell me about your app..."
+.claude/skills/
+├── bmad-analyst/           # Brainstorming & research
+├── bmad-pm/                # PRD creation
+├── bmad-ux/                # UX design
+├── bmad-architecture/      # Technical architecture
+├── bmad-tea/               # Test strategy
+├── bmad-stories/           # Story breakdown
+├── bmad-dev/               # Implementation
+├── bmad-orchestrator/      # Workflow coordination
+├── openspec-propose/       # Lightweight proposals
+├── openspec-implement/     # Quick implementations
+├── openspec-archive/       # Change archival
+├── skill-creator/          # Create new skills
+│
+├── _core/                  # Shared resources
+│   ├── glossary.md
+│   ├── constraints.md
+│   ├── quality-gates.md
+│   └── tooling/
+│
+├── _config/                # Configuration
+│   ├── MANIFEST.json
+│   ├── STYLE-GUIDE.md
+│   └── VERSIONING.md
+│
+├── _runtime/               # Runtime workspace
+│   └── workspace/
+│       ├── changes/        # OpenSpec changes
+│       ├── specs/          # Living specifications
+│       ├── artifacts/      # Generated artifacts
+│       └── stories/        # Story outputs
+│
+└── _docs/                  # Documentation
+    ├── guides/
+    ├── reference/
+    └── activation/
 ```
+
+## 💬 Conversational Activation
+
+Skills activate automatically based on natural conversation - **no manual invocation needed**!
 
 ### Example Triggers
 
-Natural phrases that automatically activate the right skill:
+Just talk naturally about your project:
 
 - **"I have an idea..."** → bmad-analyst (brainstorming & research)
 - **"Create a PRD"** → bmad-pm (requirements & planning)
@@ -60,7 +98,16 @@ Natural phrases that automatically activate the right skill:
 - **"How should we test?"** → bmad-tea (test strategy)
 - **"Break into stories"** → bmad-stories (story creation)
 - **"Implement story X"** → bmad-dev (coding & implementation)
+- **"Fix this bug"** → openspec-propose (lightweight proposals)
 - **"What's next?"** → bmad-orchestrator (status & guidance)
+
+### How It Works
+
+```
+You: "I have an idea for a budget tracking app"
+Claude: [Automatically activates bmad-analyst]
+        "Great! Let's brainstorm together. Tell me about your app..."
+```
 
 ### Key Features
 
@@ -69,74 +116,114 @@ Natural phrases that automatically activate the right skill:
 ✅ **Context Routing**: Orchestrator guides you through the right workflow
 ✅ **No Manual Invocation**: Skills activate automatically when needed
 
-### Complete Documentation
+## 📚 Documentation
 
-**Getting Started (5-10 minutes):**
-- 🚀 **[Quickstart Guide](doc/quickstart-conversational.md)** - Start using conversational activation in 30 seconds
-- 📖 **[Conversational Flow Examples](doc/conversational-flow.md)** - 6 complete conversation scenarios
+**Getting Started:**
+- 🚀 [Quickstart Guide](.claude/skills/_docs/guides/quickstart-conversational.md)
+- 📖 [Conversational Flow Examples](.claude/skills/_docs/guides/conversational-flow.md)
 
-**Reference & Support:**
-- ❓ **[FAQ](doc/activation-faq.md)** - 39 frequently asked questions with answers
-- 🔧 **[Troubleshooting Guide](doc/troubleshooting.md)** - Solve activation problems step-by-step
-- ✅ **[Test Cases](tests/test_skill_activation.md)** - 55 test scenarios for validation
+**Reference:**
+- 📋 [Skills Reference](.claude/skills/_docs/reference/skills.md)
+- 🔧 [OpenSpec Guide](.claude/skills/_docs/reference/openspec.md)
 
-**Monitoring & Optimization:**
-- 📊 **Activation Metrics** - Track and analyze skill activations with `shared/tooling/activation_metrics.py`
-- 📈 Generate reports: `python shared/tooling/activation_metrics.py export`
+**Support:**
+- ❓ [FAQ](.claude/skills/_docs/activation/activation-faq.md)
+- 🔧 [Troubleshooting](.claude/skills/_docs/activation/troubleshooting.md)
 
-### OpenSpec Skills
+## 🎯 Choosing BMAD vs OpenSpec
 
-The OpenSpec trio for Level 0-1 work lives alongside the BMAD skills inside `.claude/skills/`:
-- `openspec-propose`
-- `openspec-implement`
-- `openspec-archive`
+**Use BMAD skills** when:
+- Starting a new product or major feature
+- Need end-to-end planning (PRD, architecture, test strategy)
+- Multi-team coordination required
+- High ambiguity or novel problems (Level 2-4 complexity)
 
-Each follows the same structure and references the shared glossary and constraints.
+**Use OpenSpec skills** when:
+- Quick bug fix or small enhancement
+- Already have a repo and clear requirements
+- Single developer/team scope
+- Low ambiguity (Level 0-1 complexity)
 
-### Choosing BMAD vs OpenSpec
+**Escalate to BMAD** if OpenSpec reveals higher complexity than expected.
 
-- **Use BMAD skills** when a problem requires end-to-end framing: new product discovery, full PRDs, architectural decisions, or delivery planning across multiple teams.
-- **Use OpenSpec skills** when you already have a repo and need to ship a scoped change quickly. The proposal → implement → archive loop keeps specs aligned without invoking the heavier BMAD ceremonies.
-- Escalate from OpenSpec to BMAD if any checklist flags indicate high ambiguity, multi-team coordination, or work that spans beyond Level 1 complexity.
+## 🛠️ Development
 
-## Installing in a Project Workspace
-
-1. Copy the entire `.claude/skills/` directory into your project repo or Claude home (e.g. `~/.claude/skills/`).
-2. Copy `shared/`, `meta/`, and `openspec/` alongside the skills if you want the same governance, glossary, and runtime workspace.
-3. Keep `docs/` and `stories/` empty in your target repo—BMAD skills populate them when they run.
-4. Install runtime dependencies for helper scripts: `pip install -r requirements.txt`.
-
-## Marketplace Bundles
-
-Use the packager script to create Claude marketplace bundles on demand. Archives are **not** stored in the repository to avoid checking in binary files.
+### Prerequisites
 
 ```bash
-python .claude/skills/skill-creator/scripts/package_skill.py .claude/skills/<skill-name> dist/marketplace
+pip install -r requirements.txt
 ```
 
-Each command produces `<skill-name>.skill` inside `dist/marketplace/`, matching the runtime folder structure. Rebuild the archive whenever you need to upload a skill to the marketplace.
+### Project Structure
 
-## Shared Assets
+This repository:
+```
+BMad-Skills/
+├── .claude/skills/      # Complete bundle (install this)
+├── scripts/             # Installation utilities
+├── tests/               # Test suite
+├── build/               # Build outputs
+└── README.md
+```
 
-- `shared/glossary.md` — Terminology used across skills.
-- `shared/constraints.md` — Governance rules that apply to every capability.
-- `shared/quality-gates.md` — Global quality checks reused across workflows.
-- `shared/tooling/` — Utility scripts (e.g., code flattening, manifest linting).
+### Creating Distribution Bundle
 
-## Governance & Publishing
+```bash
+bash scripts/package-bundle.sh
+```
 
-- Follow `meta/STYLE-GUIDE.md` when writing or editing skills.
-- Update `meta/MANIFEST.json` and respect `meta/VERSIONING.md` when releasing changes.
-- Run `shared/tooling/lint_contracts.py` before committing to ensure every skill includes the required files.
+This creates `build/bmad-skills-bundle.zip` ready for distribution.
 
-## Getting Started
+## 📊 Monitoring & Metrics
 
-1. Review the skill relevant to your task under `.claude/skills/`.
-2. Load only the sections you need (metadata → SKILL.md → references).
-3. Use provided templates and scripts from `assets/` and `scripts/` for consistent outputs.
-4. Apply the skill-specific `CHECKLIST.md` and shared quality gates before delivering work.
+Track skill activation patterns:
 
-This structure keeps BMAD aligned with modern Claude Skills design and replaces the previous multi-agent orchestration with modular, composable skills.
+```bash
+python .claude/skills/_core/tooling/activation_metrics.py export
+```
 
+## 🔄 Workflow Example
 
-> Legacy documentation from the original BMAD/OpenSpec release remains in `doc/` for historical reference.
+**Complete flow from idea to implementation:**
+
+1. **"I want to build a task manager"** → bmad-analyst researches & brainstorms
+2. **"Create a PRD"** → bmad-pm produces requirements document
+3. **"Design the UX"** → bmad-ux creates flows and wireframes
+4. **"How should we build it?"** → bmad-architecture defines technical design
+5. **"How should we test?"** → bmad-tea creates test strategy
+6. **"Break into stories"** → bmad-stories generates developer tasks
+7. **"Implement story 1"** → bmad-dev writes code with tests
+
+**Quick fix flow:**
+
+1. **"Fix login timeout bug"** → openspec-propose creates lightweight proposal
+2. **"Implement it"** → openspec-implement executes the change
+3. **"Archive"** → openspec-archive documents and closes
+
+## 🤝 Contributing
+
+1. Follow `.claude/skills/_config/STYLE-GUIDE.md`
+2. Update `.claude/skills/_config/MANIFEST.json` for changes
+3. Run validation: `python .claude/skills/_core/tooling/lint_contracts.py`
+4. Test installation: `bash scripts/verify.sh`
+
+## 📄 License
+
+See `.claude/skills/_config/LICENSE.md`
+
+## 🆘 Support
+
+- 📖 [Documentation](.claude/skills/_docs/)
+- 🐛 [Report Issues](https://github.com/bacoco/bmad-skills/issues)
+- 💬 [Discussions](https://github.com/bacoco/bmad-skills/discussions)
+
+---
+
+**Ready to get started?**
+
+```bash
+bash scripts/install.sh
+```
+
+Then start a new chat with Claude Code and say:
+**"I have an idea..."** 🚀

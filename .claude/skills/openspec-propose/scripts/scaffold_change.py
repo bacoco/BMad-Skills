@@ -7,8 +7,9 @@ import argparse
 import shutil
 from pathlib import Path
 
-REPO_ROOT = Path(__file__).resolve().parents[4]
-CHANGE_ROOT = REPO_ROOT / "openspec" / "changes"
+SKILLS_ROOT = Path(__file__).resolve().parents[2]  # .claude/skills/
+RUNTIME_ROOT = SKILLS_ROOT / "_runtime" / "workspace"
+CHANGE_ROOT = RUNTIME_ROOT / "changes"
 ASSET_DIR = Path(__file__).resolve().parent.parent / "assets"
 
 TEMPLATE_MAP = {
@@ -35,7 +36,7 @@ def parse_args() -> argparse.Namespace:
 
 
 def ensure_repo_structure() -> None:
-    (REPO_ROOT / "openspec").mkdir(exist_ok=True)
+    RUNTIME_ROOT.mkdir(parents=True, exist_ok=True)
     CHANGE_ROOT.mkdir(parents=True, exist_ok=True)
 
 
@@ -76,7 +77,7 @@ def main() -> None:
             "- `design.md`: optional deeper technical notes.\n"
         )
 
-    print(f"Scaffold ready at {change_dir.relative_to(REPO_ROOT)}")
+    print(f"Scaffold ready at {change_dir.relative_to(SKILLS_ROOT)}")
 
 
 if __name__ == "__main__":

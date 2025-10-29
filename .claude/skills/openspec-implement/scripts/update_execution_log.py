@@ -7,8 +7,9 @@ import argparse
 from datetime import datetime, timezone
 from pathlib import Path
 
-REPO_ROOT = Path(__file__).resolve().parents[4]
-CHANGE_ROOT = REPO_ROOT / "openspec" / "changes"
+SKILLS_ROOT = Path(__file__).resolve().parents[2]  # .claude/skills/
+RUNTIME_ROOT = SKILLS_ROOT / "_runtime" / "workspace"
+CHANGE_ROOT = RUNTIME_ROOT / "changes"
 ASSET_DIR = Path(__file__).resolve().parent.parent / "assets"
 TEMPLATE_FILE = ASSET_DIR / "execution-log-template.md"
 
@@ -48,7 +49,7 @@ def main() -> None:
     args = parse_args()
     log_path = ensure_log(args.change_id)
     append_entry(log_path, args.entry, args.status)
-    print(f"Logged entry to {log_path.relative_to(REPO_ROOT)}")
+    print(f"Logged entry to {log_path.relative_to(SKILLS_ROOT)}")
 
 
 if __name__ == "__main__":
