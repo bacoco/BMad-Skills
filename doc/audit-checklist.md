@@ -133,13 +133,82 @@ This checklist is designed for an automated static auditor that validates the Du
 - Une de ces briques est absente.
 - La notion de transfert de contexte inter-phases n'est mentionnée nulle part.
 
+## 11. Présence et intégration d'OpenSpec
+**Objectif**
+: Vérifier que le workflow OpenSpec est bien intégré comme famille de skills Claude et non simplement copié en l'état.
+
+**Vérifications automatiques**
+- Confirmer l'existence de skills OpenSpec (ex. `skills/openspec-proposal/`, `skills/openspec-apply/`, `skills/openspec-archive/`) ou d'un sous-arbre dédié qui expose ces capacités via des `SKILL.md` conformes.
+- S'assurer qu'OpenSpec n'est pas présent uniquement sous forme de code brut importé sans conversion en skills.
+
+**Échec si**
+- Aucune référence à OpenSpec n'apparaît dans le repo final.
+- OpenSpec est simplement vendorié sans transformation en skills (absence de `SKILL.md`, `REFERENCE.md`, etc.).
+
+## 12. Qualité des skills OpenSpec
+**Objectif**
+: S'assurer que chaque skill OpenSpec respecte exactement les mêmes conventions Duclos que les skills BMAD.
+
+**Vérifications automatiques**
+- Chaque skill OpenSpec possède `SKILL.md`, `REFERENCE.md`, `WORKFLOW.md`, `CHECKLIST.md`, `assets/`, `scripts/`.
+- `SKILL.md` inclut un frontmatter complet (`name`, `description` ciblée sur Proposal/Apply/Archive, `version`, `allowed-tools` minimal) et les sections `Mission`, `Inputs Required`, `Output`, `Process`, `Quality Gates`, `Error Handling`.
+- La section `Output` détaille précisément les artefacts OpenSpec attendus (`openspec/changes/<id>/proposal.md`, `tasks.md`, `design.md`, deltas de specs, etc.).
+- La section `Process` déroule les étapes officielles Proposal → Apply → Archive sous forme numérotée.
+- `REFERENCE.md` expose la philosophie et les règles OpenSpec (raison d'être, conventions de `change-id`, contenu des fichiers, spec-driven dev sans API).
+- `WORKFLOW.md` décrit explicitement les trois étapes séquentielles et le rôle de la validation humaine.
+- `CHECKLIST.md` contient les validations obligatoires avant d'exécuter l'étape suivante (naming, clarté du scope, tâches prêtes, scénarios dans les deltas de spec, alignement obtenu).
+- Les templates OpenSpec existent dans `assets/` (ex. `proposal-template.md`, `tasks-template.md`, `spec-delta-template.md`) et ne sont pas vides.
+- Les scripts OpenSpec (scaffolding, archivage, etc.) utilisent des chemins relatifs vers `openspec/...` et contiennent du code fonctionnel.
+
+**Échec si**
+- Un des fichiers structurants manque ou est vide.
+- Le frontmatter autorise des outils non pertinents (ex. `WebSearch`) ou ne décrit pas le livrable attendu.
+- Aucun template n'est fourni ou les scripts sont des placeholders.
+
+## 13. Séparation d'usage BMAD vs OpenSpec
+**Objectif**
+: Clarifier quand utiliser les skills BMAD (cadrage lourd) versus OpenSpec (itérations ciblées specs-first).
+
+**Vérifications automatiques**
+- `README.md`, `meta/STYLE-GUIDE.md` ou une autre documentation racine doit expliciter la différence d'usage : BMAD pour les cycles produit/architecture/backlog complets, OpenSpec pour les changements incrémentaux spéciaux.
+- Les descriptions des skills OpenSpec restent focalisées sur Proposal/Apply/Archive et ne prétendent pas couvrir le périmètre BMAD complet.
+
+**Échec si**
+- Aucune doc ne décrit la frontière d'usage entre les deux familles de skills.
+- Les skills OpenSpec revendiquent des missions identiques à celles de BMAD (PRD complet, architecture globale, etc.).
+
+## 14. MANIFEST.json et OpenSpec
+**Objectif**
+: Vérifier que le manifest machine-readable référence également les skills OpenSpec.
+
+**Vérifications automatiques**
+- `meta/MANIFEST.json` contient une entrée pour chaque skill OpenSpec avec `id`, `path`, `version`, `allowed-tools` alignés avec le frontmatter.
+- Aucun skill OpenSpec n'est omis du manifest et aucune entrée ne pointe vers un chemin inexistant.
+
+**Échec si**
+- Les skills OpenSpec sont absents ou incohérents dans `MANIFEST.json`.
+
+## 15. Préparation runtime d'OpenSpec
+**Objectif**
+: Valider que le repo fournit l'arborescence et les scripts nécessaires pour exécuter OpenSpec (Proposal → Apply → Archive) en local.
+
+**Vérifications automatiques**
+- Présence d'un dossier `openspec/` structuré avec au minimum `openspec/changes/` et `openspec/specs/` (ou équivalent documenté).
+- Les scripts OpenSpec utilisent cette arborescence pour générer ou archiver les artefacts (`openspec/changes/<change-id>/proposal.md`, etc.).
+- Le contenu des anciens `AGENTS.md` OpenSpec (règles TL;DR, checklists, conventions de `change-id`) est repris dans `REFERENCE.md` ou `CHECKLIST.md` des skills OpenSpec.
+
+**Échec si**
+- L'arborescence runtime `openspec/` est absente ou non documentée.
+- Les scripts ne créent/manipulent pas les fichiers attendus.
+- Les règles opérationnelles OpenSpec n'ont pas été migrées dans la documentation des skills.
+
 ## Format attendu pour le rapport de l'IA
 L'IA doit retourner un JSON simple. Chaque bloc utilise une clé stable et fournit `status` (`PASS` ou `FAIL`). En cas d'échec, la valeur `problems` détaille le chemin concerné, la règle violée et une suggestion courte.
 
 ```json
 {
-  "structure_repo": {"status": "PASS"},
-  "skill_layout": {
+  "1_repo_structure": {"status": "PASS"},
+  "2_skill_layout": {
     "status": "FAIL",
     "problems": [
       {
@@ -149,15 +218,20 @@ L'IA doit retourner un JSON simple. Chaque bloc utilise une clé stable et fourn
       }
     ]
   },
-  "frontmatter": {"status": "PASS"},
-  "progressive_disclosure": {"status": "PASS"},
-  "assets_consistency": {"status": "FAIL", "problems": [...]},
-  "scripts_consistency": {"status": "PASS"},
-  "manifest_consistency": {"status": "PASS"},
-  "style_and_versioning": {"status": "PASS"},
-  "expansion_packs": {"status": "PASS"},
-  "bmad_coverage": {"status": "PASS"}
+  "3_frontmatter": {"status": "PASS"},
+  "4_progressive_disclosure": {"status": "PASS"},
+  "5_assets_consistency": {"status": "FAIL", "problems": [...]},
+  "6_scripts_consistency": {"status": "PASS"},
+  "7_manifest_consistency": {"status": "PASS"},
+  "8_style_versioning": {"status": "PASS"},
+  "9_expansion_packs": {"status": "PASS"},
+  "10_bmad_coverage": {"status": "PASS"},
+  "11_openspec_presence": {"status": "PASS"},
+  "12_openspec_skill_quality": {"status": "PASS"},
+  "13_bmad_vs_openspec_boundary": {"status": "PASS"},
+  "14_manifest_includes_openspec": {"status": "PASS"},
+  "15_openspec_runtime_ready": {"status": "PASS"}
 }
 ```
 
-Cette checklist peut être fournie telle quelle à un auditeur automatisé pour valider le respect des conventions Duclos-style du dépôt.
+Cette checklist complète peut être fournie telle quelle à un auditeur automatisé pour valider le respect des conventions Duclos-style et la bonne intégration d'OpenSpec dans le dépôt.
