@@ -5,8 +5,7 @@ BMAD is now distributed as a native Claude Skills repository. Each capability fr
 ## Repository Layout
 
 ```
-skills/                 # Core BMAD capabilities (discovery → delivery)
-expansion/openspec/     # Lightweight Level 0-1 skills (propose → implement → archive)
+skills/                 # All BMAD and OpenSpec capabilities (discovery → archive)
 shared/                 # Glossary, constraints, quality gates, shared tooling
 meta/                   # Manifest, style guide, versioning rules
 ```
@@ -33,9 +32,9 @@ Every skill folder contains:
 | `bmad-end-to-end-orchestration` | Maintain project state and route work across skills. |
 | `skill-creator` | Guidance and tooling for authoring additional skills in this ecosystem. |
 
-### Expansion Packs
+### OpenSpec Skills
 
-`expansion/openspec` includes the OpenSpec trio for Level 0-1 work:
+The OpenSpec trio for Level 0-1 work lives alongside the BMAD skills inside `skills/`:
 - `openspec-propose`
 - `openspec-implement`
 - `openspec-archive`
@@ -63,7 +62,7 @@ Each follows the same structure and references the shared glossary and constrain
 
 ## Getting Started
 
-1. Review the skill relevant to your task under `skills/` or `expansion/`.
+1. Review the skill relevant to your task under `skills/`.
 2. Load only the sections you need (metadata → SKILL.md → references).
 3. Use provided templates and scripts from `assets/` and `scripts/` for consistent outputs.
 4. Apply the skill-specific `CHECKLIST.md` and shared quality gates before delivering work.
