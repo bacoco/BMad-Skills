@@ -1,13 +1,39 @@
 ---
 name: skill-creator
 description: Guide for creating effective skills. This skill should be used when users want to create a new skill (or update an existing skill) that extends Claude's capabilities with specialized knowledge, workflows, or tool integrations.
+version: 1.0.0
 license: Complete terms in LICENSE.txt
-allowed-tools: ["Read", "Write", "Bash"]
+allowed-tools: ["Read", "Write", "Grep", "Bash"]
 ---
 
 # Skill Creator
 
 This skill provides guidance for creating effective skills.
+
+## When to Invoke
+
+**Automatically activate this skill when the user:**
+- Asks to "create a skill", "build a skill", "make a new skill"
+- Says "I want to create a Claude skill" or "how do I make a skill"
+- Mentions "package a skill", "validate a skill", "skill development"
+- Asks about skill structure, skill best practices, or skill guidelines
+- Wants to extend Claude's capabilities with custom workflows
+- Requests help with skill metadata, frontmatter, or SKILL.md format
+- Uses phrases like: "new skill", "skill creator", "build custom skill"
+
+**Specific trigger phrases:**
+- "Create a skill for [domain/task]"
+- "How do I make a new skill?"
+- "Help me build a Claude skill"
+- "What's the skill creation process?"
+- "Package/validate my skill"
+- "Skill best practices"
+
+**Do NOT invoke when:**
+- User is asking about using existing skills (guide them to appropriate skill)
+- User wants to modify existing skill behavior without creating new one
+- Question is about general Claude Code usage (not skill-specific)
+- User is asking about slash commands or MCP servers (different mechanisms)
 
 ## Quickstart Workflow
 Follow `WORKFLOW.md` to design a skill end-to-end and apply `CHECKLIST.md` before publishing.
