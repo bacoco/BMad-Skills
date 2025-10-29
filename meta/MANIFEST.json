@@ -4,85 +4,157 @@
       "id": "bmad-orchestrator",
       "path": ".claude/skills/bmad-orchestrator",
       "version": "1.0.0",
-      "allowed-tools": ["Read", "Write", "Grep", "Bash"],
-      "expansion-pack": null
+      "allowed-tools": [
+        "Read",
+        "Write",
+        "Grep",
+        "Bash"
+      ],
+      "expansion-pack": null,
+      "description": "BMAD workflow orchestrator. Auto-invokes at conversation start, routes phases, and answers status requests. Keywords: status, workflow, next, start, guide."
     },
     {
       "id": "bmad-analyst",
       "path": ".claude/skills/bmad-analyst",
       "version": "1.0.0",
-      "allowed-tools": ["Read", "Write", "Grep", "Bash"],
-      "expansion-pack": null
+      "allowed-tools": [
+        "Read",
+        "Write",
+        "Grep",
+        "Bash"
+      ],
+      "expansion-pack": null,
+      "description": "Brainstorms ideas and researches projects. Invoke when user says 'I have an idea' or 'What if we'. Keywords: idea, brainstorm, explore, research."
     },
     {
       "id": "bmad-pm",
       "path": ".claude/skills/bmad-pm",
       "version": "1.0.0",
-      "allowed-tools": ["Read", "Write", "Grep", "Bash"],
-      "expansion-pack": null
+      "allowed-tools": [
+        "Read",
+        "Write",
+        "Grep",
+        "Bash"
+      ],
+      "expansion-pack": null,
+      "description": "Creates PRDs and feature plans after discovery. Invoke for 'plan this feature' or 'write requirements'. Keywords: PRD, requirements, plan, build, roadmap."
     },
     {
       "id": "bmad-ux",
       "path": ".claude/skills/bmad-ux",
       "version": "1.0.0",
-      "allowed-tools": ["Read", "Write", "Grep", "Bash"],
-      "expansion-pack": null
+      "allowed-tools": [
+        "Read",
+        "Write",
+        "Grep",
+        "Bash"
+      ],
+      "expansion-pack": null,
+      "description": "Designs UX flows and wireframes once PRD exists. Invoke for UI questions like 'design the UX' or 'user flow'. Keywords: UX, UI, wireframe, design, experience."
     },
     {
       "id": "bmad-architecture",
       "path": ".claude/skills/bmad-architecture",
       "version": "1.0.0",
-      "allowed-tools": ["Read", "Write", "Grep", "Bash"],
-      "expansion-pack": null
+      "allowed-tools": [
+        "Read",
+        "Write",
+        "Grep",
+        "Bash"
+      ],
+      "expansion-pack": null,
+      "description": "Produces technical architecture after planning. Invoke when user asks 'how should we build' or 'tech stack'. Keywords: architecture, design, build, stack."
     },
     {
       "id": "bmad-tea",
       "path": ".claude/skills/bmad-tea",
       "version": "1.0.0",
-      "allowed-tools": ["Read", "Write", "Grep", "Bash"],
-      "expansion-pack": null
+      "allowed-tools": [
+        "Read",
+        "Write",
+        "Grep",
+        "Bash"
+      ],
+      "expansion-pack": null,
+      "description": "Creates test strategies and ATDD scenarios. Invoke for 'how should we test' or 'test plan'. Keywords: testing, QA, strategy, ATDD, quality."
     },
     {
       "id": "bmad-stories",
       "path": ".claude/skills/bmad-stories",
       "version": "1.0.0",
-      "allowed-tools": ["Read", "Write", "Grep", "Bash"],
-      "expansion-pack": null
+      "allowed-tools": [
+        "Read",
+        "Write",
+        "Grep",
+        "Bash"
+      ],
+      "expansion-pack": null,
+      "description": "Breaks epics into developer-ready stories. Invoke for 'break into stories' or 'developer tasks'. Keywords: stories, backlog, sprint, breakdown."
     },
     {
       "id": "bmad-dev",
       "path": ".claude/skills/bmad-dev",
       "version": "1.0.0",
-      "allowed-tools": ["Read", "Write", "Grep", "Bash"],
-      "expansion-pack": null
+      "allowed-tools": [
+        "Read",
+        "Write",
+        "Grep",
+        "Bash"
+      ],
+      "expansion-pack": null,
+      "description": "Implements approved stories with code and tests. Invoke for 'implement story', 'start coding', or 'write the code'. Keywords: implement, code, develop, build."
     },
     {
       "id": "skill-creator",
       "path": ".claude/skills/skill-creator",
       "version": "1.0.0",
-      "allowed-tools": ["Read", "Write", "Grep", "Bash"],
-      "expansion-pack": null
+      "allowed-tools": [
+        "Read",
+        "Write",
+        "Grep",
+        "Bash"
+      ],
+      "expansion-pack": null,
+      "description": "Creates and validates Claude skills. Invoke for 'create a skill', 'new skill', or packaging requests. Keywords: skill, create, validate, package."
     },
     {
       "id": "openspec-propose",
       "path": ".claude/skills/openspec-propose",
       "version": "1.2.0",
-      "allowed-tools": ["Read", "Write", "Grep", "Bash"],
-      "expansion-pack": "openspec"
+      "allowed-tools": [
+        "Read",
+        "Write",
+        "Grep",
+        "Bash"
+      ],
+      "expansion-pack": "openspec",
+      "description": "Creates lightweight change proposals for Level 0-1 work. Invoke for 'fix this bug' or 'small change'. Keywords: bug, fix, small, quick, Level 0, Level 1."
     },
     {
       "id": "openspec-implement",
       "path": ".claude/skills/openspec-implement",
       "version": "1.2.0",
-      "allowed-tools": ["Read", "Write", "Grep", "Bash"],
-      "expansion-pack": "openspec"
+      "allowed-tools": [
+        "Read",
+        "Write",
+        "Grep",
+        "Bash"
+      ],
+      "expansion-pack": "openspec",
+      "description": "Implements approved OpenSpec changes. Invoke for 'apply the change' or 'implement proposal'. Keywords: implement, execute, apply, change, Level 0, Level 1."
     },
     {
       "id": "openspec-archive",
       "path": ".claude/skills/openspec-archive",
       "version": "1.2.0",
-      "allowed-tools": ["Read", "Write", "Grep", "Bash"],
-      "expansion-pack": "openspec"
+      "allowed-tools": [
+        "Read",
+        "Write",
+        "Grep",
+        "Bash"
+      ],
+      "expansion-pack": "openspec",
+      "description": "Archives completed OpenSpec changes. Invoke for 'archive this change' or 'close the change'. Keywords: archive, document, close, change, Level 0, Level 1."
     }
   ]
 }
