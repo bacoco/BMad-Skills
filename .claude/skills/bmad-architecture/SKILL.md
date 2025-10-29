@@ -1,7 +1,7 @@
 ---
 name: bmad-architecture
-description: Creates technical architecture. Keywords: architecture, tech stack, design, system design, build, technical, structure.
-version: 2.1.1
+description: Creates technical architecture and system design.
+version: 2.1.2
 allowed-tools: ["Read", "Write", "Grep"]
 metadata:
   auto-invoke: true

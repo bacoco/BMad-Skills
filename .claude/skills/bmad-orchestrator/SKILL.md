@@ -1,7 +1,7 @@
 ---
 name: bmad-orchestrator
-description: Routes work to OpenSpec (L0-1) or BMAD (L2-4). Tracks status, guides through phases. Keywords: status, workflow, next, start, guide, phase, initialize.
-version: 2.1.1
+description: Routes work to OpenSpec (L0-1) or BMAD (L2-4). Tracks status and guides through phases.
+version: 2.1.2
 allowed-tools: ["Read", "Write", "Grep", "Bash"]
 metadata:
   auto-invoke: true

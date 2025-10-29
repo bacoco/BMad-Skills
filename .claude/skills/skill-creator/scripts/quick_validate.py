@@ -6,7 +6,7 @@ Quick validation script for skills - minimal version
 import sys
 import os
 import re
-import ast
+import yaml
 from pathlib import Path
 
 def validate_skill(skill_path):
@@ -32,25 +32,11 @@ def validate_skill(skill_path):
 
     # Parse YAML frontmatter
     try:
-        frontmatter = {}
-        for raw_line in frontmatter_text.splitlines():
-            line = raw_line.strip()
-            if not line or line.startswith('#'):
-                continue
-            if ':' not in line:
-                return False, f"Invalid frontmatter line: '{raw_line}'"
-            key, value = line.split(':', 1)
-            key = key.strip()
-            value = value.strip()
-            parsed = None
-            if value:
-                try:
-                    parsed = ast.literal_eval(value)
-                except Exception:
-                    parsed = value
-            frontmatter[key] = parsed
+        frontmatter = yaml.safe_load(frontmatter_text)
         if not isinstance(frontmatter, dict):
             return False, "Frontmatter must be a key/value mapping"
+    except yaml.YAMLError as e:
+        return False, f"Invalid YAML frontmatter: {e}"
     except Exception as e:
         return False, f"Invalid frontmatter format: {e}"
 

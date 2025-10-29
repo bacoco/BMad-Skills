@@ -3,7 +3,7 @@
     {
       "id": "bmad-orchestrator",
       "path": ".claude/skills/bmad-orchestrator",
-      "version": "2.1.1",
+      "version": "2.1.2",
       "allowed-tools": [
         "Read",
         "Write",
@@ -11,84 +11,84 @@
         "Bash"
       ],
       "expansion-pack": null,
-      "description": "Routes work to OpenSpec (L0-1) or BMAD (L2-4). Tracks status, guides through phases. Keywords: status, workflow, next, start, guide, phase, initialize."
+      "description": "Routes work to OpenSpec (L0-1) or BMAD (L2-4). Tracks status and guides through phases."
     },
     {
       "id": "bmad-analyst",
       "path": ".claude/skills/bmad-analyst",
-      "version": "2.1.1",
+      "version": "2.1.2",
       "allowed-tools": [
         "Read",
         "Write",
         "Grep"
       ],
       "expansion-pack": null,
-      "description": "Brainstorms ideas and researches projects. Keywords: idea, brainstorm, explore, research, thinking, new project, discovery, analyze."
+      "description": "Brainstorms ideas and researches projects."
     },
     {
       "id": "bmad-pm",
       "path": ".claude/skills/bmad-pm",
-      "version": "2.1.1",
+      "version": "2.1.2",
       "allowed-tools": [
         "Read",
         "Write",
         "Grep"
       ],
       "expansion-pack": null,
-      "description": "Creates PRDs and plans features. Keywords: PRD, requirements, plan, build, feature, epic, roadmap, product document."
+      "description": "Creates PRDs and plans features."
     },
     {
       "id": "bmad-ux",
       "path": ".claude/skills/bmad-ux",
-      "version": "2.1.1",
+      "version": "2.1.2",
       "allowed-tools": [
         "Read",
         "Write",
         "Grep"
       ],
       "expansion-pack": null,
-      "description": "Designs UX and creates wireframes. Keywords: UX, UI, design, wireframe, user flow, interface, usability, user experience."
+      "description": "Designs UX and creates wireframes."
     },
     {
       "id": "bmad-architecture",
       "path": ".claude/skills/bmad-architecture",
-      "version": "2.1.1",
+      "version": "2.1.2",
       "allowed-tools": [
         "Read",
         "Write",
         "Grep"
       ],
       "expansion-pack": null,
-      "description": "Creates technical architecture. Keywords: architecture, tech stack, design, system design, build, technical, structure."
+      "description": "Creates technical architecture and system design."
     },
     {
       "id": "bmad-tea",
       "path": ".claude/skills/bmad-tea",
-      "version": "2.1.1",
+      "version": "2.1.2",
       "allowed-tools": [
         "Read",
         "Write",
         "Grep"
       ],
       "expansion-pack": null,
-      "description": "Creates test strategy. Keywords: test, testing, strategy, test plan, ATDD, quality assurance, QA, quality, automation."
+      "description": "Creates test strategy and ATDD scenarios."
     },
     {
       "id": "bmad-stories",
       "path": ".claude/skills/bmad-stories",
-      "version": "2.1.1",
+      "version": "2.1.2",
       "allowed-tools": [
         "Read",
         "Write",
         "Grep"
       ],
       "expansion-pack": null,
-      "description": "Breaks epics into developer stories. Keywords: story, stories, epic, breakdown, task, backlog, sprint, user stories."
+      "description": "Breaks epics into developer stories."
     },
     {
       "id": "bmad-dev",
       "path": ".claude/skills/bmad-dev",
-      "version": "2.1.1",
+      "version": "2.1.2",
       "allowed-tools": [
         "Read",
         "Write",
@@ -96,12 +96,12 @@
         "Bash"
       ],
       "expansion-pack": null,
-      "description": "Implements stories with code and tests. Keywords: implement, code, develop, build, program, coding, implementation."
+      "description": "Implements stories with code and tests."
     },
     {
       "id": "skill-creator",
       "path": ".claude/skills/skill-creator",
-      "version": "2.1.1",
+      "version": "2.1.2",
       "allowed-tools": [
         "Read",
         "Write",
@@ -109,12 +109,12 @@
         "Bash"
       ],
       "expansion-pack": null,
-      "description": "Guide for creating effective skills. Extends Claude with specialized knowledge, workflows, or tool integrations. Keywords: skill, create, build."
+      "description": "Guide for creating effective skills with specialized knowledge and workflows."
     },
     {
       "id": "openspec-propose",
       "path": ".claude/skills/openspec-propose",
-      "version": "2.1.1",
+      "version": "2.1.2",
       "allowed-tools": [
         "Read",
         "Write",
@@ -122,12 +122,12 @@
         "Bash"
       ],
       "expansion-pack": "openspec",
-      "description": "Creates lightweight proposals for L0-1 work. Keywords: bug, fix, small, quick, simple, minor, lightweight, Level 0, Level 1."
+      "description": "Creates lightweight proposals for L0-1 work."
     },
     {
       "id": "openspec-implement",
       "path": ".claude/skills/openspec-implement",
-      "version": "2.1.1",
+      "version": "2.1.2",
       "allowed-tools": [
         "Read",
         "Write",
@@ -135,12 +135,12 @@
         "Bash"
       ],
       "expansion-pack": "openspec",
-      "description": "Implements L0-1 changes. Keywords: apply, execute, implement, fix, proposal, change, Level 0, Level 1."
+      "description": "Implements L0-1 changes from proposals."
     },
     {
       "id": "openspec-archive",
       "path": ".claude/skills/openspec-archive",
-      "version": "2.1.1",
+      "version": "2.1.2",
       "allowed-tools": [
         "Read",
         "Write",
@@ -148,7 +148,7 @@
         "Bash"
       ],
       "expansion-pack": "openspec",
-      "description": "Archives L0-1 changes. Keywords: archive, close, document, finalize, complete, Level 0, Level 1."
+      "description": "Archives completed L0-1 changes."
     }
   ]
 }

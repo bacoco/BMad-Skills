@@ -1,7 +1,7 @@
 ---
 name: bmad-pm
-description: Creates PRDs and plans features. Keywords: PRD, requirements, plan, build, feature, epic, roadmap, product document.
-version: 2.1.1
+description: Creates PRDs and plans features.
+version: 2.1.2
 allowed-tools: ["Read", "Write", "Grep"]
 metadata:
   auto-invoke: true

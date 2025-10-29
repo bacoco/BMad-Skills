@@ -1,7 +1,7 @@
 ---
 name: bmad-analyst
-description: Brainstorms ideas and researches projects. Keywords: idea, brainstorm, explore, research, thinking, new project, discovery, analyze.
-version: 2.1.1
+description: Brainstorms ideas and researches projects.
+version: 2.1.2
 allowed-tools: ["Read", "Write", "Grep"]
 metadata:
   auto-invoke: true

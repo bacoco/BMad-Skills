@@ -13,9 +13,9 @@ CHANGE_ROOT = RUNTIME_ROOT / "changes"
 ASSET_DIR = Path(__file__).resolve().parent.parent / "assets"
 
 TEMPLATE_MAP = {
-    "proposal.md": "proposal-template.md",
-    "tasks.md": "tasks-template.md",
-    "specs/spec-delta.md": "spec-delta-template.md",
+    "proposal.md": "proposal-template.md.jinja",
+    "tasks.md": "tasks-template.md.jinja",
+    "specs/spec-delta.md": "spec-delta-template.md.jinja",
 }
 
 

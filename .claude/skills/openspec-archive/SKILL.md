@@ -1,7 +1,7 @@
 ---
 name: openspec-archive
-description: Archives L0-1 changes. Keywords: archive, close, document, finalize, complete, Level 0, Level 1.
-version: 2.1.1
+description: Archives completed L0-1 changes.
+version: 2.1.2
 allowed-tools: ["Read", "Write", "Grep", "Bash"]
 metadata:
   auto-invoke: true
