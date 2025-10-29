@@ -199,11 +199,83 @@ Vérifier que les skills s'activent automatiquement en conversation naturelle se
 
 ---
 
+## Test 9: Bug Fix (OpenSpec) → openspec-propose
+
+### Inputs à tester
+- "Fix this bug: login button not working"
+- "Small change needed in the header component"
+- "Quick fix for the validation error"
+- "Simple bug: users can't submit form"
+- "Minor update to the API endpoint"
+
+### Comportement Attendu
+1. bmad-orchestrator détecte "bug fix / small change"
+2. Évalue comme Level 0-1
+3. openspec-propose activé
+4. Crée proposition légère dans openspec/changes/
+
+### Résultats
+- [ ] Test 9.1: ✅ / ❌
+- [ ] Test 9.2: ✅ / ❌
+- [ ] Test 9.3: ✅ / ❌
+- [ ] Test 9.4: ✅ / ❌
+- [ ] Test 9.5: ✅ / ❌
+
+---
+
+## Test 10: Apply Change → openspec-implement
+
+### Inputs à tester
+- "Implement this bug fix"
+- "Apply the change from proposal-123"
+- "Execute this fix"
+- "Implement the proposed change"
+- "Apply this quick fix"
+
+### Comportement Attendu
+1. bmad-orchestrator détecte "implement/apply"
+2. Vérifie qu'une proposition OpenSpec existe
+3. openspec-implement activé
+4. Exécute les tâches définies
+
+### Résultats
+- [ ] Test 10.1: ✅ / ❌
+- [ ] Test 10.2: ✅ / ❌
+- [ ] Test 10.3: ✅ / ❌
+- [ ] Test 10.4: ✅ / ❌
+- [ ] Test 10.5: ✅ / ❌
+
+---
+
+## Test 11: Archive Change → openspec-archive
+
+### Inputs à tester
+- "Archive this change"
+- "Close proposal-123"
+- "Document the completed fix"
+- "Finalize this change"
+- "Mark this change as complete"
+
+### Comportement Attendu
+1. bmad-orchestrator détecte "archive/close"
+2. Vérifie que le changement est implémenté
+3. openspec-archive activé
+4. Documente et archive le changement
+
+### Résultats
+- [ ] Test 11.1: ✅ / ❌
+- [ ] Test 11.2: ✅ / ❌
+- [ ] Test 11.3: ✅ / ❌
+- [ ] Test 11.4: ✅ / ❌
+- [ ] Test 11.5: ✅ / ❌
+
+---
+
 ## Résumé des Tests
 
-**Total tests:** 40
-**Tests réussis:** ___ / 40
-**Tests échoués:** ___ / 40
+**Total tests:** 55 (8 BMAD skills + 3 OpenSpec skills = 11 scenarios × 5 tests)
+**Tests réussis:** ___ / 55
+**Tests échoués:** ___ / 55
 **Taux de succès:** ___%
 
 ### Problèmes Identifiés
@@ -241,6 +313,15 @@ Vérifier que les skills s'activent automatiquement en conversation naturelle se
 
 ### bmad-orchestrator
 - status, workflow, next, start, guide, phase, where, initialize, what's next
+
+### openspec-propose
+- bug, fix, small, quick, simple, minor, lightweight, Level 0, Level 1
+
+### openspec-implement
+- apply, execute, implement change, fix, proposal, Level 0, Level 1
+
+### openspec-archive
+- archive, close, document, finalize, complete, Level 0, Level 1
 
 ---
 

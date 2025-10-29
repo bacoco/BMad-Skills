@@ -277,6 +277,84 @@ Claude: "4" [Pas de skill activation needed]
 
 ---
 
+## Scénario 6: OpenSpec Bug Fix (Level 0-1)
+
+**User:** "Fix this bug: the login button doesn't work on mobile"
+
+**Claude:** [bmad-orchestrator détecte "fix bug" → évalue Level 0-1 → openspec-propose activé]
+```
+Je vais créer une proposition de changement léger avec OpenSpec.
+
+[Scaffolds openspec/changes/login-button-fix/]
+
+**OpenSpec Proposal: Login Button Mobile Fix**
+
+**Problem:**
+Login button doesn't respond to clicks on mobile devices.
+
+**Desired Behavior:**
+Button should be clickable and responsive on all mobile screen sizes.
+
+**Tasks:**
+1. Investigate button CSS for mobile breakpoints
+2. Fix touch event handling
+3. Test on iOS and Android
+4. Update button component tests
+
+**Level:** 0 (simple bug fix)
+**Risk:** Low
+**Estimated Time:** 1-2 hours
+
+Proposition créée! Voulez-vous que je l'implémente maintenant?
+```
+
+**User:** "Yes, implement the fix"
+
+**Claude:** [bmad-orchestrator détecte "implement" + context OpenSpec → openspec-implement activé]
+```
+J'implémente le fix avec OpenSpec Implement.
+
+[Lit openspec/changes/login-button-fix/tasks.md]
+
+Task 1: Investigating button CSS...
+[Analyse code]
+Found issue: missing touch-action property for mobile.
+
+Task 2: Fixing...
+[Applique changements]
+✅ Added touch-action: manipulation to .login-button
+
+Task 3: Testing...
+[Execute tests]
+✅ Tests pass on iOS simulator
+✅ Tests pass on Android emulator
+
+Task 4: Updating tests...
+✅ Added mobile touch test case
+
+Fix implémenté! Tous les tests passent.
+Voulez-vous archiver ce changement?
+```
+
+**User:** "Archive the fix"
+
+**Claude:** [bmad-orchestrator détecte "archive" → openspec-archive activé]
+```
+J'archive le changement avec OpenSpec Archive.
+
+**Archive Summary:**
+- **Change:** login-button-fix
+- **Status:** Completed ✅
+- **Duration:** 1.5 hours
+- **Files Changed:** 2 (LoginButton.css, LoginButton.test.js)
+- **Tests Added:** 1
+- **Learnings:** Mobile buttons need explicit touch-action property
+
+Changement archivé dans openspec/specs/ et marqué comme complet.
+```
+
+---
+
 ## Keywords d'Activation par Skill
 
 ### bmad-analyst
@@ -319,6 +397,21 @@ Claude: "4" [Pas de skill activation needed]
 
 **Phrases:** "What's next", "Where am I", "Check status", "Start project", "Initialize"
 
+### openspec-propose
+**Keywords:** bug, fix, small, quick, simple, minor, lightweight
+
+**Phrases:** "Fix this bug", "Small change", "Quick feature", "Simple fix", "Minor update"
+
+### openspec-implement
+**Keywords:** apply, execute, implement change, fix, proposal
+
+**Phrases:** "Implement this fix", "Apply the change", "Execute proposal", "Apply bug fix"
+
+### openspec-archive
+**Keywords:** archive, close, document, finalize, complete
+
+**Phrases:** "Archive this change", "Close the fix", "Document change", "Finalize", "Mark complete"
+
 ---
 
 ## Conclusion
@@ -328,9 +421,16 @@ Avec ces corrections d'activation automatique:
 ✅ **L'utilisateur discute naturellement**
 ✅ **Claude détecte l'intention automatiquement**
 ✅ **Les skills s'activent sans invocation manuelle**
-✅ **Le flow BMAD complet est fluide et conversationnel**
+✅ **Le flow BMAD et OpenSpec est fluide et conversationnel**
+✅ **Routing intelligent Level 0-1 (OpenSpec) vs Level 2-4 (BMAD)**
 
 **C'est la méthode Bimath en action!**
+
+Que ce soit pour:
+- **Projets complexes** (nouvelle app, nouvelle plateforme) → BMAD complet
+- **Changements légers** (bug fix, petite feature) → OpenSpec rapide
+
+L'orchestrateur global route automatiquement vers le bon workflow!
 
 ---
 

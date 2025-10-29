@@ -1,11 +1,43 @@
 ---
 name: openspec-implement
-description: Executes Level 0-1 change tasks defined by OpenSpec proposals with traceable testing evidence.
+description: Implements Level 0-1 changes. Invoke when user says 'apply this change', 'implement the fix', 'execute proposal', 'apply the bug fix'. Keywords: apply, execute, implement change, fix, proposal, Level 0, Level 1.
 version: 1.2.0
 allowed-tools: ["Read","Write","Grep","Bash"]
 ---
 
 # OpenSpec Implement Skill
+
+## When to Invoke
+
+**Automatically activate when user:**
+- Says "Implement this change", "Apply the fix", "Execute proposal"
+- Asks "Apply this bug fix", "Implement the proposal", "Execute the change"
+- Has an approved OpenSpec proposal ready to implement
+- Mentions "implement", "apply", "execute" with Level 0-1 context
+- Uses words like: apply, execute, implement, change, fix, proposal
+
+**Specific trigger phrases:**
+- "Implement this change"
+- "Apply the bug fix"
+- "Execute the proposal"
+- "Apply this change: [proposal-id]"
+- "Implement proposal [X]"
+- "Execute the fix"
+
+**Prerequisites:**
+- OpenSpec proposal exists and is approved
+- Change is still Level 0-1 (hasn't grown in scope)
+- Environment and dependencies are clear
+
+**Do NOT invoke when:**
+- No proposal exists (use openspec-propose first)
+- Scope has grown beyond Level 1 (escalate to BMAD)
+- Implementing a BMAD story (use bmad-dev instead)
+
+**Auto-escalate to BMAD when:**
+- Implementation reveals hidden complexity
+- Scope expands beyond original proposal
+- Tests fail repeatedly indicating design issues
 
 ## Mission
 Apply small code or configuration changes approved via OpenSpec proposals, ensuring each task is executed transparently with testing evidence.

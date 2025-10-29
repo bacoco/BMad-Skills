@@ -1,11 +1,44 @@
 ---
 name: openspec-archive
-description: Closes out Level 0-1 OpenSpec work with documentation, learnings, and deployment notes.
+description: Archives completed Level 0-1 changes. Invoke when user says 'archive this change', 'close change', 'document change', 'finalize change'. Keywords: archive, close, document, finalize, complete, Level 0, Level 1.
 version: 1.2.0
 allowed-tools: ["Read","Write","Grep","Bash"]
 ---
 
 # OpenSpec Archive Skill
+
+## When to Invoke
+
+**Automatically activate when user:**
+- Says "Archive this change", "Close the change", "Finalize change"
+- Asks "Document this change", "Mark as complete", "Archive proposal [X]"
+- Has completed an OpenSpec change that needs closure
+- Mentions "archive", "close", "document", "finalize" with change context
+- Uses words like: archive, close, document, finalize, complete, wrap up
+
+**Specific trigger phrases:**
+- "Archive this change"
+- "Close change [proposal-id]"
+- "Document the change"
+- "Finalize the implementation"
+- "Mark proposal [X] as complete"
+- "Wrap up this change"
+
+**Prerequisites:**
+- OpenSpec change has been implemented
+- Tests pass and validation is complete
+- Deployment or rollout is done (or documented)
+
+**Do NOT invoke when:**
+- Change not yet implemented (use openspec-implement)
+- Tests failing or validation incomplete
+- Missing approvals or sign-offs
+- Change still in progress
+
+**Auto-document:**
+- Learnings and deviations
+- Metrics (time, lines changed, tests added)
+- Follow-up tasks if any
 
 ## Mission
 Document the outcome of Level 0-1 work, ensuring artifacts, approvals, and follow-up actions are captured before closing the OpenSpec workflow.
