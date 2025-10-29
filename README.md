@@ -305,13 +305,13 @@ Start simple, scale as needed:
 
 ```bash
 # Install globally
-npx @bmad/skills --global
+npx bmad-skills --global
 
 # Or install to current project
-npx @bmad/skills
+npx bmad-skills
 
 # Or install to custom path
-npx @bmad/skills --path /your/custom/path
+npx bmad-skills --path /your/custom/path
 ```
 
 **Option 2: Direct script**

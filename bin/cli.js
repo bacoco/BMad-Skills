@@ -40,9 +40,9 @@ function showHelp() {
 ${COLORS.bright}BMAD Skills - Complete Workflow Ecosystem${COLORS.reset}
 
 ${COLORS.cyan}Usage:${COLORS.reset}
-  npx @bmad/skills              Install to current project (./.claude/skills)
-  npx @bmad/skills --global     Install globally (~/.claude/skills)
-  npx @bmad/skills --path PATH  Install to custom path
+  npx bmad-skills              Install to current project (./.claude/skills)
+  npx bmad-skills --global     Install globally (~/.claude/skills)
+  npx bmad-skills --path PATH  Install to custom path
 
 ${COLORS.cyan}Options:${COLORS.reset}
   -g, --global                  Install to ~/.claude/skills
@@ -191,7 +191,7 @@ function main() {
   } catch (error) {
     log(`❌ Error: ${error.message}`, 'yellow');
     log('');
-    log('For help, run: npx @bmad/skills --help', 'cyan');
+    log('For help, run: npx bmad-skills --help', 'cyan');
     process.exit(1);
   }
 }
