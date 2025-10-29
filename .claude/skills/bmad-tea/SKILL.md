@@ -1,7 +1,7 @@
 ---
 name: bmad-tea
 description: Creates test strategy. Keywords: test, testing, strategy, test plan, ATDD, quality assurance, QA, quality, automation.
-version: 1.0.0
+version: 2.1.0
 allowed-tools: ["Read", "Write", "Grep"]
 metadata:
   auto-invoke: true

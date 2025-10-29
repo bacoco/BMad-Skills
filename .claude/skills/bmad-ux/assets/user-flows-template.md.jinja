@@ -1,0 +1,47 @@
+# User Flows - {{ project_name }}
+
+**Author:** {{ author_name }}
+**Date:** {{ date }}
+**Based on:** PRD v{{ prd_version }}
+
+---
+
+{% for flow in user_flows %}
+## Flow {{ loop.index }}: {{ flow.name }}
+
+**User Type:** {{ flow.user_type }}
+**Entry Point:** {{ flow.entry_point }}
+**Goal:** {{ flow.goal }}
+
+### Steps
+
+{% for step in flow.steps %}
+{{ loop.index }}. **{{ step.action }}**
+   - User does: {{ step.user_action }}
+   - System responds: {{ step.system_response }}
+   - Next state: {{ step.next_state }}
+{% endfor %}
+
+### Alternative Paths
+
+{% if flow.alternatives %}
+{% for alt in flow.alternatives %}
+- **{{ alt.condition }}**: {{ alt.path }}
+{% endfor %}
+{% else %}
+None
+{% endif %}
+
+### Error Scenarios
+
+{% if flow.errors %}
+{% for error in flow.errors %}
+- **{{ error.condition }}**: {{ error.handling }}
+{% endfor %}
+{% else %}
+Standard error handling applies
+{% endif %}
+
+---
+
+{% endfor %}

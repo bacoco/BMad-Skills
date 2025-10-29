@@ -1,7 +1,7 @@
 ---
 name: skill-creator
 description: Guide for creating effective skills. Extends Claude with specialized knowledge, workflows, or tool integrations. Keywords: skill, create, build.
-version: 1.0.0
+version: 2.1.0
 license: Complete terms in LICENSE.txt
 allowed-tools: ["Read", "Write", "Grep", "Bash"]
 metadata:
