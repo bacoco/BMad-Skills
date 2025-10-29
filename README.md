@@ -35,6 +35,42 @@ Every skill folder contains:
 | `bmad-dev` | Implement ready stories with transparent testing evidence. |
 | `skill-creator` | Guidance and tooling for authoring additional skills in this ecosystem. |
 
+## Conversational Activation (NEW!)
+
+BMAD Skills now automatically activate based on natural conversation patterns, following the Bimath methodology.
+
+### How It Works
+
+Simply talk naturally about your project - **no manual skill invocation needed**:
+
+```
+You: "I have an idea for a budget tracking app"
+Claude: [Automatically activates bmad-analyst for brainstorming]
+        "Great! Let's brainstorm together. Tell me about your app..."
+```
+
+### Example Triggers
+
+Natural phrases that automatically activate the right skill:
+
+- **"I have an idea..."** → bmad-analyst (brainstorming & research)
+- **"Create a PRD"** → bmad-pm (requirements & planning)
+- **"What should the UI look like?"** → bmad-ux (UX design)
+- **"How should we build this?"** → bmad-architecture (technical design)
+- **"How should we test?"** → bmad-tea (test strategy)
+- **"Break into stories"** → bmad-stories (story creation)
+- **"Implement story X"** → bmad-dev (coding & implementation)
+- **"What's next?"** → bmad-orchestrator (status & guidance)
+
+### Key Features
+
+✅ **Auto-Detection**: Claude detects your intent from natural conversation
+✅ **Phase Awareness**: Skills check prerequisites before activation
+✅ **Context Routing**: Orchestrator guides you through the right workflow
+✅ **No Manual Invocation**: Skills activate automatically when needed
+
+See [doc/conversational-flow.md](doc/conversational-flow.md) for complete conversational examples and patterns.
+
 ### OpenSpec Skills
 
 The OpenSpec trio for Level 0-1 work lives alongside the BMAD skills inside `.claude/skills/`:

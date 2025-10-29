@@ -1,11 +1,33 @@
 ---
 name: bmad-ux
-description: Converts requirements into UX flows, wireframes, and validation criteria sized to BMAD project levels.
+description: Designs UX and creates wireframes. Invoke when user says 'what should UI look like', 'design the UX', 'user experience', 'wireframes', 'user flow'. Keywords: UX, UI, design, wireframe, user flow, interface, usability.
 version: 1.0.0
 allowed-tools: ["Read","Write","Grep","Bash"]
 ---
 
 # UX Blueprint Skill
+
+## When to Invoke
+
+**Automatically activate when user:**
+- Says "What should the UI look like?", "Design the UX"
+- Asks "How should users interact?", "User flow?"
+- Mentions "wireframes", "user experience", "interface design"
+- Has PRD with UI-heavy features (Level 2-4)
+- Uses words like: UX, UI, design, wireframe, interface, usability
+
+**Specific trigger phrases:**
+- "What should the UI look like?"
+- "Design the UX for [feature]"
+- "Create wireframes"
+- "User experience for [feature]"
+- "Interface design"
+- "User flow for [scenario]"
+
+**Do NOT invoke when:**
+- No UI/interface in project (backend-only)
+- PRD not ready (use bmad-pm first)
+- Already have UX specs (skip to architecture or stories)
 
 ## Mission
 Design user experiences that align with BMAD requirements, documenting flows, interaction states, and validation plans that unblock architecture, delivery, and development.

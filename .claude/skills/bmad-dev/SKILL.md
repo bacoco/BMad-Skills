@@ -1,11 +1,37 @@
 ---
 name: bmad-dev
-description: Delivers code changes for ready stories with rigorous testing, documentation, and BMAD governance.
+description: Implements stories with code and tests. Invoke when user says 'implement story', 'develop this', 'let's code', 'write the code', 'start coding'. Keywords: implement, code, develop, build, program, coding, implementation.
 version: 1.0.0
 allowed-tools: ["Read","Write","Grep","Bash"]
 ---
 
 # Development Execution Skill
+
+## When to Invoke
+
+**Automatically activate when user:**
+- Says "Implement story X", "Start coding", "Develop this"
+- Asks "Write the code", "Let's code", "Build [feature]"
+- Mentions "implement", "code", "develop"
+- Story file ready (Phase 4)
+- Uses words like: implement, code, develop, build, program, coding
+
+**Specific trigger phrases:**
+- "Implement story [X]"
+- "Start coding [feature]"
+- "Develop this story"
+- "Let's code"
+- "Write the implementation"
+- "Build [feature]"
+
+**Prerequisites:**
+- Story file exists (from bmad-stories)
+- Architecture patterns defined
+
+**Do NOT invoke when:**
+- No story file (use bmad-stories first)
+- Planning needed (use bmad-pm first)
+- Architecture not defined (use bmad-architecture first)
 
 ## Mission
 Implement approved stories end-to-end, maintaining transparency, testing discipline, and traceability back to requirements and architecture decisions.

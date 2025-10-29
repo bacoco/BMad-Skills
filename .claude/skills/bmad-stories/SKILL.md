@@ -1,11 +1,37 @@
 ---
 name: bmad-stories
-description: Breaks approved epics into sequenced, testable stories and delivery notes ready for development execution.
+description: Breaks epics into developer stories. Invoke when user says 'break into stories', 'create user stories', 'story breakdown', 'developer tasks'. Keywords: story, stories, epic, breakdown, task, backlog, sprint.
 version: 1.0.0
 allowed-tools: ["Read","Write","Grep","Bash"]
 ---
 
 # Delivery Planning Skill
+
+## When to Invoke
+
+**Automatically activate when user:**
+- Says "Break into stories", "Create user stories"
+- Asks "Developer tasks?", "Story breakdown?"
+- Mentions "stories", "backlog", "sprint planning"
+- Epics and architecture ready (Phase 4)
+- Uses words like: story, stories, backlog, sprint, breakdown, tasks
+
+**Specific trigger phrases:**
+- "Break this into stories"
+- "Create user stories"
+- "Story breakdown for [epic]"
+- "Developer-ready tasks"
+- "Backlog planning"
+- "Sprint stories"
+
+**Prerequisites:**
+- Epics exist (from bmad-pm)
+- Architecture defined
+
+**Do NOT invoke when:**
+- No epics yet (use bmad-pm first)
+- Stories already exist (use bmad-dev)
+- Simple task that doesn't need story structure
 
 ## Mission
 Transform epics and architecture decisions into developer-ready story packages, including acceptance criteria, dependencies, and delivery signals.

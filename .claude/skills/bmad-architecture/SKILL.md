@@ -1,11 +1,37 @@
 ---
 name: bmad-architecture
-description: Produces decision-ready system architecture packages aligned to BMAD requirements and constraints.
+description: Creates technical architecture. Invoke when user says 'how should we build', 'what's the architecture', 'tech stack', 'system design', 'how to build this'. Keywords: architecture, tech stack, design, system, build, technical, structure.
 version: 1.0.0
 allowed-tools: ["Read","Write","Grep","Bash"]
 ---
 
 # Architecture Design Skill
+
+## When to Invoke
+
+**Automatically activate when user:**
+- Says "How should we build this?", "What's the architecture?"
+- Asks "Tech stack?", "System design?", "How to architect?"
+- Mentions "architecture", "technical decisions", "stack"
+- PRD and epics are approved (Phase 3)
+- Uses words like: architecture, tech stack, design, system, build, technical
+
+**Specific trigger phrases:**
+- "How should we build this?"
+- "What's the architecture?"
+- "Choose tech stack"
+- "System design for [project]"
+- "Technical architecture"
+- "How to architect [feature]"
+
+**Prerequisites:**
+- PRD exists and approved
+- Epics defined
+
+**Do NOT invoke when:**
+- PRD not ready (use bmad-pm first)
+- Already have architecture (skip to stories)
+- Simple Level 0-1 project (may not need formal architecture)
 
 ## Mission
 Convert approved product requirements into a Decision Architecture that communicates component structure, technology choices, and rationale for implementation teams.

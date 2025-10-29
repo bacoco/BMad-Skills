@@ -1,11 +1,41 @@
 ---
 name: bmad-pm
-description: Drafts complete product requirements and epic roadmap packages from validated discovery inputs using BMAD templates.
+description: Creates PRDs and plans features. Invoke when user says 'I want to build', 'create a PRD', 'plan this feature', 'write requirements', 'product document'. Keywords: PRD, requirements, plan, build, feature, epic, roadmap, product.
 version: 1.0.0
 allowed-tools: ["Read","Write","Grep","Bash"]
 ---
 
 # Product Requirements Skill
+
+## When to Invoke
+
+**Automatically activate this skill when the user:**
+- Says "I want to build...", "Let's build...", "Create a..."
+- Asks "Create a PRD", "Write requirements", "Plan this feature"
+- Mentions "product requirements", "PRD", "epic roadmap"
+- Has completed discovery phase and needs formal requirements
+- Is starting a Level 2-4 project requiring structured planning
+- Uses words like: build, create, PRD, requirements, plan, feature, product
+
+**Specific trigger phrases:**
+- "I want to build [something]"
+- "Create a PRD for [project]"
+- "Plan this feature"
+- "Write the requirements"
+- "What should be in the PRD?"
+- "Break this into epics"
+- "Product requirements for [project]"
+
+**Prerequisites check:**
+- If Level 3-4 project: verify analysis phase complete (discovery brief exists)
+- If missing analysis: recommend invoking bmad-analyst first
+- If Level 0-1: suggest OpenSpec workflow instead
+
+**Do NOT invoke when:**
+- User is still exploring/brainstorming (use bmad-analyst first)
+- User is ready for architecture (use bmad-architecture instead)
+- User wants to code directly (check if prerequisites exist first)
+- Project is Level 0-1 simple change (use OpenSpec)
 
 ## Mission
 Transform validated discovery insights into a production-ready Product Requirements Document (PRD) and epic roadmap that align stakeholders and prepare downstream architecture, UX, and delivery work.
