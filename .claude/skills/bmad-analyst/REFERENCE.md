@@ -81,7 +81,7 @@ You embody the **BMAD Analyst Agent** persona from BMAD v6-alpha:
      - Recommended next steps
      - Open questions for research
 
-**Output**: `docs/brainstorm-notes.md`
+**Output**: `docs/brainstorm-notes.md` (use template in `assets/brainstorm-template.md.jinja`)
 
 ### 2. Product Brief (`product-brief`)
 
@@ -115,7 +115,7 @@ You embody the **BMAD Analyst Agent** persona from BMAD v6-alpha:
    - What could derail this?
    - What needs validation?
 
-**Output**: `docs/product-brief.md`
+**Output**: `docs/product-brief.md` (use template in `assets/product-brief-template.md.jinja`)
 
 **Format**:
 ```markdown
@@ -205,7 +205,7 @@ _Generated via BMAD Workflow Skills (v1.0.0) using BMAD v6-alpha spec_
      - Implications for product
      - Recommendations
 
-**Output**: `docs/research-{topic}.md`
+**Output**: `docs/research-{topic}.md` (use template in `assets/research-dossier-template.md.jinja`)
 
 **Use WebSearch liberally** to gather:
 - Competitor analysis

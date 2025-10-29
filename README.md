@@ -104,6 +104,7 @@ Each follows the same structure and references the shared glossary and constrain
 1. Copy the entire `.claude/skills/` directory into your project repo or Claude home (e.g. `~/.claude/skills/`).
 2. Copy `shared/`, `meta/`, and `openspec/` alongside the skills if you want the same governance, glossary, and runtime workspace.
 3. Keep `docs/` and `stories/` empty in your target repo—BMAD skills populate them when they run.
+4. Install runtime dependencies for helper scripts: `pip install -r requirements.txt`.
 
 ## Marketplace Bundles
 

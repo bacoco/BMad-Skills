@@ -88,7 +88,7 @@ Architecture définie! Voulez-vous que je crée les stories pour commencer l'imp
 ```
 Je vérifie votre statut BMAD...
 
-[lit docs/bmad-workflow-status.md]
+[lit docs/workflow-status.md]
 
 **Projet:** Budget Tracker App
 **Phase actuelle:** Phase 4 - Implementation

@@ -9,7 +9,7 @@ fi
 SRC="$1"
 OUT="$2"
 {
-  find "$SRC" -type f -name '*.py' -o -name '*.ts' -o -name '*.js' | sort | while read -r file; do
+  find "$SRC" -type f \( -name '*.py' -o -name '*.ts' -o -name '*.js' \) | sort | while read -r file; do
     echo "# FILE: $file"
     echo '```'
     cat "$file"

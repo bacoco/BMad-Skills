@@ -5,7 +5,7 @@
 1. **Claude Code** or **Claude CLI**
 2. **Python 3.7+**:
    ```bash
-   pip install jinja2 pyyaml
+   pip install -r requirements.txt
    ```
 3. **Git** (optional, for version control)
 
@@ -15,7 +15,7 @@
 
 **Claude**: Detects new project → Invokes `bmad-orchestrator`
 - Assesses project level (0-4)
-- Creates `docs/bmm-workflow-status.md`
+- Creates `docs/workflow-status.md`
 - Recommends next phase
 
 ## Follow the Natural Flow
