@@ -138,9 +138,12 @@ Serve as the global orchestrator for all product development work, intelligently
 - status_files: `docs/bmad-workflow-status.md`, `docs/sprint-status.yaml`, or equivalents if they exist
 
 ## Outputs
+- **workflow-status.md** - Project status tracking document (generated from `assets/workflow-status-template.md.jinja`)
 - Updated workflow and sprint status records via `scripts/workflow_status.py` and `scripts/sprint_status.py`
 - Recommendation for the next skill to activate with rationale and prerequisites
 - Logged artifacts and blockers for stakeholder visibility
+
+**Template location:** `.claude/skills/bmad-orchestrator/assets/workflow-status-template.md.jinja`
 
 ## Process
 

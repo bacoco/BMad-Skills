@@ -66,9 +66,13 @@ Design user experiences that align with BMAD requirements, documenting flows, in
 - brand_guidelines: accessibility, tone, device targets, or visual standards
 
 ## Outputs
-- Annotated flows or wireframes stored alongside project docs
+- **User flows** (from `assets/user-flows-template.md.jinja`)
+- **Wireframes** (from `assets/wireframes-template.md.jinja`)
+- **Design system** (from `assets/design-system-template.md.jinja`)
 - UX requirements checklist linked to PRD and stories
 - Validation plan (usability or experimentation) for quality-assurance alignment
+
+**Template locations:** `.claude/skills/bmad-ux/assets/*.jinja`
 
 ## Process
 1. Confirm prerequisites via `CHECKLIST.md`.
