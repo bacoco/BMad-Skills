@@ -7,7 +7,7 @@ This checklist is designed for an automated static auditor that validates the Du
 : Vérifier que l'architecture Duclos est respectée à la racine du dépôt.
 
 **Vérifications automatiques**
-- La racine contient au minimum `skills/`, `shared/`, `meta/`, `README.md`, et `expansion/` si des packs existaient dans BMAD.
+- La racine contient au minimum `skills/`, `shared/`, `meta/`, `README.md`, et `openspec/` pour l'espace de travail runtime.
 - Aucun répertoire legacy de type `agents/`, `workflows/`, `playbooks/`, ni fichier `*.workflow.yaml` ou équivalent n'est présent.
 
 **Échec si**
@@ -19,7 +19,7 @@ This checklist is designed for an automated static auditor that validates the Du
 : Garantir qu'un skill est un paquet autonome conforme aux conventions.
 
 **Vérifications automatiques**
-- Pour chaque dossier direct dans `skills/` et `expansion/*/` :
+- Pour chaque dossier direct dans `skills/` :
   - `SKILL.md`, `REFERENCE.md`, `CHECKLIST.md` sont présents.
   - `WORKFLOW.md` est présent, sauf si le skill est strictement atomique (aucune orchestration multi-étapes mentionnée).
   - Les dossiers `assets/` et `scripts/` existent, même vides.
@@ -90,7 +90,7 @@ This checklist is designed for an automated static auditor that validates the Du
 : Garantir l'alignement entre la vision machine et les dossiers réels.
 
 **Vérifications automatiques**
-- `meta/MANIFEST.json` est valide et référence chaque skill de `skills/` et `expansion/`.
+- `meta/MANIFEST.json` est valide et référence chaque skill présent dans `skills/`.
 - Pour chaque entrée : `id`, `version`, `allowed-tools`, `path` correspondent au frontmatter du `SKILL.md` associé et au chemin réel.
 
 **Échec si**
@@ -108,16 +108,16 @@ This checklist is designed for an automated static auditor that validates the Du
 **Échec si**
 - Un de ces documents est manquant ou ne couvre pas les points requis.
 
-## 9. Packs d'expansion
+## 9. Résidus de packs d'expansion
 **Objectif**
-: Vérifier que les packs facultatifs sont convertis en skills cohérents.
+: Garantir qu'aucun ancien dossier `expansion/` ne subsiste après la fusion des skills.
 
 **Vérifications automatiques**
-- Si `expansion/` existe, chaque sous-capacité suit la même structure qu'un skill standard.
-- Les noms de dossiers décrivent des compétences métiers (ex. `market-analysis`) et non des personas.
+- Confirmer l'absence de répertoires `expansion/` ou équivalents à la racine.
+- Signaler toute tentative de re-ségrégation des skills par pack.
 
 **Échec si**
-- Restes d'agents personnalisés ou structure non conforme dans les packs.
+- Un dossier `expansion/` est présent ou contient des artefacts.
 
 ## 10. Couverture fonctionnelle BMAD
 **Objectif**
@@ -138,7 +138,7 @@ This checklist is designed for an automated static auditor that validates the Du
 : Vérifier que le workflow OpenSpec est bien intégré comme famille de skills Claude et non simplement copié en l'état.
 
 **Vérifications automatiques**
-- Confirmer l'existence de skills OpenSpec (ex. `skills/openspec-proposal/`, `skills/openspec-apply/`, `skills/openspec-archive/`) ou d'un sous-arbre dédié qui expose ces capacités via des `SKILL.md` conformes.
+- Confirmer l'existence de skills OpenSpec (ex. `skills/openspec-propose/`, `skills/openspec-implement/`, `skills/openspec-archive/`) ou d'un sous-arbre dédié qui expose ces capacités via des `SKILL.md` conformes.
 - S'assurer qu'OpenSpec n'est pas présent uniquement sous forme de code brut importé sans conversion en skills.
 
 **Échec si**
@@ -224,7 +224,7 @@ L'IA doit retourner un JSON simple. Chaque bloc utilise une clé stable et fourn
   "6_scripts_consistency": {"status": "PASS"},
   "7_manifest_consistency": {"status": "PASS"},
   "8_style_versioning": {"status": "PASS"},
-  "9_expansion_packs": {"status": "PASS"},
+  "9_expansion_residue": {"status": "PASS"},
   "10_bmad_coverage": {"status": "PASS"},
   "11_openspec_presence": {"status": "PASS"},
   "12_openspec_skill_quality": {"status": "PASS"},

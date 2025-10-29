@@ -1,6 +1,6 @@
 # OpenSpec Runtime Workspace
 
-This directory stores active and archived OpenSpec artifacts produced by the skills in `expansion/openspec/`.
+This directory stores active and archived OpenSpec artifacts produced by the skills in `skills/`.
 
 ```
 openspec/

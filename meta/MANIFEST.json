@@ -65,21 +65,21 @@
     },
     {
       "id": "openspec-propose",
-      "path": "expansion/openspec/propose",
+      "path": "skills/openspec-propose",
       "version": "1.2.0",
       "allowed-tools": ["Read", "Write", "Grep", "Bash"],
       "expansion-pack": "openspec"
     },
     {
       "id": "openspec-implement",
-      "path": "expansion/openspec/implement",
+      "path": "skills/openspec-implement",
       "version": "1.2.0",
       "allowed-tools": ["Read", "Write", "Grep", "Bash"],
       "expansion-pack": "openspec"
     },
     {
       "id": "openspec-archive",
-      "path": "expansion/openspec/archive",
+      "path": "skills/openspec-archive",
       "version": "1.2.0",
       "allowed-tools": ["Read", "Write", "Grep", "Bash"],
       "expansion-pack": "openspec"
