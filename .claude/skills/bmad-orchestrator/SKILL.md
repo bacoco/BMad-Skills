@@ -91,7 +91,7 @@ Based on user intent, automatically route to:
 - Mentions "test strategy", "QA" → bmad-tea
 - Mentions "stories", "backlog" → bmad-stories
 - Mentions "implement", "code" → bmad-dev
-- Mentions "small change", "bug" → OpenSpec skills
+- Mentions "small change", "bug" → openspec-propose
 
 ### 5. Safety Checks
 Before routing, verify:
