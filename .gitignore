@@ -4,3 +4,4 @@ __pycache__/
 *.zip
 /dist/marketplace/*
 !/dist/marketplace/README.md
+.DS_Store
