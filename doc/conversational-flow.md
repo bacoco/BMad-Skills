@@ -1,438 +1,84 @@
-# Guide des Flows Conversationnels BMAD
+# Conversational Flow Playbook
 
-Ce document montre des exemples de conversations naturelles et comment les skills BMAD s'activent automatiquement selon la méthode Bimath.
-
----
-
-## Principe Fondamental
-
-**Avec les corrections d'activation automatique**, l'utilisateur discute naturellement avec Claude, et les skills appropriés s'activent automatiquement basés sur:
-- Les mots-clés détectés dans la conversation
-- Le contexte du projet (phase actuelle)
-- Les déclencheurs conversationnels définis
-
-**Plus besoin de dire** "Initialize BMAD workflow" ou "Invoke bmad-analyst" - **tout est automatique**.
+This playbook illustrates how Claude should auto-activate BMAD skills through natural dialogue.
 
 ---
 
-## Scénario 1: Nouvelle Idée → PRD → Architecture → Implémentation
+## Scenario 1 – Idea → PRD → Architecture → Implementation
 
-### Conversation Complète
+### Conversation Snapshot
+- **User:** “I have an idea for a budgeting app that helps young professionals track daily expenses.”
+- **Claude:** Auto-activates `bmad-analyst` → runs a brainstorming session, captures goals, pain points, and differentiators.
+- **User:** “Great, can you create the PRD?”
+- **Claude:** Switches to `bmad-pm`, generates `PRD.md`, outlines epics, and updates `workflow-status.md`.
+- **User:** “Design the architecture so we can start building.”
+- **Claude:** Activates `bmad-architecture`, produces an architecture document with components, integrations, and risks.
+- **User:** “Let’s implement the login story.”
+- **Claude:** Hands off to `bmad-dev`, delivers code templates and testing notes.
 
-**User:** "J'ai une idée pour une app de gestion de budget"
-
-**Claude:** [bmad-orchestrator détecte "idée" → bmad-analyst activé automatiquement]
-```
-Super! Je vais vous aider à structurer cette idée avec le BMAD Analyst.
-Commençons par un brainstorming. Parlez-moi plus de votre app de budget:
-- Quel problème cherchez-vous à résoudre?
-- Qui sont vos utilisateurs cibles?
-- Qu'est-ce qui vous a donné cette idée?
-```
-
-**User:** "Je veux aider les gens à suivre leurs dépenses quotidiennes facilement. L'app serait pour les jeunes professionnels."
-
-**Claude:** [bmad-analyst continue le brainstorming]
-```
-Excellent contexte! Je vois plusieurs directions possibles:
-1. Suivi automatique via connexion bancaire
-2. Saisie manuelle simplifiée
-3. Catégorisation intelligente des dépenses
-4. Alertes budget
-
-Explorons ces directions...
-[continue brainstorming]
-
-Voulez-vous que je crée un product brief formel maintenant?
-```
-
-**User:** "Oui, créons le PRD"
-
-**Claude:** [bmad-orchestrator détecte "PRD" → vérifie phase → bmad-pm activé]
-```
-Parfait! Le brainstorming est terminé. Je passe maintenant au BMAD PM pour créer votre PRD.
-
-Basé sur notre discussion, voici le PRD:
-[génère docs/PRD.md]
-
-Maintenant, décomposons en epics:
-[génère docs/epics.md]
-
-PRD et epics créés! Prêt pour l'architecture?
-```
-
-**User:** "Oui, quelle architecture recommandez-vous?"
-
-**Claude:** [bmad-orchestrator détecte "architecture" → vérifie PRD existe → bmad-architecture activé]
-```
-Je vais maintenant travailler sur l'architecture avec le BMAD Architect.
-
-Analysons les besoins techniques:
-- App mobile (iOS + Android)
-- Backend API
-- Base de données pour transactions
-[...]
-
-[génère docs/ARCHITECTURE.md]
-
-Architecture définie! Voulez-vous que je crée les stories pour commencer l'implémentation?
-```
+### Key Triggers
+- Idea phrases: “I have an idea,” “Help me brainstorm.”
+- PRD phrases: “Create a PRD,” “Plan this product.”
+- Architecture phrases: “How should we build it,” “Design the system.”
+- Implementation phrases: “Implement story #,” “Let’s code.”
 
 ---
 
-## Scénario 2: Check Status Mid-Project
+## Scenario 2 – Mid-Project Check-in
 
-**User:** "Où en suis-je dans mon projet?"
+### Conversation Snapshot
+- **User:** “What’s next for our e-commerce project?”
+- **Claude:** `bmad-orchestrator` reviews `workflow-status.md`, reports completed phases, and recommends the next step.
+- **User:** “We need UX flows before development continues.”
+- **Claude:** Activates `bmad-ux`, delivers wireframe guidance and user journeys.
+- **User:** “Break the checkout epic into developer stories.”
+- **Claude:** Switches to `bmad-stories`, produces story files with acceptance criteria.
 
-**Claude:** [bmad-orchestrator activé automatiquement]
-```
-Je vérifie votre statut BMAD...
-
-[lit docs/workflow-status.md]
-
-**Projet:** Budget Tracker App
-**Phase actuelle:** Phase 4 - Implementation
-**Progression:**
-- ✅ Phase 1: Analysis (Complete)
-- ✅ Phase 2: Planning (Complete)
-- ✅ Phase 3: Solutioning (Complete)
-- 🔄 Phase 4: Implementation (In Progress)
-
-**Stories:**
-- ✅ Story #1: User Registration (Complete)
-- ✅ Story #2: Login System (Complete)
-- 🔄 Story #3: Expense Tracking (In Progress)
-- ⏳ Story #4: Budget Alerts (Backlog)
-
-**Prochaine action recommandée:**
-Continuer Story #3 ou démarrer Story #4 si Story #3 est bloquée.
-
-Que voulez-vous faire?
-```
+### Key Triggers
+- Status phrases: “Where am I,” “What’s next,” “Give me an update.”
+- UX phrases: “Design the UX,” “Sketch the interface.”
+- Story phrases: “Break into stories,” “Create developer tasks.”
 
 ---
 
-## Scénario 3: Question Architecture Sans Context
+## Scenario 3 – Quality Assurance Focus
 
-**User:** "How should I build a REST API?"
+### Conversation Snapshot
+- **User:** “How should we test the subscription flow?”
+- **Claude:** `bmad-tea` activates, generates a test strategy with ATDD notes.
+- **User:** “Run through the plan and confirm coverage gaps.”
+- **Claude:** Summarizes coverage, flags missing integration tests, and recommends regression steps.
+- **User:** “Let’s archive the results once QA signs off.”
+- **Claude:** Uses `openspec-archive` if this is a Level 0–1 change or instructs the BMAD workflow to mark the phase complete.
 
-**Claude:** [bmad-orchestrator détecte "build" + "API" → vérifie context]
-```
-Je peux vous aider avec l'architecture! Mais d'abord, quelques questions:
-
-1. Avez-vous un projet BMAD en cours? (Je peux vérifier votre workflow-status)
-2. Ou voulez-vous commencer un nouveau projet?
-3. Avez-vous déjà un PRD pour cette API?
-
-Si c'est un nouveau projet, je recommande de commencer par:
-- Définir le problème (bmad-analyst)
-- Créer un PRD (bmad-pm)
-- Puis l'architecture (bmad-architecture)
-
-Ou si c'est une simple question d'architecture générale, je peux répondre directement sans activer le workflow BMAD complet.
-
-Que préférez-vous?
-```
+### Key Triggers
+- Testing phrases: “How do we test,” “Create a test plan,” “ATDD strategy.”
+- Coverage phrases: “Confirm coverage,” “Review the test plan.”
+- Archival phrases: “Archive the change,” “Close out the work.”
 
 ---
 
-## Scénario 4: Implémentation Directe
+## Scenario 4 – OpenSpec Quick Change
 
-**User:** "Implement story #3"
+### Conversation Snapshot
+- **User:** “Draft a quick fix for the login error users reported.”
+- **Claude:** `openspec-propose` activates, creates a proposal with scope, risks, and validation steps.
+- **User:** “Looks good—apply the change.”
+- **Claude:** Switches to `openspec-implement`, outlines the code edits and test updates.
+- **User:** “Archive the change once tests pass.”
+- **Claude:** Uses `openspec-archive`, records final notes under `openspec/changes/<id>/`.
 
-**Claude:** [bmad-orchestrator détecte "implement" → vérifie story existe → bmad-dev activé]
-```
-Je commence l'implémentation avec le BMAD Dev skill.
-
-[lit stories/expense-tracking.md]
-
-**Story #3: Expense Tracking**
-- Acceptation Criteria: [liste]
-- Tasks: [liste]
-- Architecture patterns: [références]
-
-Je vais maintenant:
-1. Créer les modèles de données pour les dépenses
-2. Implémenter l'API d'enregistrement
-3. Ajouter les tests
-4. Mettre à jour le Dev Agent Record
-
-Commençons...
-
-[implémente code]
-[exécute tests]
-
-✅ Story #3 implémentée avec succès! Tests passent à 100%.
-Prêt pour la story #4?
-```
+### Key Triggers
+- Quick fix phrases: “Quick fix,” “Small change,” “Minor update.”
+- Implementation phrases: “Apply the change,” “Implement the proposal.”
+- Archive phrases: “Archive change <id>,” “Close the change.”
 
 ---
 
-## Scénario 5: Question Rapide (No BMAD Needed)
-
-**User:** "How do I center a div in CSS?"
-
-**Claude:** [détecte question technique simple, pas de BMAD activation]
-```
-Voici plusieurs façons de centrer un div en CSS:
-
-1. Flexbox (moderne):
-```css
-.container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-```
-
-2. Grid (moderne):
-```css
-.container {
-  display: grid;
-  place-items: center;
-}
-```
-
-3. Position absolute (classique):
-```css
-.container {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-}
-```
-
-Note: Cette question ne nécessite pas le workflow BMAD complet.
-Si vous travaillez sur un projet BMAD et voulez intégrer ça dans une story, dites-le moi!
-```
-
----
-
-## Patterns d'Activation
-
-### Pattern 1: Détection d'Intent Automatique
-```
-User intent → Claude détecte keywords → Orchestrator route → Skill activé
-```
-
-### Pattern 2: Vérification de Prérequis
-```
-User demande Phase N → Orchestrator vérifie Phase N-1 complete → Approve or Block
-```
-
-### Pattern 3: Status Check Proactif
-```
-User dit "What's next?" → Orchestrator lit status → Recommande action
-```
-
-### Pattern 4: Context-Aware Routing
-```
-User question ambiguë → Orchestrator demande clarification → Route approprié
-```
-
----
-
-## Anti-Patterns (Ce Qu'on Évite)
-
-### ❌ Anti-Pattern 1: Activation Forcée
-**Bad:**
-```
-User: "How do I use Python?"
-Claude: [Force bmad-orchestrator]
-```
-
-**Good:**
-```
-User: "How do I use Python?"
-Claude: [Répond directement, pas de BMAD needed]
-```
-
-### ❌ Anti-Pattern 2: Sauter les Phases
-**Bad:**
-```
-User: "Create architecture"
-Claude: [Active bmad-architecture sans vérifier PRD]
-```
-
-**Good:**
-```
-User: "Create architecture"
-Claude: "Je dois d'abord vérifier que le PRD existe..."
-[Vérifie et bloque si manquant]
-```
-
-### ❌ Anti-Pattern 3: Over-Orchestration
-**Bad:**
-```
-User: "What's 2+2?"
-Claude: [Active bmad-orchestrator pour répondre]
-```
-
-**Good:**
-```
-User: "What's 2+2?"
-Claude: "4" [Pas de skill activation needed]
-```
-
----
-
-## Scénario 6: OpenSpec Bug Fix (Level 0-1)
-
-**User:** "Fix this bug: the login button doesn't work on mobile"
-
-**Claude:** [bmad-orchestrator détecte "fix bug" → évalue Level 0-1 → openspec-propose activé]
-```
-Je vais créer une proposition de changement léger avec OpenSpec.
-
-[Scaffolds openspec/changes/login-button-fix/]
-
-**OpenSpec Proposal: Login Button Mobile Fix**
-
-**Problem:**
-Login button doesn't respond to clicks on mobile devices.
-
-**Desired Behavior:**
-Button should be clickable and responsive on all mobile screen sizes.
-
-**Tasks:**
-1. Investigate button CSS for mobile breakpoints
-2. Fix touch event handling
-3. Test on iOS and Android
-4. Update button component tests
-
-**Level:** 0 (simple bug fix)
-**Risk:** Low
-**Estimated Time:** 1-2 hours
-
-Proposition créée! Voulez-vous que je l'implémente maintenant?
-```
-
-**User:** "Yes, implement the fix"
-
-**Claude:** [bmad-orchestrator détecte "implement" + context OpenSpec → openspec-implement activé]
-```
-J'implémente le fix avec OpenSpec Implement.
-
-[Lit openspec/changes/login-button-fix/tasks.md]
-
-Task 1: Investigating button CSS...
-[Analyse code]
-Found issue: missing touch-action property for mobile.
-
-Task 2: Fixing...
-[Applique changements]
-✅ Added touch-action: manipulation to .login-button
-
-Task 3: Testing...
-[Execute tests]
-✅ Tests pass on iOS simulator
-✅ Tests pass on Android emulator
-
-Task 4: Updating tests...
-✅ Added mobile touch test case
-
-Fix implémenté! Tous les tests passent.
-Voulez-vous archiver ce changement?
-```
-
-**User:** "Archive the fix"
-
-**Claude:** [bmad-orchestrator détecte "archive" → openspec-archive activé]
-```
-J'archive le changement avec OpenSpec Archive.
-
-**Archive Summary:**
-- **Change:** login-button-fix
-- **Status:** Completed ✅
-- **Duration:** 1.5 hours
-- **Files Changed:** 2 (LoginButton.css, LoginButton.test.js)
-- **Tests Added:** 1
-- **Learnings:** Mobile buttons need explicit touch-action property
-
-Changement archivé dans openspec/specs/ et marqué comme complet.
-```
-
----
-
-## Keywords d'Activation par Skill
-
-### bmad-analyst
-**Keywords:** idea, brainstorm, explore, research, thinking, discovery, analyze
-
-**Phrases:** "I have an idea", "What if we", "Help me think", "Let's explore"
-
-### bmad-pm
-**Keywords:** PRD, requirements, plan, build, create, feature, product, epic
-
-**Phrases:** "Create a PRD", "I want to build", "Plan this feature", "Write requirements"
-
-### bmad-ux
-**Keywords:** UX, UI, design, wireframe, user flow, interface, usability
-
-**Phrases:** "What should UI look like", "Design the UX", "Create wireframes", "User flow"
-
-### bmad-architecture
-**Keywords:** architecture, tech stack, design, system, build, technical
-
-**Phrases:** "How should we build", "What's the architecture", "Choose tech stack", "System design"
-
-### bmad-tea
-**Keywords:** test, testing, strategy, QA, quality, ATDD, automation
-
-**Phrases:** "How should we test", "Create test strategy", "Test plan", "ATDD"
-
-### bmad-stories
-**Keywords:** story, stories, epic, breakdown, task, backlog, sprint
-
-**Phrases:** "Break into stories", "Create user stories", "Story breakdown", "Developer tasks"
-
-### bmad-dev
-**Keywords:** implement, code, develop, build, program, coding
-
-**Phrases:** "Implement story", "Start coding", "Develop this", "Let's code", "Write code"
-
-### bmad-orchestrator
-**Keywords:** status, workflow, next, start, guide, phase, where, initialize
-
-**Phrases:** "What's next", "Where am I", "Check status", "Start project", "Initialize"
-
-### openspec-propose
-**Keywords:** bug, fix, small, quick, simple, minor, lightweight
-
-**Phrases:** "Fix this bug", "Small change", "Quick feature", "Simple fix", "Minor update"
-
-### openspec-implement
-**Keywords:** apply, execute, implement change, fix, proposal
-
-**Phrases:** "Implement this fix", "Apply the change", "Execute proposal", "Apply bug fix"
-
-### openspec-archive
-**Keywords:** archive, close, document, finalize, complete
-
-**Phrases:** "Archive this change", "Close the fix", "Document change", "Finalize", "Mark complete"
-
----
-
-## Conclusion
-
-Avec ces corrections d'activation automatique:
-
-✅ **L'utilisateur discute naturellement**
-✅ **Claude détecte l'intention automatiquement**
-✅ **Les skills s'activent sans invocation manuelle**
-✅ **Le flow BMAD et OpenSpec est fluide et conversationnel**
-✅ **Routing intelligent Level 0-1 (OpenSpec) vs Level 2-4 (BMAD)**
-
-**C'est la méthode Bimath en action!**
-
-Que ce soit pour:
-- **Projets complexes** (nouvelle app, nouvelle plateforme) → BMAD complet
-- **Changements légers** (bug fix, petite feature) → OpenSpec rapide
-
-L'orchestrateur global route automatiquement vers le bon workflow!
-
----
-
-**Version:** 1.0.0 (Post-corrections)
-**Date:** 2025-10-29
+## Guidance for Designers
+- Document new trigger phrases as they emerge and propagate them to `meta/MANIFEST.json` and the relevant `SKILL.md` files.
+- Verify that each skill announces itself during activation to help users understand the transition.
+- Encourage users to provide context when switching phases: “We already finished the PRD—start UX.”
+- Capture transcripts of failed activations and add them as regression scenarios in `tests/test_skill_activation.md`.
+
+Keep this playbook updated after every major release or trigger revision.

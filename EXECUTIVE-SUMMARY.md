@@ -1,133 +1,123 @@
-# RÉSUMÉ EXÉCUTIF - Audit BMAD Skills
+# EXECUTIVE SUMMARY – BMAD Skills Audit
 
-**Date:** 2025-10-29
-**Score Global:** 85/100 → **95/100 après corrections**
+**Date:** 2025-10-29  
+**Overall Score:** 85/100 → **95/100 after corrective work**
 
 ---
 
 ## VERDICT
 
-✅ **READY FOR PRODUCTION APRÈS CORRECTIONS**
+✅ **READY FOR PRODUCTION AFTER TARGETED FIXES**
 
-L'architecture technique est **excellente (95/100)**, mais l'activation conversationnelle automatique nécessite des **améliorations critiques (45/100)** pour être conforme à la méthode Bimath.
+The technical architecture earns an **excellent 95/100**, but the automatic conversational activation currently scores **45/100** and must improve to meet the Bimath method expectations.
 
 ---
 
-## PROBLÈMES CRITIQUES IDENTIFIÉS
+## CRITICAL FINDINGS
 
-### 🔴 Problème #1: Activation Non-Automatique
-**Impact:** Les utilisateurs doivent invoquer manuellement les skills au lieu d'avoir un flow naturel.
+### 🔴 Issue #1: Manual Skill Activation
+**Impact:** Users need to invoke skills explicitly instead of enjoying a natural conversation flow.
 
-**Cause:** Descriptions techniques au lieu de conversationnelles dans MANIFEST.json.
+**Root cause:** `meta/MANIFEST.json` still uses technical descriptions rather than conversational ones.
 
-**Exemple:**
+**Example:**
 ```yaml
-# Actuel (technique)
+# Current (technical)
 "description": "Clarifies ambiguous opportunities through structured research..."
 
-# Optimal (conversationnel)
+# Target (conversational)
 "description": "Brainstorms ideas. Invoke when: 'I have an idea', 'What if', 'brainstorm'. Keywords: idea, explore, research."
 ```
 
-### 🔴 Problème #2: Info d'Activation Cachée
-**Impact:** L'information "When to invoke" est dans REFERENCE.md au lieu de SKILL.md.
+### 🔴 Issue #2: Activation Guidance Hidden in References
+**Impact:** “When to invoke” details live in `REFERENCE.md` instead of `SKILL.md`, so Claude does not load them during intent matching.
 
-**Solution:** Déplacer vers SKILL.md pour chargement immédiat.
+**Fix:** Move the activation contract to each `SKILL.md` immediately after the YAML front matter.
 
-### 🔴 Problème #3: Orchestration Manuelle
-**Impact:** Le bmad-orchestrator ne se déclenche pas automatiquement au début des conversations.
+### 🔴 Issue #3: Manual Orchestration
+**Impact:** `bmad-orchestrator` waits for a command rather than auto-starting at the beginning of BMAD conversations.
 
-**Solution:** Optimiser pour auto-activation avec triggers conversationnels.
-
----
-
-## POINTS FORTS (Ce qui est excellent)
-
-✅ **Architecture Progressive Disclosure:** 95/100
-✅ **Modularité (12 skills):** 100/100
-✅ **Gouvernance & Quality Gates:** 95/100
-✅ **Documentation:** 95/100
-✅ **Scripts & Templates:** 100/100
+**Fix:** Add explicit conversational triggers and default auto-behavior.
 
 ---
 
-## PLAN D'ACTION
+## STRENGTHS (What Already Works Well)
 
-### Corrections Nécessaires (2-3 jours)
+✅ **Progressive disclosure architecture:** 95/100  
+✅ **Modularity (12 skills):** 100/100  
+✅ **Governance & quality gates:** 95/100  
+✅ **Documentation depth:** 95/100  
+✅ **Scripts and templates:** 100/100
 
-1. **Réécrire 12 descriptions** avec triggers conversationnels (1 jour)
-2. **Ajouter sections "When to Invoke"** à chaque SKILL.md (1 jour)
-3. **Optimiser bmad-orchestrator** pour auto-activation (0.5 jour)
-4. **Tests d'activation** avec scénarios conversationnels (0.5 jour)
+---
 
-### Fichiers à Modifier
+## ACTION PLAN
 
-**MANIFEST.json:**
-- Réécrire les 12 descriptions avec keywords d'activation
+### Essential fixes (2–3 days of focused work)
 
-**8 fichiers SKILL.md:**
-- Ajouter section "When to Invoke" après le frontmatter YAML
-- Enrichir avec triggers conversationnels spécifiques
+1. **Rewrite twelve descriptions** in `meta/MANIFEST.json` with conversational triggers (1 day).
+2. **Add “When to Invoke” sections** to every `SKILL.md` (1 day).
+3. **Update `bmad-orchestrator`** to auto-activate at the start of any BMAD conversation (0.5 day).
+4. **Author activation tests** with realistic dialogue scenarios (0.5 day).
+
+### Files to update
+
+**`meta/MANIFEST.json`:**
+- Replace every description with the conversational versions.
+
+**Eight `SKILL.md` files:**
+- Insert a “When to Invoke” section after the YAML front matter.
+- Document concrete trigger phrases, keywords, and guardrails.
 
 **Tests:**
-- Créer `tests/test_skill_activation.md`
-- Valider avec utilisateurs réels
+- Create `tests/test_skill_activation.md`.
+- Validate the changes with real users or scripted prompts.
 
 ---
 
-## RÉSULTAT ATTENDU
+## EXPECTED RESULT
 
-### Avant Corrections
+### Before fixes
 
 ```
-User: "J'ai une idée pour une app"
-Claude: "Intéressant, dites-m'en plus"
+User: "I have an idea for an app"
+Claude: "Interesting, tell me more."
 User: "Initialize BMAD workflow"
-Claude: [bmad-orchestrator activé]
+Claude: [bmad-orchestrator activates]
 ```
 
-### Après Corrections
+### After fixes
 
 ```
-User: "J'ai une idée pour une app"
-Claude: [bmad-analyst auto-activé]
-        "Super! Commençons un brainstorming..."
+User: "I have an idea for an app"
+Claude: [bmad-analyst auto-activates]
+        "Great! Let me guide a brainstorming session…"
 ```
 
 ---
 
-## CONFORMITÉ AUX BEST PRACTICES
+## BEST PRACTICE COMPLIANCE
 
-| Best Practice Anthropic | Actuel | Cible |
-|--------------------------|--------|-------|
-| Progressive Disclosure | 95% | 95% ✅ |
-| Descriptions <160 chars | 100% | 100% ✅ |
-| SKILL.md <500 lines | 100% | 100% ✅ |
-| Auto-selection keywords | 40% | 95% 🎯 |
-| Conversational triggers | 45% | 95% 🎯 |
-
----
-
-## RECOMMANDATION FINALE
-
-**Statut: Production-Ready après 2-3 jours de corrections**
-
-Le système BMAD Skills est techniquement excellent. Avec les corrections d'activation conversationnelle, il atteindra 95/100 et sera **pleinement conforme à la méthode Bimath** où l'utilisateur discute naturellement et Claude active automatiquement les skills appropriés.
+| Anthropic Best Practice | Current | Target |
+|-------------------------|---------|--------|
+| Progressive disclosure  | 95%     | 95% ✅ |
+| Descriptions < 160 chars| 100%    | 100% ✅ |
+| SKILL.md < 500 lines    | 100%    | 100% ✅ |
+| Auto-selection keywords | 40%     | 95% 🎯 |
+| Conversational triggers | 45%     | 95% 🎯 |
 
 ---
 
-## DOCUMENTS LIVRÉS
+## FINAL RECOMMENDATION
 
-1. **AUDIT-REPORT.md** - Rapport complet détaillé (50+ pages)
-2. **ACTION-PLAN.md** - Plan d'action avec code exact à modifier
-3. **EXECUTIVE-SUMMARY.md** - Ce document (résumé exécutif)
+**Status: Production-ready after 2–3 days of activation-focused corrections.**
 
----
-
-**Prochaine Étape:** Suivre le plan d'action (ACTION-PLAN.md) pour implémenter les corrections.
+The BMAD Skills system is technically outstanding. Once the conversational activation improvements land, the score will climb to 95/100 and the suite will comply with the Bimath methodology: users speak naturally and Claude invokes the right skills without manual commands.
 
 ---
 
-**Contact:** claude@anthropic.com
-**Version Skills Auditée:** 1.0.0
-**Date Audit:** 2025-10-29
+## DELIVERABLES INCLUDED
+
+- `ACTION-PLAN.md` – step-by-step remediation work
+- `AUDIT-REPORT.md` – detailed findings and supporting evidence
+- `tests/test_skill_activation.md` – scripted scenarios for validation
