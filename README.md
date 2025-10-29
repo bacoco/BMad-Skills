@@ -69,7 +69,20 @@ Natural phrases that automatically activate the right skill:
 ✅ **Context Routing**: Orchestrator guides you through the right workflow
 ✅ **No Manual Invocation**: Skills activate automatically when needed
 
-See [doc/conversational-flow.md](doc/conversational-flow.md) for complete conversational examples and patterns.
+### Complete Documentation
+
+**Getting Started (5-10 minutes):**
+- 🚀 **[Quickstart Guide](doc/quickstart-conversational.md)** - Start using conversational activation in 30 seconds
+- 📖 **[Conversational Flow Examples](doc/conversational-flow.md)** - 6 complete conversation scenarios
+
+**Reference & Support:**
+- ❓ **[FAQ](doc/activation-faq.md)** - 39 frequently asked questions with answers
+- 🔧 **[Troubleshooting Guide](doc/troubleshooting.md)** - Solve activation problems step-by-step
+- ✅ **[Test Cases](tests/test_skill_activation.md)** - 55 test scenarios for validation
+
+**Monitoring & Optimization:**
+- 📊 **Activation Metrics** - Track and analyze skill activations with `shared/tooling/activation_metrics.py`
+- 📈 Generate reports: `python shared/tooling/activation_metrics.py export`
 
 ### OpenSpec Skills
 
