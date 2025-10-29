@@ -7,11 +7,15 @@ Manages workflow-status.md file for tracking project progress through BMAD phase
 from datetime import datetime
 from pathlib import Path
 
+SKILLS_ROOT = Path(__file__).resolve().parents[2]  # .claude/skills/
+RUNTIME_ROOT = SKILLS_ROOT / "_runtime"
+DEFAULT_ARTIFACTS_DIR = RUNTIME_ROOT / "artifacts"
+
 class WorkflowStatus:
     """Manages BMAD workflow status file"""
 
-    def __init__(self, docs_dir='docs'):
-        self.docs_dir = Path(docs_dir)
+    def __init__(self, docs_dir=None):
+        self.docs_dir = Path(docs_dir) if docs_dir else DEFAULT_ARTIFACTS_DIR
         self.status_file = self.docs_dir / 'workflow-status.md'
         self.legacy_status_file = self.docs_dir / 'bmm-workflow-status.md'
 

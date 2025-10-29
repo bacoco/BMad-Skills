@@ -1,6 +1,6 @@
 ---
 name: bmad-ux
-description: Designs UX and creates wireframes. Invoke when user says 'what should UI look like', 'design the UX', 'user experience', 'wireframes', 'user flow'. Keywords: UX, UI, design, wireframe, user flow, interface, usability.
+description: Designs UX and creates wireframes. Keywords: UX, UI, design, wireframe, user flow, interface, usability, user experience.
 version: 1.0.0
 allowed-tools: ["Read", "Write", "Grep"]
 metadata:

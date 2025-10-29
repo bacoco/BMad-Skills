@@ -1,6 +1,6 @@
 ---
 name: bmad-orchestrator
-description: Global workflow orchestrator for BMAD and OpenSpec. Auto-invokes at conversation start. Routes Level 0-1 to OpenSpec, Level 2-4 to BMAD. Tracks status, guides through phases. Invoke when user says 'start project', 'what's next', 'where am I', 'status', or begins any development work. Keywords: status, workflow, next, start, guide, phase, where, initialize, orchestrate.
+description: Routes work to OpenSpec (L0-1) or BMAD (L2-4). Tracks status, guides through phases. Keywords: status, workflow, next, start, guide, phase, initialize.
 version: 1.0.0
 allowed-tools: ["Read", "Write", "Grep", "Bash"]
 metadata:

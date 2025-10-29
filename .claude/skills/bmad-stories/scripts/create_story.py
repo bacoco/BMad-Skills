@@ -11,6 +11,10 @@ from pathlib import Path
 from datetime import datetime
 from jinja2 import Template
 
+SKILLS_ROOT = Path(__file__).resolve().parents[2]  # .claude/skills/
+RUNTIME_ROOT = SKILLS_ROOT / "_runtime"
+DEFAULT_STORIES_DIR = RUNTIME_ROOT / "stories"
+
 def load_json_data(json_path):
     """Load story data from JSON file"""
     with open(json_path, 'r') as f:
@@ -21,10 +25,10 @@ def load_template(template_path):
     with open(template_path, 'r') as f:
         return Template(f.read())
 
-def create_story(data, output_dir='stories'):
+def create_story(data, output_dir=None):
     """Generate story file from data"""
     # Ensure output directory exists
-    output_path = Path(output_dir)
+    output_path = Path(output_dir) if output_dir else DEFAULT_STORIES_DIR
     output_path.mkdir(parents=True, exist_ok=True)
 
     # Load template
@@ -52,7 +56,7 @@ def main():
         sys.exit(1)
 
     json_path = sys.argv[1]
-    output_dir = sys.argv[2] if len(sys.argv) > 2 else 'stories'
+    output_dir = sys.argv[2] if len(sys.argv) > 2 else None
 
     # Load data
     print(f"Loading story data from: {json_path}")

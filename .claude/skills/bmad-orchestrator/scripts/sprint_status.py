@@ -9,15 +9,21 @@ import yaml
 from pathlib import Path
 from datetime import datetime
 
+SKILLS_ROOT = Path(__file__).resolve().parents[2]  # .claude/skills/
+RUNTIME_ROOT = SKILLS_ROOT / "_runtime"
+DEFAULT_ARTIFACTS_DIR = RUNTIME_ROOT / "artifacts"
+
 class SprintStatus:
     """Manages BMAD sprint status YAML file"""
 
-    def __init__(self, docs_dir='docs'):
-        self.docs_dir = Path(docs_dir)
+    def __init__(self, docs_dir=None):
+        self.docs_dir = Path(docs_dir) if docs_dir else DEFAULT_ARTIFACTS_DIR
         self.status_file = self.docs_dir / 'sprint-status.yaml'
 
-    def init_from_epics(self, epics_file='docs/epics.md'):
+    def init_from_epics(self, epics_file=None):
         """Initialize sprint status from epics.md"""
+        if epics_file is None:
+            epics_file = DEFAULT_ARTIFACTS_DIR / 'epics.md'
         epics_path = Path(epics_file)
 
         if not epics_path.exists():
@@ -234,7 +240,7 @@ def main():
     ss = SprintStatus()
 
     if command == 'init':
-        epics_file = sys.argv[2] if len(sys.argv) > 2 else 'docs/epics.md'
+        epics_file = sys.argv[2] if len(sys.argv) > 2 else None
         file_path = ss.init_from_epics(epics_file)
         print(f"✅ Sprint status initialized: {file_path}")
 

@@ -1,6 +1,6 @@
 ---
 name: bmad-architecture
-description: Creates technical architecture. Invoke when user says 'how should we build', 'what's the architecture', 'tech stack', 'system design', 'how to build this'. Keywords: architecture, tech stack, design, system, build, technical, structure.
+description: Creates technical architecture. Keywords: architecture, tech stack, design, system design, build, technical, structure.
 version: 1.0.0
 allowed-tools: ["Read", "Write", "Grep"]
 metadata:

@@ -11,6 +11,10 @@ from pathlib import Path
 from datetime import datetime
 from jinja2 import Template
 
+SKILLS_ROOT = Path(__file__).resolve().parents[2]  # .claude/skills/
+RUNTIME_ROOT = SKILLS_ROOT / "_runtime"
+DEFAULT_OUTPUT_DIR = RUNTIME_ROOT / "artifacts"
+
 def load_json_data(json_path):
     """Load architecture data from JSON file"""
     with open(json_path, 'r') as f:
@@ -21,10 +25,10 @@ def load_template(template_path):
     with open(template_path, 'r') as f:
         return Template(f.read())
 
-def generate_architecture(data, output_dir='docs'):
+def generate_architecture(data, output_dir=None):
     """Generate ARCHITECTURE.md from data"""
     # Ensure output directory exists
-    output_path = Path(output_dir)
+    output_path = Path(output_dir) if output_dir else DEFAULT_OUTPUT_DIR
     output_path.mkdir(parents=True, exist_ok=True)
 
     # Load template
@@ -49,7 +53,7 @@ def main():
         sys.exit(1)
 
     json_path = sys.argv[1]
-    output_dir = sys.argv[2] if len(sys.argv) > 2 else 'docs'
+    output_dir = sys.argv[2] if len(sys.argv) > 2 else None
 
     # Load data
     print(f"Loading architecture data from: {json_path}")

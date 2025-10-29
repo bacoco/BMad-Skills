@@ -1,6 +1,6 @@
 ---
 name: bmad-stories
-description: Breaks epics into developer stories. Invoke when user says 'break into stories', 'create user stories', 'story breakdown', 'developer tasks'. Keywords: story, stories, epic, breakdown, task, backlog, sprint.
+description: Breaks epics into developer stories. Keywords: story, stories, epic, breakdown, task, backlog, sprint, user stories.
 version: 1.0.0
 allowed-tools: ["Read", "Write", "Grep"]
 metadata:

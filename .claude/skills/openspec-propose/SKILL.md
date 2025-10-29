@@ -1,6 +1,6 @@
 ---
 name: openspec-propose
-description: Creates lightweight change proposals for Level 0-1 work. Invoke when user says 'fix bug', 'small change', 'quick feature', 'simple fix', 'minor update'. Keywords: bug, fix, small, quick, simple, minor, Level 0, Level 1, lightweight.
+description: Creates lightweight proposals for L0-1 work. Keywords: bug, fix, small, quick, simple, minor, lightweight, Level 0, Level 1.
 version: 1.2.0
 allowed-tools: ["Read", "Write", "Grep", "Bash"]
 metadata:

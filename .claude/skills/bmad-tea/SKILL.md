@@ -1,6 +1,6 @@
 ---
 name: bmad-tea
-description: Creates test strategy. Invoke when user says 'how should we test', 'create test strategy', 'test plan', 'ATDD', 'quality assurance'. Keywords: test, testing, strategy, QA, quality, ATDD, automation.
+description: Creates test strategy. Keywords: test, testing, strategy, test plan, ATDD, quality assurance, QA, quality, automation.
 version: 1.0.0
 allowed-tools: ["Read", "Write", "Grep"]
 metadata:

@@ -1,6 +1,6 @@
 ---
 name: openspec-archive
-description: Archives completed Level 0-1 changes. Invoke when user says 'archive this change', 'close change', 'document change', 'finalize change'. Keywords: archive, close, document, finalize, complete, Level 0, Level 1.
+description: Archives L0-1 changes. Keywords: archive, close, document, finalize, complete, Level 0, Level 1.
 version: 1.2.0
 allowed-tools: ["Read", "Write", "Grep", "Bash"]
 metadata:

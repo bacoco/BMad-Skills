@@ -13,6 +13,10 @@ from typing import Any, Dict, Iterable
 
 from jinja2 import Template, TemplateError
 
+SKILLS_ROOT = Path(__file__).resolve().parents[2]  # .claude/skills/
+RUNTIME_ROOT = SKILLS_ROOT / "_runtime"
+DEFAULT_OUTPUT_DIR = RUNTIME_ROOT / "artifacts"
+
 
 class PRDValidationError(ValueError):
     """Raised when the input data cannot produce a valid PRD."""
@@ -127,10 +131,10 @@ def validate_prd_payload(data: Dict[str, Any]) -> Dict[str, Any]:
     return data
 
 
-def generate_prd(data: Dict[str, Any], output_dir: str = 'docs') -> Path:
+def generate_prd(data: Dict[str, Any], output_dir: str = None) -> Path:
     """Generate PRD.md from validated data."""
 
-    output_path = Path(output_dir)
+    output_path = Path(output_dir) if output_dir else DEFAULT_OUTPUT_DIR
     output_path.mkdir(parents=True, exist_ok=True)
 
     template_path = Path(__file__).parent.parent / 'assets/prd-template.md.jinja'
@@ -145,10 +149,10 @@ def generate_prd(data: Dict[str, Any], output_dir: str = 'docs') -> Path:
     return prd_file
 
 
-def generate_epics(data: Dict[str, Any], output_dir: str = 'docs') -> Path:
+def generate_epics(data: Dict[str, Any], output_dir: str = None) -> Path:
     """Generate epics.md from validated data."""
 
-    output_path = Path(output_dir)
+    output_path = Path(output_dir) if output_dir else DEFAULT_OUTPUT_DIR
     output_path.mkdir(parents=True, exist_ok=True)
 
     template_path = Path(__file__).parent.parent / 'assets/epic-roadmap-template.md.jinja'
@@ -170,7 +174,7 @@ def main():
         sys.exit(1)
 
     json_path = sys.argv[1]
-    output_dir = sys.argv[2] if len(sys.argv) > 2 else 'docs'
+    output_dir = sys.argv[2] if len(sys.argv) > 2 else None
 
     try:
         print(f"Loading data from: {json_path}")

@@ -1,6 +1,6 @@
 ---
 name: openspec-implement
-description: Implements Level 0-1 changes. Invoke when user says 'apply this change', 'implement the fix', 'execute proposal', 'apply the bug fix'. Keywords: apply, execute, implement change, fix, proposal, Level 0, Level 1.
+description: Implements L0-1 changes. Keywords: apply, execute, implement, fix, proposal, change, Level 0, Level 1.
 version: 1.2.0
 allowed-tools: ["Read", "Write", "Grep", "Bash"]
 metadata:
