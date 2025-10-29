@@ -7,10 +7,10 @@ import argparse
 import shutil
 from pathlib import Path
 
-REPO_ROOT = Path(__file__).resolve().parents[4]
-OPEN_SPEC_ROOT = REPO_ROOT / "openspec"
-CHANGE_ROOT = OPEN_SPEC_ROOT / "changes"
-SPEC_ROOT = OPEN_SPEC_ROOT / "specs"
+SKILLS_ROOT = Path(__file__).resolve().parents[2]  # .claude/skills/
+RUNTIME_ROOT = SKILLS_ROOT / "_runtime" / "workspace"
+CHANGE_ROOT = RUNTIME_ROOT / "changes"
+SPEC_ROOT = RUNTIME_ROOT / "specs"
 
 
 def parse_args() -> argparse.Namespace:
@@ -29,13 +29,13 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument(
         "--overwrite",
         action="store_true",
-        help="Allow overwriting files in openspec/specs when names collide.",
+        help="Allow overwriting files in _runtime/workspace/specs when names collide.",
     )
     return parser.parse_args()
 
 
 def ensure_directories() -> None:
-    OPEN_SPEC_ROOT.mkdir(exist_ok=True)
+    RUNTIME_ROOT.mkdir(parents=True, exist_ok=True)
     CHANGE_ROOT.mkdir(parents=True, exist_ok=True)
     SPEC_ROOT.mkdir(parents=True, exist_ok=True)
 
