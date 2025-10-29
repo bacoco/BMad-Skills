@@ -42,6 +42,12 @@ Every skill folder contains:
 
 Each follows the same structure and references the shared glossary and constraints.
 
+### Choosing BMAD vs OpenSpec
+
+- **Use BMAD skills** when a problem requires end-to-end framing: new product discovery, full PRDs, architectural decisions, or delivery planning across multiple teams.
+- **Use OpenSpec skills** when you already have a repo and need to ship a scoped change quickly. The proposal → implement → archive loop keeps specs aligned without invoking the heavier BMAD ceremonies.
+- Escalate from OpenSpec to BMAD if any checklist flags indicate high ambiguity, multi-team coordination, or work that spans beyond Level 1 complexity.
+
 ## Shared Assets
 
 - `shared/glossary.md` — Terminology used across skills.

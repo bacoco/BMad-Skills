@@ -7,6 +7,7 @@
 2. **Documentation**
    - Summarize outcome using `assets/archive-template.md`.
    - Record deviations, issues resolved, and any rollbacks.
+   - Sync approved spec deltas via `scripts/archive_change.py <change-id>`.
 
 3. **Metrics & Learnings**
    - Capture impact metrics or qualitative feedback.

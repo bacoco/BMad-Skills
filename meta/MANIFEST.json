@@ -66,21 +66,21 @@
     {
       "id": "openspec-propose",
       "path": "expansion/openspec/propose",
-      "version": "1.1.0",
+      "version": "1.2.0",
       "allowed-tools": ["Read", "Write", "Grep", "Bash"],
       "expansion-pack": "openspec"
     },
     {
       "id": "openspec-implement",
       "path": "expansion/openspec/implement",
-      "version": "1.1.0",
+      "version": "1.2.0",
       "allowed-tools": ["Read", "Write", "Grep", "Bash"],
       "expansion-pack": "openspec"
     },
     {
       "id": "openspec-archive",
       "path": "expansion/openspec/archive",
-      "version": "1.1.0",
+      "version": "1.2.0",
       "allowed-tools": ["Read", "Write", "Grep", "Bash"],
       "expansion-pack": "openspec"
     }

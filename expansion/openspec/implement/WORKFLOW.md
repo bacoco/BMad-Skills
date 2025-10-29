@@ -9,7 +9,7 @@
    - Prepare rollback or backup steps if needed.
 
 3. **Execution**
-   - Complete tasks sequentially, logging actions with `assets/execution-log-template.md`.
+   - Complete tasks sequentially, logging actions with `scripts/update_execution_log.py` (or manual edits using the template).
    - Keep commits small and traceable to proposal tasks.
 
 4. **Verification**
