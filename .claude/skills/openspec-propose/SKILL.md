@@ -77,9 +77,9 @@ Capture small change requests or bug fixes and translate them into concise propo
 - constraints: timeline, risk, or approvals that bound the solution
 
 ## Outputs
-- `proposal.md` summarizing problem, desired behavior, and acceptance signals (template: `assets/proposal-template.md`)
-- `tasks.md` listing actionable steps sized for rapid implementation (template: `assets/tasks-template.md`)
-- `specs/spec-delta.md` capturing ADDED/MODIFIED/REMOVED requirements (template: `assets/spec-delta-template.md`)
+- `proposal.md` summarizing problem, desired behavior, and acceptance signals (template: `assets/proposal-template.md.jinja`)
+- `tasks.md` listing actionable steps sized for rapid implementation (template: `assets/tasks-template.md.jinja`)
+- `specs/spec-delta.md` capturing ADDED/MODIFIED/REMOVED requirements (template: `assets/spec-delta-template.md.jinja`)
 - Optional `design.md` scaffolded when deeper technical notes are required
 
 `scripts/scaffold_change.py` creates this structure in `openspec/changes/<change-id>/` using the templates above.

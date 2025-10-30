@@ -75,7 +75,7 @@ Document the outcome of Level 0-1 work, ensuring artifacts, approvals, and follo
 - validation_evidence: test results or reviewer feedback
 
 ## Outputs
-- Archive summary (`archive.md`) with outcomes, metrics, and learnings (template: `assets/archive-template.md`)
+- Archive summary (`archive.md`) with outcomes, metrics, and learnings (template: `assets/archive-template.md.jinja`)
 - Updated proposal/tasks reflecting completion status
 - Deployment or rollback notes stored with project documentation
 - Canonical specs in `openspec/specs/` synchronized with approved deltas
