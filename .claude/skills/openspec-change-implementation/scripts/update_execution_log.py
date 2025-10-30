@@ -11,7 +11,7 @@ SKILLS_ROOT = Path(__file__).resolve().parents[2]  # .claude/skills/
 RUNTIME_ROOT = SKILLS_ROOT / "_runtime" / "workspace"
 CHANGE_ROOT = RUNTIME_ROOT / "changes"
 ASSET_DIR = Path(__file__).resolve().parent.parent / "assets"
-TEMPLATE_FILE = ASSET_DIR / "execution-log-template.md.jinja"
+TEMPLATE_FILE = ASSET_DIR / "execution-log-template.md.template"
 
 
 def parse_args() -> argparse.Namespace:

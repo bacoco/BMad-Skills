@@ -62,18 +62,34 @@ class TestManifestConsistency(unittest.TestCase):
             msg="Allowed tools lists must match between SKILL.md and MANIFEST.json",
         )
 
-    def test_version_alignment(self) -> None:
-        mismatches = []
+    def test_frontmatter_version_fields_removed(self) -> None:
+        unexpected = []
         for skill in self.manifest["skills"]:
             skill_dir = REPO_ROOT / skill["path"]
             frontmatter = load_skill_frontmatter(skill_dir)
-            if frontmatter.get("version") != skill.get("version"):
-                mismatches.append(skill["id"])
+            if "version" in frontmatter:
+                unexpected.append(skill["id"])
+
+        self.assertListEqual(
+            unexpected,
+            [],
+            msg="Version field should no longer appear in SKILL.md frontmatter (managed via manifests/package.json).",
+        )
+
+    def test_manifest_versions_match_package_version(self) -> None:
+        package_path = REPO_ROOT / "package.json"
+        package_version = json.loads(package_path.read_text(encoding="utf-8"))["version"]
+
+        mismatches = [
+            skill["id"]
+            for skill in self.manifest["skills"]
+            if skill.get("version") != package_version
+        ]
 
         self.assertListEqual(
             mismatches,
             [],
-            msg="Version fields must match between SKILL.md and MANIFEST.json",
+            msg="Each manifest entry must align with the package.json version (single source of truth).",
         )
 
     def test_description_alignment(self) -> None:

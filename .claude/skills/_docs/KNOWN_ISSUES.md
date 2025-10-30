@@ -2,26 +2,25 @@
 
 This document tracks known limitations and technical debt in BMAD Skills that require future refactoring.
 
-## ~~Template Usage~~ (RESOLVED)
+## Template Usage Drift (Priority: Medium)
 
-**Status:** ✅ FIXED
+**Status:** ⚠️ OPEN
 
-**Resolution:** All 3 generator scripts now load templates from `assets/` using `string.Template` (stdlib):
-- `.claude/skills/bmad-product-planning/scripts/generate_prd.py` → loads from `assets/`
-- `.claude/skills/bmad-architecture-design/scripts/generate_architecture.py` → loads from `assets/`
-- `.claude/skills/bmad-story-planning/scripts/create_story.py` → loads from `assets/`
+**Issue:** OpenSpec helper scripts were updated to look for `.md.template` assets after the repo cleanup, but the packaged bundle
+still shipped stale `.md.jinja` filenames. Operators running `scaffold_change.py` or `update_execution_log.py` would hit
+`FileNotFoundError` because the expected templates were missing, and documentation referenced the wrong extensions.
 
-New template files created:
-- `prd-script-template.md.template`
-- `epics-wrapper-template.md.template`
-- `architecture-script-template.md.template`
-- `story-script-template.md.template`
+**Impact:** Blocks OpenSpec workflows (proposal scaffolding, execution log updates) and erodes trust in documentation vs. runtime
+behavior.
 
-Implementation:
-- Uses `string.Template` (stdlib-only, maintains zero-dependency goal)
-- Templates loaded via `ASSETS_DIR / "template-name.md.template"`
-- Logic/loops kept in Python, presentation in template files
-- Proper separation of concerns achieved
+**Resolution Plan:**
+1. Keep OpenSpec assets synchronized with script expectations (both using `.md.template`).
+2. Add regression coverage to packaging tests ensuring template files are present in the published bundle.
+3. Audit documentation whenever template extensions change.
+
+**Status Updates:**
+- 2025-02: Recreated `.md.template` assets for OpenSpec scripts and aligned code/documentation.
+- TODO: Add automated verification in packaging pipeline.
 
 ---
 

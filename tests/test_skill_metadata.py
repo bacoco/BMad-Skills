@@ -63,11 +63,9 @@ def test_allowed_tools_alignment(entry, frontmatter, _):
 
 
 @pytest.mark.parametrize("entry, frontmatter, _", SKILL_DATA, ids=SKILL_IDS)
-def test_version_alignment(entry, frontmatter, _):
-    assert "version" in frontmatter, f"{entry['id']} is missing version in SKILL.md"
-    assert frontmatter["version"] == entry["version"], (
-        f"Version mismatch for {entry['id']}: SKILL.md has {frontmatter['version']}, "
-        f"but MANIFEST.json has {entry['version']}"
+def test_frontmatter_excludes_version(entry, frontmatter, _):
+    assert "version" not in frontmatter, (
+        "Version field should be managed centrally (package.json + manifests) and omitted from SKILL.md frontmatter."
     )
 
 
