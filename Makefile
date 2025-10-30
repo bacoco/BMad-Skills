@@ -1,4 +1,4 @@
-.PHONY: install test test-unit test-e2e test-all lint validate dev clean help
+.PHONY: install test test-unit lint validate dev clean help
 
 help:
 	@echo "BMAD Skills - Development Commands"
@@ -8,10 +8,8 @@ help:
 	@echo "  make dev            Setup development environment"
 	@echo ""
 	@echo "Testing:"
-	@echo "  make test           Run unit and integration tests (no E2E)"
+	@echo "  make test           Run unit and integration tests"
 	@echo "  make test-unit      Run unit tests only"
-	@echo "  make test-e2e       Run E2E tests (requires Claude CLI)"
-	@echo "  make test-all       Run all tests including E2E"
 	@echo ""
 	@echo "Quality:"
 	@echo "  make lint           Run contract linter"
@@ -42,14 +40,6 @@ test: install
 test-unit: install
 	@echo "Running unit tests only..."
 	npm run test:unit
-
-test-e2e: install
-	@echo "Running E2E tests (may take 20-30 minutes)..."
-	npm run test:e2e
-
-test-all: install
-	@echo "Running all tests..."
-	npm run test:all
 
 lint: install
 	@echo "Linting skill contracts..."

@@ -3,7 +3,7 @@
 
 **Date de l'audit:** 30 octobre 2025
 **Auditeur:** Claude (Sonnet 4.5) + Boss (Validation externe)
-**Version du projet:** 2.2.0
+**Version du projet:** 2.2.1
 **Score final:** **92/100** (production-ready)
 
 ---
