@@ -12,8 +12,8 @@
    - Collect quick feasibility notes (logs, reproduction steps, constraints).
 
 4. **Proposal Drafting**
-   - Use `assets/proposal-template.md` to capture summary and acceptance signals.
-   - Outline tasks using `assets/tasks-template.md` and fill `specs/spec-delta.md` for requirement changes.
+   - Use `assets/proposal-template.md.jinja` to capture summary and acceptance signals.
+   - Outline tasks using `assets/tasks-template.md.jinja` and fill `specs/spec-delta.md` for requirement changes.
 
 5. **Review Prep**
    - Document risks, approvals, and follow-up questions.
