@@ -9,11 +9,13 @@ import json
 import sys
 from pathlib import Path
 from datetime import datetime
+from string import Template
 
 SKILLS_ROOT = Path(__file__).resolve().parents[2]  # .claude/skills/
 RUNTIME_ROOT = SKILLS_ROOT / "_runtime" / "workspace"
 STORIES_DIR = RUNTIME_ROOT / "stories"
 DEFAULT_STORIES_DIR = STORIES_DIR
+ASSETS_DIR = Path(__file__).parent.parent / "assets"
 
 def load_json_data(json_path):
     """Load story data from JSON file"""
@@ -21,8 +23,8 @@ def load_json_data(json_path):
         return json.load(f)
 
 def render_story_content(data, date):
-    """Render story content from data without external template engine"""
-    # Build acceptance criteria
+    """Render story content from template in assets/"""
+    # Build acceptance criteria (dynamic content)
     ac_lines = []
     for idx, ac in enumerate(data['acceptance_criteria'], start=1):
         ac_lines.append(f"{idx}. {ac}")
@@ -31,7 +33,7 @@ def render_story_content(data, date):
     # Build prerequisites
     prerequisites = data.get('prerequisites') or 'None'
 
-    # Build tasks
+    # Build tasks (dynamic content)
     task_lines = []
     for task in data['tasks']:
         task_lines.append(f"- [ ] {task['task']} (AC: {task['ac_ref']})")
@@ -52,99 +54,28 @@ def render_story_content(data, date):
 {data['dev_notes']['previous_story_learnings']}
 """
 
-    return f"""# Story {data['epic_num']}.{data['story_num']}: {data['story_title']}
+    # Load template and substitute
+    template_path = ASSETS_DIR / "story-script-template.md.template"
+    template_str = template_path.read_text()
+    template = Template(template_str)
 
-**Status:** drafted
-**Created:** {date}
-
----
-
-## Story
-
-As a {data['story_statement']['role']},
-I want {data['story_statement']['action']},
-so that {data['story_statement']['benefit']}.
-
----
-
-## Acceptance Criteria
-
-{acceptance_criteria}
-
----
-
-## Prerequisites
-
-{prerequisites}
-
----
-
-## Tasks / Subtasks
-
-{tasks}
-
----
-
-## Dev Notes
-
-### Architecture Patterns and Constraints
-
-{data['dev_notes']['architecture_patterns']}
-
-### Project Structure Notes
-
-{data['dev_notes']['project_structure']}
-
-### Testing Requirements
-
-{data['dev_notes']['testing_requirements']}
-{learnings_section}
-### References
-
-{references}
-
----
-
-## Dev Agent Record
-
-_This section is filled during implementation by the developer/AI agent_
-
-### Context Reference
-
-<!-- Path(s) to story context XML or additional context will be added here during implementation -->
-
-### Agent Model Used
-
-<!-- Agent model name and version used for implementation -->
-
-### Debug Log References
-
-<!-- Links to debug logs or implementation notes -->
-
-### Completion Notes List
-
-<!-- Key notes about implementation:
-- New patterns/services created
-- Architectural deviations or decisions
-- Technical debt deferred
-- Warnings for next story
-- Interfaces/methods created for reuse
--->
-
-### File List
-
-<!-- Files affected during implementation:
-- NEW: path/to/new/file.ext - Description
-- MODIFIED: path/to/modified/file.ext - Changes made
-- DELETED: path/to/deleted/file.ext - Reason
--->
-
----
-
-_Generated via BMAD Workflow Skills (v2.1.5) using BMAD v6-alpha spec_
-_Source: https://github.com/bmad-code-org/BMAD-METHOD/tree/v6-alpha_
-_Created: {date}_
-"""
+    return template.substitute(
+        epic_num=data['epic_num'],
+        story_num=data['story_num'],
+        story_title=data['story_title'],
+        date=date,
+        role=data['story_statement']['role'],
+        action=data['story_statement']['action'],
+        benefit=data['story_statement']['benefit'],
+        acceptance_criteria=acceptance_criteria,
+        prerequisites=prerequisites,
+        tasks=tasks,
+        architecture_patterns=data['dev_notes']['architecture_patterns'],
+        project_structure=data['dev_notes']['project_structure'],
+        testing_requirements=data['dev_notes']['testing_requirements'],
+        learnings_section=learnings_section,
+        references=references
+    )
 
 def create_story(data, output_dir=None):
     """Generate story file from data"""

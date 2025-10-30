@@ -9,11 +9,13 @@ import json
 import sys
 from pathlib import Path
 from datetime import datetime
+from string import Template
 
 SKILLS_ROOT = Path(__file__).resolve().parents[2]  # .claude/skills/
 RUNTIME_ROOT = SKILLS_ROOT / "_runtime" / "workspace"
 ARTIFACTS_DIR = RUNTIME_ROOT / "artifacts"
 DEFAULT_OUTPUT_DIR = ARTIFACTS_DIR
+ASSETS_DIR = Path(__file__).parent.parent / "assets"
 
 def load_json_data(json_path):
     """Load architecture data from JSON file"""
@@ -21,8 +23,8 @@ def load_json_data(json_path):
         return json.load(f)
 
 def render_architecture_content(data):
-    """Render architecture content from data without external template engine"""
-    # Build decision summary table
+    """Render architecture content from template in assets/"""
+    # Build decision summary table (dynamic content)
     decision_rows = []
     for decision in data['decisions']:
         version = decision.get('version') or 'N/A'
@@ -33,7 +35,7 @@ def render_architecture_content(data):
         )
     decision_table = '\n'.join(decision_rows)
 
-    # Build epic mapping
+    # Build epic mapping (dynamic content)
     epic_sections = []
     for epic in data['epic_mapping']:
         components = ', '.join(epic['components'])
@@ -79,126 +81,35 @@ These patterns were designed specifically for this project to solve unique requi
 
 {patterns_content}"""
 
-    return f"""# Decision Architecture: {data['project_name']}
+    # Load template and substitute
+    template_path = ASSETS_DIR / "architecture-script-template.md.template"
+    template_str = template_path.read_text()
+    template = Template(template_str)
 
-**Author:** {data['user_name']}
-**Date:** {data['date']}
-**Version:** 1.0.0
-
----
-
-## Executive Summary
-
-{data['executive_summary']}
-
-{init_section}
----
-
-## Decision Summary
-
-| Category | Decision | Version | Affects Epics | Rationale |
-|----------|----------|---------|---------------|-----------|
-{decision_table}
-
----
-
-## Project Structure
-
-```
-{data['project_structure']}
-```
-
----
-
-## Epic to Architecture Mapping
-
-{epic_mapping}
-
----
-
-## Technology Stack Details
-
-### Core Technologies
-
-{data['technology_stack']}
-
-### Integration Points
-
-{data['integration_points']}
-
----
-
-{novel_patterns_section}
-
-## Implementation Patterns
-
-These patterns ensure consistent implementation across all AI agents:
-
-{data['implementation_patterns']}
-
----
-
-## Consistency Rules
-
-### Naming Conventions
-
-{data['naming_conventions']}
-
-### Code Organization
-
-{data['code_organization']}
-
-### Error Handling
-
-{data['error_handling']}
-
-### Logging Strategy
-
-{data['logging_strategy']}
-
----
-
-## Data Architecture
-
-{data['data_architecture']}
-
----
-
-## API Contracts
-
-{data['api_contracts']}
-
----
-
-## Security Architecture
-
-{data['security_architecture']}
-
----
-
-## Performance Considerations
-
-{data['performance_considerations']}
-
----
-
-## Deployment Architecture
-
-{data['deployment_architecture']}
-
----
-
-## Development Environment
-
-{data['dev_environment']}
-
----
-
-_Generated via BMAD Workflow Skills (v2.1.5) using BMAD v6-alpha spec_
-_Source: https://github.com/bmad-code-org/BMAD-METHOD/tree/v6-alpha_
-_Generated: {data['date']}_
-_For: {data['user_name']}_
-"""
+    return template.substitute(
+        project_name=data['project_name'],
+        user_name=data['user_name'],
+        date=data['date'],
+        executive_summary=data['executive_summary'],
+        init_section=init_section,
+        decision_table=decision_table,
+        project_structure=data['project_structure'],
+        epic_mapping=epic_mapping,
+        technology_stack=data['technology_stack'],
+        integration_points=data['integration_points'],
+        novel_patterns_section=novel_patterns_section,
+        implementation_patterns=data['implementation_patterns'],
+        naming_conventions=data['naming_conventions'],
+        code_organization=data['code_organization'],
+        error_handling=data['error_handling'],
+        logging_strategy=data['logging_strategy'],
+        data_architecture=data['data_architecture'],
+        api_contracts=data['api_contracts'],
+        security_architecture=data['security_architecture'],
+        performance_considerations=data['performance_considerations'],
+        deployment_architecture=data['deployment_architecture'],
+        dev_environment=data['dev_environment']
+    )
 
 def generate_architecture(data, output_dir=None):
     """Generate ARCHITECTURE.md from data"""

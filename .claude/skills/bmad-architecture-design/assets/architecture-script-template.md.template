@@ -1,0 +1,118 @@
+# Decision Architecture: $project_name
+
+**Author:** $user_name
+**Date:** $date
+**Version:** 1.0.0
+
+---
+
+## Executive Summary
+
+$executive_summary
+
+$init_section---
+
+## Decision Summary
+
+| Category | Decision | Version | Affects Epics | Rationale |
+|----------|----------|---------|---------------|-----------|
+$decision_table
+
+---
+
+## Project Structure
+
+```
+$project_structure
+```
+
+---
+
+## Epic to Architecture Mapping
+
+$epic_mapping
+
+---
+
+## Technology Stack Details
+
+### Core Technologies
+
+$technology_stack
+
+### Integration Points
+
+$integration_points
+
+---
+
+$novel_patterns_section
+
+## Implementation Patterns
+
+These patterns ensure consistent implementation across all AI agents:
+
+$implementation_patterns
+
+---
+
+## Consistency Rules
+
+### Naming Conventions
+
+$naming_conventions
+
+### Code Organization
+
+$code_organization
+
+### Error Handling
+
+$error_handling
+
+### Logging Strategy
+
+$logging_strategy
+
+---
+
+## Data Architecture
+
+$data_architecture
+
+---
+
+## API Contracts
+
+$api_contracts
+
+---
+
+## Security Architecture
+
+$security_architecture
+
+---
+
+## Performance Considerations
+
+$performance_considerations
+
+---
+
+## Deployment Architecture
+
+$deployment_architecture
+
+---
+
+## Development Environment
+
+$dev_environment
+
+---
+
+_Generated via BMAD Workflow Skills (v2.1.5) using BMAD v6-alpha spec_
+_Source: https://github.com/bmad-code-org/BMAD-METHOD/tree/v6-alpha_
+_Generated: $date_
+_For: $user_name_

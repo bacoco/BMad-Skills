@@ -1,0 +1,92 @@
+# Story $epic_num.$story_num: $story_title
+
+**Status:** drafted
+**Created:** $date
+
+---
+
+## Story
+
+As a $role,
+I want $action,
+so that $benefit.
+
+---
+
+## Acceptance Criteria
+
+$acceptance_criteria
+
+---
+
+## Prerequisites
+
+$prerequisites
+
+---
+
+## Tasks / Subtasks
+
+$tasks
+
+---
+
+## Dev Notes
+
+### Architecture Patterns and Constraints
+
+$architecture_patterns
+
+### Project Structure Notes
+
+$project_structure
+
+### Testing Requirements
+
+$testing_requirements
+$learnings_section
+### References
+
+$references
+
+---
+
+## Dev Agent Record
+
+_This section is filled during implementation by the developer/AI agent_
+
+### Context Reference
+
+<!-- Path(s) to story context XML or additional context will be added here during implementation -->
+
+### Agent Model Used
+
+<!-- Agent model name and version used for implementation -->
+
+### Debug Log References
+
+<!-- Links to debug logs or implementation notes -->
+
+### Completion Notes List
+
+<!-- Key notes about implementation:
+- New patterns/services created
+- Architectural deviations or decisions
+- Technical debt deferred
+- Warnings for next story
+- Interfaces/methods created for reuse
+-->
+
+### File List
+
+<!-- Files affected during implementation:
+- NEW: path/to/new/file.ext - Description
+- MODIFIED: path/to/modified/file.ext - Changes made
+- DELETED: path/to/deleted/file.ext - Reason
+-->
+
+---
+
+_Generated via BMAD Workflow Skills (v2.1.5) using BMAD v6-alpha spec_
+_Source: https://github.com/bmad-code-org/BMAD-METHOD/tree/v6-alpha_
+_Created: $date_

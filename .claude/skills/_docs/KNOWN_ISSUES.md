@@ -2,63 +2,26 @@
 
 This document tracks known limitations and technical debt in BMAD Skills that require future refactoring.
 
-## Template Usage (Priority: Medium)
+## ~~Template Usage~~ (RESOLVED in v2.1.6)
 
-**Issue:** Generator scripts build markdown strings inline instead of loading from `assets/` templates.
+**Status:** ✅ FIXED
 
-**Affected Files:**
-- `.claude/skills/bmad-product-planning/scripts/generate_prd.py`
-- `.claude/skills/bmad-architecture-design/scripts/generate_architecture.py`
-- `.claude/skills/bmad-story-planning/scripts/create_story.py`
+**Resolution:** All 3 generator scripts now load templates from `assets/` using `string.Template` (stdlib):
+- `.claude/skills/bmad-product-planning/scripts/generate_prd.py` → loads from `assets/`
+- `.claude/skills/bmad-architecture-design/scripts/generate_architecture.py` → loads from `assets/`
+- `.claude/skills/bmad-story-planning/scripts/create_story.py` → loads from `assets/`
 
-**Current Behavior:**
-Scripts use Python f-strings to build long markdown documents:
-```python
-def render_prd_content(data):
-    return f"""# {data['project_name']} Product Requirements Document
+New template files created:
+- `prd-script-template.md.template`
+- `epics-wrapper-template.md.template`
+- `architecture-script-template.md.template`
+- `story-script-template.md.template`
 
-{data['executive_summary']}
-...
-"""
-```
-
-**Expected Behavior** (per CLAUDE.md):
-Scripts should load Jinja2 templates from `assets/`:
-```python
-from pathlib import Path
-
-ASSETS_DIR = Path(__file__).parent.parent / "assets"
-template_path = ASSETS_DIR / "prd-template.md.jinja"
-template = template_path.read_text()
-# ... render with template engine
-```
-
-**Impact:**
-- ❌ Templates in `assets/` are never used by scripts
-- ❌ Modifying output format requires editing Python code
-- ❌ No separation between logic and presentation
-- ❌ Violates documented "scripts read templates from assets/" pattern
-
-**Workaround:**
-Templates in `assets/` are currently used by Claude conversationally when generating artifacts manually, not by the automation scripts.
-
-**Resolution:**
-Requires refactoring all 3 generators to:
-1. Load templates from `assets/` using relative paths
-2. Use a lightweight template engine (can't use Jinja2 due to zero-dependency requirement)
-3. Options:
-   - Simple string.Template (stdlib)
-   - Custom lightweight template renderer
-   - Keep inline but extract to separate template files and import
-
-**Estimated Effort:** 4-6 hours
-
-**Priority Justification:**
-Medium priority because:
-- Scripts still work correctly
-- Templates exist for manual usage
-- But violates documented architecture
-- Makes maintenance harder
+Implementation:
+- Uses `string.Template` (stdlib-only, maintains zero-dependency goal)
+- Templates loaded via `ASSETS_DIR / "template-name.md.template"`
+- Logic/loops kept in Python, presentation in template files
+- Proper separation of concerns achieved
 
 ---
 

@@ -9,12 +9,14 @@ import json
 import sys
 from datetime import datetime
 from pathlib import Path
+from string import Template
 from typing import Any, Dict, Iterable
 
 SKILLS_ROOT = Path(__file__).resolve().parents[2]  # .claude/skills/
 RUNTIME_ROOT = SKILLS_ROOT / "_runtime" / "workspace"
 ARTIFACTS_DIR = RUNTIME_ROOT / "artifacts"
 DEFAULT_OUTPUT_DIR = ARTIFACTS_DIR
+ASSETS_DIR = Path(__file__).parent.parent / "assets"
 
 
 class PRDValidationError(ValueError):
@@ -43,80 +45,30 @@ def load_json_data(json_path: str) -> Dict[str, Any]:
 
 
 def render_prd_content(data: Dict[str, Any]) -> str:
-    """Render PRD content from data without external template engine"""
-    return f"""# {data['project_name']} Product Requirements Document (PRD)
+    """Render PRD content from template in assets/"""
+    template_path = ASSETS_DIR / "prd-script-template.md.template"
+    template_str = template_path.read_text()
+    template = Template(template_str)
 
-**Author:** {data['user_name']}
-**Date:** {data['date']}
-**Project Level:** {data['project_level']}
-**Version:** 1.0.0
-
----
-
-## Goals and Background Context
-
-### Goals
-
-{data['goals']}
-
-### Background Context
-
-{data['background_context']}
-
----
-
-## Requirements
-
-### Functional Requirements
-
-{data['functional_requirements']}
-
-### Non-Functional Requirements
-
-{data['non_functional_requirements']}
-
----
-
-## User Journeys
-
-{data['user_journeys']}
-
----
-
-## UX Design Principles
-
-{data['ux_principles']}
-
----
-
-## User Interface Design Goals
-
-{data['ui_design_goals']}
-
----
-
-## Epic List
-
-{data['epic_list']}
-
-> **Note:** Detailed epic breakdown with full story specifications is available in [epics.md](./epics.md)
-
----
-
-## Out of Scope
-
-{data['out_of_scope']}
-
----
-
-_Generated via BMAD Workflow Skills (v2.1.5) using BMAD v6-alpha spec_
-_Source: https://github.com/bmad-code-org/BMAD-METHOD/tree/v6-alpha_
-_Generated: {data['date']}_
-"""
+    return template.substitute(
+        project_name=data['project_name'],
+        user_name=data['user_name'],
+        date=data['date'],
+        project_level=data['project_level'],
+        goals=data['goals'],
+        background_context=data['background_context'],
+        functional_requirements=data['functional_requirements'],
+        non_functional_requirements=data['non_functional_requirements'],
+        user_journeys=data['user_journeys'],
+        ux_principles=data['ux_principles'],
+        ui_design_goals=data['ui_design_goals'],
+        epic_list=data['epic_list'],
+        out_of_scope=data['out_of_scope']
+    )
 
 def render_epics_content(data: Dict[str, Any]) -> str:
-    """Render epics content from data without external template engine"""
-    # Build epic sections
+    """Render epics content from template in assets/"""
+    # Build epic sections (keep logic in Python for dynamic content)
     epic_sections = []
     for epic in data['epics_details']:
         # Build story sections
@@ -157,41 +109,19 @@ def render_epics_content(data: Dict[str, Any]) -> str:
 
     epics_content = '\n'.join(epic_sections)
 
-    return f"""# {data['project_name']} - Epic Breakdown
+    # Load template and substitute
+    template_path = ASSETS_DIR / "epics-wrapper-template.md.template"
+    template_str = template_path.read_text()
+    template = Template(template_str)
 
-**Author:** {data['user_name']}
-**Date:** {data['date']}
-**Project Level:** {data['project_level']}
-**Total Epics:** {len(data['epics_details'])}
-
----
-
-## Overview
-
-This document provides the complete tactical implementation roadmap for {data['project_name']}.
-Each epic contains sequenced user stories with acceptance criteria and prerequisites.
-
-**Epic Sequencing Rules:**
-1. Epic 1 establishes foundation (infrastructure, CI/CD, core setup)
-2. Subsequent epics build upon previous work
-3. No forward dependencies across epics
-
-**Story Requirements:**
-- **Vertical slices**: Each story delivers complete, testable functionality
-- **Sequential**: Stories are logically ordered within each epic
-- **AI-agent sized**: Completable in single focused session (2-4 hours)
-- **No forward dependencies**: No story depends on work from later stories
-
----
-
-{epics_content}
-
----
-
-_Generated via BMAD Workflow Skills (v2.1.5) using BMAD v6-alpha spec_
-_Source: https://github.com/bmad-code-org/BMAD-METHOD/tree/v6-alpha_
-_Generated: {data['date']}_
-"""
+    return template.substitute(
+        project_name=data['project_name'],
+        user_name=data['user_name'],
+        date=data['date'],
+        project_level=data['project_level'],
+        total_epics=len(data['epics_details']),
+        epics_content=epics_content
+    )
 
 
 def _ensure_fields(data: Dict[str, Any], fields: Iterable[str]):

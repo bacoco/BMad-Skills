@@ -1,0 +1,34 @@
+# $project_name - Epic Breakdown
+
+**Author:** $user_name
+**Date:** $date
+**Project Level:** $project_level
+**Total Epics:** $total_epics
+
+---
+
+## Overview
+
+This document provides the complete tactical implementation roadmap for $project_name.
+Each epic contains sequenced user stories with acceptance criteria and prerequisites.
+
+**Epic Sequencing Rules:**
+1. Epic 1 establishes foundation (infrastructure, CI/CD, core setup)
+2. Subsequent epics build upon previous work
+3. No forward dependencies across epics
+
+**Story Requirements:**
+- **Vertical slices**: Each story delivers complete, testable functionality
+- **Sequential**: Stories are logically ordered within each epic
+- **AI-agent sized**: Completable in single focused session (2-4 hours)
+- **No forward dependencies**: No story depends on work from later stories
+
+---
+
+$epics_content
+
+---
+
+_Generated via BMAD Workflow Skills (v2.1.5) using BMAD v6-alpha spec_
+_Source: https://github.com/bmad-code-org/BMAD-METHOD/tree/v6-alpha_
+_Generated: $date_
