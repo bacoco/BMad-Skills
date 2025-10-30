@@ -10,10 +10,17 @@ from pathlib import Path
 from collections import defaultdict, Counter
 from typing import Dict, List, Optional
 
+# Import logger
+SKILLS_ROOT = Path(__file__).resolve().parents[2]
+sys.path.insert(0, str(SKILLS_ROOT / "_core" / "tooling"))
+from logger import get_logger
+
+logger = get_logger(__name__)
+
 try:
     import yaml
 except ImportError:
-    print("Error: PyYAML not installed. Run: pip install pyyaml", file=sys.stderr)
+    logger.error("PyYAML not installed. Run: pip install pyyaml")
     sys.exit(1)
 
 
@@ -370,94 +377,107 @@ These may need trigger phrase improvements:
 def main():
     """CLI interface for metrics system"""
     import sys
+    import argparse
+
+    # Parse arguments for verbose mode
+    parser = argparse.ArgumentParser(
+        description="BMAD Skills Activation Metrics",
+        add_help=False
+    )
+    parser.add_argument('--verbose', '-v', action='store_true', help='Enable verbose logging')
+    args, remaining = parser.parse_known_args()
+
+    # Configure logger
+    if args.verbose:
+        get_logger(__name__, verbose=True)
+        logger.debug("Verbose mode enabled")
 
     metrics = ActivationMetrics()
 
-    if len(sys.argv) < 2:
-        print("Usage: activation_metrics.py [command]")
-        print("\nCommands:")
-        print("  log <skill> <trigger> <confidence> - Log an activation")
-        print("  stats                               - Show statistics")
-        print("  analyze                             - Analyze patterns")
-        print("  recent [count]                      - Show recent activations")
-        print("  export [file]                       - Export detailed report")
-        print("  clear                               - Clear all metrics")
+    if len(remaining) < 1:
+        logger.info("Usage: activation_metrics.py [command]")
+        logger.info("Commands:")
+        logger.info("  log <skill> <trigger> <confidence> - Log an activation")
+        logger.info("  stats                               - Show statistics")
+        logger.info("  analyze                             - Analyze patterns")
+        logger.info("  recent [count]                      - Show recent activations")
+        logger.info("  export [file]                       - Export detailed report")
+        logger.info("  clear                               - Clear all metrics")
         return
 
-    command = sys.argv[1]
+    command = remaining[0]
 
     if command == 'log':
-        if len(sys.argv) < 5:
-            print("Usage: log <skill> <trigger> <confidence>")
+        if len(remaining) < 4:
+            logger.error("Usage: log <skill> <trigger> <confidence>")
             return
-        skill = sys.argv[2]
-        trigger = sys.argv[3]
-        confidence_raw = sys.argv[4]
+        skill = remaining[1]
+        trigger = remaining[2]
+        confidence_raw = remaining[3]
         try:
             confidence_value = float(confidence_raw)
             metrics.log_activation(skill, trigger, confidence_value)
+            logger.info(
+                f"Logged: {skill} <- '{trigger}' "
+                f"(confidence: {confidence_value:.2f})"
+            )
         except ValueError as exc:
-            print(f"❌ Unable to log activation: {exc}")
+            logger.error(f"Unable to log activation: {exc}")
             return
-        print(
-            f"✅ Logged: {skill} <- '{trigger}' "
-            f"(confidence: {confidence_value:.2f})"
-        )
 
     elif command == 'stats':
         stats = metrics.get_stats()
-        print("\n📊 Activation Statistics\n")
-        print(f"Total: {stats['total']}")
-        print(f"Success Rate: {stats['success_rate']}%")
-        print(f"Avg Confidence: {stats['avg_confidence']}\n")
-        print("By Skill:")
+        logger.info("\n📊 Activation Statistics")
+        logger.info(f"Total: {stats['total']}")
+        logger.info(f"Success Rate: {stats['success_rate']}%")
+        logger.info(f"Avg Confidence: {stats['avg_confidence']}")
+        logger.info("\nBy Skill:")
         for skill, count in sorted(
             stats['by_skill'].items(),
             key=lambda x: x[1],
             reverse=True
         ):
             pct = (count / stats['total'] * 100) if stats['total'] > 0 else 0
-            print(f"  {skill}: {count} ({pct:.1f}%)")
+            logger.info(f"  {skill}: {count} ({pct:.1f}%)")
 
     elif command == 'analyze':
         patterns = metrics.analyze_patterns()
-        print("\n🔍 Pattern Analysis\n")
+        logger.info("\n🔍 Pattern Analysis")
         if patterns['insights']:
-            print("Insights:")
+            logger.info("Insights:")
             for insight in patterns['insights']:
-                print(f"  • {insight}")
-        print()
+                logger.info(f"  • {insight}")
         if patterns['recommendations']:
-            print("Recommendations:")
+            logger.info("\nRecommendations:")
             for rec in patterns['recommendations']:
-                print(f"  → {rec}")
+                logger.info(f"  → {rec}")
 
     elif command == 'recent':
-        count = int(sys.argv[2]) if len(sys.argv) > 2 else 10
+        count = int(remaining[1]) if len(remaining) > 1 else 10
         recent = metrics.view_recent(count)
-        print(f"\n📝 Recent {len(recent)} Activations\n")
+        logger.info(f"\n📝 Recent {len(recent)} Activations")
         for act in recent:
             status = "✅" if act['success'] else "❌"
-            print(
+            logger.info(
                 f"{status} {act['timestamp']} | {act['skill']} | "
                 f"'{act['trigger']}' | conf: {act.get('confidence', 'N/A')}"
             )
 
     elif command == 'export':
-        output = sys.argv[2] if len(sys.argv) > 2 else 'docs/activation-report.md'
+        output = remaining[1] if len(remaining) > 1 else 'docs/activation-report.md'
         report_file = metrics.export_report(output)
-        print(f"✅ Report exported to: {report_file}")
+        logger.info(f"Report exported to: {report_file}")
 
     elif command == 'clear':
         confirm = input("Clear all metrics? (yes/no): ")
         if confirm.lower() == 'yes':
             metrics.clear_metrics()
-            print("✅ Metrics cleared")
+            logger.info("Metrics cleared")
         else:
-            print("❌ Cancelled")
+            logger.warning("Cancelled")
 
     else:
-        print(f"Unknown command: {command}")
+        logger.error(f"Unknown command: {command}")
 
 
 if __name__ == '__main__':

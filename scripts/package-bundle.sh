@@ -42,6 +42,30 @@ zip -r -q "$OUTPUT" \
 
 echo ""
 echo "✅ Bundle created: $OUTPUT"
+
+# Generate SHA256 checksum
+echo ""
+echo "🔐 Generating SHA256 checksum..."
+CHECKSUM_FILE="build/SHA256SUMS"
+
+if command -v shasum &> /dev/null; then
+  # macOS/BSD
+  shasum -a 256 "$OUTPUT" > "$CHECKSUM_FILE"
+elif command -v sha256sum &> /dev/null; then
+  # Linux
+  sha256sum "$OUTPUT" > "$CHECKSUM_FILE"
+else
+  echo "⚠️  Warning: No SHA256 utility found (install coreutils)"
+  touch "$CHECKSUM_FILE"  # Create empty file
+fi
+
+if [ -s "$CHECKSUM_FILE" ]; then
+  echo "✅ Checksum saved to: $CHECKSUM_FILE"
+  cat "$CHECKSUM_FILE"
+else
+  echo "⚠️  Warning: Checksum file is empty"
+fi
+
 echo ""
 echo "📊 Bundle size:"
 du -h "$OUTPUT"
@@ -54,3 +78,6 @@ echo ""
 echo "🚀 Users can install with:"
 echo "   unzip bmad-skills-bundle.zip"
 echo "   bash scripts/install.sh"
+echo ""
+echo "🔐 Verify checksum:"
+echo "   shasum -a 256 -c build/SHA256SUMS"

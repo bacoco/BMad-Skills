@@ -25,3 +25,6 @@ docs/
 # Test reports
 test-reports/
 e2e-report.html
+htmlcov/
+coverage.xml
+.coverage

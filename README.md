@@ -1,5 +1,10 @@
 # BMAD Skills: Your AI Product Team
 
+[![Tests](https://github.com/bacoco/bmad-skills/workflows/Tests/badge.svg)](https://github.com/bacoco/bmad-skills/actions/workflows/test.yml)
+[![Release](https://github.com/bacoco/bmad-skills/workflows/Release/badge.svg)](https://github.com/bacoco/bmad-skills/actions/workflows/release.yml)
+[![Coverage](https://img.shields.io/badge/coverage-62%25-yellow.svg)](htmlcov/index.html)
+[![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
+
 **Transform ideas into shipped products through natural conversation with Claude.**
 
 From "I have an idea..." to production-ready code, BMAD guides you through research, planning, design, architecture, testing, and implementation—automatically.

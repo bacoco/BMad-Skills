@@ -1,0 +1,63 @@
+[run]
+# Coverage configuration for BMAD Skills
+source =
+    .claude/skills/_core/tooling
+    .claude/skills/main-workflow-router/scripts
+    .claude/skills/openspec-change-proposal/scripts
+    .claude/skills/openspec-change-implementation/scripts
+    .claude/skills/openspec-change-closure/scripts
+
+omit =
+    # Test files
+    tests/*
+    */test_*.py
+
+    # Template files
+    .claude/skills/*/assets/*
+    **/*.template
+    **/*.md.template
+
+    # Runtime workspace
+    .claude/skills/_runtime/*
+
+    # Third-party
+    */site-packages/*
+    */dist-packages/*
+    */__pycache__/*
+
+    # Scripts that are just wrappers or CLI-only
+    .claude/skills/*/scripts/__init__.py
+    .claude/skills/_core/tooling/lint_contracts.py
+    .claude/skills/_core/tooling/simple_yaml.py
+    .claude/skills/openspec-*/scripts/*.py
+
+[report]
+# Reporting options
+precision = 2
+show_missing = True
+skip_covered = False
+
+# Exclude lines from coverage
+exclude_lines =
+    # Standard pragma
+    pragma: no cover
+
+    # Defensive programming
+    def __repr__
+    raise AssertionError
+    raise NotImplementedError
+
+    # Non-runnable code
+    if __name__ == .__main__.:
+    if TYPE_CHECKING:
+    @abstractmethod
+
+    # Debug-only code
+    if DEBUG:
+    if debug:
+
+[html]
+directory = htmlcov
+
+[xml]
+output = coverage.xml

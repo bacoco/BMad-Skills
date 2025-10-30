@@ -1,0 +1,126 @@
+name: Release
+
+on:
+  push:
+    tags:
+      - 'v*'  # Trigger on version tags like v2.1.5
+
+permissions:
+  contents: write  # Required for creating releases
+
+jobs:
+  test:
+    name: Run Full Test Suite
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.9'
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: Run all tests
+        run: |
+          pytest tests/test_skill_metadata.py tests/test_manifest_consistency.py tests/test_template_assets.py -v
+          pytest tests/unit/ -v
+
+  release:
+    name: Create GitHub Release
+    needs: test
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+          registry-url: 'https://registry.npmjs.org'
+
+      - name: Extract version from tag
+        id: version
+        run: echo "VERSION=${GITHUB_REF#refs/tags/v}" >> $GITHUB_OUTPUT
+
+      - name: Update version in package.json
+        run: |
+          npm version ${{ steps.version.outputs.VERSION }} --no-git-tag-version
+
+      - name: Update version in manifests
+        run: |
+          # Update meta/MANIFEST.json
+          python -c "import json; data = json.load(open('meta/MANIFEST.json')); data['version'] = '${{ steps.version.outputs.VERSION }}'; json.dump(data, open('meta/MANIFEST.json', 'w'), indent=2)"
+
+          # Update .claude/skills/_config/MANIFEST.json
+          python -c "import json; data = json.load(open('.claude/skills/_config/MANIFEST.json')); data['version'] = '${{ steps.version.outputs.VERSION }}'; json.dump(data, open('.claude/skills/_config/MANIFEST.json', 'w'), indent=2)"
+
+      - name: Create distribution bundle
+        run: |
+          bash scripts/package-bundle.sh
+
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@v1
+        with:
+          name: Release v${{ steps.version.outputs.VERSION }}
+          body: |
+            ## BMAD Skills v${{ steps.version.outputs.VERSION }}
+
+            ### Installation
+
+            ```bash
+            # Global installation
+            curl -fsSL https://raw.githubusercontent.com/${{ github.repository }}/main/scripts/install-to-home.sh | bash
+
+            # Or via npm
+            npx bmad-skills
+            ```
+
+            ### Changes
+
+            See [CHANGELOG.md](https://github.com/${{ github.repository }}/blob/main/CHANGELOG.md) for details.
+          files: |
+            bmad-skills-*.tgz
+            bmad-skills-*.zip
+          draft: false
+          prerelease: false
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+  publish-npm:
+    name: Publish to npm
+    needs: release
+    runs-on: ubuntu-latest
+    if: startsWith(github.ref, 'refs/tags/v')
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+          registry-url: 'https://registry.npmjs.org'
+
+      - name: Extract version from tag
+        id: version
+        run: echo "VERSION=${GITHUB_REF#refs/tags/v}" >> $GITHUB_OUTPUT
+
+      - name: Update version in package.json
+        run: |
+          npm version ${{ steps.version.outputs.VERSION }} --no-git-tag-version
+
+      - name: Publish to npm
+        run: npm publish --access public
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+        continue-on-error: true  # Don't fail if package already published
