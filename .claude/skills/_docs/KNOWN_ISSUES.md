@@ -2,25 +2,32 @@
 
 This document tracks known limitations and technical debt in BMAD Skills that require future refactoring.
 
-## Template Usage Drift (Priority: Medium)
+## ~~Template Usage Drift~~ (RESOLVED)
 
-**Status:** ⚠️ OPEN
+**Status:** ✅ FIXED
 
 **Issue:** OpenSpec helper scripts were updated to look for `.md.template` assets after the repo cleanup, but the packaged bundle
 still shipped stale `.md.jinja` filenames. Operators running `scaffold_change.py` or `update_execution_log.py` would hit
 `FileNotFoundError` because the expected templates were missing, and documentation referenced the wrong extensions.
 
-**Impact:** Blocks OpenSpec workflows (proposal scaffolding, execution log updates) and erodes trust in documentation vs. runtime
+**Impact:** Blocked OpenSpec workflows (proposal scaffolding, execution log updates) and eroded trust in documentation vs. runtime
 behavior.
 
-**Resolution Plan:**
-1. Keep OpenSpec assets synchronized with script expectations (both using `.md.template`).
-2. Add regression coverage to packaging tests ensuring template files are present in the published bundle.
-3. Audit documentation whenever template extensions change.
+**Resolution Implemented:**
+1. ✅ All OpenSpec assets synchronized with script expectations (using `.md.template`)
+2. ✅ Added regression test coverage: `tests/test_template_assets.py`
+   - Validates all script-referenced templates exist
+   - Prevents .jinja files from being re-introduced
+   - Enforces stable template count (9 expected)
+3. ✅ Added packaging pipeline validation: `bin/prepare.js`
+   - Checks template assets before npm publish
+   - Verifies no .jinja files in bundle
+   - Fails publish if templates are missing
+4. ✅ Documentation audited and aligned
 
 **Status Updates:**
-- 2025-02: Recreated `.md.template` assets for OpenSpec scripts and aligned code/documentation.
-- TODO: Add automated verification in packaging pipeline.
+- 2025-10-30: Recreated `.md.template` assets for OpenSpec scripts and aligned code/documentation
+- 2025-10-30: Added dual-layer protection (pytest + npm prepare hook) to prevent future regressions
 
 ---
 

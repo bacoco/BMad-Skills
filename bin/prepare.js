@@ -97,6 +97,128 @@ function checkManifestVersion() {
   }
 }
 
+function checkTemplateAssets() {
+  log('\n📄 Checking template assets...', 'reset');
+
+  const skillsDir = path.join(__dirname, '..', '.claude', 'skills');
+  const entries = fs.readdirSync(skillsDir);
+
+  const skills = entries.filter(name => {
+    const fullPath = path.join(skillsDir, name);
+    return fs.statSync(fullPath).isDirectory() &&
+           name.includes('-') &&
+           !name.startsWith('_');
+  });
+
+  let allValid = true;
+  let foundCount = 0;
+  const missing = [];
+
+  // Check each skill's scripts for template references
+  skills.forEach(skill => {
+    const scriptsDir = path.join(skillsDir, skill, 'scripts');
+    if (!fs.existsSync(scriptsDir)) return;
+
+    const pyFiles = fs.readdirSync(scriptsDir).filter(f => f.endsWith('.py'));
+
+    pyFiles.forEach(pyFile => {
+      const scriptPath = path.join(scriptsDir, pyFile);
+      const content = fs.readFileSync(scriptPath, 'utf8');
+
+      // Extract template references from Python scripts
+      // Pattern: ASSET_DIR / "template-name.md.template"
+      const templateRegex = /ASSET(?:_DIR|S_DIR)\s*\/\s*["']([^"']+\.(?:template|jinja))["']/g;
+      const mapRegex = /["']([^"']+\.(?:template|jinja))["']/g;
+
+      let match;
+      const templates = new Set();
+
+      // Pattern 1: ASSET_DIR / "filename"
+      while ((match = templateRegex.exec(content)) !== null) {
+        templates.add(match[1]);
+      }
+
+      // Pattern 2: from TEMPLATE_MAP dictionaries
+      const templateMapMatch = content.match(/TEMPLATE_MAP\s*=\s*{[^}]+}/s);
+      if (templateMapMatch) {
+        let m;
+        while ((m = mapRegex.exec(templateMapMatch[0])) !== null) {
+          if (m[1].endsWith('.template') || m[1].endsWith('.jinja')) {
+            templates.add(m[1]);
+          }
+        }
+      }
+
+      // Check if templates exist
+      templates.forEach(template => {
+        const templatePath = path.join(skillsDir, skill, 'assets', template);
+        if (fs.existsSync(templatePath)) {
+          foundCount++;
+        } else {
+          missing.push({
+            skill,
+            script: pyFile,
+            template,
+          });
+          allValid = false;
+        }
+      });
+    });
+  });
+
+  if (missing.length > 0) {
+    log(`  ✗ Missing ${missing.length} templates referenced by scripts:`, 'red');
+    missing.forEach(item => {
+      log(`    - ${item.skill}/${item.script} expects: ${item.template}`, 'red');
+    });
+    return false;
+  }
+
+  // Check for .jinja files (should all be .template now)
+  const jinjaFiles = [];
+  function findJinjaFiles(dir) {
+    const entries = fs.readdirSync(dir, { withFileTypes: true });
+    entries.forEach(entry => {
+      const fullPath = path.join(dir, entry.name);
+      if (entry.isDirectory()) {
+        findJinjaFiles(fullPath);
+      } else if (entry.name.endsWith('.jinja')) {
+        jinjaFiles.push(path.relative(skillsDir, fullPath));
+      }
+    });
+  }
+  findJinjaFiles(skillsDir);
+
+  if (jinjaFiles.length > 0) {
+    log(`  ✗ Found ${jinjaFiles.length} .jinja files (should be .template):`, 'red');
+    jinjaFiles.forEach(file => log(`    - ${file}`, 'red'));
+    allValid = false;
+  }
+
+  // Count total .template files
+  const templateFiles = [];
+  function findTemplateFiles(dir) {
+    const entries = fs.readdirSync(dir, { withFileTypes: true });
+    entries.forEach(entry => {
+      const fullPath = path.join(dir, entry.name);
+      if (entry.isDirectory()) {
+        findTemplateFiles(fullPath);
+      } else if (entry.name.endsWith('.template')) {
+        templateFiles.push(fullPath);
+      }
+    });
+  }
+  findTemplateFiles(skillsDir);
+
+  if (allValid) {
+    log(`  ✓ All ${foundCount} script-referenced templates exist`, 'green');
+    log(`  ✓ Found ${templateFiles.length} total .template files`, 'green');
+    log(`  ✓ No .jinja files found (all migrated to .template)`, 'green');
+  }
+
+  return allValid;
+}
+
 function main() {
   log('🚀 Preparing BMAD Skills for publication', 'reset');
 
@@ -104,6 +226,7 @@ function main() {
     checkRequiredFiles(),
     checkSkillStructure(),
     checkManifestVersion(),
+    checkTemplateAssets(),
   ];
 
   const allPassed = checks.every(result => result);
