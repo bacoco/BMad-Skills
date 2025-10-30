@@ -161,6 +161,12 @@ All Python scripts in `scripts/` directories must use:
 SKILLS_ROOT = Path(__file__).resolve().parents[2]  # .claude/skills/
 RUNTIME_ROOT = SKILLS_ROOT / "_runtime" / "workspace"
 CORE_DIR = SKILLS_ROOT / "_core"
+
+# Workspace subdirectories
+ARTIFACTS_DIR = RUNTIME_ROOT / "artifacts"  # BMAD planning artifacts
+STORIES_DIR = RUNTIME_ROOT / "stories"      # BMAD developer stories
+CHANGES_DIR = RUNTIME_ROOT / "changes"      # OpenSpec change proposals
+SPECS_DIR = RUNTIME_ROOT / "specs"          # OpenSpec specifications
 ```
 
 **Never** use `parents[4]` or assume repo root structure - skills must work when installed anywhere.
@@ -223,10 +229,11 @@ The bundle is distributed as a complete package containing all 12 skills. Users 
 curl -fsSL https://raw.githubusercontent.com/bacoco/bmad-skills/main/scripts/install-to-home.sh | bash
 ```
 
-The installation creates:
-- Runtime workspace at `_runtime/workspace/`
-- Artifacts directory at `_runtime/artifacts/`
-- Stories directory at `_runtime/stories/`
+The installation creates a unified workspace at `_runtime/workspace/` with the following structure:
+- `_runtime/workspace/artifacts/` - BMAD planning artifacts (PRD, architecture, etc.)
+- `_runtime/workspace/stories/` - BMAD developer stories
+- `_runtime/workspace/changes/` - OpenSpec change proposals
+- `_runtime/workspace/specs/` - OpenSpec specifications
 
 ## Marketplace Compliance
 
