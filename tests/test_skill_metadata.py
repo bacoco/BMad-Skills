@@ -71,6 +71,15 @@ def test_version_alignment(entry, frontmatter, _):
     )
 
 
+@pytest.mark.parametrize("entry, frontmatter, _", SKILL_DATA, ids=SKILL_IDS)
+def test_description_alignment(entry, frontmatter, _):
+    assert "description" in frontmatter, f"{entry['id']} is missing description in SKILL.md"
+    assert frontmatter["description"] == entry["description"], (
+        f"Description mismatch for {entry['id']}: SKILL.md has {frontmatter['description']}, "
+        f"but MANIFEST.json has {entry['description']}"
+    )
+
+
 @pytest.mark.parametrize("entry, _, body", SKILL_DATA, ids=SKILL_IDS)
 def test_when_to_invoke_section(entry, _, body):
     assert "## When to Invoke" in body, f"{entry['id']} is missing a '## When to Invoke' section"

@@ -76,6 +76,20 @@ class TestManifestConsistency(unittest.TestCase):
             msg="Version fields must match between SKILL.md and MANIFEST.json",
         )
 
+    def test_description_alignment(self) -> None:
+        mismatches = []
+        for skill in self.manifest["skills"]:
+            skill_dir = REPO_ROOT / skill["path"]
+            frontmatter = load_skill_frontmatter(skill_dir)
+            if frontmatter.get("description") != skill.get("description"):
+                mismatches.append(skill["id"])
+
+        self.assertListEqual(
+            mismatches,
+            [],
+            msg="Description fields must match between SKILL.md and MANIFEST.json",
+        )
+
     def test_when_to_invoke_section_present(self) -> None:
         missing_sections = []
         for skill in self.manifest["skills"]:
