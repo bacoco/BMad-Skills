@@ -6,9 +6,14 @@
 - Restrict `allowed-tools` to the minimum necessary for the skill.
 
 ## File Layout
-Each skill must include `SKILL.md`, `REFERENCE.md`, `WORKFLOW.md`, `CHECKLIST.md`, `assets/`, and `scripts/`.
-- `assets/` must contain Jinja2 templates (.md.jinja) for all declared outputs
-- `scripts/` must contain automation tooling or a README explaining why scripts aren't needed
+Each skill MUST include the following directories and files:
+- `SKILL.md` - Contract with YAML frontmatter and process documentation
+- `REFERENCE.md` - Deep domain knowledge and extended context
+- `WORKFLOW.md` - Human-readable step sequence
+- `CHECKLIST.md` - Quality gates before delivering artifacts
+- `assets/` - MUST contain Jinja2 templates (.md.jinja) for all declared outputs
+- `scripts/` - MUST contain either automation tooling OR a README.md explaining why automation is not applicable
+
 Reference deep material from `SKILL.md` rather than embedding it directly.
 
 ## Writing Principles

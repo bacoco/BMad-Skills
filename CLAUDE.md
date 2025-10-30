@@ -123,10 +123,8 @@ Every skill MUST contain:
 2. **REFERENCE.md** - Deep domain knowledge (loaded only when needed)
 3. **WORKFLOW.md** - Human-readable step sequence
 4. **CHECKLIST.md** - Quality gates before delivering artifacts
-
-Optional:
-- `assets/` - Templates for consistent output generation
-- `scripts/` - Python scripts for deterministic operations
+5. **assets/** - Templates for consistent output generation (required, may contain placeholder templates)
+6. **scripts/** - Python scripts for deterministic operations (required, must contain either automation scripts or README explaining why automation is not needed)
 
 ## Editing Skills
 

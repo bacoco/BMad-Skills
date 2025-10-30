@@ -92,6 +92,8 @@ If essential context is missing, gather it before deeper synthesis.
 4. Document open questions, assumptions, and risks with recommended owners.
 5. Deliver summary plus links to created artifacts for the orchestrator and stakeholders.
 
+**Note on automation:** This skill currently operates through collaborative conversation using templates. No automation scripts are required—artifacts are generated manually using Jinja2 templates from `assets/`. See `scripts/README.md` for future automation roadmap.
+
 ## Quality Gates
 Confirm `CHECKLIST.md` is satisfied before signaling readiness for planning. Missing data or low confidence requires escalation.
 

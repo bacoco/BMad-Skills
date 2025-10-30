@@ -86,6 +86,8 @@ Provide risk-focused quality strategies, acceptance tests, and governance that e
 4. Author executable artifacts (ATDD scenarios, scripts, dashboards) or instructions.
 5. Partner with development-execution and orchestrator to integrate quality gates and track follow-ups.
 
+**Note on automation:** This skill currently operates through quality planning conversation using templates. No automation scripts are required—test strategies and ATDD scenarios are created manually using templates from `assets/`. See `scripts/README.md` for future automation roadmap.
+
 ## Quality Gates
 Ensure all checklist items are satisfied before sign-off. Traceability from requirements to test coverage must be explicit.
 

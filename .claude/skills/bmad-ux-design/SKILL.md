@@ -81,6 +81,8 @@ Design user experiences that align with BMAD requirements, documenting flows, in
 4. Document component specifications and content rules tied to requirements.
 5. Define validation approach (tests, instrumentation, success signals) and share with delivery-planning and quality-assurance skills.
 
+**Note on automation:** This skill currently operates through collaborative design conversation using templates. No automation scripts are required—wireframes and design artifacts are created manually using templates from `assets/`. See `scripts/README.md` for future automation roadmap.
+
 ## Quality Gates
 Ensure every UX decision traces back to requirements or constraints. Run `CHECKLIST.md` prior to handoff.
 
