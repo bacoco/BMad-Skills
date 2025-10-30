@@ -3,7 +3,7 @@
     {
       "id": "main-workflow-router",
       "path": ".claude/skills/main-workflow-router",
-      "version": "2.1.7",
+      "version": "2.1.8",
       "allowed-tools": [
         "Read",
         "Write",
@@ -16,7 +16,7 @@
     {
       "id": "bmad-discovery-research",
       "path": ".claude/skills/bmad-discovery-research",
-      "version": "2.1.7",
+      "version": "2.1.8",
       "allowed-tools": [
         "Read",
         "Write",
@@ -28,7 +28,7 @@
     {
       "id": "bmad-product-planning",
       "path": ".claude/skills/bmad-product-planning",
-      "version": "2.1.7",
+      "version": "2.1.8",
       "allowed-tools": [
         "Read",
         "Write",
@@ -40,7 +40,7 @@
     {
       "id": "bmad-ux-design",
       "path": ".claude/skills/bmad-ux-design",
-      "version": "2.1.7",
+      "version": "2.1.8",
       "allowed-tools": [
         "Read",
         "Write",
@@ -52,7 +52,7 @@
     {
       "id": "bmad-architecture-design",
       "path": ".claude/skills/bmad-architecture-design",
-      "version": "2.1.7",
+      "version": "2.1.8",
       "allowed-tools": [
         "Read",
         "Write",
@@ -64,7 +64,7 @@
     {
       "id": "bmad-test-strategy",
       "path": ".claude/skills/bmad-test-strategy",
-      "version": "2.1.7",
+      "version": "2.1.8",
       "allowed-tools": [
         "Read",
         "Write",
@@ -76,7 +76,7 @@
     {
       "id": "bmad-story-planning",
       "path": ".claude/skills/bmad-story-planning",
-      "version": "2.1.7",
+      "version": "2.1.8",
       "allowed-tools": [
         "Read",
         "Write",
@@ -88,7 +88,7 @@
     {
       "id": "bmad-development-execution",
       "path": ".claude/skills/bmad-development-execution",
-      "version": "2.1.7",
+      "version": "2.1.8",
       "allowed-tools": [
         "Read",
         "Write",
@@ -101,7 +101,7 @@
     {
       "id": "core-skill-creation",
       "path": ".claude/skills/core-skill-creation",
-      "version": "2.1.7",
+      "version": "2.1.8",
       "allowed-tools": [
         "Read",
         "Write",
@@ -114,7 +114,7 @@
     {
       "id": "openspec-change-proposal",
       "path": ".claude/skills/openspec-change-proposal",
-      "version": "2.1.7",
+      "version": "2.1.8",
       "allowed-tools": [
         "Read",
         "Write",
@@ -127,7 +127,7 @@
     {
       "id": "openspec-change-implementation",
       "path": ".claude/skills/openspec-change-implementation",
-      "version": "2.1.7",
+      "version": "2.1.8",
       "allowed-tools": [
         "Read",
         "Write",
@@ -140,7 +140,7 @@
     {
       "id": "openspec-change-closure",
       "path": ".claude/skills/openspec-change-closure",
-      "version": "2.1.7",
+      "version": "2.1.8",
       "allowed-tools": [
         "Read",
         "Write",

@@ -108,7 +108,6 @@ Every skill MUST contain:
    ```yaml
    name: skill-name
    description: Brief description with trigger keywords
-   version: 1.0.0
    allowed-tools: ["Read", "Write", "Grep"] # or ["Read", "Write", "Grep", "Bash"]
    metadata:
      auto-invoke: true
@@ -134,11 +133,11 @@ Every skill MUST contain:
 2. **Update BOTH manifests:**
    - `.claude/skills/_config/MANIFEST.json`
    - `meta/MANIFEST.json`
-3. **Increment version** in:
-   - SKILL.md frontmatter
-   - Both MANIFEST.json files
+3. **Increment version** in both MANIFEST.json files (version is managed centrally, not in SKILL.md)
 4. **Validate** with `quick_validate.py`
 5. **Test** that paths resolve correctly
+
+**Note:** Version numbers are maintained only in `package.json` and the two `MANIFEST.json` files. SKILL.md frontmatter does not include a version field.
 
 ### Tool Permission Policy (Security)
 
@@ -180,7 +179,6 @@ From `.claude/skills/_config/STYLE-GUIDE.md`:
 - Keep SKILL.md under ~500 lines (move details to REFERENCE.md)
 - Address the assistant in second person ("You")
 - Scripts should read templates from `assets/` using relative paths
-- Update version field when behavior changes materially
 
 ## Complexity Levels (BMAD Levels)
 

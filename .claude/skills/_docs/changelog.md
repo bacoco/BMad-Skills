@@ -1,5 +1,35 @@
 # Changelog
 
+## Version 2.1.8 - Critical OpenSpec Repair & Final Version Cleanup (2025-10-30)
+
+**Patch Release**: Restore broken OpenSpec functionality + eliminate all hardcoded versions
+
+**Changes**:
+- 🚨 **CRITICAL FIX: Restored OpenSpec templates**
+  - Restored 5 essential .jinja template files deleted in v2.1.7
+  - OpenSpec scripts (scaffold_change.py, update_execution_log.py, archive_change.py) now functional again
+  - These are simple source files copied by scripts, not Jinja2 template engines
+  - Files restored: proposal-template, tasks-template, spec-delta-template, execution-log-template, archive-template
+- 🧹 **Removed ALL hardcoded version numbers from generated content**
+  - Removed "Version: 2.1.6" field from prd-script-template.md.template
+  - Removed "Version: 2.1.6" field from architecture-script-template.md.template
+  - Generated PRDs and architecture docs no longer display version numbers
+- 📝 **Updated CLAUDE.md to reflect reality**
+  - Removed `version:` field from SKILL.md frontmatter example
+  - Removed instructions to "Increment version in SKILL.md"
+  - Clarified that version is ONLY in package.json + MANIFEST.json files
+  - Added explicit note about centralized version management
+
+**Impact**:
+- OpenSpec workflow fully restored and operational
+- Single source of truth: package.json (2.1.8) + 2 MANIFEST.json files (2.1.8)
+- Zero version numbers in generated documentation
+- Documentation accurately reflects system design
+- No more version drift between files
+
+**Why v2.1.7 broke OpenSpec:**
+Deleted ALL .jinja files including OpenSpec templates that are simple sources (not template engines). OpenSpec scripts use shutil.copyfile() to copy these templates, causing FileNotFoundError when missing.
+
 ## Version 2.1.7 - Version Cleanup & Template Consolidation (2025-10-30)
 
 **Patch Release**: Complete removal of hardcoded versions and obsolete templates
