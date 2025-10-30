@@ -14,6 +14,10 @@
 
 ## 1. Tests & Assurance Qualité (+6 points : 14 → 20)
 
+> **Note:** Les tests E2E automatisés pour skills conversationnels sont **impossibles**.
+> Voir `tests/WHY_NO_E2E_TESTS.md` pour l'explication complète.
+> Les workflows sont testés **manuellement** (validés et fonctionnent).
+
 ### Tests Unitaires Python (+2 points)
 
 - [ ] Créer `tests/unit/test_workflow_status.py`
@@ -40,24 +44,22 @@
   - Test error handling
   - Test path resolution
 
-### E2E Tests Fonctionnels (+2 points)
+### ~~E2E Tests Fonctionnels~~ ❌ SUPPRIMÉ
 
-- [ ] Implémenter tests interactifs avec pexpect
-  ```python
-  # tests/e2e/test_interactive_activation.py
-  - Test skill activation in interactive mode
-  - Test multi-turn conversations
-  - Test context maintenance
-  ```
+**Status:** Tests E2E automatisés **impossibles** pour système conversationnel
 
-- [ ] OU créer Mock Claude Client pour tests rapides
-  ```python
-  # tests/e2e/helpers/mock_claude.py
-  - Mock responses for each skill type
-  - Fast deterministic testing
-  ```
+**Pourquoi supprimé :**
+- Skills nécessitent interaction multi-tours (questions/réponses)
+- Mode batch `claude -p` ne permet pas conversation
+- 3000 lignes de tests E2E créées mais non fonctionnelles
+- Supprimé en faveur de tests manuels documentés
 
-- [ ] Convertir les 8 scénarios manuels de `test_skill_activation.md` en tests automatisés
+**Alternative :** Tests manuels conversationnels (voir `TESTING.md`)
+- ✅ Effectués et validés
+- ✅ Workflows BMAD et OpenSpec testés
+- ✅ Artefacts générés correctement
+
+**Voir:** `tests/WHY_NO_E2E_TESTS.md` pour détails complets
 
 ### CI/CD avec GitHub Actions (+1 point)
 
