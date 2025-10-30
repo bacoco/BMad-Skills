@@ -1,7 +1,7 @@
 ---
 name: bmad-pm
 description: Creates PRDs and plans features.
-version: 2.1.2
+version: 2.1.3
 allowed-tools: ["Read", "Write", "Grep"]
 metadata:
   auto-invoke: true

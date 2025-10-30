@@ -11,11 +11,10 @@ from datetime import datetime
 from pathlib import Path
 from typing import Any, Dict, Iterable
 
-from jinja2 import Template, TemplateError
-
 SKILLS_ROOT = Path(__file__).resolve().parents[2]  # .claude/skills/
-RUNTIME_ROOT = SKILLS_ROOT / "_runtime"
-DEFAULT_OUTPUT_DIR = RUNTIME_ROOT / "artifacts"
+RUNTIME_ROOT = SKILLS_ROOT / "_runtime" / "workspace"
+ARTIFACTS_DIR = RUNTIME_ROOT.parent / "artifacts"
+DEFAULT_OUTPUT_DIR = ARTIFACTS_DIR  # Backwards compatibility
 
 
 class PRDValidationError(ValueError):
@@ -43,19 +42,156 @@ def load_json_data(json_path: str) -> Dict[str, Any]:
     return payload
 
 
-def load_template(template_path: Path) -> Template:
-    """Load a Jinja2 template from disk."""
+def render_prd_content(data: Dict[str, Any]) -> str:
+    """Render PRD content from data without external template engine"""
+    return f"""# {data['project_name']} Product Requirements Document (PRD)
 
-    if not template_path.exists():
-        raise FileNotFoundError(f"Template not found: {template_path}")
+**Author:** {data['user_name']}
+**Date:** {data['date']}
+**Project Level:** {data['project_level']}
+**Version:** 1.0.0
 
-    with open(template_path, 'r') as handle:
-        try:
-            return Template(handle.read())
-        except TemplateError as exc:
-            raise PRDValidationError(
-                f"Template could not be parsed: {template_path}"
-            ) from exc
+---
+
+## Goals and Background Context
+
+### Goals
+
+{data['goals']}
+
+### Background Context
+
+{data['background_context']}
+
+---
+
+## Requirements
+
+### Functional Requirements
+
+{data['functional_requirements']}
+
+### Non-Functional Requirements
+
+{data['non_functional_requirements']}
+
+---
+
+## User Journeys
+
+{data['user_journeys']}
+
+---
+
+## UX Design Principles
+
+{data['ux_principles']}
+
+---
+
+## User Interface Design Goals
+
+{data['ui_design_goals']}
+
+---
+
+## Epic List
+
+{data['epic_list']}
+
+> **Note:** Detailed epic breakdown with full story specifications is available in [epics.md](./epics.md)
+
+---
+
+## Out of Scope
+
+{data['out_of_scope']}
+
+---
+
+_Generated via BMAD Workflow Skills (v1.0.0) using BMAD v6-alpha spec_
+_Source: https://github.com/bmad-code-org/BMAD-METHOD/tree/v6-alpha_
+_Generated: {data['date']}_
+"""
+
+def render_epics_content(data: Dict[str, Any]) -> str:
+    """Render epics content from data without external template engine"""
+    # Build epic sections
+    epic_sections = []
+    for epic in data['epics_details']:
+        # Build story sections
+        story_sections = []
+        for story in epic['stories']:
+            # Build acceptance criteria
+            ac_lines = []
+            for idx, ac in enumerate(story['acceptance_criteria'], start=1):
+                ac_lines.append(f"{idx}. {ac}")
+            acceptance_criteria = '\n'.join(ac_lines)
+
+            # Optional prerequisites
+            prereq_section = ''
+            if story.get('prerequisites'):
+                prereq_section = f"\n\n**Prerequisites:** {story['prerequisites']}"
+
+            story_sections.append(f"""#### Story {epic['epic_num']}.{story['story_num']}: {story['story_title']}
+
+{story['user_story']}
+
+**Acceptance Criteria:**
+{acceptance_criteria}
+{prereq_section}
+
+---
+""")
+
+        stories_content = '\n'.join(story_sections)
+        epic_sections.append(f"""## Epic {epic['epic_num']}: {epic['epic_title']}
+
+### Goal
+{epic['epic_goal']}
+
+### Stories
+
+{stories_content}
+""")
+
+    epics_content = '\n'.join(epic_sections)
+
+    return f"""# {data['project_name']} - Epic Breakdown
+
+**Author:** {data['user_name']}
+**Date:** {data['date']}
+**Project Level:** {data['project_level']}
+**Total Epics:** {len(data['epics_details'])}
+
+---
+
+## Overview
+
+This document provides the complete tactical implementation roadmap for {data['project_name']}.
+Each epic contains sequenced user stories with acceptance criteria and prerequisites.
+
+**Epic Sequencing Rules:**
+1. Epic 1 establishes foundation (infrastructure, CI/CD, core setup)
+2. Subsequent epics build upon previous work
+3. No forward dependencies across epics
+
+**Story Requirements:**
+- **Vertical slices**: Each story delivers complete, testable functionality
+- **Sequential**: Stories are logically ordered within each epic
+- **AI-agent sized**: Completable in single focused session (2-4 hours)
+- **No forward dependencies**: No story depends on work from later stories
+
+---
+
+{epics_content}
+
+---
+
+_Generated via BMAD Workflow Skills (v1.0.0) using BMAD v6-alpha spec_
+_Source: https://github.com/bmad-code-org/BMAD-METHOD/tree/v6-alpha_
+_Generated: {data['date']}_
+"""
 
 
 def _ensure_fields(data: Dict[str, Any], fields: Iterable[str]):
@@ -137,10 +273,7 @@ def generate_prd(data: Dict[str, Any], output_dir: str = None) -> Path:
     output_path = Path(output_dir) if output_dir else DEFAULT_OUTPUT_DIR
     output_path.mkdir(parents=True, exist_ok=True)
 
-    template_path = Path(__file__).parent.parent / 'assets/prd-template.md.jinja'
-    template = load_template(template_path)
-
-    prd_content = template.render(**data)
+    prd_content = render_prd_content(data)
 
     prd_file = output_path / 'PRD.md'
     prd_file.write_text(prd_content)
@@ -155,10 +288,7 @@ def generate_epics(data: Dict[str, Any], output_dir: str = None) -> Path:
     output_path = Path(output_dir) if output_dir else DEFAULT_OUTPUT_DIR
     output_path.mkdir(parents=True, exist_ok=True)
 
-    template_path = Path(__file__).parent.parent / 'assets/epic-roadmap-template.md.jinja'
-    template = load_template(template_path)
-
-    epics_content = template.render(**data)
+    epics_content = render_epics_content(data)
 
     epics_file = output_path / 'epics.md'
     epics_file.write_text(epics_content)
@@ -190,7 +320,7 @@ def main():
     try:
         prd_file = generate_prd(data, output_dir)
         epics_file = generate_epics(data, output_dir)
-    except (FileNotFoundError, PRDValidationError, TemplateError) as exc:
+    except (FileNotFoundError, PRDValidationError) as exc:
         print(f"❌ Failed to generate documents: {exc}")
         sys.exit(1)
 

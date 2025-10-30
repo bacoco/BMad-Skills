@@ -1,7 +1,7 @@
 ---
 name: bmad-analyst
 description: Brainstorms ideas and researches projects.
-version: 2.1.2
+version: 2.1.3
 allowed-tools: ["Read", "Write", "Grep"]
 metadata:
   auto-invoke: true

@@ -10,8 +10,9 @@ from pathlib import Path
 from datetime import datetime
 
 SKILLS_ROOT = Path(__file__).resolve().parents[2]  # .claude/skills/
-RUNTIME_ROOT = SKILLS_ROOT / "_runtime"
-DEFAULT_ARTIFACTS_DIR = RUNTIME_ROOT / "artifacts"
+RUNTIME_ROOT = SKILLS_ROOT / "_runtime" / "workspace"
+ARTIFACTS_DIR = RUNTIME_ROOT.parent / "artifacts"
+DEFAULT_ARTIFACTS_DIR = ARTIFACTS_DIR  # Backwards compatibility
 
 class SprintStatus:
     """Manages BMAD sprint status YAML file"""

@@ -1,7 +1,7 @@
 ---
 name: bmad-stories
 description: Breaks epics into developer stories.
-version: 2.1.2
+version: 2.1.3
 allowed-tools: ["Read", "Write", "Grep"]
 metadata:
   auto-invoke: true
