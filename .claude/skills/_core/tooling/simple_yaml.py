@@ -1,9 +1,24 @@
 #!/usr/bin/env python3
 """
-Simple YAML parser and dumper using stdlib only (no PyYAML dependency)
-Supports basic YAML features: scalars, lists, nested dicts, booleans, numbers
-Does NOT support: anchors, multi-line strings, complex YAML features
+DEPRECATED: This module is deprecated and should not be used.
+
+This was a homemade YAML parser that attempted to avoid PyYAML dependency,
+but it had numerous bugs and didn't handle complex YAML correctly.
+
+USE PyYAML INSTEAD:
+    import yaml
+    data = yaml.safe_load(text)
+    yaml.dump(data, file)
+
+This file is kept for backwards compatibility only and will be removed in a future version.
 """
+
+import warnings
+warnings.warn(
+    "simple_yaml is deprecated. Use PyYAML instead (import yaml).",
+    DeprecationWarning,
+    stacklevel=2
+)
 
 import json
 from typing import Any, Dict, List, Union

@@ -1,5 +1,8 @@
 # Development dependencies only (not required by the skills bundle)
 pytest>=7.4.0
+pytest-timeout>=2.1.0
+pyyaml>=6.0
 
-# Note: PyYAML and Jinja2 removed to eliminate external dependencies.
-# The validator uses stdlib only. Templates are processed by Claude, not Python scripts.
+# Note: These dependencies are for development tooling (validation, testing).
+# The skills bundle itself has no Python dependencies - skills are executed by Claude.
+# Templates are processed by Claude, not Python scripts.

@@ -9,10 +9,13 @@ import sys
 from pathlib import Path
 from datetime import datetime
 
-# Import simple_yaml (stdlib-only YAML parser)
+try:
+    import yaml
+except ImportError:
+    print("Error: PyYAML not installed. Run: pip install pyyaml", file=sys.stderr)
+    sys.exit(1)
+
 SKILLS_ROOT = Path(__file__).resolve().parents[2]  # .claude/skills/
-sys.path.insert(0, str(SKILLS_ROOT / "_core" / "tooling"))
-import simple_yaml as yaml
 
 RUNTIME_ROOT = SKILLS_ROOT / "_runtime" / "workspace"
 ARTIFACTS_DIR = RUNTIME_ROOT / "artifacts"

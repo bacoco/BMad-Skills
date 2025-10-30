@@ -10,10 +10,11 @@ from pathlib import Path
 from collections import defaultdict, Counter
 from typing import Dict, List, Optional
 
-# Import simple_yaml (stdlib-only YAML parser)
-TOOLING_DIR = Path(__file__).parent
-sys.path.insert(0, str(TOOLING_DIR))
-import simple_yaml as yaml
+try:
+    import yaml
+except ImportError:
+    print("Error: PyYAML not installed. Run: pip install pyyaml", file=sys.stderr)
+    sys.exit(1)
 
 
 class ActivationMetrics:

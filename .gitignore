@@ -5,3 +5,20 @@ __pycache__/
 /dist/marketplace/*
 !/dist/marketplace/README.md
 .DS_Store
+
+# Pytest
+.pytest_cache/
+htmlcov/
+.coverage
+*.cover
+
+# E2E test artifacts
+tests/e2e/.pytest_cache/
+.claude/skills/_runtime/workspace/artifacts/*.md
+.claude/skills/_runtime/workspace/stories/*.md
+.claude/skills/_runtime/workspace/changes/*/
+.claude/skills/_runtime/workspace/specs/*/
+
+# Test reports
+test-reports/
+e2e-report.html

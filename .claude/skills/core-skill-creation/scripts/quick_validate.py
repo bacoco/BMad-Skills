@@ -1,7 +1,8 @@
 #!/usr/bin/env python3
 """
-Quick validation script for skills - minimal version
-Uses stdlib only, no external dependencies (PyYAML-free)
+Quick validation script for skills
+
+Validates skill structure, frontmatter, and required files.
 """
 
 import sys
@@ -9,15 +10,13 @@ import os
 import re
 from pathlib import Path
 
-# Add _core/tooling to path to import simple_yaml
-SKILLS_ROOT = Path(__file__).resolve().parents[2]  # .claude/skills/
-sys.path.insert(0, str(SKILLS_ROOT / "_core" / "tooling"))
-
 try:
-    import simple_yaml
+    import yaml
 except ImportError as e:
-    print(f"Error: Could not import simple_yaml from _core/tooling: {e}")
+    print(f"Error: PyYAML not installed. Run: pip install pyyaml")
     sys.exit(1)
+
+SKILLS_ROOT = Path(__file__).resolve().parents[2]  # .claude/skills/
 
 def validate_skill(skill_path):
     """Basic validation of a skill"""
@@ -40,9 +39,9 @@ def validate_skill(skill_path):
 
     frontmatter_text = match.group(1)
 
-    # Parse YAML frontmatter using shared simple_yaml module
+    # Parse YAML frontmatter
     try:
-        frontmatter = simple_yaml.safe_load(frontmatter_text)
+        frontmatter = yaml.safe_load(frontmatter_text)
         if not isinstance(frontmatter, dict):
             return False, "Frontmatter must be a key/value mapping"
     except Exception as e:

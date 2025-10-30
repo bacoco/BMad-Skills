@@ -32,7 +32,13 @@
     "LICENSE"
   ],
   "scripts": {
-    "test": "pytest tests/",
+    "test": "pytest tests/ -m 'not e2e'",
+    "test:unit": "pytest tests/ -m 'unit or integration' -v",
+    "test:e2e": "pytest tests/e2e/ -v",
+    "test:e2e:smoke": "pytest tests/e2e/ -m smoke --maxfail=1 -v",
+    "test:e2e:bmad": "pytest tests/e2e/ -m bmad -v",
+    "test:e2e:openspec": "pytest tests/e2e/ -m openspec -v",
+    "test:all": "pytest tests/ -v",
     "lint": "python3 .claude/skills/_core/tooling/lint_contracts.py",
     "validate": "python3 .claude/skills/core-skill-creation/scripts/quick_validate.py",
     "prepare": "node bin/prepare.js"
