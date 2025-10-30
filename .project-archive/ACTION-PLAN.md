@@ -45,7 +45,7 @@
 
 **Steps:**
 1. Author `docs/bmad-workflow-status.md` with sample phase entries.
-2. Reference the template inside `.claude/skills/bmad-orchestrator/SKILL.md` and `doc/conversational-flow.md`.
+2. Reference the template inside `.claude/skills/main-workflow-router/SKILL.md` and `doc/conversational-flow.md`.
 
 **Estimated time:** 1 hour.
 

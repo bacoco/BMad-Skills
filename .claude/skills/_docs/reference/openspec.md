@@ -41,7 +41,7 @@ Use OpenSpec instead of BMAD when:
 
 ## The 3 Stages
 
-### Stage 1: Creating Changes (openspec-propose)
+### Stage 1: Creating Changes (openspec-change-proposal)
 
 **Triggered by**: "Add a...", "Fix the...", "Change the..."
 
@@ -75,7 +75,7 @@ openspec/changes/[feature-name]/
 
 **Approval Gate**: ⚠️ Must be approved before implementation
 
-### Stage 2: Implementing Changes (openspec-implement)
+### Stage 2: Implementing Changes (openspec-change-implementation)
 
 **Triggered by**: User approves proposal
 
@@ -89,7 +89,7 @@ openspec/changes/[feature-name]/
 
 **Critical Rule**: Follow tasks.md in exact order - no skipping
 
-### Stage 3: Archiving Changes (openspec-archive)
+### Stage 3: Archiving Changes (openspec-change-closure)
 
 **Triggered by**: Change deployed to production
 
@@ -119,7 +119,7 @@ This is perfect for OpenSpec!
 Let me create a change proposal...
 ```
 
-### Stage 1: Proposal (openspec-propose)
+### Stage 1: Proposal (openspec-change-proposal)
 
 **Creates**: `openspec/changes/profile-search-filters/`
 
@@ -175,7 +175,7 @@ I've created an OpenSpec proposal for profile-search-filters:
 Approve to proceed with implementation?
 ```
 
-### Stage 2: Implementation (openspec-implement)
+### Stage 2: Implementation (openspec-change-implementation)
 
 **User**: "Approved, implement it"
 
@@ -212,7 +212,7 @@ Files changed:
 Ready for deployment!
 ```
 
-### Stage 3: Archive (openspec-archive)
+### Stage 3: Archive (openspec-change-closure)
 
 **User**: "Deployed to prod"
 

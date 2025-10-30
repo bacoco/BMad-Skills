@@ -1,8 +1,8 @@
 {
   "skills": [
     {
-      "id": "bmad-orchestrator",
-      "path": ".claude/skills/bmad-orchestrator",
+      "id": "main-workflow-router",
+      "path": ".claude/skills/main-workflow-router",
       "version": "2.1.4",
       "allowed-tools": [
         "Read",
@@ -14,8 +14,8 @@
       "description": "Routes work to OpenSpec (L0-1) or BMAD (L2-4). Tracks status and guides through phases."
     },
     {
-      "id": "bmad-analyst",
-      "path": ".claude/skills/bmad-analyst",
+      "id": "bmad-discovery-research",
+      "path": ".claude/skills/bmad-discovery-research",
       "version": "2.1.4",
       "allowed-tools": [
         "Read",
@@ -26,8 +26,8 @@
       "description": "Brainstorms ideas and researches projects."
     },
     {
-      "id": "bmad-pm",
-      "path": ".claude/skills/bmad-pm",
+      "id": "bmad-product-planning",
+      "path": ".claude/skills/bmad-product-planning",
       "version": "2.1.4",
       "allowed-tools": [
         "Read",
@@ -38,8 +38,8 @@
       "description": "Creates PRDs and plans features."
     },
     {
-      "id": "bmad-ux",
-      "path": ".claude/skills/bmad-ux",
+      "id": "bmad-ux-design",
+      "path": ".claude/skills/bmad-ux-design",
       "version": "2.1.4",
       "allowed-tools": [
         "Read",
@@ -50,8 +50,8 @@
       "description": "Designs UX and creates wireframes."
     },
     {
-      "id": "bmad-architecture",
-      "path": ".claude/skills/bmad-architecture",
+      "id": "bmad-architecture-design",
+      "path": ".claude/skills/bmad-architecture-design",
       "version": "2.1.4",
       "allowed-tools": [
         "Read",
@@ -62,8 +62,8 @@
       "description": "Creates technical architecture and system design."
     },
     {
-      "id": "bmad-tea",
-      "path": ".claude/skills/bmad-tea",
+      "id": "bmad-test-strategy",
+      "path": ".claude/skills/bmad-test-strategy",
       "version": "2.1.4",
       "allowed-tools": [
         "Read",
@@ -74,8 +74,8 @@
       "description": "Creates test strategy and ATDD scenarios."
     },
     {
-      "id": "bmad-stories",
-      "path": ".claude/skills/bmad-stories",
+      "id": "bmad-story-planning",
+      "path": ".claude/skills/bmad-story-planning",
       "version": "2.1.4",
       "allowed-tools": [
         "Read",
@@ -86,8 +86,8 @@
       "description": "Breaks epics into developer stories."
     },
     {
-      "id": "bmad-dev",
-      "path": ".claude/skills/bmad-dev",
+      "id": "bmad-development-execution",
+      "path": ".claude/skills/bmad-development-execution",
       "version": "2.1.4",
       "allowed-tools": [
         "Read",
@@ -99,8 +99,8 @@
       "description": "Implements stories with code and tests."
     },
     {
-      "id": "skill-creator",
-      "path": ".claude/skills/skill-creator",
+      "id": "core-skill-creation",
+      "path": ".claude/skills/core-skill-creation",
       "version": "2.1.4",
       "allowed-tools": [
         "Read",
@@ -112,8 +112,8 @@
       "description": "Guide for creating effective skills with specialized knowledge and workflows."
     },
     {
-      "id": "openspec-propose",
-      "path": ".claude/skills/openspec-propose",
+      "id": "openspec-change-proposal",
+      "path": ".claude/skills/openspec-change-proposal",
       "version": "2.1.4",
       "allowed-tools": [
         "Read",
@@ -125,8 +125,8 @@
       "description": "Creates lightweight proposals for L0-1 work."
     },
     {
-      "id": "openspec-implement",
-      "path": ".claude/skills/openspec-implement",
+      "id": "openspec-change-implementation",
+      "path": ".claude/skills/openspec-change-implementation",
       "version": "2.1.4",
       "allowed-tools": [
         "Read",
@@ -138,8 +138,8 @@
       "description": "Implements L0-1 changes from proposals."
     },
     {
-      "id": "openspec-archive",
-      "path": ".claude/skills/openspec-archive",
+      "id": "openspec-change-closure",
+      "path": ".claude/skills/openspec-change-closure",
       "version": "2.1.4",
       "allowed-tools": [
         "Read",

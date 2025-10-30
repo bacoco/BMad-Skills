@@ -4,14 +4,14 @@
 
 | Skill | Phase | Purpose | Agent Persona |
 |-------|-------|---------|---------------|
-| **bmad-orchestrator** | All | Workflow orchestration, state management | Workflow Manager |
-| **bmad-analyst** | Phase 1 | Brainstorm, product briefs, research | Strategic Business Analyst (Mary) |
-| **bmad-pm** | Phase 2 | PRD, epics breakdown | Investigative Product Strategist (John) |
-| **bmad-ux** | Phase 2 | UX design specifications | User Experience Designer (Sally) |
-| **bmad-architecture** | Phase 3 | Technical architecture, decisions | System Architect (Winston) |
-| **bmad-tea** | Cross-phase | Test strategy, ATDD, automation | Master Test Architect (Murat) |
-| **bmad-stories** | Phase 4 | Story creation from epics | Technical Scrum Master (Bob) |
-| **bmad-dev** | Phase 4 | Implementation, testing, review | Senior Implementation Engineer (Amelia) |
+| **main-workflow-router** | All | Workflow orchestration, state management | Workflow Manager |
+| **bmad-discovery-research** | Phase 1 | Brainstorm, product briefs, research | Strategic Business Analyst (Mary) |
+| **bmad-product-planning** | Phase 2 | PRD, epics breakdown | Investigative Product Strategist (John) |
+| **bmad-ux-design** | Phase 2 | UX design specifications | User Experience Designer (Sally) |
+| **bmad-architecture-design** | Phase 3 | Technical architecture, decisions | System Architect (Winston) |
+| **bmad-test-strategy** | Cross-phase | Test strategy, ATDD, automation | Master Test Architect (Murat) |
+| **bmad-story-planning** | Phase 4 | Story creation from epics | Technical Scrum Master (Bob) |
+| **bmad-development-execution** | Phase 4 | Implementation, testing, review | Senior Implementation Engineer (Amelia) |
 
 ## State Management Files
 
@@ -43,42 +43,42 @@ stories/
 ```
 .claude/
   skills/
-    bmad-orchestrator/
+    main-workflow-router/
       SKILL.md                      # Orchestrator with state management
       scripts/
         workflow_status.py          # Manages workflow-status.md
         sprint_status.py            # Manages sprint-status.yaml
 
-    bmad-analyst/                   # Phase 1: Analysis
+    bmad-discovery-research/                   # Phase 1: Analysis
       SKILL.md                      # Brainstorm, product brief, research
       assets/
         brainstorm-template.md.jinja
         product-brief-template.md.jinja
         research-dossier-template.md.jinja
 
-    bmad-pm/                        # Phase 2: Planning
+    bmad-product-planning/                        # Phase 2: Planning
       SKILL.md
       generate_prd.py
       prd_template.md.jinja
       epics_template.md.jinja
 
-    bmad-ux/                        # Phase 2: UX Design
+    bmad-ux-design/                        # Phase 2: UX Design
       SKILL.md                      # UX specifications
 
-    bmad-architecture/              # Phase 3: Solutioning
+    bmad-architecture-design/              # Phase 3: Solutioning
       SKILL.md
       generate_architecture.py
       architecture_template.md.jinja
 
-    bmad-tea/                       # Cross-phase: Testing
+    bmad-test-strategy/                       # Cross-phase: Testing
       SKILL.md                      # Test strategy, ATDD, automation
 
-    bmad-stories/                   # Phase 4: Story Creation
+    bmad-story-planning/                   # Phase 4: Story Creation
       SKILL.md
       create_story.py
       story_template.md.jinja
 
-    bmad-dev/                       # Phase 4: Implementation
+    bmad-development-execution/                       # Phase 4: Implementation
       SKILL.md                      # Coding, testing, review
 
 docs/                               # Generated artifacts
@@ -91,13 +91,13 @@ Each skill has natural language triggers that Claude detects automatically:
 
 | What You Say | Skill Invoked | What Happens |
 |--------------|---------------|--------------|
-| "I have an idea...", "What if we...", "Help me think through..." | `bmad-analyst` | Brainstorming and product brief creation |
-| "I want to build...", "Create a PRD", "Plan this feature" | `bmad-pm` | PRD and epics generation |
-| "What should the UI look like?", "Design the UX" | `bmad-ux` | UX specification and design thinking |
-| "How should we build this?", "What's the architecture?" | `bmad-architecture` | Technical architecture and stack decisions |
-| "How should we test?", "Create test strategy" | `bmad-tea` | Test framework and ATDD implementation |
-| "Break into stories", "Create user stories" | `bmad-stories` | Developer-ready story file creation |
-| "Implement story X", "Develop this feature", "Let's code" | `bmad-dev` | Code implementation with tests |
-| "What's next?", "Where am I?", "Start new project" | `bmad-orchestrator` | Workflow status and guidance |
+| "I have an idea...", "What if we...", "Help me think through..." | `bmad-discovery-research` | Brainstorming and product brief creation |
+| "I want to build...", "Create a PRD", "Plan this feature" | `bmad-product-planning` | PRD and epics generation |
+| "What should the UI look like?", "Design the UX" | `bmad-ux-design` | UX specification and design thinking |
+| "How should we build this?", "What's the architecture?" | `bmad-architecture-design` | Technical architecture and stack decisions |
+| "How should we test?", "Create test strategy" | `bmad-test-strategy` | Test framework and ATDD implementation |
+| "Break into stories", "Create user stories" | `bmad-story-planning` | Developer-ready story file creation |
+| "Implement story X", "Develop this feature", "Let's code" | `bmad-development-execution` | Code implementation with tests |
+| "What's next?", "Where am I?", "Start new project" | `main-workflow-router` | Workflow status and guidance |
 
 **Claude analyzes your message intent and context**, then invokes the appropriate skill automatically.

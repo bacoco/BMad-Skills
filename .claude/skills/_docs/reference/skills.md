@@ -4,7 +4,7 @@ This catalog applies Claude's skill creation best practices to every BMAD capabi
 
 ## Foundational Utilities
 
-### skill-creator
+### core-skill-creation
 **Role**: Framework for designing, validating, and packaging Claude skills aligned with Anthropic's best practices.
 
 **Use when**
@@ -20,10 +20,10 @@ This catalog applies Claude's skill creation best practices to every BMAD capabi
 **Execution flow**
 1. Gather representative use cases and confirm activation phrases.
 2. Plan reusable resources; decide what lives in `scripts/`, `references/`, or `assets/`.
-3. Run `.claude/skills/skill-creator/scripts/init_skill.py <skill-name> --path <output-dir>` to scaffold the skill.
+3. Run `.claude/skills/core-skill-creation/scripts/init_skill.py <skill-name> --path <output-dir>` to scaffold the skill.
 4. Draft SKILL.md using imperative language; move bulky material into references.
-5. Validate with `.claude/skills/skill-creator/scripts/quick_validate.py <path>` when iterating.
-6. Package with `.claude/skills/skill-creator/scripts/package_skill.py <path> [output-dir]` once validation passes.
+5. Validate with `.claude/skills/core-skill-creation/scripts/quick_validate.py <path>` when iterating.
+6. Package with `.claude/skills/core-skill-creation/scripts/package_skill.py <path> [output-dir]` once validation passes.
 
 **Outputs & handoffs**
 - A complete skill directory with SKILL.md plus optional resources.
@@ -36,17 +36,17 @@ This catalog applies Claude's skill creation best practices to every BMAD capabi
 - Reference every supplemental file from SKILL.md so Claude discovers it via progressive disclosure.
 
 **Supporting assets**
-- `.claude/skills/skill-creator/scripts/init_skill.py`
-- `.claude/skills/skill-creator/scripts/package_skill.py`
-- `.claude/skills/skill-creator/scripts/quick_validate.py`
-- `.claude/skills/skill-creator/references/workflows.md`
-- `.claude/skills/skill-creator/references/output-patterns.md`
+- `.claude/skills/core-skill-creation/scripts/init_skill.py`
+- `.claude/skills/core-skill-creation/scripts/package_skill.py`
+- `.claude/skills/core-skill-creation/scripts/quick_validate.py`
+- `.claude/skills/core-skill-creation/references/workflows.md`
+- `.claude/skills/core-skill-creation/references/output-patterns.md`
 
 ---
 
 ## Phase 0 · Orchestration and State
 
-### bmad-orchestrator
+### main-workflow-router
 **Role**: Primary conductor that initializes projects, manages BMAD state, and routes work to phase specialists.
 
 **Use when**
@@ -83,7 +83,7 @@ This catalog applies Claude's skill creation best practices to every BMAD capabi
 
 ## Phase 1 · Analysis
 
-### bmad-analyst
+### bmad-discovery-research
 **Role**: Strategic discovery partner who transforms fuzzy ideas into grounded insights and initial documentation.
 
 **Use when**
@@ -103,7 +103,7 @@ This catalog applies Claude's skill creation best practices to every BMAD capabi
 4. Highlight decision-ready insights and flag gaps for the PM to close.
 
 **Outputs & handoffs**
-- Structured brainstorming boards, product briefs, or research syntheses stored in project docs (use templates in `.claude/skills/bmad-analyst/assets/`).
+- Structured brainstorming boards, product briefs, or research syntheses stored in project docs (use templates in `.claude/skills/bmad-discovery-research/assets/`).
 - Open questions list and recommended follow-up actions for PM or stakeholders.
 - Confidence assessment covering unknowns and data quality.
 
@@ -116,7 +116,7 @@ This catalog applies Claude's skill creation best practices to every BMAD capabi
 
 ## Phase 2 · Planning and Design
 
-### bmad-pm
+### bmad-product-planning
 **Role**: Product strategist translating analysis into actionable PRDs and epic roadmaps.
 
 **Use when**
@@ -147,7 +147,7 @@ This catalog applies Claude's skill creation best practices to every BMAD capabi
 
 ---
 
-### bmad-ux
+### bmad-ux-design
 **Role**: UX partner producing actionable UX specs and validation checklists for UI-heavy initiatives.
 
 **Use when**
@@ -180,7 +180,7 @@ This catalog applies Claude's skill creation best practices to every BMAD capabi
 
 ## Phase 3 · Architecture & Quality Strategy
 
-### bmad-architecture
+### bmad-architecture-design
 **Role**: Technical architect defining solution patterns, stack choices, and foundational decisions.
 
 **Use when**
@@ -211,7 +211,7 @@ This catalog applies Claude's skill creation best practices to every BMAD capabi
 
 ---
 
-### bmad-tea
+### bmad-test-strategy
 **Role**: Test Engineering Architect establishing end-to-end quality strategy across all phases.
 
 **Use when**
@@ -238,13 +238,13 @@ This catalog applies Claude's skill creation best practices to every BMAD capabi
 **Guardrails**
 - Prioritize unit and integration coverage; flag E2E reliance as technical debt.
 - Require measurable pass/fail criteria for every acceptance test.
-- Keep continuous communication with bmad-dev to ensure implementation follows ATDD artifacts.
+- Keep continuous communication with bmad-development-execution to ensure implementation follows ATDD artifacts.
 
 ---
 
 ## Phase 4 · Delivery
 
-### bmad-stories
+### bmad-story-planning
 **Role**: Story crafter turning epics into development-ready stories with contextual learnings.
 
 **Use when**
@@ -264,7 +264,7 @@ This catalog applies Claude's skill creation best practices to every BMAD capabi
 4. Save story under `stories/{epic}-{story}-{title}.md` and notify orchestrator of readiness.
 
 **Outputs & handoffs**
-- Story markdown file ready for bmad-dev, including tasks mapped to acceptance criteria.
+- Story markdown file ready for bmad-development-execution, including tasks mapped to acceptance criteria.
 - Updated Dev Agent Record with new context and decisions.
 - Continuity notes for next story in sequence.
 
@@ -275,7 +275,7 @@ This catalog applies Claude's skill creation best practices to every BMAD capabi
 
 ---
 
-### bmad-dev
+### bmad-development-execution
 **Role**: Senior implementation engineer executing stories end-to-end, including testing and documentation updates.
 
 **Use when**
@@ -308,6 +308,6 @@ This catalog applies Claude's skill creation best practices to every BMAD capabi
 
 ## Usage Notes
 
-- Always initialize the workflow with **bmad-orchestrator** before invoking downstream skills.
+- Always initialize the workflow with **main-workflow-router** before invoking downstream skills.
 - Hand-offs should include pointers to the latest artifacts so each skill loads only the context it needs, keeping conversation windows lean.
-- When evolving this catalog, run the **skill-creator** validation scripts to ensure every entry remains concise, discoverable, and conformant with Anthropic skill guidelines.
+- When evolving this catalog, run the **core-skill-creation** validation scripts to ensure every entry remains concise, discoverable, and conformant with Anthropic skill guidelines.

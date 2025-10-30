@@ -16,7 +16,7 @@ The conversational activation overhaul is complete. Claude now auto-selects the 
 ## KEY HIGHLIGHTS
 
 - **Auto-activation restored:** Manifest descriptions specify triggers and keywords for all BMAD and OpenSpec skills (`meta/MANIFEST.json`).
-- **Skill contracts elevated:** Every `SKILL.md` leads with activation prerequisites, routing rules, and guardrails (e.g., `.claude/skills/bmad-orchestrator/SKILL.md`).
+- **Skill contracts elevated:** Every `SKILL.md` leads with activation prerequisites, routing rules, and guardrails (e.g., `.claude/skills/main-workflow-router/SKILL.md`).
 - **Guidance strengthened:** Conversational flows, troubleshooting paths, and scripted regression scenarios document expected behaviors (`doc/conversational-flow.md`, `doc/troubleshooting.md`, `tests/test_skill_activation.md`).
 
 ---

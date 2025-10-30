@@ -137,8 +137,8 @@ class ActivationMetrics:
         total = len(activations)
 
         # Underutilized skills
-        for skill in ['bmad-analyst', 'bmad-pm', 'bmad-architecture', 'bmad-dev',
-                     'openspec-propose', 'openspec-implement', 'openspec-archive']:
+        for skill in ['bmad-discovery-research', 'bmad-product-planning', 'bmad-architecture-design', 'bmad-development-execution',
+                     'openspec-change-proposal', 'openspec-change-implementation', 'openspec-change-closure']:
             count = skill_counts.get(skill, 0)
             percentage = (count / total * 100) if total > 0 else 0
 
@@ -159,7 +159,7 @@ class ActivationMetrics:
                 )
 
         # Routing patterns
-        orchestrator_count = skill_counts.get('bmad-orchestrator', 0)
+        orchestrator_count = skill_counts.get('main-workflow-router', 0)
         if orchestrator_count > total * 0.5:
             insights.append(
                 "High orchestrator usage - good workflow coordination"
@@ -173,7 +173,7 @@ class ActivationMetrics:
         # OpenSpec vs BMAD balance
         openspec_count = sum(
             skill_counts.get(s, 0)
-            for s in ['openspec-propose', 'openspec-implement', 'openspec-archive']
+            for s in ['openspec-change-proposal', 'openspec-change-implementation', 'openspec-change-closure']
         )
         bmad_count = total - openspec_count
 

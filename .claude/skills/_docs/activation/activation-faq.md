@@ -16,16 +16,16 @@ Claude will respond with a confirmation similar to “Activating BMAD Analyst…
 3. If Claude still does not activate a skill, issue the manual command: `Invoke <skill-id>`.
 
 ## Why did the wrong skill activate?
-Claude weighs strong keywords first. If you say “I have an idea to implement story #5,” the word “idea” may trigger `bmad-analyst`. Rephrase to lead with the actual task: “Implement story #5 that we already approved.”
+Claude weighs strong keywords first. If you say “I have an idea to implement story #5,” the word “idea” may trigger `bmad-discovery-research`. Rephrase to lead with the actual task: “Implement story #5 that we already approved.”
 
-## How do I hand control back to `bmad-orchestrator`?
+## How do I hand control back to `main-workflow-router`?
 Say “What’s next for the BMAD workflow?” or “Give me a status update.” The orchestrator will resume control, check `workflow-status.md`, and suggest the next phase.
 
 ## Can OpenSpec skills auto-activate too?
 Yes. Mention that you need a “quick fix,” “small change,” or “apply the proposal” and Claude will prefer the OpenSpec skills. Make sure the request clearly indicates Level 0–1 scope.
 
 ## How do I recover if a phase was skipped?
-Ask `bmad-orchestrator`: “Review the workflow and confirm which phases are complete.” If an artifact is missing, the orchestrator will either recreate it or delegate to the correct skill.
+Ask `main-workflow-router`: “Review the workflow and confirm which phases are complete.” If an artifact is missing, the orchestrator will either recreate it or delegate to the correct skill.
 
 ## What if I need to override the automatic choice?
 You can always instruct Claude: “Use BMAD PM for this request” or “Switch to OpenSpec Implement.” This manual override is useful when experimenting with new triggers.

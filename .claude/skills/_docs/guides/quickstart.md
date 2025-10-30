@@ -13,7 +13,7 @@
 
 **You**: "I want to start a new project for a mobile expense tracker"
 
-**Claude**: Detects new project → Invokes `bmad-orchestrator`
+**Claude**: Detects new project → Invokes `main-workflow-router`
 - Assesses project level (0-4)
 - Creates `docs/workflow-status.md`
 - Recommends next phase
@@ -24,7 +24,7 @@
 
 **You**: "Help me think through this idea..."
 
-**Claude**: Detects brainstorming need → Invokes `bmad-analyst`
+**Claude**: Detects brainstorming need → Invokes `bmad-discovery-research`
 - Creates `docs/product-brief.md`
 - Guides through discovery questions
 
@@ -32,7 +32,7 @@
 
 **You**: "I want to build an API with user auth and expense tracking"
 
-**Claude**: Detects feature planning → Invokes `bmad-pm`
+**Claude**: Detects feature planning → Invokes `bmad-product-planning`
 - Creates `docs/PRD.md` and `docs/epics.md`
 - Breaks down functional requirements
 
@@ -40,7 +40,7 @@
 
 **You**: "What should the user interface look like?"
 
-**Claude**: Detects UX design need → Invokes `bmad-ux`
+**Claude**: Detects UX design need → Invokes `bmad-ux-design`
 - Creates `docs/ux-spec.md`
 - Runs design thinking workshop
 
@@ -48,7 +48,7 @@
 
 **You**: "How should we architect this?"
 
-**Claude**: Detects architecture planning → Invokes `bmad-architecture`
+**Claude**: Detects architecture planning → Invokes `bmad-architecture-design`
 - Creates `docs/ARCHITECTURE.md`
 - Defines tech stack and patterns
 
@@ -56,7 +56,7 @@
 
 **You**: "How should we test this system?"
 
-**Claude**: Detects testing strategy need → Invokes `bmad-tea`
+**Claude**: Detects testing strategy need → Invokes `bmad-test-strategy`
 - Creates test framework
 - Defines ATDD approach
 
@@ -64,14 +64,14 @@
 
 **You**: "Break this into user stories"
 
-**Claude**: Detects story creation need → Invokes `bmad-stories`
+**Claude**: Detects story creation need → Invokes `bmad-story-planning`
 - Creates `docs/sprint-status.yaml` from epics
 - Generates story files in `stories/`
 - Marks stories with Previous Learnings pattern
 
 **You**: "Implement story 1-1-user-login"
 
-**Claude**: Detects implementation request → Invokes `bmad-dev`
+**Claude**: Detects implementation request → Invokes `bmad-development-execution`
 - Loads story and architecture
 - Writes code following acceptance criteria
 - Runs tests (100% coverage required)
@@ -81,7 +81,7 @@
 
 **You**: "What's next?" or "Where am I in the workflow?"
 
-**Claude**: Invokes `bmad-orchestrator`
+**Claude**: Invokes `main-workflow-router`
 - Shows current phase and progress
 - Lists completed artifacts
 - Recommends next action

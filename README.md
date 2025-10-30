@@ -112,18 +112,18 @@ Claude (dev): "Setting up OAuth providers..."
 ```
 You: "Fix the login timeout - users are getting logged out too quickly"
 
-Claude (openspec-propose): "I'll create a lightweight proposal for this Level 0 change..."
+Claude (openspec-change-proposal): "I'll create a lightweight proposal for this Level 0 change..."
                            📄 proposal.md: Increase session timeout from 15min to 60min
                            ✅ tasks.md: Update config, test, document
 
 You: "Implement it"
 
-Claude (openspec-implement): "Updating session timeout configuration..."
+Claude (openspec-change-implementation): "Updating session timeout configuration..."
                              [Makes change, tests, logs execution]
 
 You: "Archive this"
 
-Claude (openspec-archive): "Documented and archived. Session timeout fix is complete."
+Claude (openspec-change-closure): "Documented and archived. Session timeout fix is complete."
 ```
 
 **Result:** Quick fix with full traceability - no ceremony, just results.

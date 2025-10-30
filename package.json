@@ -34,7 +34,7 @@
   "scripts": {
     "test": "pytest tests/",
     "lint": "python3 .claude/skills/_core/tooling/lint_contracts.py",
-    "validate": "python3 .claude/skills/skill-creator/scripts/quick_validate.py",
+    "validate": "python3 .claude/skills/core-skill-creation/scripts/quick_validate.py",
     "prepare": "node bin/prepare.js"
   },
   "engines": {

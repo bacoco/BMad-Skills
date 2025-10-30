@@ -29,18 +29,18 @@ Don't manually edit workflow-status.md or sprint-status.yaml. Let orchestrator a
 
 ## 5. Story Learnings are Critical
 
-bmad-stories ALWAYS checks previous story. This prevents:
+bmad-story-planning ALWAYS checks previous story. This prevents:
 - Recreating existing code
 - Ignoring technical debt
 - Missing architectural decisions
 
 ## 6. Dev Agent Record is Mandatory
 
-bmad-dev MUST update Dev Agent Record as implementation progresses. Next story depends on it.
+bmad-development-execution MUST update Dev Agent Record as implementation progresses. Next story depends on it.
 
 ## 7. Tests are Not Optional
 
-bmad-dev will NOT mark story complete unless:
+bmad-development-execution will NOT mark story complete unless:
 - All tests written
 - All tests passing 100%
 - No cheating
@@ -71,10 +71,10 @@ Initialize sprint status
 
 **Problem**: Story doesn't reference previous story
 
-**Solution**: bmad-stories should automatically check. If missing, manually read previous story and include learnings.
+**Solution**: bmad-story-planning should automatically check. If missing, manually read previous story and include learnings.
 
 ## "Tests not running"
 
-**Problem**: bmad-dev not executing tests
+**Problem**: bmad-development-execution not executing tests
 
-**Solution**: Ensure test framework initialized (bmad-tea). Verify tests exist. Dev agent MUST run tests, no exceptions.
+**Solution**: Ensure test framework initialized (bmad-test-strategy). Verify tests exist. Dev agent MUST run tests, no exceptions.

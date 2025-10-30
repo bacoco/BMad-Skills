@@ -11,7 +11,7 @@ Orchestrator:
 - Asks questions (what, how complex, timeline)
 - Determines: Level 3, Greenfield
 - Creates workflow-status.md
-- Recommends: "Start with Planning (bmad-pm)"
+- Recommends: "Start with Planning (bmad-product-planning)"
 ```
 
 ### 2. Planning
@@ -19,7 +19,7 @@ Orchestrator:
 ```
 User: "Create PRD and epics"
 
-bmad-pm:
+bmad-product-planning:
 - Asks clarifying questions
 - Gathers: Goals, FRs, NFRs, User Journeys
 - Generates PRD: 15 FRs, 3 Epics
@@ -33,7 +33,7 @@ bmad-pm:
 Orchestrator:
 - Marks Planning complete
 - Updates phase to Solutioning
-- Recommends: "Create Architecture (bmad-architecture)"
+- Recommends: "Create Architecture (bmad-architecture-design)"
 ```
 
 ### 3. Solutioning
@@ -41,7 +41,7 @@ Orchestrator:
 ```
 User: "Create architecture"
 
-bmad-architecture:
+bmad-architecture-design:
 - Reads PRD completely
 - Searches for Next.js starter (WebSearch)
 - Makes decisions:
@@ -57,7 +57,7 @@ Orchestrator:
 - Initializes sprint-status.yaml from epics.md
 - 20 stories loaded, all "backlog"
 - Updates phase to Implementation
-- Recommends: "Create first story (bmad-stories)"
+- Recommends: "Create first story (bmad-story-planning)"
 ```
 
 ### 4. Story Creation
@@ -67,7 +67,7 @@ User: "Create next story"
 
 Orchestrator: Next backlog story is "1-1-project-setup"
 
-bmad-stories:
+bmad-story-planning:
 - Loads PRD, Architecture, Epics
 - No previous story (first in epic)
 - Extracts Story 1.1 from epics
@@ -77,7 +77,7 @@ bmad-stories:
 
 Orchestrator:
 - Updates sprint-status: 1-1-project-setup → "drafted"
-- Recommends: "Implement story 1-1-project-setup (bmad-dev)"
+- Recommends: "Implement story 1-1-project-setup (bmad-development-execution)"
 ```
 
 ### 5. Implementation (Story 1.1)
@@ -85,7 +85,7 @@ Orchestrator:
 ```
 User: "Implement story 1-1-project-setup"
 
-bmad-dev:
+bmad-development-execution:
 - Loads story file completely
 - Loads architecture patterns
 - No previous story
@@ -106,7 +106,7 @@ bmad-dev:
 
 Orchestrator:
 - Updates sprint-status: 1-1-project-setup → "done"
-- Recommends: "Create next story 1-2-user-authentication (bmad-stories)"
+- Recommends: "Create next story 1-2-user-authentication (bmad-story-planning)"
 ```
 
 ### 6. Story Creation (Story 1.2)
@@ -114,7 +114,7 @@ Orchestrator:
 ```
 User: "Create next story"
 
-bmad-stories:
+bmad-story-planning:
 - Loads Story 1.1 file completely
 - Extracts Previous Story Learnings:
   - Server actions pattern established

@@ -13,14 +13,14 @@ This is **BMAD Skills** - a complete workflow ecosystem packaged as Claude Skill
 The repository implements two complementary workflows:
 
 1. **BMAD Track** (8 skills): End-to-end product development for Level 2-4 complexity
-   - bmad-orchestrator → bmad-analyst → bmad-pm → bmad-ux → bmad-architecture → bmad-tea → bmad-stories → bmad-dev
+   - main-workflow-router → bmad-discovery-research → bmad-product-planning → bmad-ux-design → bmad-architecture-design → bmad-test-strategy → bmad-story-planning → bmad-development-execution
    - Handles: New products, complex features, multi-team coordination
 
 2. **OpenSpec Track** (3 skills): Lightweight change management for Level 0-1 complexity
-   - openspec-propose → openspec-implement → openspec-archive
+   - openspec-change-proposal → openspec-change-implementation → openspec-change-closure
    - Handles: Bug fixes, small features, quick changes
 
-The **bmad-orchestrator** automatically routes work to the appropriate track based on complexity assessment.
+The **main-workflow-router** automatically routes work to the appropriate track based on complexity assessment.
 
 ### Self-Contained Bundle Architecture
 
@@ -67,7 +67,7 @@ bash scripts/package-bundle.sh
 
 ```bash
 # Validate a single skill
-python .claude/skills/skill-creator/scripts/quick_validate.py .claude/skills/[skill-name]
+python .claude/skills/core-skill-creation/scripts/quick_validate.py .claude/skills/[skill-name]
 
 # Validate all skill contracts
 python .claude/skills/_core/tooling/lint_contracts.py
@@ -84,13 +84,13 @@ pytest tests/test_manifest_consistency.py
 
 ```bash
 # Create new OpenSpec change workspace
-python .claude/skills/openspec-propose/scripts/scaffold_change.py [change-id]
+python .claude/skills/openspec-change-proposal/scripts/scaffold_change.py [change-id]
 
 # Update execution log
-python .claude/skills/openspec-implement/scripts/update_execution_log.py [change-id] "message"
+python .claude/skills/openspec-change-implementation/scripts/update_execution_log.py [change-id] "message"
 
 # Archive completed change
-python .claude/skills/openspec-archive/scripts/archive_change.py [change-id]
+python .claude/skills/openspec-change-closure/scripts/archive_change.py [change-id]
 ```
 
 ### Metrics & Analysis
@@ -147,13 +147,13 @@ Optional:
 Follow **principle of least privilege**:
 
 - **Planning/Documentation skills**: Only `["Read", "Write", "Grep"]`
-  - bmad-analyst, bmad-pm, bmad-ux, bmad-architecture, bmad-tea, bmad-stories
+  - bmad-discovery-research, bmad-product-planning, bmad-ux-design, bmad-architecture-design, bmad-test-strategy, bmad-story-planning
 
 - **Execution skills**: May include `"Bash"` when necessary
-  - bmad-dev (runs tests)
-  - bmad-orchestrator (git status checks)
+  - bmad-development-execution (runs tests)
+  - main-workflow-router (git status checks)
   - openspec-* (Python script execution)
-  - skill-creator (validation/packaging)
+  - core-skill-creation (validation/packaging)
 
 ### Path Resolution in Scripts
 
@@ -204,13 +204,13 @@ Before committing skill changes:
 
 ```bash
 # 1. Validate the skill
-python .claude/skills/skill-creator/scripts/quick_validate.py .claude/skills/[skill-name]
+python .claude/skills/core-skill-creation/scripts/quick_validate.py .claude/skills/[skill-name]
 
 # 2. Verify installation works
 bash scripts/verify.sh .claude/skills
 
 # 3. Test OpenSpec scripts if modified
-python .claude/skills/openspec-propose/scripts/scaffold_change.py test-change
+python .claude/skills/openspec-change-proposal/scripts/scaffold_change.py test-change
 rm -rf .claude/skills/_runtime/workspace/changes/test-change
 
 # 4. Run Python tests
