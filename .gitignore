@@ -19,6 +19,9 @@ tests/e2e/.pytest_cache/
 .claude/skills/_runtime/workspace/changes/*/
 .claude/skills/_runtime/workspace/specs/*/
 
+# Test-generated artifacts (CLI testing)
+docs/
+
 # Test reports
 test-reports/
 e2e-report.html
