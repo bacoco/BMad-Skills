@@ -80,80 +80,49 @@ pytest tests/test_skill_metadata.py
 pytest tests/test_manifest_consistency.py
 ```
 
-### E2E Testing (Automated Skill Activation Tests)
+### Conversational Workflow Testing (Manual)
 
-**Prerequisites:**
-- Claude Max account with `claude` CLI installed
-- Skills installed globally (`bash scripts/install-to-home.sh`) or locally
+**Important:** BMAD Skills uses conversational workflows that cannot be automated with traditional E2E tests. Tests are performed manually through actual Claude conversations.
 
-**Test Commands:**
+**Why No Automated E2E Tests:**
+- Skills require multi-turn interactive conversations (questions/responses)
+- Claude batch mode (`claude -p`) doesn't support interactive dialogue
+- Workflow transitions depend on conversational context
+- See `.project-archive/TESTING.md` for detailed explanation
+
+**Manual Test Approach:**
 ```bash
-# Quick smoke test (~5 min, minimal cost)
-npm run test:e2e:smoke
+# Test workflows through actual Claude conversations
+claude  # Interactive mode
 
-# Full E2E test suite (~20-30 min, ~$1-5 cost)
-npm run test:e2e
+# Example workflow to test:
+> "I want to create a budgeting app for students"
+# Verify: Discovery skill activates
+# Verify: PRD is generated in _runtime/workspace/artifacts/
+# Verify: Content quality and structure
 
-# Test specific workflows
-npm run test:e2e:bmad       # BMAD track only
-npm run test:e2e:openspec   # OpenSpec track only
+> "Design the architecture"
+# Verify: Architecture skill activates
+# Verify: Architecture doc generated
+# Verify: Technical decisions documented
 
-# Run all tests (static + E2E)
-npm run test:all
+> "Break this down into developer stories"
+# Verify: Story planning skill activates
+# Verify: Stories generated in _runtime/workspace/stories/
+# Verify: Each story has acceptance criteria
 ```
 
-**What E2E Tests Validate:**
+**What Manual Testing Validates:**
 - ✅ Skills activate correctly based on conversational prompts
 - ✅ Artifacts are generated in correct locations
 - ✅ Artifact structure meets requirements (sections, frontmatter)
-- ✅ Content quality (keywords, word count, completeness)
+- ✅ Content quality (keywords, relevance, completeness)
 - ✅ Multi-turn context maintenance across skill transitions
 - ✅ Full workflow cycles (Discovery → Planning → Architecture → Stories)
 
-**Test Structure:**
-```
-tests/e2e/
-├── test_bmad_workflows.py        # BMAD L2-4 workflows
-├── test_openspec_workflows.py    # OpenSpec L0-1 workflows
-├── test_skill_transitions.py     # Context maintenance tests
-├── conftest.py                   # Pytest fixtures
-└── helpers/
-    ├── claude_client.py          # CLI wrapper with JSON parsing
-    ├── workspace_snapshot.py     # File change detection
-    ├── output_validator.py       # Content validation
-    └── session_manager.py        # Multi-turn coordination
-```
-
-**Example Test Scenario:**
-```python
-# Test: New idea → Discovery → PRD creation
-session = session_manager.start_session()
-
-# Turn 1: Introduce idea
-response1 = session_manager.execute_turn(
-    session,
-    "I have an idea for a budgeting app for students."
-)
-assert "discovery" in response1.result.lower()
-
-# Turn 2: Request PRD
-response2 = session_manager.execute_turn(
-    session,
-    "Create a PRD for this budgeting app."
-)
-assert validate_skill_activation(response2, "bmad-product-planning")
-
-# Validate PRD artifact was created
-prd_path = find_artifact("PRD*.md")
-assert prd_path.exists()
-validate_artifact_structure(prd_path, required_sections=["Goals", "Features"])
-```
-
-**Cost Tracking:**
-- All E2E tests track API costs automatically
-- Test summary shows total cost and per-call average
-- Use `@pytest.mark.expensive` for tests costing >$0.50
-- Smoke tests typically cost $0.10-0.30
+**Documentation:**
+- See `.project-archive/TESTING.md` for complete test strategy
+- See `.project-archive/IMPROVEMENTS.md` for automated test coverage details
 
 ### OpenSpec Helper Scripts
 

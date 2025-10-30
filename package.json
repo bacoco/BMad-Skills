@@ -32,13 +32,10 @@
     "LICENSE"
   ],
   "scripts": {
-    "test": "python3 -m pytest tests/ -m 'not e2e'",
-    "test:unit": "python3 -m pytest tests/ -m 'unit or integration' -v",
-    "test:e2e": "python3 -m pytest tests/e2e/ -v",
-    "test:e2e:smoke": "python3 -m pytest tests/e2e/ -m smoke --maxfail=1 -v",
-    "test:e2e:bmad": "python3 -m pytest tests/e2e/ -m bmad -v",
-    "test:e2e:openspec": "python3 -m pytest tests/e2e/ -m openspec -v",
-    "test:all": "python3 -m pytest tests/ -v",
+    "test": "python3 -m pytest tests/ -v",
+    "test:unit": "python3 -m pytest tests/unit/ -v",
+    "test:integration": "python3 -m pytest tests/integration/ -v",
+    "test:static": "python3 -m pytest tests/test_*.py -v",
     "test:coverage": "python3 -m pytest tests/unit/ tests/test_*.py --cov --cov-report=html --cov-report=term-missing --cov-report=xml --cov-fail-under=60",
     "coverage": "npm run test:coverage",
     "coverage:report": "open htmlcov/index.html",
