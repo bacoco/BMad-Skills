@@ -88,4 +88,4 @@ If skills aren't activating:
 
 ---
 
-**Version 2.1.0** | [Changelog](./.claude/skills/_docs/changelog.md) | MIT License
+**Version 2.1.5** | [Changelog](./.claude/skills/_docs/changelog.md) | MIT License

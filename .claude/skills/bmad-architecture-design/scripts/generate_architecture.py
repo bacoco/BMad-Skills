@@ -194,7 +194,7 @@ These patterns ensure consistent implementation across all AI agents:
 
 ---
 
-_Generated via BMAD Workflow Skills (v1.0.0) using BMAD v6-alpha spec_
+_Generated via BMAD Workflow Skills (v2.1.5) using BMAD v6-alpha spec_
 _Source: https://github.com/bmad-code-org/BMAD-METHOD/tree/v6-alpha_
 _Generated: {data['date']}_
 _For: {data['user_name']}_

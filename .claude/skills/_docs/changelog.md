@@ -1,5 +1,40 @@
 # Changelog
 
+## Version 2.1.5 - Final Compliance & Consistency Fixes (2025-10-30)
+
+**Patch Release**: Complete audit compliance + version consistency
+
+**Changes**:
+- 🔧 **Eliminated external dependencies** (PyYAML removed)
+  - Replaced yaml.safe_load() with custom stdlib-only parser (simple_yaml.py)
+  - Validator (quick_validate.py) now uses simple_yaml for frontmatter parsing
+  - Scripts (sprint_status.py, activation_metrics.py) updated to use simple_yaml
+  - Bundle is now 100% stdlib-only with zero external dependencies
+- 📦 **Complete template coverage** for all declared outputs
+  - Added 7 new templates across bmad-discovery-research, bmad-product-planning, bmad-story-planning, core-skill-creation
+  - All outputs now have matching templates in assets/ directories
+  - Satisfies "each output must have template" packaging requirement
+- 🗂️ **Unified workspace structure** (_runtime/workspace/)
+  - Fixed 5 scripts using RUNTIME_ROOT.parent (bypassed workspace/)
+  - All paths now correctly use _runtime/workspace/{artifacts,stories,changes,specs}
+  - Created workspace subdirectories per architecture spec
+- 📝 **Version consistency updates**
+  - Fixed .claude/README.md (2.1.0 → 2.1.5)
+  - Updated generator footers (v1.0.0 → v2.1.5) in generate_prd.py, generate_architecture.py, create_story.py
+  - All version references now synchronized
+- 🏗️ **Architecture cleanup**
+  - Removed redundant bmad-global skill (duplicated main-workflow-router)
+  - Back to clean 12-skill architecture with single orchestrator
+  - Bundle size: 216KB (down from 228KB)
+
+**Impact**:
+- Zero external dependencies (PyYAML-free)
+- 100% template coverage compliance
+- All paths use workspace/ structure
+- All versions synchronized
+- All 12 skills validated successfully
+- All 39 tests passing
+
 ## Version 2.1.4 - Compliance Audit Resolution (2025-10-30)
 
 **Patch Release**: Post-2.1.3 compliance audit fixes
