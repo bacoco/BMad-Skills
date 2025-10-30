@@ -14,6 +14,19 @@
       "description": "Routes work to OpenSpec (L0-1) or BMAD (L2-4). Tracks status and guides through phases."
     },
     {
+      "id": "bmad-global",
+      "path": ".claude/skills/bmad-global",
+      "version": "2.1.5",
+      "allowed-tools": [
+        "Read",
+        "Write",
+        "Grep",
+        "Bash"
+      ],
+      "expansion-pack": null,
+      "description": "Complete BMAD workflow system - from idea to implementation. Auto-routes to discovery, planning, architecture, testing, stories, and development skills based on your needs."
+    },
+    {
       "id": "bmad-discovery-research",
       "path": ".claude/skills/bmad-discovery-research",
       "version": "2.1.5",
