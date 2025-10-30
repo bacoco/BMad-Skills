@@ -21,7 +21,7 @@ Current focus shifts from structural fixes to operational rigor: automating the 
 
 #### Conversational Activation Layer ⭐⭐⭐⭐⭐
 - Manifest descriptions use trigger-oriented phrasing for every skill, enabling Claude to auto-detect intent without manual commands (`meta/MANIFEST.json`).
-- Each `SKILL.md` now front-loads auto-invocation guidance, including prerequisites and guardrails (e.g., `.claude/skills/bmad-orchestrator/SKILL.md`).
+- Each `SKILL.md` now front-loads auto-invocation guidance, including prerequisites and guardrails (e.g., `.claude/skills/bmad-workflow-router/SKILL.md`).
 - Conversational flow documentation and troubleshooting guidance reinforce natural handoffs across phases (`doc/conversational-flow.md`, `doc/troubleshooting.md`).
 
 #### Progressive Disclosure & Modularity ⭐⭐⭐⭐⭐
@@ -31,7 +31,7 @@ Current focus shifts from structural fixes to operational rigor: automating the 
 
 #### Governance & Quality Gates ⭐⭐⭐⭐⭐
 - Style, glossary, and workflow scripts are unchanged and still govern deliverables.
-- `CHECKLIST.md` enforcement is reiterated inside downstream skills (e.g., `bmad-dev`).
+- `CHECKLIST.md` enforcement is reiterated inside downstream skills (e.g., `bmad-development-execution`).
 
 ---
 
@@ -56,7 +56,7 @@ Current focus shifts from structural fixes to operational rigor: automating the 
 ---
 
 ### 🟢 Observation: Workflow Status Bootstrap (Score: 90%)
-`bmad-orchestrator` documents auto-start behaviors and state management expectations, but the repository still ships without a seed `docs/bmad-workflow-status.md`. Providing a template would help first-time adopters confirm the orchestration loop end-to-end.
+`bmad-workflow-router` documents auto-start behaviors and state management expectations, but the repository still ships without a seed `docs/bmad-workflow-status.md`. Providing a template would help first-time adopters confirm the orchestration loop end-to-end.
 
 ---
 
@@ -80,15 +80,15 @@ Current focus shifts from structural fixes to operational rigor: automating the 
 
 | Skill              | Score | Notes                               |
 |--------------------|-------|-------------------------------------|
-| bmad-orchestrator  | 92/100| Auto-invocation documented; seed status template pending |
-| bmad-analyst       | 95/100| Conversational triggers comprehensive |
-| bmad-pm            | 95/100| Conversational triggers comprehensive |
-| bmad-ux            | 95/100| Conversational triggers comprehensive |
-| bmad-architecture  | 95/100| Conversational triggers comprehensive |
-| bmad-tea           | 95/100| Conversational triggers comprehensive |
-| bmad-stories       | 95/100| Conversational triggers comprehensive |
-| bmad-dev           | 95/100| Conversational triggers comprehensive |
-| skill-creator      | 95/100| Conversational triggers comprehensive |
+| bmad-workflow-router  | 92/100| Auto-invocation documented; seed status template pending |
+| bmad-discovery-research       | 95/100| Conversational triggers comprehensive |
+| bmad-product-planning            | 95/100| Conversational triggers comprehensive |
+| bmad-ux-design            | 95/100| Conversational triggers comprehensive |
+| bmad-architecture-design  | 95/100| Conversational triggers comprehensive |
+| bmad-test-strategy           | 95/100| Conversational triggers comprehensive |
+| bmad-story-planning       | 95/100| Conversational triggers comprehensive |
+| bmad-development-execution           | 95/100| Conversational triggers comprehensive |
+| core-skill-creation      | 95/100| Conversational triggers comprehensive |
 | openspec-*         | 94/100| Conversational triggers comprehensive |
 
 **Average Score:** 96/100
@@ -98,7 +98,7 @@ Current focus shifts from structural fixes to operational rigor: automating the 
 ## 4. COMPLETED IMPROVEMENTS SINCE PRIOR AUDIT
 
 1. **Manifest overhaul:** All twelve skills now provide conversational descriptions tuned for automatic activation (`meta/MANIFEST.json`).
-2. **Skill contracts updated:** “When to Invoke” sections surfaced in each `SKILL.md`, clarifying triggers, prerequisites, and guardrails (e.g., `.claude/skills/bmad-orchestrator/SKILL.md`).
+2. **Skill contracts updated:** “When to Invoke” sections surfaced in each `SKILL.md`, clarifying triggers, prerequisites, and guardrails (e.g., `.claude/skills/bmad-workflow-router/SKILL.md`).
 3. **Documentation refresh:** Conversational flow, troubleshooting, and activation regression scripts were added or expanded (`doc/conversational-flow.md`, `doc/troubleshooting.md`, `tests/test_skill_activation.md`).
 
 ---

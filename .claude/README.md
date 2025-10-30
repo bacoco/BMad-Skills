@@ -50,18 +50,18 @@ ls -la ./.claude/skills/
 ```
 
 You should see 12 skill directories:
-- `bmad-orchestrator`
-- `bmad-analyst`
-- `bmad-pm`
-- `bmad-ux`
-- `bmad-architecture`
-- `bmad-tea`
-- `bmad-stories`
-- `bmad-dev`
-- `openspec-propose`
-- `openspec-implement`
-- `openspec-archive`
-- `skill-creator`
+- `bmad-workflow-router`
+- `bmad-discovery-research`
+- `bmad-product-planning`
+- `bmad-ux-design`
+- `bmad-architecture-design`
+- `bmad-test-strategy`
+- `bmad-story-planning`
+- `bmad-development-execution`
+- `openspec-change-proposal`
+- `openspec-change-implementation`
+- `openspec-change-closure`
+- `core-skill-creation`
 
 ## Next Steps
 

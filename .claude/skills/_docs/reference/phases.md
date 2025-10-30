@@ -1,6 +1,6 @@
 # BMAD Phases
 
-## Phase 1: Analysis (bmad-analyst)
+## Phase 1: Analysis (bmad-discovery-research)
 
 **When**: Level 3-4, complex/novel problems
 
@@ -16,9 +16,9 @@
 - `docs/research-{topic}.md`
 - `docs/project-documentation.md`
 
-**Next Phase**: Planning (bmad-pm)
+**Next Phase**: Planning (bmad-product-planning)
 
-## Phase 2: Planning (bmad-pm + bmad-ux)
+## Phase 2: Planning (bmad-product-planning + bmad-ux-design)
 
 **When**: Level 2-4, always required
 
@@ -32,9 +32,9 @@
 - `docs/epics.md` - Tactical story breakdown
 - `docs/ux-spec.md` - UX specification (optional)
 
-**Next Phase**: Solutioning (bmad-architecture)
+**Next Phase**: Solutioning (bmad-architecture-design)
 
-## Phase 3: Solutioning (bmad-architecture + bmad-tea)
+## Phase 3: Solutioning (bmad-architecture-design + bmad-test-strategy)
 
 **When**: Level 2-4, always required
 
@@ -49,7 +49,7 @@
 
 **Next Phase**: Implementation (story creation)
 
-## Phase 4: Implementation (bmad-stories + bmad-dev + bmad-tea)
+## Phase 4: Implementation (bmad-story-planning + bmad-development-execution + bmad-test-strategy)
 
 **When**: After Solutioning complete
 
@@ -59,22 +59,22 @@
 - Initializes `docs/sprint-status.yaml` from epics
 - All stories start in "backlog" status
 
-### 2. Story Creation (bmad-stories)
+### 2. Story Creation (bmad-story-planning)
 - Creates developer-ready story files
 - Each story: `stories/{epic}-{story}-{title}.md`
 - Includes: AC, tasks, dev notes, learnings from previous story
 
-### 3. ATDD (bmad-tea, optional)
+### 3. ATDD (bmad-test-strategy, optional)
 - Write tests BEFORE implementation
 - Tests define expected behavior
 
-### 4. Implementation (bmad-dev)
+### 4. Implementation (bmad-development-execution)
 - Implement story following architecture
 - Write/run tests
 - Update Dev Agent Record
 - Mark story status: drafted → in-progress → review → done
 
-### 5. Code Review (bmad-dev)
+### 5. Code Review (bmad-development-execution)
 - Fresh-eyes review of completed story
 - Document findings and action items
 

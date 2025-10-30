@@ -86,20 +86,20 @@
 **Example**:
 ```
 User: "I have an idea for a todo app"
-Claude: [Automatically invokes bmad-analyst]
+Claude: [Automatically invokes bmad-discovery-research]
 ```
 
-No more "/bmad-pm" or manual skill invocation. Just natural conversations.
+No more "/bmad-product-planning" or manual skill invocation. Just natural conversations.
 
 ## Version 2.0.0 - Complete Implementation (2025-10-28)
 
 **Complete BMAD Method v6-alpha transformation**
 
 **New Features**:
-- ✅ Added bmad-analyst (Analysis phase)
-- ✅ Added bmad-ux (UX Design)
-- ✅ Added bmad-tea (Test Architecture)
-- ✅ Added bmad-dev (Implementation)
+- ✅ Added bmad-discovery-research (Analysis phase)
+- ✅ Added bmad-ux-design (UX Design)
+- ✅ Added bmad-test-strategy (Test Architecture)
+- ✅ Added bmad-development-execution (Implementation)
 - ✅ Refactored orchestrator with full state management
 - ✅ Added workflow-status.md management
 - ✅ Added sprint-status.yaml management

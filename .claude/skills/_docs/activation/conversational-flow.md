@@ -8,13 +8,13 @@ This playbook illustrates how Claude should auto-activate BMAD skills through na
 
 ### Conversation Snapshot
 - **User:** “I have an idea for a budgeting app that helps young professionals track daily expenses.”
-- **Claude:** Auto-activates `bmad-analyst` → runs a brainstorming session, captures goals, pain points, and differentiators.
+- **Claude:** Auto-activates `bmad-discovery-research` → runs a brainstorming session, captures goals, pain points, and differentiators.
 - **User:** “Great, can you create the PRD?”
-- **Claude:** Switches to `bmad-pm`, generates `PRD.md`, outlines epics, and updates `workflow-status.md`.
+- **Claude:** Switches to `bmad-product-planning`, generates `PRD.md`, outlines epics, and updates `workflow-status.md`.
 - **User:** “Design the architecture so we can start building.”
-- **Claude:** Activates `bmad-architecture`, produces an architecture document with components, integrations, and risks.
+- **Claude:** Activates `bmad-architecture-design`, produces an architecture document with components, integrations, and risks.
 - **User:** “Let’s implement the login story.”
-- **Claude:** Hands off to `bmad-dev`, delivers code templates and testing notes.
+- **Claude:** Hands off to `bmad-development-execution`, delivers code templates and testing notes.
 
 ### Key Triggers
 - Idea phrases: “I have an idea,” “Help me brainstorm.”
@@ -28,11 +28,11 @@ This playbook illustrates how Claude should auto-activate BMAD skills through na
 
 ### Conversation Snapshot
 - **User:** “What’s next for our e-commerce project?”
-- **Claude:** `bmad-orchestrator` reviews `workflow-status.md`, reports completed phases, and recommends the next step.
+- **Claude:** `bmad-workflow-router` reviews `workflow-status.md`, reports completed phases, and recommends the next step.
 - **User:** “We need UX flows before development continues.”
-- **Claude:** Activates `bmad-ux`, delivers wireframe guidance and user journeys.
+- **Claude:** Activates `bmad-ux-design`, delivers wireframe guidance and user journeys.
 - **User:** “Break the checkout epic into developer stories.”
-- **Claude:** Switches to `bmad-stories`, produces story files with acceptance criteria.
+- **Claude:** Switches to `bmad-story-planning`, produces story files with acceptance criteria.
 
 ### Key Triggers
 - Status phrases: “Where am I,” “What’s next,” “Give me an update.”
@@ -45,11 +45,11 @@ This playbook illustrates how Claude should auto-activate BMAD skills through na
 
 ### Conversation Snapshot
 - **User:** “How should we test the subscription flow?”
-- **Claude:** `bmad-tea` activates, generates a test strategy with ATDD notes.
+- **Claude:** `bmad-test-strategy` activates, generates a test strategy with ATDD notes.
 - **User:** “Run through the plan and confirm coverage gaps.”
 - **Claude:** Summarizes coverage, flags missing integration tests, and recommends regression steps.
 - **User:** “Let’s archive the results once QA signs off.”
-- **Claude:** Uses `openspec-archive` if this is a Level 0–1 change or instructs the BMAD workflow to mark the phase complete.
+- **Claude:** Uses `openspec-change-closure` if this is a Level 0–1 change or instructs the BMAD workflow to mark the phase complete.
 
 ### Key Triggers
 - Testing phrases: “How do we test,” “Create a test plan,” “ATDD strategy.”
@@ -62,11 +62,11 @@ This playbook illustrates how Claude should auto-activate BMAD skills through na
 
 ### Conversation Snapshot
 - **User:** “Draft a quick fix for the login error users reported.”
-- **Claude:** `openspec-propose` activates, creates a proposal with scope, risks, and validation steps.
+- **Claude:** `openspec-change-proposal` activates, creates a proposal with scope, risks, and validation steps.
 - **User:** “Looks good—apply the change.”
-- **Claude:** Switches to `openspec-implement`, outlines the code edits and test updates.
+- **Claude:** Switches to `openspec-change-implementation`, outlines the code edits and test updates.
 - **User:** “Archive the change once tests pass.”
-- **Claude:** Uses `openspec-archive`, records final notes under `openspec/changes/<id>/`.
+- **Claude:** Uses `openspec-change-closure`, records final notes under `openspec/changes/<id>/`.
 
 ### Key Triggers
 - Quick fix phrases: “Quick fix,” “Small change,” “Minor update.”

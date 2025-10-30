@@ -109,7 +109,7 @@ Claude: “Waiting for confirmation before continuing…”
 ## ⏭️ Skipped Phases
 
 - Ask: “Review the BMAD workflow and confirm completed phases.”
-- If a phase is missing, `bmad-orchestrator` should either produce the artifact or dispatch the correct skill.
+- If a phase is missing, `bmad-workflow-router` should either produce the artifact or dispatch the correct skill.
 - Ensure each phase has a clearly named artifact (e.g., `PRD.md`, `ARCHITECTURE.md`).
 
 ---
