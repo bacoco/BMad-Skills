@@ -119,6 +119,14 @@ jobs:
         run: |
           npm version ${{ steps.version.outputs.VERSION }} --no-git-tag-version
 
+      - name: Update version in manifests
+        run: |
+          # Update meta/MANIFEST.json
+          python3 -c "import json; data = json.load(open('meta/MANIFEST.json')); data['version'] = '${{ steps.version.outputs.VERSION }}'; json.dump(data, open('meta/MANIFEST.json', 'w'), indent=2)"
+
+          # Update .claude/skills/_config/MANIFEST.json
+          python3 -c "import json; data = json.load(open('.claude/skills/_config/MANIFEST.json')); data['version'] = '${{ steps.version.outputs.VERSION }}'; json.dump(data, open('.claude/skills/_config/MANIFEST.json', 'w'), indent=2)"
+
       - name: Publish to npm
         run: npm publish --access public
         env:
