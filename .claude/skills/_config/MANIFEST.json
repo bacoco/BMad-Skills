@@ -1,4 +1,5 @@
 {
+  "version": "2.2.0",
   "skills": [
     {
       "id": "main-workflow-router",
@@ -150,6 +151,5 @@
       "expansion-pack": "openspec",
       "description": "Archives completed L0-1 changes."
     }
-  ],
-  "version": "2.2.0"
+  ]
 }
