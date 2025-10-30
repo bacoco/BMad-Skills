@@ -12,8 +12,8 @@ from datetime import datetime
 
 SKILLS_ROOT = Path(__file__).resolve().parents[2]  # .claude/skills/
 RUNTIME_ROOT = SKILLS_ROOT / "_runtime" / "workspace"
-ARTIFACTS_DIR = RUNTIME_ROOT.parent / "artifacts"
-DEFAULT_OUTPUT_DIR = ARTIFACTS_DIR  # Backwards compatibility
+ARTIFACTS_DIR = RUNTIME_ROOT / "artifacts"
+DEFAULT_OUTPUT_DIR = ARTIFACTS_DIR
 
 def load_json_data(json_path):
     """Load architecture data from JSON file"""

@@ -4,11 +4,16 @@ BMAD Skills Activation Metrics System
 Tracks and analyzes skill activation patterns for optimization
 """
 
-import yaml
+import sys
 from datetime import datetime
 from pathlib import Path
 from collections import defaultdict, Counter
 from typing import Dict, List, Optional
+
+# Import simple_yaml (stdlib-only YAML parser)
+TOOLING_DIR = Path(__file__).parent
+sys.path.insert(0, str(TOOLING_DIR))
+import simple_yaml as yaml
 
 
 class ActivationMetrics:

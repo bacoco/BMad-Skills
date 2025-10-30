@@ -5,14 +5,18 @@ Manages sprint-status.yaml for tracking story development progress
 """
 
 import re
-import yaml
+import sys
 from pathlib import Path
 from datetime import datetime
 
+# Import simple_yaml (stdlib-only YAML parser)
 SKILLS_ROOT = Path(__file__).resolve().parents[2]  # .claude/skills/
+sys.path.insert(0, str(SKILLS_ROOT / "_core" / "tooling"))
+import simple_yaml as yaml
+
 RUNTIME_ROOT = SKILLS_ROOT / "_runtime" / "workspace"
-ARTIFACTS_DIR = RUNTIME_ROOT.parent / "artifacts"
-DEFAULT_ARTIFACTS_DIR = ARTIFACTS_DIR  # Backwards compatibility
+ARTIFACTS_DIR = RUNTIME_ROOT / "artifacts"
+DEFAULT_ARTIFACTS_DIR = ARTIFACTS_DIR
 
 class SprintStatus:
     """Manages BMAD sprint status YAML file"""

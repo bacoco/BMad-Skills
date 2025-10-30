@@ -12,8 +12,8 @@ from datetime import datetime
 
 SKILLS_ROOT = Path(__file__).resolve().parents[2]  # .claude/skills/
 RUNTIME_ROOT = SKILLS_ROOT / "_runtime" / "workspace"
-STORIES_DIR = RUNTIME_ROOT.parent / "stories"
-DEFAULT_STORIES_DIR = STORIES_DIR  # Backwards compatibility
+STORIES_DIR = RUNTIME_ROOT / "stories"
+DEFAULT_STORIES_DIR = STORIES_DIR
 
 def load_json_data(json_path):
     """Load story data from JSON file"""
