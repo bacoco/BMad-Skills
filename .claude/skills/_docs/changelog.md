@@ -1,5 +1,58 @@
 # Changelog
 
+## Version 2.1.3 - Documented Patterns Enforcement (2025-10-30)
+
+**Patch Release**: Path resolution and dependency cleanup
+
+**Changes**:
+- 🔧 RUNTIME_ROOT constants now follow documented pattern
+  - All scripts use `RUNTIME_ROOT = SKILLS_ROOT / "_runtime" / "workspace"`
+  - Added separate `ARTIFACTS_DIR` and `STORIES_DIR` variables
+  - Updated 5 scripts: sprint_status.py, workflow_status.py, generate_architecture.py, create_story.py, generate_prd.py
+  - Pattern now consistent with OpenSpec scripts and documented convention
+- 📦 Removed Jinja2 external dependency (self-contained bundle)
+  - Refactored 3 generation scripts to use Python's standard library
+  - generate_architecture.py: Uses programmatic string building with loops/conditionals
+  - create_story.py: Builds story content without template engine
+  - generate_prd.py: Renders both PRD and epics documents natively
+  - Bundle is now completely self-contained with zero external dependencies
+
+**Impact**: All 12 skills validated successfully. All 39 tests pass.
+
+## Version 2.1.2 - Critical Compliance Fixes (2025-10-29)
+
+**Patch Release**: Validator and template compliance fixes
+
+**Changes**:
+- 🔍 Validator: Replace broken line parser with PyYAML for proper YAML parsing
+  - quick_validate.py now uses yaml.safe_load() instead of ast.literal_eval()
+  - Correctly handles YAML lists in metadata.triggers.patterns
+  - All 12 skills now pass validation
+- 📝 SKILL.md descriptions: Remove redundant 'Keywords:' suffix
+  - Keywords already exist in metadata.triggers.keywords array
+  - Cleaned all descriptions to be under 160 chars
+  - Ensures valid YAML parsing (colons in strings were causing issues)
+- 📄 OpenSpec templates: Rename to .md.jinja extension per style guide
+  - archive-template.md → archive-template.md.jinja
+  - execution-log-template.md → execution-log-template.md.jinja
+  - proposal-template.md → proposal-template.md.jinja
+  - spec-delta-template.md → spec-delta-template.md.jinja
+  - tasks-template.md → tasks-template.md.jinja
+  - Updated Python scripts to reference new .jinja extensions
+
+**Impact**: All tests pass (39/39). Marketplace compliance improved.
+
+## Version 2.1.1 - Template Discoverability (2025-10-29)
+
+**Patch Release**: Progressive disclosure enhancement
+
+**Changes**:
+- 📖 Fixed template discoverability by adding explicit citations in SKILL.md for all templates in assets/ directories
+- ✨ Ensures Claude can discover and load templates through progressive disclosure
+- 📦 Published to NPM: bmad-skills@2.1.1 (131.7 kB, 422.6 kB unpacked)
+
+**Install**: `npx bmad-skills --global`
+
 ## Version 2.1.0 - Proactive Skills (2025-10-28)
 
 **Major UX Enhancement**: Skills now activate automatically based on conversation context
