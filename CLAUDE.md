@@ -31,7 +31,12 @@ Everything is contained in `.claude/skills/`:
 ├── [12 skill directories]     # Each with SKILL.md, REFERENCE.md, WORKFLOW.md, CHECKLIST.md
 ├── _core/                      # Shared resources (glossary, constraints, quality-gates)
 ├── _config/                    # Configuration (MANIFEST.json, STYLE-GUIDE.md)
-├── _runtime/                   # Runtime workspace for OpenSpec changes
+├── _runtime/                   # Runtime workspace for BMAD + OpenSpec artifacts
+│   └── workspace/
+│       ├── artifacts/          # BMAD planning outputs
+│       ├── stories/            # BMAD developer stories
+│       ├── changes/            # OpenSpec proposals
+│       └── specs/              # OpenSpec specifications
 └── _docs/                      # Documentation organized by type
 ```
 
@@ -223,10 +228,7 @@ The bundle is distributed as a complete package containing all 12 skills. Users 
 curl -fsSL https://raw.githubusercontent.com/bacoco/bmad-skills/main/scripts/install-to-home.sh | bash
 ```
 
-The installation creates:
-- Runtime workspace at `_runtime/workspace/`
-- Artifacts directory at `_runtime/artifacts/`
-- Stories directory at `_runtime/stories/`
+The installation creates a unified runtime workspace at `_runtime/workspace/` with subdirectories for `artifacts/`, `stories/`, `changes/`, and `specs/`.
 
 ## Marketplace Compliance
 

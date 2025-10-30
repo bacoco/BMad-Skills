@@ -29,8 +29,8 @@ When adding scripts to this directory, follow the BMAD path resolution standards
 from pathlib import Path
 
 SKILLS_ROOT = Path(__file__).resolve().parents[2]  # .claude/skills/
-RUNTIME_ROOT = SKILLS_ROOT / "_runtime"
+RUNTIME_ROOT = SKILLS_ROOT / "_runtime" / "workspace"
 DEFAULT_OUTPUT_DIR = RUNTIME_ROOT / "artifacts"
 ```
 
-All test artifacts should be written to the `_runtime/artifacts/` directory.
+All test artifacts should be written to the `_runtime/workspace/artifacts/` directory.

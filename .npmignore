@@ -34,5 +34,3 @@ scripts/*
 
 # Runtime (users create their own)
 .claude/skills/_runtime/workspace/
-.claude/skills/_runtime/artifacts/
-.claude/skills/_runtime/stories/

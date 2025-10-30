@@ -1,5 +1,21 @@
 # Changelog
 
+## Version 2.1.5 - Dependency-Free Runtime Alignment (2025-10-30)
+
+**Patch Release**: Finalize audit follow-ups after 2024-02-22 review
+
+**Changes**:
+- 🧩 Validator: Removed PyYAML dependency
+  - quick_validate.py now ships with a bundled standard-library parser
+  - Supports scalars, booleans, numbers, inline collections, and nested dict/list structures
+  - Eliminates the final external dependency from the bundle
+- 📦 Requirements cleanup: Trimmed top-level requirements to `pytest` (dev only)
+- 🗂️ Runtime structure: Consolidated BMAD and OpenSpec artifacts under `_runtime/workspace/`
+  - Added `artifacts/` and `stories/` directories alongside existing `changes/` and `specs/`
+  - Updated install scripts, contributor READMEs, and CLAUDE.md guidance
+
+**Impact**: Bundle is now self-contained and documentation matches the canonical runtime layout.
+
 ## Version 2.1.4 - Compliance Audit Resolution (2025-10-30)
 
 **Patch Release**: Post-2.1.3 compliance audit fixes

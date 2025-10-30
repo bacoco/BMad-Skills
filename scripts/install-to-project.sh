@@ -37,10 +37,8 @@ cp -r "$SOURCE" "$TARGET"
 echo "📁 Creating runtime workspace..."
 mkdir -p "$TARGET/_runtime/workspace/changes"
 mkdir -p "$TARGET/_runtime/workspace/specs"
-
-# Create artifacts directories (for skill outputs)
-mkdir -p "$TARGET/_runtime/artifacts"
-mkdir -p "$TARGET/_runtime/stories"
+mkdir -p "$TARGET/_runtime/workspace/artifacts"
+mkdir -p "$TARGET/_runtime/workspace/stories"
 
 echo ""
 echo "✅ Installation complete for this project!"

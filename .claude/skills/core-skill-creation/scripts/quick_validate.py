@@ -4,10 +4,198 @@ Quick validation script for skills - minimal version
 """
 
 import sys
-import os
 import re
-import yaml
 from pathlib import Path
+from typing import Any, Dict, List, Optional, Tuple
+
+
+_INT_PATTERN = re.compile(r"^[+-]?\d+$")
+_FLOAT_PATTERN = re.compile(r"^[+-]?(?:\d*\.\d+|\d+\.\d*|\d+)(?:[eE][+-]?\d+)?$")
+
+
+class FrontmatterParserError(Exception):
+    """Raised when YAML-like frontmatter cannot be parsed."""
+
+
+def _split_inline_items(text: str) -> List[str]:
+    """Split a comma-separated inline list or mapping while respecting nesting."""
+
+    items: List[str] = []
+    buffer: List[str] = []
+    depth = 0
+    quote: Optional[str] = None
+    escape = False
+
+    for char in text:
+        if quote:
+            buffer.append(char)
+            if escape:
+                escape = False
+                continue
+            if char == "\\":
+                escape = True
+            elif char == quote:
+                quote = None
+            continue
+
+        if char in ('"', "'"):
+            quote = char
+            buffer.append(char)
+        elif char in "[{(":
+            depth += 1
+            buffer.append(char)
+        elif char in "]})":
+            depth = max(0, depth - 1)
+            buffer.append(char)
+        elif char == "," and depth == 0:
+            item = "".join(buffer).strip()
+            if item:
+                items.append(item)
+            buffer = []
+        else:
+            buffer.append(char)
+
+    if quote:
+        raise FrontmatterParserError("Unterminated quoted string in inline collection")
+
+    tail = "".join(buffer).strip()
+    if tail:
+        items.append(tail)
+
+    return items
+
+
+def _parse_scalar(value: str) -> Any:
+    """Parse a scalar value from YAML-like syntax using only the stdlib."""
+
+    if value == "":
+        return ""
+
+    lower = value.lower()
+    if lower in {"true", "yes"}:
+        return True
+    if lower in {"false", "no"}:
+        return False
+    if lower in {"null", "none", "~"}:
+        return None
+
+    if _INT_PATTERN.match(value):
+        try:
+            return int(value)
+        except ValueError:
+            pass
+    if _FLOAT_PATTERN.match(value):
+        try:
+            return float(value)
+        except ValueError:
+            pass
+
+    if value.startswith('"') and value.endswith('"') and len(value) >= 2:
+        escaped = value[1:-1].encode("utf-8").decode("unicode_escape")
+        return escaped
+    if value.startswith("'") and value.endswith("'") and len(value) >= 2:
+        return value[1:-1]
+
+    if value.startswith("[") and value.endswith("]"):
+        inner = value[1:-1].strip()
+        if not inner:
+            return []
+        return [_parse_scalar(item) for item in _split_inline_items(inner)]
+
+    if value.startswith("{") and value.endswith("}"):
+        inner = value[1:-1].strip()
+        if not inner:
+            return {}
+        result: Dict[str, Any] = {}
+        for item in _split_inline_items(inner):
+            key, sep, val = item.partition(":")
+            if not sep:
+                raise FrontmatterParserError(f"Invalid inline mapping entry: {item}")
+            result[key.strip()] = _parse_scalar(val.strip())
+        return result
+
+    return value
+
+
+def _parse_block(lines: List[str], index: int, indent_level: int) -> Tuple[Any, int]:
+    """Parse a nested YAML-like block based on indentation."""
+
+    mapping: Dict[str, Any] = {}
+    sequence: List[Any] = []
+    mode: Optional[str] = None
+
+    while index < len(lines):
+        raw_line = lines[index]
+        stripped = raw_line.strip()
+
+        if not stripped or stripped.startswith("#"):
+            index += 1
+            continue
+
+        leading_spaces = len(raw_line) - len(raw_line.lstrip(" "))
+        if leading_spaces % 2 != 0:
+            raise FrontmatterParserError(
+                f"Invalid indentation (must be multiples of two spaces): '{raw_line}'"
+            )
+
+        current_level = leading_spaces // 2
+        if current_level < indent_level:
+            break
+        if current_level > indent_level:
+            raise FrontmatterParserError(
+                f"Unexpected indentation level at line: '{raw_line.strip()}'"
+            )
+
+        if stripped.startswith("- "):
+            if mode == "mapping":
+                raise FrontmatterParserError("Cannot mix list items with mapping entries")
+            mode = "sequence"
+            item_text = stripped[2:].strip()
+            index += 1
+            if item_text:
+                sequence.append(_parse_scalar(item_text))
+            else:
+                item_value, index = _parse_block(lines, index, indent_level + 1)
+                sequence.append(item_value)
+        else:
+            if mode == "sequence":
+                raise FrontmatterParserError("Cannot mix mapping entries with list items")
+            mode = "mapping"
+            key, sep, remainder = stripped.partition(":")
+            if not sep:
+                raise FrontmatterParserError(f"Invalid mapping entry: '{stripped}'")
+            key = key.strip()
+            remainder = remainder.strip()
+            index += 1
+            if remainder:
+                mapping[key] = _parse_scalar(remainder)
+            else:
+                value, index = _parse_block(lines, index, indent_level + 1)
+                mapping[key] = value
+
+    if mode == "sequence":
+        return sequence, index
+
+    return mapping, index
+
+
+def parse_frontmatter(frontmatter_text: str) -> Dict[str, Any]:
+    """Parse skill frontmatter without third-party dependencies."""
+
+    lines = [line.rstrip("\r\n") for line in frontmatter_text.splitlines()]
+    parsed, index = _parse_block(lines, 0, 0)
+
+    # Ensure no trailing non-empty lines remain unparsed at root level
+    for remaining in lines[index:]:
+        if remaining.strip() and not remaining.strip().startswith("#"):
+            raise FrontmatterParserError(
+                f"Unexpected content after parsing frontmatter: '{remaining.strip()}'"
+            )
+
+    if not isinstance(parsed, dict):
+        raise FrontmatterParserError("Frontmatter root must be a mapping")
+
+    return parsed
 
 def validate_skill(skill_path):
     """Basic validation of a skill"""
@@ -32,13 +220,11 @@ def validate_skill(skill_path):
 
     # Parse YAML frontmatter
     try:
-        frontmatter = yaml.safe_load(frontmatter_text)
-        if not isinstance(frontmatter, dict):
-            return False, "Frontmatter must be a key/value mapping"
-    except yaml.YAMLError as e:
-        return False, f"Invalid YAML frontmatter: {e}"
-    except Exception as e:
-        return False, f"Invalid frontmatter format: {e}"
+        frontmatter = parse_frontmatter(frontmatter_text)
+    except FrontmatterParserError as exc:
+        return False, f"Invalid YAML frontmatter: {exc}"
+    except Exception as exc:  # Defensive guardrail
+        return False, f"Invalid frontmatter format: {exc}"
 
     # Note: We intentionally do NOT restrict frontmatter keys to maintain
     # forward compatibility with evolving Claude Skills schema.

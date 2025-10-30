@@ -28,5 +28,6 @@ If you identify repetitive manual tasks in the development workflow that could b
 from pathlib import Path
 
 SKILLS_ROOT = Path(__file__).resolve().parents[2]  # .claude/skills/
-RUNTIME_ROOT = SKILLS_ROOT / "_runtime"
+RUNTIME_ROOT = SKILLS_ROOT / "_runtime" / "workspace"
+DEFAULT_OUTPUT_DIR = RUNTIME_ROOT / "artifacts"
 ```
