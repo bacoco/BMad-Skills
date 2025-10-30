@@ -71,7 +71,7 @@ Transform epics and architecture decisions into developer-ready story packages, 
 - sprint_status: current delivery cadence and capacity information
 
 ## Outputs
-- Story markdown files created using `assets/story-template.md.jinja`
+- Story markdown files created using `assets/story-template.md.template`
 - Updated backlog summary highlighting sequencing, dependencies, and blockers
 - Recommendations for next stories to activate for development-execution
 

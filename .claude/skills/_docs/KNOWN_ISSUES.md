@@ -2,7 +2,7 @@
 
 This document tracks known limitations and technical debt in BMAD Skills that require future refactoring.
 
-## ~~Template Usage~~ (RESOLVED in v2.1.6)
+## ~~Template Usage~~ (RESOLVED in v2.1.5)
 
 **Status:** ✅ FIXED
 

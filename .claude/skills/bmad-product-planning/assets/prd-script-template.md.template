@@ -3,7 +3,7 @@
 **Author:** $user_name
 **Date:** $date
 **Project Level:** $project_level
-**Version:** 1.0.0
+**Version:** 2.1.6
 
 ---
 
@@ -60,10 +60,3 @@ $epic_list
 ## Out of Scope
 
 $out_of_scope
-
----
-
-_Generated via BMAD Workflow Skills (v2.1.5) using BMAD v6-alpha spec_
-_Source: https://github.com/bmad-code-org/BMAD-METHOD/tree/v6-alpha_
-_Generated: $date_
-_For: $user_name_

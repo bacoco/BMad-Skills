@@ -73,7 +73,7 @@ Convert approved product requirements into a Decision Architecture that communic
 Missing inputs must be escalated to the orchestrator or originating skill before work proceeds.
 
 ## Outputs
-- `ARCHITECTURE.md` written using `assets/decision-architecture-template.md.jinja`
+- `ARCHITECTURE.md` written using `assets/decision-architecture-template.md.template`
 - Updated risk and decision log entries summarized for stakeholders
 
 Deliverables should highlight decisions, rejected options, and implementation guardrails.

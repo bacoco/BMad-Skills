@@ -11,7 +11,7 @@ Each skill MUST include the following directories and files:
 - `REFERENCE.md` - Deep domain knowledge and extended context
 - `WORKFLOW.md` - Human-readable step sequence
 - `CHECKLIST.md` - Quality gates before delivering artifacts
-- `assets/` - MUST contain Jinja2 templates (.md.jinja) for all declared outputs
+- `assets/` - MUST contain string.Template templates (.md.template) for all declared outputs
 - `scripts/` - MUST contain either automation tooling OR a README.md explaining why automation is not applicable
 
 Reference deep material from `SKILL.md` rather than embedding it directly.

@@ -1,5 +1,36 @@
 # Changelog
 
+## Version 2.1.6 - Documentation Consistency & Validator Refactoring (2025-10-30)
+
+**Patch Release**: Complete documentation alignment and validator modernization
+
+**Changes**:
+- 🔧 **quick_validate.py modernization**
+  - Refactored to use shared `simple_yaml.safe_load()` from `_core/tooling/`
+  - Removed 120+ lines of duplicate YAML parsing code
+  - Now imports centralized parser instead of embedding custom implementation
+  - Aligns with v2.1.5 changelog claim (was documented but not implemented)
+- 📝 **Template reference consistency (22 files updated)**
+  - Updated all `.jinja` references to `.template` across documentation
+  - Fixed: 11 SKILL.md files, REFERENCE.md, WORKFLOW.md files, CHECKLIST.md, STYLE-GUIDE.md
+  - Clarified core-skill-creation/assets/README.md: .jinja files are reference-only
+  - Scripts use Python `string.Template` (stdlib), not Jinja2
+- 🎨 **Removed template footer branding (4 templates)**
+  - Removed "Generated via BMAD Workflow Skills" footers from all templates
+  - Removed source links and generation metadata
+  - Cleaner output artifacts without promotional content
+  - Affected: prd-script-template, epics-wrapper-template, architecture-script-template, story-script-template
+- 📋 **KNOWN_ISSUES.md accuracy**
+  - Corrected resolution version: v2.1.6 → v2.1.5 (was claiming future version)
+  - Now accurately reflects current state
+
+**Impact**:
+- Zero `.jinja` references in active documentation (except historical changelog and reference files)
+- quick_validate.py properly uses centralized simple_yaml module
+- Cleaner generated artifacts without footer branding
+- Documentation matches implementation reality ("trust the docs" principle restored)
+- All 12 skills validated successfully
+
 ## Version 2.1.5 - Final Compliance & Consistency Fixes (2025-10-30)
 
 **Patch Release**: Complete audit compliance + version consistency

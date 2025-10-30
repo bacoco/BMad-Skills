@@ -77,13 +77,13 @@ If essential context is missing, gather it before deeper synthesis.
 
 ## Outputs
 - Discovery brief following patterns in `REFERENCE.md`
-- **Brainstorm notes** (from `assets/brainstorm-template.md.jinja`)
-- **Product brief** (from `assets/product-brief-template.md.jinja`)
-- **Research dossier** (from `assets/research-dossier-template.md.jinja`)
+- **Brainstorm notes** (from `assets/brainstorm-template.md.template`)
+- **Product brief** (from `assets/product-brief-template.md.template`)
+- **Research dossier** (from `assets/research-dossier-template.md.template`)
 - Prioritized questions and risk register captured for product-requirements skill
 - Recommendation on readiness to progress or need for further discovery
 
-**Template locations:** `.claude/skills/bmad-discovery-research/assets/*.jinja`
+**Template locations:** `.claude/skills/bmad-discovery-research/assets/*.template`
 
 ## Process
 1. Validate entry criteria in `CHECKLIST.md` and classify project complexity.

@@ -5,7 +5,7 @@
    - Gather approvals or sign-offs required for closure.
 
 2. **Documentation**
-   - Summarize outcome using `assets/archive-template.md.jinja`.
+   - Summarize outcome using `assets/archive-template.md.template`.
    - Record deviations, issues resolved, and any rollbacks.
    - Sync approved spec deltas via `scripts/archive_change.py <change-id>`.
 

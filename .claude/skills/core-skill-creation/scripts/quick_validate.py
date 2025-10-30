@@ -7,130 +7,17 @@ Uses stdlib only, no external dependencies (PyYAML-free)
 import sys
 import os
 import re
-import json
 from pathlib import Path
 
-def parse_simple_yaml(text):
-    """
-    Parse simple YAML frontmatter using stdlib only.
-    Supports: scalars, lists (inline and multi-line), nested dicts, booleans, numbers.
-    Does NOT support: anchors, multi-line strings, complex YAML features.
-    """
-    result = {}
-    lines = text.strip().split('\n')
-    i = 0
-    indent_stack = [(-1, result)]  # (indent_level, dict_ref)
+# Add _core/tooling to path to import simple_yaml
+SKILLS_ROOT = Path(__file__).resolve().parents[2]  # .claude/skills/
+sys.path.insert(0, str(SKILLS_ROOT / "_core" / "tooling"))
 
-    def get_current_dict(indent):
-        """Find the appropriate dict for current indentation level"""
-        while len(indent_stack) > 1 and indent_stack[-1][0] >= indent:
-            indent_stack.pop()
-        return indent_stack[-1][1]
-
-    while i < len(lines):
-        line = lines[i]
-        if not line.strip() or line.strip().startswith('#'):
-            i += 1
-            continue
-
-        # Measure indentation
-        indent = len(line) - len(line.lstrip())
-        stripped = line.strip()
-
-        # List item (starts with -)
-        if stripped.startswith('- '):
-            # Find the parent key by looking back for the list key
-            current_dict = get_current_dict(indent)
-            list_value = stripped[2:].strip()
-
-            # Parse the list value
-            if list_value:
-                parsed_value = parse_value(list_value)
-                # Find the last added list or create one
-                last_key = list(current_dict.keys())[-1] if current_dict else None
-                if last_key and isinstance(current_dict[last_key], list):
-                    current_dict[last_key].append(parsed_value)
-            i += 1
-            continue
-
-        # Key-value pair
-        if ':' in stripped:
-            key, _, value = stripped.partition(':')
-            key = key.strip()
-            value = value.strip()
-
-            current_dict = get_current_dict(indent)
-
-            if not value:
-                # Empty value - might be a nested dict or list
-                # Peek ahead to see if next line is indented
-                if i + 1 < len(lines):
-                    next_line = lines[i + 1]
-                    next_indent = len(next_line) - len(next_line.lstrip())
-                    next_stripped = next_line.strip()
-
-                    if next_indent > indent:
-                        if next_stripped.startswith('- '):
-                            # It's a list
-                            current_dict[key] = []
-                        else:
-                            # It's a nested dict
-                            current_dict[key] = {}
-                            indent_stack.append((indent, current_dict[key]))
-                    else:
-                        current_dict[key] = None
-                else:
-                    current_dict[key] = None
-            else:
-                # Parse the value
-                current_dict[key] = parse_value(value)
-
-        i += 1
-
-    return result
-
-def parse_value(value):
-    """Parse a YAML value into Python type"""
-    value = value.strip()
-
-    # Boolean
-    if value in ('true', 'True', 'TRUE'):
-        return True
-    if value in ('false', 'False', 'FALSE'):
-        return False
-
-    # Null
-    if value in ('null', 'Null', 'NULL', '~', ''):
-        return None
-
-    # Number
-    try:
-        if '.' in value:
-            return float(value)
-        return int(value)
-    except ValueError:
-        pass
-
-    # Inline list [item1, item2]
-    if value.startswith('[') and value.endswith(']'):
-        try:
-            return json.loads(value)
-        except:
-            pass
-
-    # Inline dict {key: value}
-    if value.startswith('{') and value.endswith('}'):
-        try:
-            return json.loads(value.replace("'", '"'))
-        except:
-            pass
-
-    # String (remove quotes if present)
-    if (value.startswith('"') and value.endswith('"')) or \
-       (value.startswith("'") and value.endswith("'")):
-        return value[1:-1]
-
-    return value
+try:
+    import simple_yaml
+except ImportError as e:
+    print(f"Error: Could not import simple_yaml from _core/tooling: {e}")
+    sys.exit(1)
 
 def validate_skill(skill_path):
     """Basic validation of a skill"""
@@ -153,9 +40,9 @@ def validate_skill(skill_path):
 
     frontmatter_text = match.group(1)
 
-    # Parse YAML frontmatter (stdlib only)
+    # Parse YAML frontmatter using shared simple_yaml module
     try:
-        frontmatter = parse_simple_yaml(frontmatter_text)
+        frontmatter = simple_yaml.safe_load(frontmatter_text)
         if not isinstance(frontmatter, dict):
             return False, "Frontmatter must be a key/value mapping"
     except Exception as e:

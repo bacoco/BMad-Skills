@@ -77,7 +77,7 @@ Apply small code or configuration changes approved via OpenSpec proposals, ensur
 - Code or configuration changes committed according to tasks
 - Test results demonstrating acceptance criteria were met
 - Updated proposal/tasks capturing status and follow-ups
-- `execution-log.md` documenting commands and evidence (template: `assets/execution-log-template.md.jinja`)
+- `execution-log.md` documenting commands and evidence (template: `assets/execution-log-template.md.template`)
 
 `scripts/update_execution_log.py` appends timestamped entries to the execution log inside `openspec/changes/<change-id>/`.
 

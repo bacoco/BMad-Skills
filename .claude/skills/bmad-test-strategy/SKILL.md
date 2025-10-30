@@ -71,13 +71,13 @@ Provide risk-focused quality strategies, acceptance tests, and governance that e
 - existing_quality_assets: current test suites, tooling, and metrics
 
 ## Outputs
-- **Test strategy** (from `assets/test-strategy-template.md.jinja`)
-- **ATDD scenarios** (from `assets/atdd-scenarios-template.md.jinja`)
-- **Quality checklist** (from `assets/quality-checklist-template.md.jinja`)
+- **Test strategy** (from `assets/test-strategy-template.md.template`)
+- **ATDD scenarios** (from `assets/atdd-scenarios-template.md.template`)
+- **Quality checklist** (from `assets/quality-checklist-template.md.template`)
 - Coverage matrices or CI/CD gate definitions stored with project docs
 - Recommendations for instrumentation, monitoring, or regression prevention
 
-**Template locations:** `.claude/skills/bmad-test-strategy/assets/*.jinja`
+**Template locations:** `.claude/skills/bmad-test-strategy/assets/*.template`
 
 ## Process
 1. Confirm prerequisites using `CHECKLIST.md`.

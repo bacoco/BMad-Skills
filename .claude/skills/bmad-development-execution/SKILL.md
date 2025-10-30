@@ -75,10 +75,10 @@ Implement approved stories end-to-end, maintaining transparency, testing discipl
 ## Outputs
 - Code diffs and test results captured in the working repository
 - Updated story file (Dev Agent Record, status transitions, learnings)
-- **implementation-notes.md** - Development summary (generated from `assets/implementation-notes-template.md.jinja`)
+- **implementation-notes.md** - Development summary (generated from `assets/implementation-notes-template.md.template`)
 - Summary of changes, tests, and outstanding risks for stakeholders
 
-**Template location:** `.claude/skills/bmad-development-execution/assets/implementation-notes-template.md.jinja`
+**Template location:** `.claude/skills/bmad-development-execution/assets/implementation-notes-template.md.template`
 
 ## Process
 1. Confirm prerequisites via `CHECKLIST.md` and restate story scope.

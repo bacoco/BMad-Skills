@@ -79,8 +79,8 @@ If any input is missing or stale, pause and request the exact artifact before pr
 
 ## Outputs
 Produce two markdown artifacts aligned to the templates in `assets/`:
-1. `PRD.md` populated from `assets/prd-template.md.jinja`
-2. `epics.md` populated from `assets/epic-roadmap-template.md.jinja`
+1. `PRD.md` populated from `assets/prd-template.md.template`
+2. `epics.md` populated from `assets/epic-roadmap-template.md.template`
 
 Deliverables must be written to the project documentation folder (default `docs/`) and summarized for the requestor.
 

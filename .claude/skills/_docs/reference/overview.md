@@ -52,31 +52,37 @@ stories/
     bmad-discovery-research/                   # Phase 1: Analysis
       SKILL.md                      # Brainstorm, product brief, research
       assets/
-        brainstorm-template.md.jinja
-        product-brief-template.md.jinja
-        research-dossier-template.md.jinja
+        brainstorm-template.md.template
+        product-brief-template.md.template
+        research-dossier-template.md.template
 
     bmad-product-planning/                        # Phase 2: Planning
       SKILL.md
-      generate_prd.py
-      prd_template.md.jinja
-      epics_template.md.jinja
+      scripts/
+        generate_prd.py
+      assets/
+        prd-template.md.template
+        epics-template.md.template
 
     bmad-ux-design/                        # Phase 2: UX Design
       SKILL.md                      # UX specifications
 
     bmad-architecture-design/              # Phase 3: Solutioning
       SKILL.md
-      generate_architecture.py
-      architecture_template.md.jinja
+      scripts/
+        generate_architecture.py
+      assets/
+        architecture-template.md.template
 
     bmad-test-strategy/                       # Cross-phase: Testing
       SKILL.md                      # Test strategy, ATDD, automation
 
     bmad-story-planning/                   # Phase 4: Story Creation
       SKILL.md
-      create_story.py
-      story_template.md.jinja
+      scripts/
+        create_story.py
+      assets/
+        story-template.md.template
 
     bmad-development-execution/                       # Phase 4: Implementation
       SKILL.md                      # Coding, testing, review
