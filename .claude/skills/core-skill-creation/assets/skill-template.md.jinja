@@ -1,0 +1,64 @@
+---
+name: {{ skill_name }}
+description: {{ description }}
+version: 1.0.0
+allowed-tools: {{ allowed_tools | default('["Read", "Write", "Grep"]') }}
+metadata:
+  auto-invoke: {{ auto_invoke | default('true') }}
+  triggers:
+    patterns:
+{% for pattern in trigger_patterns %}
+      - "{{ pattern }}"
+{% endfor %}
+    keywords:
+{% for keyword in trigger_keywords %}
+      - {{ keyword }}
+{% endfor %}
+  capabilities:
+{% for capability in capabilities %}
+    - {{ capability }}
+{% endfor %}
+  prerequisites: {{ prerequisites | default('[]') }}
+  outputs:
+{% for output in outputs %}
+    - {{ output }}
+{% endfor %}
+---
+
+# {{ skill_title }}
+
+## When to Invoke
+
+**Automatically activate this skill when the user:**
+{% for pattern in trigger_patterns %}
+- {{ pattern }}
+{% endfor %}
+
+**Do NOT invoke when:**
+- {{ contraindications }}
+
+## Mission
+{{ mission }}
+
+## Inputs Required
+{{ inputs_required }}
+
+## Outputs
+{% for output in outputs_detail %}
+- **{{ output.name }}** (from `assets/{{ output.template }}`)
+{% endfor %}
+
+**Template locations:** `.claude/skills/{{ skill_name }}/assets/*.jinja`
+
+## Process
+{% for step in process_steps %}
+{{ loop.index }}. {{ step }}
+{% endfor %}
+
+**Note on automation:** {{ automation_note | default('This skill operates through conversation using templates. See `scripts/README.md` for automation details.') }}
+
+## Quality Gates
+{{ quality_gates }}
+
+## Error Handling
+{{ error_handling }}
