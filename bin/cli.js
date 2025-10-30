@@ -171,12 +171,13 @@ function validateInstallation(target) {
 
   // 3. Check that skills listed in manifest exist
   const missingSkills = [];
-  for (const skillName of manifest.skills) {
-    const skillPath = path.join(target, skillName);
+  for (const skill of manifest.skills) {
+    const skillId = typeof skill === 'string' ? skill : skill.id;
+    const skillPath = path.join(target, skillId);
     const skillManifest = path.join(skillPath, 'SKILL.md');
 
     if (!fs.existsSync(skillPath) || !fs.existsSync(skillManifest)) {
-      missingSkills.push(skillName);
+      missingSkills.push(skillId);
     }
   }
 
@@ -187,10 +188,11 @@ function validateInstallation(target) {
   debug(`All ${manifest.skills.length} skills verified`);
 
   // 4. Check that each skill has required assets/ directory
-  for (const skillName of manifest.skills) {
-    const assetsPath = path.join(target, skillName, 'assets');
+  for (const skill of manifest.skills) {
+    const skillId = typeof skill === 'string' ? skill : skill.id;
+    const assetsPath = path.join(target, skillId, 'assets');
     if (!fs.existsSync(assetsPath)) {
-      throw new Error(`Skill ${skillName} missing assets/ directory`);
+      throw new Error(`Skill ${skillId} missing assets/ directory`);
     }
   }
 
@@ -356,9 +358,9 @@ function main() {
   try {
     const target = getInstallTarget();
 
-    // Check if we're in the BMAD Skills repo itself
+    // Check if we're in the BMAD Skills repo itself (skip check in test mode)
     const manifestPath = path.join(process.cwd(), '.claude', 'skills', '_config', 'MANIFEST.json');
-    if (fs.existsSync(manifestPath)) {
+    if (fs.existsSync(manifestPath) && !process.env.BMAD_TEST_MODE) {
       log('⚠️  You are already in the BMAD Skills repository!', 'yellow');
       log('   No need to install. Use this repo directly.', 'yellow');
       process.exit(0);

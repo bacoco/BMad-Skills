@@ -361,6 +361,68 @@ BMAD is open source and welcomes contributions:
 
 See [Contributing Guidelines](.claude/skills/_docs/guides/contributing.md) for details.
 
+### 🛠️ Development Setup
+
+To contribute to BMAD, set up your local development environment:
+
+```bash
+# Clone the repository
+git clone https://github.com/bacoco/bmad-skills.git
+cd bmad-skills
+
+# Install all dependencies (Python + Node)
+make install
+
+# Or install manually:
+pip3 install -r requirements.txt
+npm install
+```
+
+**Available Commands:**
+
+```bash
+# Testing
+make test              # Run unit and integration tests
+make test-unit         # Run unit tests only
+make test-e2e          # Run E2E tests (requires Claude CLI)
+make test-all          # Run all tests including E2E
+
+# Quality
+make lint              # Lint skill contracts
+make validate          # Validate all skills
+
+# Utilities
+make clean             # Remove temporary files and caches
+make help              # Show all available commands
+```
+
+**Requirements:**
+- Python 3.9+
+- Node.js 14+
+- For E2E tests: Claude CLI installed and authenticated
+
+**Running Tests:**
+
+```bash
+# Quick validation (recommended for development)
+make test
+
+# Full test suite including integration tests
+pytest tests/integration/ -v
+
+# Run specific test file
+pytest tests/integration/test_cli_install.py -v
+
+# Test CLI installation manually
+node bin/cli.js --path /tmp/test-install
+```
+
+**Test Structure:**
+- `tests/unit/` - Unit tests for Python modules
+- `tests/integration/` - CLI and workflow integration tests
+- `tests/e2e/` - End-to-end tests with Claude CLI
+- `tests/test_*.py` - Static validation tests (metadata, templates)
+
 ---
 
 ## 📄 License
