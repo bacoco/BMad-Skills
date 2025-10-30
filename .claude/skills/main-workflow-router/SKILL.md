@@ -1,5 +1,5 @@
 ---
-name: bmad-workflow-router
+name: main-workflow-router
 description: Routes work to OpenSpec (L0-1) or BMAD (L2-4). Tracks status and guides through phases.
 version: 2.1.4
 allowed-tools: ["Read", "Write", "Grep", "Bash"]
@@ -143,7 +143,7 @@ Serve as the global orchestrator for all product development work, intelligently
 - Recommendation for the next skill to activate with rationale and prerequisites
 - Logged artifacts and blockers for stakeholder visibility
 
-**Template location:** `.claude/skills/bmad-workflow-router/assets/workflow-status-template.md.jinja`
+**Template location:** `.claude/skills/main-workflow-router/assets/workflow-status-template.md.jinja`
 
 ## Process
 

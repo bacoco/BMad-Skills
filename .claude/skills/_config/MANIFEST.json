@@ -1,8 +1,8 @@
 {
   "skills": [
     {
-      "id": "bmad-workflow-router",
-      "path": ".claude/skills/bmad-workflow-router",
+      "id": "main-workflow-router",
+      "path": ".claude/skills/main-workflow-router",
       "version": "2.1.4",
       "allowed-tools": [
         "Read",

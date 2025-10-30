@@ -182,7 +182,7 @@ I'll initialize the BMAD workflow...
 
 For Level 2-4, run Python helper:
 ```bash
-python .claude/skills/bmad-workflow-router/helpers/workflow_status.py init \
+python .claude/skills/main-workflow-router/helpers/workflow_status.py init \
   "{project_name}" "{project_type}" {level} "{user_name}"
 ```
 
@@ -247,7 +247,7 @@ Let me start with {skill_name}...
 ### Step 1: Check for Workflow Status File
 
 ```bash
-python .claude/skills/bmad-workflow-router/helpers/workflow_status.py get-phase
+python .claude/skills/main-workflow-router/helpers/workflow_status.py get-phase
 ```
 
 **If no file**: Recommend running `workflow-init` first.
@@ -343,20 +343,20 @@ Current Phase: {phase}
 ### Step 2: Mark Phase Complete
 
 ```bash
-python .claude/skills/bmad-workflow-router/helpers/workflow_status.py mark-complete "{phase}"
+python .claude/skills/main-workflow-router/helpers/workflow_status.py mark-complete "{phase}"
 ```
 
 ### Step 3: Update to Next Phase
 
 ```bash
-python .claude/skills/bmad-workflow-router/helpers/workflow_status.py update-phase "{next_phase}"
+python .claude/skills/main-workflow-router/helpers/workflow_status.py update-phase "{next_phase}"
 ```
 
 ### Step 4: Add Artifacts
 
 For each artifact created:
 ```bash
-python .claude/skills/bmad-workflow-router/helpers/workflow_status.py add-artifact \
+python .claude/skills/main-workflow-router/helpers/workflow_status.py add-artifact \
   "{path}" "{description}"
 ```
 
@@ -391,7 +391,7 @@ Load {skill_name} to continue.
 ### Step 2: Initialize Sprint Status
 
 ```bash
-python .claude/skills/bmad-workflow-router/helpers/sprint_status.py init docs/epics.md
+python .claude/skills/main-workflow-router/helpers/sprint_status.py init docs/epics.md
 ```
 
 This creates `docs/sprint-status.yaml` with:
@@ -423,7 +423,7 @@ To see next story: Ask orchestrator "what's the next story to create?"
 ### Get Next Backlog Story
 
 ```bash
-python .claude/skills/bmad-workflow-router/helpers/sprint_status.py next-backlog
+python .claude/skills/main-workflow-router/helpers/sprint_status.py next-backlog
 ```
 
 Returns: Story key (e.g., "1-1-project-setup")
@@ -432,32 +432,32 @@ Returns: Story key (e.g., "1-1-project-setup")
 
 When story created:
 ```bash
-python .claude/skills/bmad-workflow-router/helpers/sprint_status.py update \
+python .claude/skills/main-workflow-router/helpers/sprint_status.py update \
   "{story_key}" "drafted"
 ```
 
 When story implementation starts:
 ```bash
-python .claude/skills/bmad-workflow-router/helpers/sprint_status.py update \
+python .claude/skills/main-workflow-router/helpers/sprint_status.py update \
   "{story_key}" "in-progress" "{developer_name}"
 ```
 
 When story in review:
 ```bash
-python .claude/skills/bmad-workflow-router/helpers/sprint_status.py update \
+python .claude/skills/main-workflow-router/helpers/sprint_status.py update \
   "{story_key}" "review"
 ```
 
 When story done:
 ```bash
-python .claude/skills/bmad-workflow-router/helpers/sprint_status.py update \
+python .claude/skills/main-workflow-router/helpers/sprint_status.py update \
   "{story_key}" "done"
 ```
 
 ### List Stories by Status
 
 ```bash
-python .claude/skills/bmad-workflow-router/helpers/sprint_status.py list-status "{status}"
+python .claude/skills/main-workflow-router/helpers/sprint_status.py list-status "{status}"
 ```
 
 Statuses: backlog, drafted, ready, in-progress, review, done

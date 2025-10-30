@@ -6,7 +6,7 @@ Learn how to trigger BMAD and OpenSpec skills through natural dialogue.
 
 ## 1. Start the BMAD workflow
 - Say “I have an idea for…” or “Let’s start a new project.”
-- Claude should auto-activate `bmad-workflow-router` or `bmad-discovery-research`.
+- Claude should auto-activate `main-workflow-router` or `bmad-discovery-research`.
 - If nothing happens, ask “Start the BMAD workflow for me.”
 
 ## 2. Brainstorming and discovery (`bmad-discovery-research`)
@@ -45,7 +45,7 @@ Learn how to trigger BMAD and OpenSpec skills through natural dialogue.
   - `openspec-change-closure`: “Archive change 42 with final notes.”
 
 ## 10. Staying on track
-- Ask `bmad-workflow-router`: “Where am I in the workflow?”
+- Ask `main-workflow-router`: “Where am I in the workflow?”
 - Use “What’s next?” to get the next recommended phase.
 - Review `workflow-status.md` to confirm deliverables.
 

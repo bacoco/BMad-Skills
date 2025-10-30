@@ -20,7 +20,7 @@ declare -a checks=(
   "$TARGET/_config/STYLE-GUIDE.md:Style guide"
   "$TARGET/_runtime/workspace:Runtime workspace"
   "$TARGET/_docs:Documentation"
-  "$TARGET/bmad-workflow-router/SKILL.md:Orchestrator skill"
+  "$TARGET/main-workflow-router/SKILL.md:Orchestrator skill"
   "$TARGET/bmad-discovery-research/SKILL.md:Analyst skill"
   "$TARGET/bmad-product-planning/SKILL.md:PM skill"
   "$TARGET/bmad-ux-design/SKILL.md:UX skill"
@@ -55,7 +55,7 @@ if [ "$all_good" = true ]; then
   echo "      • 'I have an idea...' → bmad-discovery-research"
   echo "      • 'Create a PRD' → bmad-product-planning"
   echo "      • 'Fix this bug' → openspec-change-proposal"
-  echo "      • 'What's next?' → bmad-workflow-router"
+  echo "      • 'What's next?' → main-workflow-router"
   echo ""
   echo "📚 Documentation: $TARGET/_docs/guides/quickstart-conversational.md"
   exit 0

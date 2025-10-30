@@ -62,7 +62,7 @@ metadata:
 - User already has a detailed PRD (use bmad-product-planning instead)
 - User is asking for implementation help (use bmad-development-execution instead)
 - User has clear, well-defined requirements (skip to bmad-product-planning)
-- User is asking about workflow status (use bmad-workflow-router)
+- User is asking about workflow status (use main-workflow-router)
 - Project is Level 0-2 and requirements are clear (skip to bmad-product-planning)
 
 ## Mission

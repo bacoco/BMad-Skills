@@ -83,7 +83,7 @@ Use these scripted dialogues to verify that conversational triggers activate the
 ---
 
 ## Test 7 – Orchestrator Status Check
-**Goal:** Ensure `bmad-workflow-router` auto-responds to status inquiries.
+**Goal:** Ensure `main-workflow-router` auto-responds to status inquiries.
 
 **User prompts:**
 1. “Where am I in the BMAD workflow?”

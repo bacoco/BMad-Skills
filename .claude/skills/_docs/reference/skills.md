@@ -46,7 +46,7 @@ This catalog applies Claude's skill creation best practices to every BMAD capabi
 
 ## Phase 0 · Orchestration and State
 
-### bmad-workflow-router
+### main-workflow-router
 **Role**: Primary conductor that initializes projects, manages BMAD state, and routes work to phase specialists.
 
 **Use when**
@@ -308,6 +308,6 @@ This catalog applies Claude's skill creation best practices to every BMAD capabi
 
 ## Usage Notes
 
-- Always initialize the workflow with **bmad-workflow-router** before invoking downstream skills.
+- Always initialize the workflow with **main-workflow-router** before invoking downstream skills.
 - Hand-offs should include pointers to the latest artifacts so each skill loads only the context it needs, keeping conversation windows lean.
 - When evolving this catalog, run the **core-skill-creation** validation scripts to ensure every entry remains concise, discoverable, and conformant with Anthropic skill guidelines.

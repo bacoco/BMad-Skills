@@ -90,36 +90,36 @@ development_status:
 
 ```bash
 # Initialize workflow
-python .claude/skills/bmad-workflow-router/scripts/workflow_status.py init \
+python .claude/skills/main-workflow-router/scripts/workflow_status.py init \
   "Project Name" "greenfield" 3 "User"
 
 # Update phase
-python .claude/skills/bmad-workflow-router/scripts/workflow_status.py update-phase "Planning"
+python .claude/skills/main-workflow-router/scripts/workflow_status.py update-phase "Planning"
 
 # Mark phase complete (checkboxes and status update automatically)
-python .claude/skills/bmad-workflow-router/scripts/workflow_status.py mark-complete "Planning"
+python .claude/skills/main-workflow-router/scripts/workflow_status.py mark-complete "Planning"
 
 # Add artifact
-python .claude/skills/bmad-workflow-router/scripts/workflow_status.py add-artifact \
+python .claude/skills/main-workflow-router/scripts/workflow_status.py add-artifact \
   "docs/PRD.md" "Product Requirements Document"
 
 # Get current phase
-python .claude/skills/bmad-workflow-router/scripts/workflow_status.py get-phase
+python .claude/skills/main-workflow-router/scripts/workflow_status.py get-phase
 ```
 
 ### sprint_status.py
 
 ```bash
 # Initialize from epics
-python .claude/skills/bmad-workflow-router/scripts/sprint_status.py init docs/epics.md
+python .claude/skills/main-workflow-router/scripts/sprint_status.py init docs/epics.md
 
 # Update story status
-python .claude/skills/bmad-workflow-router/scripts/sprint_status.py update \
+python .claude/skills/main-workflow-router/scripts/sprint_status.py update \
   "1-1-project-setup" "in-progress" "Claude"
 
 # Get next backlog story
-python .claude/skills/bmad-workflow-router/scripts/sprint_status.py next-backlog
+python .claude/skills/main-workflow-router/scripts/sprint_status.py next-backlog
 
 # List stories by status
-python .claude/skills/bmad-workflow-router/scripts/sprint_status.py list-status "backlog"
+python .claude/skills/main-workflow-router/scripts/sprint_status.py list-status "backlog"
 ```

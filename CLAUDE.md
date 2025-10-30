@@ -13,14 +13,14 @@ This is **BMAD Skills** - a complete workflow ecosystem packaged as Claude Skill
 The repository implements two complementary workflows:
 
 1. **BMAD Track** (8 skills): End-to-end product development for Level 2-4 complexity
-   - bmad-workflow-router → bmad-discovery-research → bmad-product-planning → bmad-ux-design → bmad-architecture-design → bmad-test-strategy → bmad-story-planning → bmad-development-execution
+   - main-workflow-router → bmad-discovery-research → bmad-product-planning → bmad-ux-design → bmad-architecture-design → bmad-test-strategy → bmad-story-planning → bmad-development-execution
    - Handles: New products, complex features, multi-team coordination
 
 2. **OpenSpec Track** (3 skills): Lightweight change management for Level 0-1 complexity
    - openspec-change-proposal → openspec-change-implementation → openspec-change-closure
    - Handles: Bug fixes, small features, quick changes
 
-The **bmad-workflow-router** automatically routes work to the appropriate track based on complexity assessment.
+The **main-workflow-router** automatically routes work to the appropriate track based on complexity assessment.
 
 ### Self-Contained Bundle Architecture
 
@@ -151,7 +151,7 @@ Follow **principle of least privilege**:
 
 - **Execution skills**: May include `"Bash"` when necessary
   - bmad-development-execution (runs tests)
-  - bmad-workflow-router (git status checks)
+  - main-workflow-router (git status checks)
   - openspec-* (Python script execution)
   - core-skill-creation (validation/packaging)
 

@@ -50,7 +50,7 @@ ls -la ./.claude/skills/
 ```
 
 You should see 12 skill directories:
-- `bmad-workflow-router`
+- `main-workflow-router`
 - `bmad-discovery-research`
 - `bmad-product-planning`
 - `bmad-ux-design`

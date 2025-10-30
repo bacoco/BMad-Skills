@@ -13,7 +13,7 @@
 
 **You**: "I want to start a new project for a mobile expense tracker"
 
-**Claude**: Detects new project → Invokes `bmad-workflow-router`
+**Claude**: Detects new project → Invokes `main-workflow-router`
 - Assesses project level (0-4)
 - Creates `docs/workflow-status.md`
 - Recommends next phase
@@ -81,7 +81,7 @@
 
 **You**: "What's next?" or "Where am I in the workflow?"
 
-**Claude**: Invokes `bmad-workflow-router`
+**Claude**: Invokes `main-workflow-router`
 - Shows current phase and progress
 - Lists completed artifacts
 - Recommends next action

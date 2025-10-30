@@ -159,7 +159,7 @@ class ActivationMetrics:
                 )
 
         # Routing patterns
-        orchestrator_count = skill_counts.get('bmad-workflow-router', 0)
+        orchestrator_count = skill_counts.get('main-workflow-router', 0)
         if orchestrator_count > total * 0.5:
             insights.append(
                 "High orchestrator usage - good workflow coordination"

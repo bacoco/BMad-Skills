@@ -4,7 +4,7 @@
 
 | Skill | Phase | Purpose | Agent Persona |
 |-------|-------|---------|---------------|
-| **bmad-workflow-router** | All | Workflow orchestration, state management | Workflow Manager |
+| **main-workflow-router** | All | Workflow orchestration, state management | Workflow Manager |
 | **bmad-discovery-research** | Phase 1 | Brainstorm, product briefs, research | Strategic Business Analyst (Mary) |
 | **bmad-product-planning** | Phase 2 | PRD, epics breakdown | Investigative Product Strategist (John) |
 | **bmad-ux-design** | Phase 2 | UX design specifications | User Experience Designer (Sally) |
@@ -43,7 +43,7 @@ stories/
 ```
 .claude/
   skills/
-    bmad-workflow-router/
+    main-workflow-router/
       SKILL.md                      # Orchestrator with state management
       scripts/
         workflow_status.py          # Manages workflow-status.md
@@ -98,6 +98,6 @@ Each skill has natural language triggers that Claude detects automatically:
 | "How should we test?", "Create test strategy" | `bmad-test-strategy` | Test framework and ATDD implementation |
 | "Break into stories", "Create user stories" | `bmad-story-planning` | Developer-ready story file creation |
 | "Implement story X", "Develop this feature", "Let's code" | `bmad-development-execution` | Code implementation with tests |
-| "What's next?", "Where am I?", "Start new project" | `bmad-workflow-router` | Workflow status and guidance |
+| "What's next?", "Where am I?", "Start new project" | `main-workflow-router` | Workflow status and guidance |
 
 **Claude analyzes your message intent and context**, then invokes the appropriate skill automatically.

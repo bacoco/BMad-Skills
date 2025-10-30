@@ -28,7 +28,7 @@ This playbook illustrates how Claude should auto-activate BMAD skills through na
 
 ### Conversation Snapshot
 - **User:** “What’s next for our e-commerce project?”
-- **Claude:** `bmad-workflow-router` reviews `workflow-status.md`, reports completed phases, and recommends the next step.
+- **Claude:** `main-workflow-router` reviews `workflow-status.md`, reports completed phases, and recommends the next step.
 - **User:** “We need UX flows before development continues.”
 - **Claude:** Activates `bmad-ux-design`, delivers wireframe guidance and user journeys.
 - **User:** “Break the checkout epic into developer stories.”
