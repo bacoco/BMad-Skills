@@ -98,16 +98,15 @@ class ClaudeClient:
             # Default: Allow skills to activate
             cmd.extend(["--allowedTools", "Skill Read Write Grep"])
 
-        cmd.append(prompt)
-
         if verbose:
-            print(f"[ClaudeClient] Executing: {' '.join(cmd[:4])} '{prompt[:50]}...'")
+            print(f"[ClaudeClient] Executing: {' '.join(cmd)} (prompt via stdin)")
 
         timeout_val = timeout or self.timeout
 
         try:
             result = subprocess.run(
                 cmd,
+                input=prompt,  # Pass prompt via stdin, not as argument
                 capture_output=True,
                 text=True,
                 timeout=timeout_val
