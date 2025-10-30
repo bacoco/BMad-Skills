@@ -1,7 +1,7 @@
 ---
 name: openspec-propose
 description: Creates lightweight proposals for L0-1 work.
-version: 2.1.3
+version: 2.1.4
 allowed-tools: ["Read", "Write", "Grep", "Bash"]
 metadata:
   auto-invoke: true

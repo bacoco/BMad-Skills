@@ -1,5 +1,19 @@
 # Changelog
 
+## Version 2.1.4 - Compliance Audit Resolution (2025-10-30)
+
+**Patch Release**: Post-2.1.3 compliance audit fixes
+
+**Changes**:
+- 🔮 Validator: Removed hard-coded frontmatter key allow-list for future-proofing
+  - quick_validate.py now accepts all schema fields
+  - Maintains forward compatibility with evolving Claude Skills schema
+  - Only enforces required fields and format constraints
+- 📌 Version consistency: Updated workflow_status.py footer from v1.0.0 to current version
+- 📚 Changelog completeness: Documented all releases from v2.1.1 through v2.1.3
+
+**Impact**: Bundle now fully compliant with documented SOTA requirements from CLAUDE.md audit.
+
 ## Version 2.1.3 - Documented Patterns Enforcement (2025-10-30)
 
 **Patch Release**: Path resolution and dependency cleanup

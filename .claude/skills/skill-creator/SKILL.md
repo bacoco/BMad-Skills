@@ -1,7 +1,7 @@
 ---
 name: skill-creator
 description: Guide for creating effective skills with specialized knowledge and workflows.
-version: 2.1.3
+version: 2.1.4
 license: Complete terms in LICENSE.txt
 allowed-tools: ["Read", "Write", "Grep", "Bash"]
 metadata:

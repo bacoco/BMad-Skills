@@ -1,7 +1,7 @@
 ---
 name: bmad-tea
 description: Creates test strategy and ATDD scenarios.
-version: 2.1.3
+version: 2.1.4
 allowed-tools: ["Read", "Write", "Grep"]
 metadata:
   auto-invoke: true

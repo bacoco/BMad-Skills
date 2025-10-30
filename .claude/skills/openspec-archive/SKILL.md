@@ -1,7 +1,7 @@
 ---
 name: openspec-archive
 description: Archives completed L0-1 changes.
-version: 2.1.3
+version: 2.1.4
 allowed-tools: ["Read", "Write", "Grep", "Bash"]
 metadata:
   auto-invoke: true

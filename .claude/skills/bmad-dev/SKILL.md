@@ -1,7 +1,7 @@
 ---
 name: bmad-dev
 description: Implements stories with code and tests.
-version: 2.1.3
+version: 2.1.4
 allowed-tools: ["Read", "Write", "Grep", "Bash"]
 metadata:
   auto-invoke: true

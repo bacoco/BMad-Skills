@@ -89,7 +89,7 @@ None yet.
 
 ---
 
-_Managed by BMAD Workflow Skills v2.1.3_
+_Managed by BMAD Workflow Skills v2.1.4_
 """
 
         with open(self.status_file, 'w') as f:

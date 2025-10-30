@@ -1,7 +1,7 @@
 ---
 name: bmad-architecture
 description: Creates technical architecture and system design.
-version: 2.1.3
+version: 2.1.4
 allowed-tools: ["Read", "Write", "Grep"]
 metadata:
   auto-invoke: true
