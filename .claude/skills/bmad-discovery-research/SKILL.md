@@ -1,7 +1,7 @@
 ---
 name: bmad-discovery-research
 description: Brainstorms ideas and researches projects.
-version: 2.1.4
+version: 2.1.5
 allowed-tools: ["Read", "Write", "Grep"]
 metadata:
   auto-invoke: true

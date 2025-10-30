@@ -1,7 +1,7 @@
 ---
 name: main-workflow-router
 description: Routes work to OpenSpec (L0-1) or BMAD (L2-4). Tracks status and guides through phases.
-version: 2.1.4
+version: 2.1.5
 allowed-tools: ["Read", "Write", "Grep", "Bash"]
 metadata:
   auto-invoke: true

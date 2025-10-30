@@ -1,7 +1,7 @@
 ---
 name: bmad-product-planning
 description: Creates PRDs and plans features.
-version: 2.1.4
+version: 2.1.5
 allowed-tools: ["Read", "Write", "Grep"]
 metadata:
   auto-invoke: true

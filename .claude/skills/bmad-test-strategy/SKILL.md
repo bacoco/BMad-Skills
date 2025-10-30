@@ -1,7 +1,7 @@
 ---
 name: bmad-test-strategy
 description: Creates test strategy and ATDD scenarios.
-version: 2.1.4
+version: 2.1.5
 allowed-tools: ["Read", "Write", "Grep"]
 metadata:
   auto-invoke: true
