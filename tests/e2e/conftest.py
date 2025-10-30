@@ -67,6 +67,56 @@ def isolated_workspace(tmp_path, runtime_workspace):
     pass
 
 
+@pytest.fixture(autouse=True)
+def cleanup_runtime_workspace(runtime_workspace, request):
+    """
+    Automatically clean up runtime workspace after each E2E test.
+
+    This fixture runs for all E2E tests and removes generated artifacts
+    to prevent test pollution and git issues.
+    """
+    # Run test first
+    yield
+
+    # Cleanup after test (only for e2e tests)
+    if 'e2e' in request.keywords:
+        # Clean artifacts directory
+        artifacts_dir = runtime_workspace / "artifacts"
+        if artifacts_dir.exists():
+            for item in artifacts_dir.glob("*"):
+                if item.is_file() and item.suffix == ".md" and not item.name.endswith(".template"):
+                    item.unlink()
+                    print(f"[Cleanup] Removed: {item}")
+
+        # Clean stories directory
+        stories_dir = runtime_workspace / "stories"
+        if stories_dir.exists():
+            for item in stories_dir.glob("*"):
+                if item.is_file() and item.suffix == ".md":
+                    item.unlink()
+                    print(f"[Cleanup] Removed: {item}")
+
+        # Clean changes directory (OpenSpec)
+        changes_dir = runtime_workspace / "changes"
+        if changes_dir.exists():
+            for change_dir in changes_dir.iterdir():
+                if change_dir.is_dir() and not change_dir.name.startswith('.'):
+                    shutil.rmtree(change_dir)
+                    print(f"[Cleanup] Removed: {change_dir}")
+
+        # Clean any test-generated docs
+        docs_dir = Path("docs")
+        if docs_dir.exists():
+            for item in docs_dir.glob("*"):
+                if item.is_file():
+                    item.unlink()
+                    print(f"[Cleanup] Removed: {item}")
+            # Remove docs dir if empty
+            if not any(docs_dir.iterdir()):
+                docs_dir.rmdir()
+                print(f"[Cleanup] Removed empty: {docs_dir}")
+
+
 @pytest.fixture(scope="session")
 def claude_client():
     """Shared ClaudeClient instance with reasonable timeout."""
