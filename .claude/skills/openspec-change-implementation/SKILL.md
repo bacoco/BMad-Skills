@@ -1,7 +1,6 @@
 ---
 name: openspec-change-implementation
 description: Implements L0-1 changes from proposals.
-version: 2.1.5
 allowed-tools: ["Read", "Write", "Grep", "Bash"]
 metadata:
   auto-invoke: true

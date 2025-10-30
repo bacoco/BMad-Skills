@@ -1,7 +1,6 @@
 ---
 name: core-skill-creation
 description: Guide for creating effective skills with specialized knowledge and workflows.
-version: 2.1.5
 license: Complete terms in LICENSE.txt
 allowed-tools: ["Read", "Write", "Grep", "Bash"]
 metadata:

@@ -2,7 +2,7 @@
 
 This document tracks known limitations and technical debt in BMAD Skills that require future refactoring.
 
-## ~~Template Usage~~ (RESOLVED in v2.1.5)
+## ~~Template Usage~~ (RESOLVED)
 
 **Status:** ✅ FIXED
 
@@ -101,9 +101,6 @@ Periodic cleanup during major version bumps.
 Create comprehensive DISTRIBUTION.md in repository root.
 
 ---
-
-## Last Updated
-2025-10-30 (v2.1.5)
 
 ## Contributing
 When you discover new issues, add them to this document with:

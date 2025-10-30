@@ -1,7 +1,6 @@
 ---
 name: bmad-story-planning
 description: Breaks epics into developer stories.
-version: 2.1.5
 allowed-tools: ["Read", "Write", "Grep"]
 metadata:
   auto-invoke: true

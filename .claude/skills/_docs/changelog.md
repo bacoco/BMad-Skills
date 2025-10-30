@@ -1,5 +1,30 @@
 # Changelog
 
+## Version 2.1.7 - Version Cleanup & Template Consolidation (2025-10-30)
+
+**Patch Release**: Complete removal of hardcoded versions and obsolete templates
+
+**Changes**:
+- 🧹 **Removed all hardcoded version numbers from content files**
+  - Removed `version:` field from all 12 SKILL.md frontmatter files
+  - Version now maintained only in package.json and MANIFEST.json files
+  - Eliminates version drift and maintenance burden
+- 🗑️ **Deleted all obsolete .jinja template files (27 files)**
+  - Removed duplicate templates that were superseded by .template files
+  - Scripts already use .template files exclusively
+  - Reduces bundle size and eliminates confusion
+- 📋 **Made KNOWN_ISSUES.md version-agnostic**
+  - Removed "RESOLVED in v2.1.5" → "RESOLVED"
+  - Removed "Last Updated" timestamp with version
+  - Document now focuses on issues, not version history
+
+**Impact**:
+- Single source of truth for versions (package.json + MANIFESTs only)
+- Bundle size reduced by ~27 obsolete template files
+- No more version drift between files
+- Cleaner, more maintainable codebase
+- Generated artifacts remain clean without version branding
+
 ## Version 2.1.6 - Documentation Consistency & Validator Refactoring (2025-10-30)
 
 **Patch Release**: Complete documentation alignment and validator modernization
