@@ -28,12 +28,3 @@ e2e-report.html
 htmlcov/
 coverage.xml
 .coverage
-
-# Temporary session files
-*_COMPLETION_SUMMARY.md
-SESSION_SUMMARY.md
-CRITICAL_FIXES.md
-IMPROVEMENTS.md
-TESTING.md
-build/
-.project-archive/
