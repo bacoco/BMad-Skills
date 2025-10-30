@@ -74,12 +74,43 @@ def cleanup_runtime_workspace(runtime_workspace, request):
 
     This fixture runs for all E2E tests and removes generated artifacts
     to prevent test pollution and git issues.
+
+    Environment variables:
+    - E2E_PAUSE_BEFORE_CLEANUP=1 : Pause before cleanup for manual inspection
+    - E2E_KEEP_ARTIFACTS=1 : Skip cleanup entirely (keep all files)
     """
+    import os
+
     # Run test first
     yield
 
+    # Check if we should skip cleanup entirely
+    if os.environ.get('E2E_KEEP_ARTIFACTS') == '1':
+        print("\n⚠️  E2E_KEEP_ARTIFACTS=1 - Skipping cleanup, files preserved for inspection")
+        return
+
     # Cleanup after test (only for e2e tests)
     if 'e2e' in request.keywords:
+        # Pause before cleanup if requested
+        if os.environ.get('E2E_PAUSE_BEFORE_CLEANUP') == '1':
+            print("\n" + "="*70)
+            print("🔍 PAUSED FOR MANUAL INSPECTION")
+            print("="*70)
+            print(f"Test: {request.node.name}")
+            print(f"Workspace: {runtime_workspace}")
+            print("\nGenerated files are available for inspection:")
+            print(f"  - {runtime_workspace / 'artifacts'}")
+            print(f"  - {runtime_workspace / 'stories'}")
+            print(f"  - {runtime_workspace / 'changes'}")
+            if Path("docs").exists():
+                print(f"  - docs/")
+            print("\n👉 Press ENTER to cleanup and continue, or Ctrl+C to abort...")
+            print("="*70)
+            try:
+                input()
+            except KeyboardInterrupt:
+                print("\n⚠️  Cleanup aborted by user. Files preserved.")
+                return
         # Clean artifacts directory
         artifacts_dir = runtime_workspace / "artifacts"
         if artifacts_dir.exists():

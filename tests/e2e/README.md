@@ -78,7 +78,14 @@ rm -rf docs/
 
 ## 💰 Cost Implications
 
-**These tests cost real money!**
+### With Claude Max Subscription
+
+**✅ FREE!** If you have Claude Max:
+- No per-token costs
+- Unlimited CLI usage included
+- Run tests as much as you want
+
+### Without Claude Max (Pay-per-use API)
 
 | Test Type | Approx. Cost | Duration |
 |-----------|-------------|----------|
@@ -86,21 +93,18 @@ rm -rf docs/
 | Full BMAD workflow | $0.50-1.00 | 5-10 min |
 | Complete E2E suite | $1-5 | 20-30 min |
 
-### Cost Control
+### Cost Tracking
 
-1. **Use smoke tests for quick validation:**
-   ```bash
-   npm run test:e2e:smoke  # Only 2-3 tests, ~$0.30
-   ```
-
-2. **Run full suite sparingly:**
-   ```bash
-   npm run test:e2e  # All tests, ~$1-5
-   ```
-
-3. **Check cost after running:**
-   - Tests print total cost at end
-   - Example: `Total cost: $1.2345`
+Tests always print cost summary:
+```
+======================================================================
+E2E Test Run Summary
+======================================================================
+Total API calls: 3
+Total cost: $0.8234  (or $0.00 with Claude Max)
+Average cost per call: $0.2745
+======================================================================
+```
 
 ---
 
@@ -122,11 +126,13 @@ rm -rf docs/
 
 ### Run Commands
 
+#### Standard Mode (Automatic Cleanup)
+
 ```bash
-# Quick smoke test (~2 min, ~$0.30)
+# Quick smoke test (~2 min, free with Claude Max)
 npm run test:e2e:smoke
 
-# Full E2E suite (~30 min, ~$1-5)
+# Full E2E suite (~30 min, free with Claude Max)
 npm run test:e2e
 
 # Specific workflow
@@ -138,6 +144,60 @@ python3 -m pytest tests/e2e/test_bmad_workflows.py -v
 
 # Single test
 python3 -m pytest tests/e2e/test_bmad_workflows.py::test_new_idea_activates_discovery -v -s
+```
+
+#### 🔍 Manual Inspection Mode (Pause Before Cleanup)
+
+**Perfect for verifying generated artifacts manually!**
+
+```bash
+# Run with pause before cleanup
+./tests/e2e/run-with-inspection.sh
+
+# Run specific tests with pause
+./tests/e2e/run-with-inspection.sh -m smoke
+./tests/e2e/run-with-inspection.sh test_bmad_workflows.py
+
+# What happens:
+# 1. Test runs and generates files
+# 2. Test pauses with message: "Press ENTER to cleanup..."
+# 3. You can open files and inspect them
+# 4. Press ENTER → files are deleted, next test runs
+# 5. Or Ctrl+C → files are kept
+```
+
+**Example output:**
+```
+======================================================================
+🔍 PAUSED FOR MANUAL INSPECTION
+======================================================================
+Test: test_prd_creation_workflow
+Workspace: /Users/you/.claude/skills/_runtime/workspace
+
+Generated files are available for inspection:
+  - /Users/you/.claude/skills/_runtime/workspace/artifacts
+  - /Users/you/.claude/skills/_runtime/workspace/stories
+  - docs/
+
+👉 Press ENTER to cleanup and continue, or Ctrl+C to abort...
+======================================================================
+```
+
+#### 📦 Keep Artifacts Mode (No Cleanup)
+
+**Keep ALL generated files for batch inspection:**
+
+```bash
+# Run without any cleanup
+./tests/e2e/run-keep-artifacts.sh
+
+# Run specific tests, keep everything
+./tests/e2e/run-keep-artifacts.sh -m smoke
+
+# All files are preserved after tests complete
+# Cleanup manually when done:
+rm -rf .claude/skills/_runtime/workspace/artifacts/*.md
+rm -rf docs/
 ```
 
 ---
