@@ -1,0 +1,3 @@
+"id","title","priority","owner","area","description","acceptance_criteria","dependencies"
+{% for item in backlog %}"{{ item.id }}","{{ item.title }}","{{ item.priority }}","{{ item.owner }}","{{ item.area }}","{{ item.description }}","{{ item.acceptance_criteria }}","{{ item.dependencies }}"
+{% endfor %}

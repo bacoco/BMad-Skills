@@ -1,0 +1,30 @@
+# Threat Model Canvas
+
+## System / Feature
+{{ system_name }}
+
+## Data Flow Diagram Reference
+- Diagram: {{ diagram_link }}
+- Version: {{ diagram_version }}
+
+## Trust Boundaries
+{% for boundary in trust_boundaries %}
+- {{ boundary.name }} — {{ boundary.description }}
+{% endfor %}
+
+## Assets & Classification
+{% for asset in assets %}
+- {{ asset.name }} — {{ asset.classification }} — {{ asset.notes }}
+{% endfor %}
+
+## Threat Analysis (STRIDE / LINDDUN)
+| Component | Threat | Category | Likelihood | Impact | Mitigation | Detection |
+|-----------|--------|----------|------------|--------|------------|-----------|
+{% for entry in threats %}
+| {{ entry.component }} | {{ entry.threat }} | {{ entry.category }} | {{ entry.likelihood }} | {{ entry.impact }} | {{ entry.mitigation }} | {{ entry.detection }} |
+{% endfor %}
+
+## Residual Risks
+{% for risk in residual_risks %}
+- {{ risk.summary }} ({{ risk.level }}) — Owner: {{ risk.owner }} — Target: {{ risk.target_date }}
+{% endfor %}

@@ -75,6 +75,44 @@
       "description": "Creates test strategy and ATDD scenarios."
     },
     {
+      "id": "bmad-performance-optimization",
+      "path": ".claude/skills/bmad-performance-optimization",
+      "version": "2.2.1",
+      "allowed-tools": [
+        "Read",
+        "Write",
+        "Grep",
+        "Bash"
+      ],
+      "expansion-pack": null,
+      "description": "Diagnoses bottlenecks and plans performance improvements."
+    },
+    {
+      "id": "bmad-observability-readiness",
+      "path": ".claude/skills/bmad-observability-readiness",
+      "version": "2.2.1",
+      "allowed-tools": [
+        "Read",
+        "Write",
+        "Grep",
+        "Bash"
+      ],
+      "expansion-pack": null,
+      "description": "Establishes instrumentation, metrics, and alerting foundations."
+    },
+    {
+      "id": "bmad-security-review",
+      "path": ".claude/skills/bmad-security-review",
+      "version": "2.2.1",
+      "allowed-tools": [
+        "Read",
+        "Write",
+        "Grep"
+      ],
+      "expansion-pack": null,
+      "description": "Performs threat modeling and security remediation planning."
+    },
+    {
       "id": "bmad-story-planning",
       "path": ".claude/skills/bmad-story-planning",
       "version": "2.2.1",
