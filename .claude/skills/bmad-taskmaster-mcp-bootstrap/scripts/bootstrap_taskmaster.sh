@@ -9,12 +9,12 @@ if [[ -d "${TARGET_DIR}" ]]; then
   exit 1
 fi
 
-echo "[taskmaster-bootstrap] Cloning ${REPO_URL} into ${TARGET_DIR}"
+echo "[taskmaster-bootstrap] Cloning ${REPO_URL} into ${TARGET_DIR}" >&2
 git clone "${REPO_URL}" "${TARGET_DIR}"
 
 cd "${TARGET_DIR}"
 
-echo "[taskmaster-bootstrap] Installing npm dependencies"
+echo "[taskmaster-bootstrap] Installing npm dependencies" >&2
 npm install
 
 HASH=$(git rev-parse HEAD)
