@@ -1,0 +1,47 @@
+# Observability Plan
+
+## Overview
+- System/Feature: {{ system_name }}
+- Prepared By: {{ author }}
+- Date: {{ date }}
+- Objectives: {{ objectives }}
+
+## Current State Summary
+{{ current_state }}
+
+## Metrics Strategy
+| Service | KPI | Metric Name | Collection Method | Retention | Notes |
+|---------|-----|-------------|-------------------|-----------|-------|
+{% for metric in metrics %}
+| {{ metric.service }} | {{ metric.kpi }} | {{ metric.name }} | {{ metric.method }} | {{ metric.retention }} | {{ metric.notes }} |
+{% endfor %}
+
+## Logging Strategy
+- Format: {{ logging.format }}
+- Sensitive Data Handling: {{ logging.sensitive_data }}
+- Key Fields: {{ logging.key_fields | join(", ") }}
+- Retention & Rotation: {{ logging.retention }}
+
+## Tracing Strategy
+- Tooling: {{ tracing.tooling }}
+- Critical Spans: {{ tracing.critical_spans | join(", ") }}
+- Sampling: {{ tracing.sampling }}
+- Correlation IDs: {{ tracing.correlation_ids }}
+
+## Dashboards & Alerts
+| Dashboard | Audience | Metrics | Update Frequency | Owner |
+|-----------|----------|---------|------------------|-------|
+{% for dashboard in dashboards %}
+| {{ dashboard.name }} | {{ dashboard.audience }} | {{ dashboard.metrics }} | {{ dashboard.frequency }} | {{ dashboard.owner }} |
+{% endfor %}
+
+| Alert | Trigger | SLO Target | Channel | Runbook |
+|-------|--------|------------|---------|---------|
+{% for alert in alerts %}
+| {{ alert.name }} | {{ alert.trigger }} | {{ alert.slo }} | {{ alert.channel }} | {{ alert.runbook }} |
+{% endfor %}
+
+## Implementation Roadmap
+{% for milestone in roadmap %}
+- **{{ milestone.name }}** — {{ milestone.description }} (Owner: {{ milestone.owner }}, Target: {{ milestone.target_date }})
+{% endfor %}

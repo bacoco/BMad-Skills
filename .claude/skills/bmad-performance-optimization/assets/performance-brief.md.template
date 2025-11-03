@@ -1,0 +1,29 @@
+# Performance Brief
+
+## Context
+- System/Feature: {{ system_name }}
+- Review Date: {{ review_date }}
+- Participants: {{ participants | join(", ") }}
+- Performance Targets: {{ targets }}
+
+## Current State Summary
+{{ current_state_summary }}
+
+## Key Metrics Snapshot
+| Metric | Current | Target | Trend | Notes |
+|--------|---------|--------|-------|-------|
+{% for metric in metrics %}
+| {{ metric.name }} | {{ metric.current }} | {{ metric.target }} | {{ metric.trend }} | {{ metric.notes }} |
+{% endfor %}
+
+## Bottlenecks & Risks
+{% for issue in issues %}
+- **{{ issue.area }}** — {{ issue.summary }} (Impact: {{ issue.impact }})
+  - Evidence: {{ issue.evidence }}
+  - Proposed Mitigation: {{ issue.mitigation }}
+{% endfor %}
+
+## Next Steps
+- Immediate Actions: {{ immediate_actions }}
+- Follow-up Validation: {{ validation_plan }}
+- Owners: {{ owners | join(", ") }}

@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Repository Overview
 
-This is **BMAD Skills** - a complete workflow ecosystem packaged as Claude Skills. It provides 12 integrated skills that guide users from idea to implementation through natural conversation. This is a **skills library repository**, not an application codebase.
+This is **BMAD Skills** - a complete workflow ecosystem packaged as Claude Skills. It provides 15 integrated skills that guide users from idea to implementation through natural conversation. This is a **skills library repository**, not an application codebase.
 
 ## Core Architecture
 
@@ -12,8 +12,8 @@ This is **BMAD Skills** - a complete workflow ecosystem packaged as Claude Skill
 
 The repository implements two complementary workflows:
 
-1. **BMAD Track** (8 skills): End-to-end product development for Level 2-4 complexity
-   - main-workflow-router → bmad-discovery-research → bmad-product-planning → bmad-ux-design → bmad-architecture-design → bmad-test-strategy → bmad-story-planning → bmad-development-execution
+1. **BMAD Track** (11 skills): End-to-end product development for Level 2-4 complexity
+   - main-workflow-router → bmad-discovery-research → bmad-product-planning → bmad-ux-design → bmad-architecture-design → bmad-test-strategy → bmad-performance-optimization → bmad-observability-readiness → bmad-security-review → bmad-story-planning → bmad-development-execution
    - Handles: New products, complex features, multi-team coordination
 
 2. **OpenSpec Track** (3 skills): Lightweight change management for Level 0-1 complexity
@@ -28,7 +28,7 @@ Everything is contained in `.claude/skills/`:
 
 ```
 .claude/skills/
-├── [12 skill directories]     # Each with SKILL.md, REFERENCE.md, WORKFLOW.md, CHECKLIST.md
+├── [15 skill directories]     # Each with SKILL.md, REFERENCE.md, WORKFLOW.md, CHECKLIST.md
 ├── _core/                      # Shared resources (glossary, constraints, quality-gates)
 ├── _config/                    # Configuration (MANIFEST.json, STYLE-GUIDE.md)
 ├── _runtime/                   # Runtime workspace for OpenSpec changes
@@ -188,9 +188,11 @@ Every skill MUST contain:
 Follow **principle of least privilege**:
 
 - **Planning/Documentation skills**: Only `["Read", "Write", "Grep"]`
-  - bmad-discovery-research, bmad-product-planning, bmad-ux-design, bmad-architecture-design, bmad-test-strategy, bmad-story-planning
+  - bmad-discovery-research, bmad-product-planning, bmad-ux-design, bmad-architecture-design, bmad-test-strategy, bmad-security-review, bmad-story-planning
 
 - **Execution skills**: May include `"Bash"` when necessary
+  - bmad-performance-optimization (profiling helpers)
+  - bmad-observability-readiness (telemetry scaffolding)
   - bmad-development-execution (runs tests)
   - main-workflow-router (git status checks)
   - openspec-* (Python script execution)
@@ -265,7 +267,7 @@ pytest tests/
 
 ## Distribution
 
-The bundle is distributed as a complete package containing all 12 skills. Users install via:
+The bundle is distributed as a complete package containing all 15 skills. Users install via:
 
 ```bash
 curl -fsSL https://raw.githubusercontent.com/bacoco/bmad-skills/main/scripts/install-to-home.sh | bash
