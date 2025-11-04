@@ -1,0 +1,52 @@
+---
+title: TaskMaster MCP Bootstrap Report
+version: 2.2.1
+status: <pending|complete>
+operator: <name>
+run-at: <timestamp>
+---
+
+# Deployment Summary
+- **Install Mode:** <npx | git-clone>
+- **TaskMaster Version:** <semver>
+- **Workspace Path:** <path>
+- **Runtime User:** <user>
+
+# Environment Prerequisites
+- Node.js: <version>
+- npm: <version>
+- Git: <version>
+- Additional packages: <list or N/A>
+
+# Secrets & Configuration
+| Key | Value / Placeholder | Notes |
+|-----|---------------------|-------|
+| TASKMASTER_API_KEY | <placeholder> | Provided by operator |
+| TASKMASTER_STORAGE_PATH | <path> | e.g., ~/taskmaster/data |
+| ENABLED_TOOLS | <list> | Align with hooks |
+| Additional | <...> | <...> |
+
+# Provisioning Commands
+```bash
+# Example commands executed during bootstrap
+<command 1>
+<command 2>
+```
+
+# Verification Checklist
+- [ ] `npx task-master-ai --help` executes without error
+- [ ] `task-master-ai status` reports enabled tools
+- [ ] Hook ping test succeeds
+
+# Hook Alignment Notes
+- **Session Load Hook:** <description>
+- **Session Save Hook:** <description>
+- **Artifacts Synced:** <files>
+
+# Follow-up Actions
+1. <Item>
+2. <Item>
+3. <Item>
+
+# Troubleshooting / Observations
+- <Notes>

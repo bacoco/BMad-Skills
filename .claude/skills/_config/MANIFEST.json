@@ -100,6 +100,19 @@
       "description": "Implements stories with code and tests."
     },
     {
+      "id": "bmad-taskmaster-mcp-bootstrap",
+      "path": ".claude/skills/bmad-taskmaster-mcp-bootstrap",
+      "version": "2.2.1",
+      "allowed-tools": [
+        "Read",
+        "Write",
+        "Grep",
+        "Bash"
+      ],
+      "expansion-pack": null,
+      "description": "Bootstraps the TaskMaster MCP server and aligns it with BMAD hooks."
+    },
+    {
       "id": "core-skill-creation",
       "path": ".claude/skills/core-skill-creation",
       "version": "2.2.1",

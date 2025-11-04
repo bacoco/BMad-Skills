@@ -165,7 +165,7 @@ Claude (pm): "Creating comprehensive PRD..."
 
 ## ✨ Key Features
 
-### 🎭 12 Specialized Skills, One Seamless Experience
+### 🎭 13 Specialized Skills, One Seamless Experience
 
 **BMAD Workflow (8 skills):**
 - 💡 **Analyst** - Brainstorming, research, competitive analysis
@@ -181,6 +181,9 @@ Claude (pm): "Creating comprehensive PRD..."
 - 📄 **Propose** - Lightweight change proposals
 - ⚡ **Implement** - Quick implementations
 - 📦 **Archive** - Change documentation and closing
+
+**Operations:**
+- ⚙️ **TaskMaster MCP Bootstrap** - Provision and align the TaskMaster MCP server with BMAD hooks
 
 **Skill Creator:**
 - 🛠️ **Create Skills** - Build custom skills for your workflow
@@ -292,7 +295,7 @@ Start simple, scale as needed:
 ## 📦 What's Included
 
 **Complete self-contained bundle:**
-- 12 specialized AI skills that work together
+- 13 specialized AI skills that work together
 - Shared glossary, constraints, and quality standards
 - Runtime workspace for proposals and specs
 - Comprehensive guides and troubleshooting docs

@@ -188,20 +188,16 @@ def test_cli_installed_skills_count(temp_install_dir):
         and not d.startswith('_')
     ]
 
-    # We expect 12 skills
-    assert len(skill_dirs) == 12, f"Expected 12 skills, found {len(skill_dirs)}: {skill_dirs}"
-
-    # Verify key skills are present
+    manifest_path = Path(install_path) / '_config' / 'MANIFEST.json'
+    manifest = json.loads(manifest_path.read_text(encoding='utf-8'))
     expected_skills = [
-        'main-workflow-router',
-        'bmad-discovery-research',
-        'bmad-product-planning',
-        'bmad-development-execution',
-        'openspec-change-proposal',
-        'openspec-change-implementation',
-        'openspec-change-closure',
-        'core-skill-creation',
+        skill if isinstance(skill, str) else skill['id']
+        for skill in manifest['skills']
     ]
+
+    assert len(skill_dirs) == len(expected_skills), (
+        f"Expected {len(expected_skills)} skills, found {len(skill_dirs)}: {skill_dirs}"
+    )
 
     for expected in expected_skills:
         assert expected in skill_dirs, f"Expected skill missing: {expected}"

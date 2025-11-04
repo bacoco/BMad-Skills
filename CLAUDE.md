@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Repository Overview
 
-This is **BMAD Skills** - a complete workflow ecosystem packaged as Claude Skills. It provides 12 integrated skills that guide users from idea to implementation through natural conversation. This is a **skills library repository**, not an application codebase.
+This is **BMAD Skills** - a complete workflow ecosystem packaged as Claude Skills. It provides 13 integrated skills that guide users from idea to implementation through natural conversation. This is a **skills library repository**, not an application codebase.
 
 ## Core Architecture
 
@@ -28,7 +28,7 @@ Everything is contained in `.claude/skills/`:
 
 ```
 .claude/skills/
-├── [12 skill directories]     # Each with SKILL.md, REFERENCE.md, WORKFLOW.md, CHECKLIST.md
+├── [13 skill directories]     # Each with SKILL.md, REFERENCE.md, WORKFLOW.md, CHECKLIST.md
 ├── _core/                      # Shared resources (glossary, constraints, quality-gates)
 ├── _config/                    # Configuration (MANIFEST.json, STYLE-GUIDE.md)
 ├── _runtime/                   # Runtime workspace for OpenSpec changes
@@ -265,7 +265,7 @@ pytest tests/
 
 ## Distribution
 
-The bundle is distributed as a complete package containing all 12 skills. Users install via:
+The bundle is distributed as a complete package containing all 13 skills. Users install via:
 
 ```bash
 curl -fsSL https://raw.githubusercontent.com/bacoco/bmad-skills/main/scripts/install-to-home.sh | bash
