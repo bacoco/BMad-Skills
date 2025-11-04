@@ -416,7 +416,7 @@ node bin/cli.js --path /tmp/test-install
 # Vérifications:
 test -f /tmp/test-install/_config/MANIFEST.json  # ✅
 test -d /tmp/test-install/main-workflow-router   # ✅
-ls /tmp/test-install | wc -l                     # 13 skills ✅
+find /tmp/test-install -mindepth 1 -maxdepth 1 -type d -name '*-*' ! -name '_*' | wc -l # 13 skills ✅
 ```
 
 ### Security Validation
