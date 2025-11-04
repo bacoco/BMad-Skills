@@ -165,14 +165,17 @@ Claude (pm): "Creating comprehensive PRD..."
 
 ## ✨ Key Features
 
-### 🎭 13 Specialized Skills, One Seamless Experience
+### 🎭 16 Specialized Skills, One Seamless Experience
 
-**BMAD Workflow (8 skills):**
+**BMAD Workflow (11 skills):**
 - 💡 **Analyst** - Brainstorming, research, competitive analysis
 - 📋 **PM** - PRD creation, feature planning, roadmapping
 - 🎨 **UX** - User flows, wireframes, design systems
 - 🏗️ **Architecture** - Technical design, decision documentation
 - 🧪 **TEA** - Test strategy, ATDD scenarios, quality gates
+- 🚀 **Performance** - Bottleneck analysis, load planning, optimization roadmaps
+- 📈 **Observability** - Instrumentation strategy, metrics/alert design, telemetry governance
+- 🔐 **Security** - Threat modeling, remediation planning, compliance alignment
 - 📝 **Stories** - Developer-ready story breakdown
 - 💻 **Dev** - Implementation with tests and documentation
 - 🎯 **Orchestrator** - Workflow coordination and guidance
@@ -187,6 +190,14 @@ Claude (pm): "Creating comprehensive PRD..."
 
 **Skill Creator:**
 - 🛠️ **Create Skills** - Build custom skills for your workflow
+
+### 🛡️ Operational Excellence Additions
+
+Performance, observability, and security are first-class phases in BMAD. The new skills activate immediately after test strategy so delivery teams close critical gaps before story planning:
+
+- **bmad-performance-optimization** — synthesizes telemetry, builds benchmark plans, and prioritizes optimizations.
+- **bmad-observability-readiness** — designs metrics, logging, tracing, dashboards, and alerting to eliminate blind spots.
+- **bmad-security-review** — runs threat modeling, gap assessments, and remediation planning tied to compliance standards.
 
 ### 🧠 Intelligent Workflow Routing
 
@@ -295,7 +306,7 @@ Start simple, scale as needed:
 ## 📦 What's Included
 
 **Complete self-contained bundle:**
-- 13 specialized AI skills that work together
+- 16 specialized AI skills that work together
 - Shared glossary, constraints, and quality standards
 - Runtime workspace for proposals and specs
 - Comprehensive guides and troubleshooting docs

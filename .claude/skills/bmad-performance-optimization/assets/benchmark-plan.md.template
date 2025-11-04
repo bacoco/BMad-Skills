@@ -1,0 +1,31 @@
+# Benchmark & Load Test Plan
+
+## Overview
+- Target System: {{ target_system }}
+- Objective: {{ objective }}
+- Environment: {{ environment }}
+- Tooling: {{ tooling | join(", ") }}
+
+## Scenarios
+| Scenario | Description | Duration | Target Load | Success Criteria |
+|----------|-------------|----------|-------------|------------------|
+{% for scenario in scenarios %}
+| {{ scenario.name }} | {{ scenario.description }} | {{ scenario.duration }} | {{ scenario.load }} | {{ scenario.success_criteria }} |
+{% endfor %}
+
+## Metrics to Capture
+- Latency: {{ metrics.latency }}
+- Throughput: {{ metrics.throughput }}
+- Errors: {{ metrics.errors }}
+- Resource Utilization: {{ metrics.resources }}
+- Additional Notes: {{ metrics.notes }}
+
+## Execution Checklist
+{% for step in execution_steps %}
+- [ ] {{ step }}
+{% endfor %}
+
+## Reporting
+- Data Storage Location: {{ report_location }}
+- Visualization Tools: {{ visualization_tools }}
+- Regression Thresholds: {{ regression_thresholds }}

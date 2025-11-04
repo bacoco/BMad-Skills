@@ -1,0 +1,36 @@
+# SLO Dashboard Specification
+
+## Overview
+- Service: {{ service }}
+- Primary Owner: {{ owner }}
+- Supporting Teams: {{ supporting_teams | join(", ") }}
+- Target Launch: {{ launch_date }}
+
+## SLIs & SLOs
+| SLI | Definition | Target | Window | Alert Threshold | Notes |
+|-----|------------|--------|--------|-----------------|-------|
+{% for sli in slis %}
+| {{ sli.name }} | {{ sli.definition }} | {{ sli.target }} | {{ sli.window }} | {{ sli.alert_threshold }} | {{ sli.notes }} |
+{% endfor %}
+
+## Dashboard Layout
+1. {{ layout.section1 }}
+2. {{ layout.section2 }}
+3. {{ layout.section3 }}
+4. {{ layout.section4 }}
+
+## Alert Routing
+- PagerDuty / On-call Rotation: {{ routing.on_call }}
+- Slack / Teams Channel: {{ routing.channel }}
+- Escalation Policy: {{ routing.escalation }}
+- Maintenance Windows: {{ routing.maintenance_windows }}
+
+## Runbooks & References
+{% for runbook in runbooks %}
+- {{ runbook.name }} — {{ runbook.link }}
+{% endfor %}
+
+## Validation Plan
+- Data source checks: {{ validation.data_sources }}
+- Visualization QA: {{ validation.visualization }}
+- Alert simulation steps: {{ validation.alert_simulation }}

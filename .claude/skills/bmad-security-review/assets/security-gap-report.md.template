@@ -1,0 +1,36 @@
+# Security Gap Assessment
+
+## Context
+- Review Target: {{ target_description }}
+- Date: {{ review_date }}
+- Participants: {{ participants | join(", ") }}
+- Scope Notes: {{ scope_notes }}
+
+## Executive Summary
+{{ executive_summary }}
+
+## Findings Overview
+| Severity | Count | Notes |
+|----------|-------|-------|
+{% for row in severity_summary %}
+| {{ row.severity }} | {{ row.count }} | {{ row.notes }} |
+{% endfor %}
+
+## Detailed Findings
+{% for finding in findings %}
+### {{ finding.id }} — {{ finding.title }} ({{ finding.severity }})
+- **Area**: {{ finding.area }}
+- **Description**: {{ finding.description }}
+- **Evidence**: {{ finding.evidence }}
+- **Impact**: {{ finding.impact }}
+- **Likelihood**: {{ finding.likelihood }}
+- **Mitigation**: {{ finding.mitigation }}
+- **Owner**: {{ finding.owner }}
+- **Target Date**: {{ finding.target_date }}
+- **Verification**: {{ finding.verification }}
+{% endfor %}
+
+## Compliance Traceability
+{% for control in controls %}
+- {{ control.framework }} {{ control.id }} — {{ control.status }} — {{ control.notes }}
+{% endfor %}

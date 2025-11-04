@@ -1,0 +1,3 @@
+"id","title","severity","owner","description","acceptance_criteria","target_date","verification"
+{% for item in backlog %}"{{ item.id }}","{{ item.title }}","{{ item.severity }}","{{ item.owner }}","{{ item.description }}","{{ item.acceptance_criteria }}","{{ item.target_date }}","{{ item.verification }}"
+{% endfor %}
