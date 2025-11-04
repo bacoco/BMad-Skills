@@ -25,7 +25,7 @@ Le projet BMAD Skills a atteint un niveau de maturité professionnelle avec:
 
 | Catégorie | Score | Status | Commentaire |
 |-----------|-------|--------|-------------|
-| Architecture | 25/25 | ✅ Parfait | Modulaire, 12 skills indépendants, dépendances maîtrisées |
+| Architecture | 25/25 | ✅ Parfait | Modulaire, 13 skills indépendants, dépendances maîtrisées |
 | Qualité du code | 20/20 | ✅ Parfait | Logging structuré, linting, shim YAML natif |
 | Documentation | 20/20 | ✅ Parfait | Complète, badges CI/CD, audit à jour |
 | Tests & QA | 20/20 | ✅ Parfait | 137 tests unitaires/intégration, 62% coverage |
@@ -416,7 +416,7 @@ node bin/cli.js --path /tmp/test-install
 # Vérifications:
 test -f /tmp/test-install/_config/MANIFEST.json  # ✅
 test -d /tmp/test-install/main-workflow-router   # ✅
-ls /tmp/test-install | wc -l                     # 12 skills ✅
+find /tmp/test-install -mindepth 1 -maxdepth 1 -type d -name '*-*' ! -name '_*' | wc -l # 13 skills ✅
 ```
 
 ### Security Validation
@@ -451,7 +451,7 @@ python3 .claude/skills/_core/tooling/activation_metrics.py --verbose stats
 ### 1. Architecture & Expérience Applicative (22/25)
 
 **Points forts:**
-- ✅ 12 skills modulaires et indépendants
+- ✅ 13 skills modulaires et indépendants
 - ✅ Système conversationnel bien conçu
 - ✅ Deux tracks (BMAD pour L2-4, OpenSpec pour L0-1)
 - ✅ Progressive disclosure (SKILL.md < 500 lignes)

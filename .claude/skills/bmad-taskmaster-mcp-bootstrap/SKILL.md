@@ -1,6 +1,6 @@
 ---
 name: bmad-taskmaster-mcp-bootstrap
-description: Provision and maintain the TaskMaster MCP server so BMAD can delegate task management to it.
+description: Bootstraps the TaskMaster MCP server and aligns it with BMAD hooks.
 license: Complete terms in LICENSE.txt
 allowed-tools: ["Read", "Write", "Grep", "Bash"]
 metadata:
@@ -36,7 +36,7 @@ metadata:
 
 Set up the [TaskMaster MCP server](https://github.com/eyaltoledano/claude-task-master) and wire it into BMAD's Skills + Hooks workflow. Use this skill whenever a project needs TaskMaster's task engine instead of the lightweight Markdown-only flow.
 
-## When to Use This Skill
+## When to Invoke
 
 Activate when the user:
 

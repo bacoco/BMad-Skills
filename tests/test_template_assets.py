@@ -113,16 +113,17 @@ def test_template_count_stability():
     """
     Verify the expected number of .template files exist.
 
-    Current expected count: 9 templates
+    Current expected count: 10 templates
     - OpenSpec: 5 (proposal, tasks, spec-delta, execution-log, archive)
     - BMAD: 4 (prd-script, epics-wrapper, architecture-script, story-script)
+    - Operations: 1 (taskmaster bootstrap report)
 
     If this test fails, it means templates were added/removed and the count
     needs to be updated (along with documentation).
     """
     templates = list(SKILLS_ROOT.glob("**/*.template"))
 
-    expected_count = 9
+    expected_count = 10
     actual_count = len(templates)
 
     if actual_count != expected_count:
