@@ -111,28 +111,57 @@ def test_no_jinja_templates_in_bundle():
 
 def test_template_count_stability():
     """
-    Verify the expected number of .template files exist.
+    Verify that the published bundle contains the expected .template files.
 
-    Current expected count: 10 templates
-    - OpenSpec: 5 (proposal, tasks, spec-delta, execution-log, archive)
-    - BMAD: 4 (prd-script, epics-wrapper, architecture-script, story-script)
-    - Operations: 1 (taskmaster bootstrap report)
-
-    If this test fails, it means templates were added/removed and the count
-    needs to be updated (along with documentation).
+    Historically this test only asserted the count of templates. As the
+    collection grew it became easy to miss accidental additions or removals.
+    We now validate the full set of expected relative paths instead of just
+    the total number.
     """
-    templates = list(SKILLS_ROOT.glob("**/*.template"))
+    templates = sorted(SKILLS_ROOT.glob("**/*.template"))
+    actual_templates = {t.relative_to(SKILLS_ROOT) for t in templates}
 
-    expected_count = 10
-    actual_count = len(templates)
+    expected_templates = {
+        Path("bmad-architecture-design/assets/architecture-script-template.md.template"),
+        Path("bmad-observability-readiness/assets/instrumentation-backlog.csv.template"),
+        Path("bmad-observability-readiness/assets/observability-plan.md.template"),
+        Path("bmad-observability-readiness/assets/runbook-template.md.template"),
+        Path("bmad-observability-readiness/assets/slo-dashboard-spec.md.template"),
+        Path("bmad-performance-optimization/assets/benchmark-plan.md.template"),
+        Path("bmad-performance-optimization/assets/optimization-backlog.csv.template"),
+        Path("bmad-performance-optimization/assets/performance-brief.md.template"),
+        Path("bmad-product-planning/assets/epics-wrapper-template.md.template"),
+        Path("bmad-product-planning/assets/prd-script-template.md.template"),
+        Path("bmad-security-review/assets/compliance-matrix.md.template"),
+        Path("bmad-security-review/assets/remediation-backlog.csv.template"),
+        Path("bmad-security-review/assets/security-gap-report.md.template"),
+        Path("bmad-security-review/assets/threat-model-canvas.md.template"),
+        Path("bmad-story-planning/assets/story-script-template.md.template"),
+        Path("bmad-taskmaster-mcp-bootstrap/assets/taskmaster-bootstrap-report.md.template"),
+        Path("openspec-change-closure/assets/archive-template.md.template"),
+        Path("openspec-change-implementation/assets/execution-log-template.md.template"),
+        Path("openspec-change-proposal/assets/proposal-template.md.template"),
+        Path("openspec-change-proposal/assets/spec-delta-template.md.template"),
+        Path("openspec-change-proposal/assets/tasks-template.md.template"),
+    }
 
-    if actual_count != expected_count:
-        error_msg = f"\n\n⚠️  Template count changed: expected {expected_count}, found {actual_count}\n\n"
-        error_msg += "Templates found:\n"
-        for t in sorted(templates):
-            rel_path = t.relative_to(SKILLS_ROOT)
-            error_msg += f"   - {rel_path}\n"
+    missing = sorted(expected_templates - actual_templates)
+    unexpected = sorted(actual_templates - expected_templates)
 
-        error_msg += "\nIf this is intentional, update the expected_count in this test.\n"
+    if missing or unexpected:
+        error_msg = "\n\n⚠️  Template set mismatch:\n"
+        if missing:
+            error_msg += "\nExpected but missing:\n"
+            for path in missing:
+                error_msg += f"   - {path}\n"
+        if unexpected:
+            error_msg += "\nUnexpected templates:\n"
+            for path in unexpected:
+                error_msg += f"   - {path}\n"
+
+        error_msg += "\nUpdate expected_templates if this change is intentional.\n"
 
         pytest.fail(error_msg)
+
+    # Sanity check to keep the human-friendly count in the assertion output
+    assert len(actual_templates) == len(expected_templates)
