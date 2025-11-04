@@ -1,0 +1,3 @@
+"id","title","impact","effort","owner","description","acceptance_criteria","verification"
+{% for item in items %}"{{ item.id }}","{{ item.title }}","{{ item.impact }}","{{ item.effort }}","{{ item.owner }}","{{ item.description }}","{{ item.acceptance_criteria }}","{{ item.verification }}"
+{% endfor %}

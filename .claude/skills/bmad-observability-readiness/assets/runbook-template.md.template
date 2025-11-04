@@ -1,0 +1,30 @@
+# Runbook: {{ service_name }} — {{ scenario }}
+
+## Summary
+- Impact: {{ impact_description }}
+- Detection: {{ detection_method }}
+- Owner: {{ owner }}
+
+## Immediate Actions
+{% for step in immediate_actions %}
+1. {{ step }}
+{% endfor %}
+
+## Diagnostics
+{% for step in diagnostics %}
+- {{ step }}
+{% endfor %}
+
+## Mitigations
+{% for step in mitigations %}
+- {{ step }}
+{% endfor %}
+
+## Verification
+- Success Criteria: {{ success_criteria }}
+- Postmortem Required: {{ postmortem_required }}
+
+## References
+{% for reference in references %}
+- {{ reference.name }} — {{ reference.link }}
+{% endfor %}

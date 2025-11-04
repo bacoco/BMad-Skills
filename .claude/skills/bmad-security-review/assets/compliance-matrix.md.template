@@ -1,0 +1,7 @@
+# Compliance Control Matrix
+
+| Framework | Control | Requirement | Status | Evidence | Owner | Next Step |
+|-----------|---------|-------------|--------|----------|-------|-----------|
+{% for row in controls %}
+| {{ row.framework }} | {{ row.control }} | {{ row.requirement }} | {{ row.status }} | {{ row.evidence }} | {{ row.owner }} | {{ row.next_step }} |
+{% endfor %}
