@@ -85,7 +85,7 @@
         "Bash"
       ],
       "expansion-pack": null,
-      "description": "Diagnoses bottlenecks and plans performance improvements."
+      "description": "Diagnoses bottlenecks and designs performance optimization plans."
     },
     {
       "id": "bmad-observability-readiness",
@@ -98,7 +98,7 @@
         "Bash"
       ],
       "expansion-pack": null,
-      "description": "Establishes instrumentation, metrics, and alerting foundations."
+      "description": "Establishes instrumentation, monitoring, and alerting foundations."
     },
     {
       "id": "bmad-security-review",
@@ -110,7 +110,7 @@
         "Grep"
       ],
       "expansion-pack": null,
-      "description": "Performs threat modeling and security remediation planning."
+      "description": "Hardens designs and implementations with structured security reviews."
     },
     {
       "id": "bmad-story-planning",
