@@ -469,8 +469,8 @@ def main():
         logger.info(f"Report exported to: {report_file}")
 
     elif command == 'clear':
-        confirm = input("Clear all metrics? (yes/no): ")
-        if confirm.lower() == 'yes':
+        confirm = input("Clear all metrics? (yes/no): ").strip().lower()
+        if confirm in ('yes', 'y'):
             metrics.clear_metrics()
             logger.info("Metrics cleared")
         else:

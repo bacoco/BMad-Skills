@@ -10,6 +10,7 @@ import sys
 from pathlib import Path
 from datetime import datetime
 from string import Template
+from typing import Any, Dict, Optional
 
 SKILLS_ROOT = Path(__file__).resolve().parents[2]  # .claude/skills/
 RUNTIME_ROOT = SKILLS_ROOT / "_runtime" / "workspace"
@@ -17,12 +18,12 @@ ARTIFACTS_DIR = RUNTIME_ROOT / "artifacts"
 DEFAULT_OUTPUT_DIR = ARTIFACTS_DIR
 ASSETS_DIR = Path(__file__).parent.parent / "assets"
 
-def load_json_data(json_path):
+def load_json_data(json_path: str) -> Dict[str, Any]:
     """Load architecture data from JSON file"""
     with open(json_path, 'r') as f:
         return json.load(f)
 
-def render_architecture_content(data):
+def render_architecture_content(data: Dict[str, Any]) -> str:
     """Render architecture content from template in assets/"""
     # Build decision summary table (dynamic content)
     decision_rows = []
@@ -111,7 +112,7 @@ These patterns were designed specifically for this project to solve unique requi
         dev_environment=data['dev_environment']
     )
 
-def generate_architecture(data, output_dir=None):
+def generate_architecture(data: Dict[str, Any], output_dir: Optional[str] = None) -> Path:
     """Generate ARCHITECTURE.md from data"""
     # Ensure output directory exists
     output_path = Path(output_dir) if output_dir else DEFAULT_OUTPUT_DIR
@@ -128,7 +129,7 @@ def generate_architecture(data, output_dir=None):
     print(f"✅ Generated: {arch_file}")
     return arch_file
 
-def main():
+def main() -> None:
     if len(sys.argv) < 2:
         print("Usage: python generate_architecture.py <json_data_file> [output_dir]")
         print("Example: python generate_architecture.py /tmp/architecture_data.json docs")

@@ -10,6 +10,7 @@ import sys
 from pathlib import Path
 from datetime import datetime
 from string import Template
+from typing import Any, Dict, Optional
 
 SKILLS_ROOT = Path(__file__).resolve().parents[2]  # .claude/skills/
 RUNTIME_ROOT = SKILLS_ROOT / "_runtime" / "workspace"
@@ -17,12 +18,12 @@ STORIES_DIR = RUNTIME_ROOT / "stories"
 DEFAULT_STORIES_DIR = STORIES_DIR
 ASSETS_DIR = Path(__file__).parent.parent / "assets"
 
-def load_json_data(json_path):
+def load_json_data(json_path: str) -> Dict[str, Any]:
     """Load story data from JSON file"""
     with open(json_path, 'r') as f:
         return json.load(f)
 
-def render_story_content(data, date):
+def render_story_content(data: Dict[str, Any], date: str) -> str:
     """Render story content from template in assets/"""
     # Build acceptance criteria (dynamic content)
     ac_lines = []
@@ -77,7 +78,7 @@ def render_story_content(data, date):
         references=references
     )
 
-def create_story(data, output_dir=None):
+def create_story(data: Dict[str, Any], output_dir: Optional[str] = None) -> Path:
     """Generate story file from data"""
     # Ensure output directory exists
     output_path = Path(output_dir) if output_dir else DEFAULT_STORIES_DIR
@@ -98,7 +99,7 @@ def create_story(data, output_dir=None):
     print(f"✅ Generated: {story_file}")
     return story_file
 
-def main():
+def main() -> None:
     if len(sys.argv) < 2:
         print("Usage: python create_story.py <json_data_file> [output_dir]")
         print("Example: python create_story.py /tmp/story_data.json stories")
